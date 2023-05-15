@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 19 October 2023                                       Microsoft
+Expires: 16 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                           17 April 2023
+                                                             15 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 October 2023.
+   This Internet-Draft will expire on 16 November 2023.
 
 Copyright Notice
 
@@ -1338,8 +1338,9 @@ Table of Contents
    *Integrity:* A malicious Holder cannot modify names or values of
    selectively disclosable claims without detection by the Verifier.
 
-   Additionally, Holder Binding can be achieved as described in
-   Section 8.6.
+   Additionally, as described in Section 8.6, the application of Holder
+   Binding can ensure that the presenter of an SD-JWT credential is the
+   legitimate Holder of the credential.
 
 8.1.  Mandatory signing of the SD-JWT
 

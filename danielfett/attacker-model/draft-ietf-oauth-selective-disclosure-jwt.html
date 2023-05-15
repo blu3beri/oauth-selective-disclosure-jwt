@@ -12,21 +12,19 @@
        This document specifies conventions for creating JSON Web Token (JWT)
 documents that support selective disclosure of JWT claims. 
     " name="description">
-<meta content="xml2rfc 3.17.0" name="generator">
+<meta content="xml2rfc 3.17.1" name="generator">
 <meta content="security" name="keyword">
 <meta content="oauth2" name="keyword">
 <meta content="draft-ietf-oauth-selective-disclosure-jwt-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.0
-    Python 3.10.10
+  xml2rfc 3.17.1
+    Python 3.10.11
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
-    html5lib 1.1
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
-    MarkupSafe 2.1.1
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.28.1
@@ -665,7 +663,8 @@ sub, sup {
 .references dt {
   text-align: right;
   font-weight: bold;
-  min-width: 7em;
+  min-width: 10ch;
+  margin-right: 1.5ch;
 }
 .references dt:target::before {
   content: "⇒";
@@ -673,7 +672,7 @@ sub, sup {
   margin: 0 10px 0 -25px;
 }
 .references dd {
-  margin-left: 8em !important;
+  margin-left: 12ch !important;
   overflow: auto;
 }
 
@@ -1051,11 +1050,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SD-JWT</td>
-<td class="right">April 2023</td>
+<td class="right">May 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fett, et al.</td>
-<td class="center">Expires 19 October 2023</td>
+<td class="center">Expires 16 November 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-oauth-selective-disclosure-jwt-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-04-17" class="published">17 April 2023</time>
+<time datetime="2023-05-15" class="published">15 May 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-10-19">19 October 2023</time></dd>
+<dd class="expires"><time datetime="2023-11-16">16 November 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1126,7 @@ documents that support selective disclosure of JWT claims.<a href="#section-abst
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 October 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 November 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2485,7 +2484,7 @@ information from an SD-JWT about any claim name or claim value that was not
 explicitly disclosed by the Holder unless that information can be derived from
 other disclosed claims or external sources.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3"><strong>Integrity:</strong> A malicious Holder cannot modify names or values of selectively disclosable claims without detection by the Verifier.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Additionally, Holder Binding can be achieved as described in <a href="#holder_binding_security" class="auto internal xref">Section 8.6</a>.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-4">Additionally, as described in <a href="#holder_binding_security" class="auto internal xref">Section 8.6</a>, the application of Holder Binding can ensure that the presenter of an SD-JWT credential is the legitimate Holder of the credential.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <div id="mandatory-signing-of-the-sd-jwt">
 <section id="section-8.1">
         <h3 id="name-mandatory-signing-of-the-sd">
