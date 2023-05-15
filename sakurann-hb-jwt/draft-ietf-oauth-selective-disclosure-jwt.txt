@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 9 November 2023                                       Microsoft
+Expires: 16 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                              8 May 2023
+                                                             15 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 November 2023.
+   This Internet-Draft will expire on 16 November 2023.
 
 Copyright Notice
 
@@ -325,8 +325,8 @@ Table of Contents
    Note: How the public key is included in SD-JWT is out of scope of
    this document.  It can be passed by value or by reference.
 
-   The Holder can then create a signed document, the Holder Binding JWT,
-   defined in Section 5.4.1.1 using its private key.  This document
+   The Holder can then create a signed document, the Holder Binding JWT
+   as defined in Section 5.4.1.1, using its private key.  This document
    contains some data provided by the Verifier such as a nonce to ensure
    the freshness of the signature, and audience to indicate the intended
    audience for the document.
@@ -1056,7 +1056,7 @@ Table of Contents
      "iat": 1681481715
    }
 
-   Below is a non-normative example of a JWT produced by signign a
+   Below is a non-normative example of a JWT produced by signing a
    payload in the example above:
 
    eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnI
