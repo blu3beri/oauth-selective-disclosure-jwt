@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-18T00:58:51.978064+00:00",
+  "timestamp": "2023-05-21T01:02:46.355943+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -6856,6 +6856,22 @@
       "body": "We're using the above terms only in this figure: https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-3\r\n\r\nThe terms are not wrong, but we should lower-case them as they're not defined terms any longer.",
       "createdAt": "2023-05-17T19:11:01Z",
       "updatedAt": "2023-05-17T19:11:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 272,
+      "id": "I_kwDOHTmVzM5mVb-6",
+      "title": "SD-JWT VC example ",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/272",
+      "state": "OPEN",
+      "author": "tlodderstedt",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I suggest to align the example https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#name-example-4a-w3c-verifiable-c with the design specified in https://github.com/vcstuff/draft-terbu-sd-jwt-vc. The obvious difference is the use (or omission) of \u2019credentialSubject\u2018.",
+      "createdAt": "2023-05-19T09:00:26Z",
+      "updatedAt": "2023-05-19T09:00:26Z",
       "closedAt": null,
       "comments": []
     }
