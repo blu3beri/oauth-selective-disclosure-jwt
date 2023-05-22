@@ -2238,7 +2238,6 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
     * <code>typ</code>: REQUIRED. MUST be <code>hb+jwt</code>, which explicitly types the Holder Binding JWT as recommended in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.
     * <code>alg</code>: REQUIRED. A digital signature algorithm identifier such as per IANA "JSON Web Signature and Encryption Algorithms" registry. MUST NOT be <code>none</code> or an identifier for a symmetric algorithm (MAC).
   * in the JWT body,
-    * <code>iss</code>: REQUIRED. The issuer of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.
     * <code>iat</code>: REQUIRED. The value of this claim MUST be the time at which the Holder Binding JWT was issued using the syntax defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
     * <code>aud</code>: REQUIRED. The intended receiver of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.
     * <code>nonce</code>: REQUIRED. Ensures the freshness of the signature. The value type of this claim MUST be a string. How this value is obtained is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-2" class="pilcrow">¶</a></p>
