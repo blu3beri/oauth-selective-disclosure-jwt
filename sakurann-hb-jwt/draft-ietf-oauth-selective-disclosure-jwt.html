@@ -2242,30 +2242,38 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
     * <code>aud</code>: REQUIRED. The intended receiver of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.
     * <code>nonce</code>: REQUIRED. Ensures the freshness of the signature. The value type of this claim MUST be a string. How this value is obtained is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.4.1.1-3">To validate the signature on the Holder Binding JWT, the Verifier MUST use the key material in the SD-JWT. If it is not clear from the SD-JWT, HB-JWT MUST specify which key material the Verifier needs to use to validate HB-JWT using JOSE header parameters such as <code>kid</code> and <code>x5c</code>.<a href="#section-5.4.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-4">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-5.4.1.1-5">
+<p id="section-5.4.1.1-4">Below is a non-normative example of a Holder Binding JWT header:<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.4.1.1-5">
+<pre>{
+  "alg": "ES256",
+  "typ": "hb+jwt"
+}
+</pre><a href="#section-5.4.1.1-5" class="pilcrow">¶</a>
+</div>
+<p id="section-5.4.1.1-6">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-6" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-5.4.1.1-7">
 <pre>{
   "nonce": "XZOUco1u_gEPknxS78sWWg",
   "aud": "https://example.com/verifier",
   "iat": 1683011539
 }
-</pre><a href="#section-5.4.1.1-5" class="pilcrow">¶</a>
+</pre><a href="#section-5.4.1.1-7" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-6">Below is a non-normative example of a JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-6" class="pilcrow">¶</a></p>
-<div class="lang-txt sourcecode" id="section-5.4.1.1-7">
+<p id="section-5.4.1.1-8">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-8" class="pilcrow">¶</a></p>
+<div class="lang-txt sourcecode" id="section-5.4.1.1-9">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnI
 iwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2O
 DMwMTE1Mzl9.xAapcvJzV3OxQIHWOXmzYRP5qUbBQvdc-mlwaGjTQecIiovCBA1hVP2u
 _rzbM_zwPY9hImY9658IGDfO-y0UBQ
-</pre><a href="#section-5.4.1.1-7" class="pilcrow">¶</a>
+</pre><a href="#section-5.4.1.1-9" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-8">Whether to require Holder Binding is up to the Verifier's policy,
-based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-8" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-9">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
+<p id="section-5.4.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
+based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-11">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
 e.g., when the Combined Format for Presentation without a Holder Binding JWT is itself embedded in a
-signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-9" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-10">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
-the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-10" class="pilcrow">¶</a></p>
+signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-11" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-12">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
+the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3553,8 +3561,9 @@ structures defined in OIDC4IDA <span>[<a href="#OIDC.IDA" class="cite xref">OIDC
 <code>["6C1AmXbR79hmsqb_bH_XwA", "msisdn", "49123456789"]</code><a href="#appendix-A.2-36.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="appendix-A.2-37">The Verifier would receive the Issuer-signed SD-JWT together with a selection
-of the Disclosures. The Presentation in this example would look as follows:<a href="#appendix-A.2-37" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-37">The following is a non-normative example of a Combined Format for Presentation
+without a Holder Binding JWT that the Verifier would receive with a selection
+of the Disclosures:<a href="#appendix-A.2-37" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.2-38">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkJqSjg1YjFtcEl2b3JDMzVkYThjUFJDZ
 k4wT2VvQlVmN1pDQTN3OTZ4bk0iLCAiWHFuVG9tYm9HYWMtUUFTZzJROVYxdVFHUlFSa

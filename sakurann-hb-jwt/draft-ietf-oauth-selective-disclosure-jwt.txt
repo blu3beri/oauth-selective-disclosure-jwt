@@ -1042,6 +1042,13 @@ Table of Contents
    use to validate HB-JWT using JOSE header parameters such as kid and
    x5c.
 
+   Below is a non-normative example of a Holder Binding JWT header:
+
+   {
+     "alg": "ES256",
+     "typ": "hb+jwt"
+   }
+
    Below is a non-normative example of a Holder Binding JWT payload:
 
    {
@@ -1050,8 +1057,8 @@ Table of Contents
      "iat": 1683011539
    }
 
-   Below is a non-normative example of a JWT produced by signing a
-   payload in the example above:
+   Below is a non-normative example of a Holder Binding JWT produced by
+   signing a payload in the example above:
 
    eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnI
    iwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2O
@@ -2304,9 +2311,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["6C1AmXbR79hmsqb_bH_XwA", "msisdn", "49123456789"]
 
-   The Verifier would receive the Issuer-signed SD-JWT together with a
-   selection of the Disclosures.  The Presentation in this example would
-   look as follows:
+   The following is a non-normative example of a Combined Format for
+   Presentation without a Holder Binding JWT that the Verifier would
+   receive with a selection of the Disclosures:
 
    eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkJqSjg1YjFtcEl2b3JDMzVkYThjUFJDZ
    k4wT2VvQlVmN1pDQTN3OTZ4bk0iLCAiWHFuVG9tYm9HYWMtUUFTZzJROVYxdVFHUlFSa
