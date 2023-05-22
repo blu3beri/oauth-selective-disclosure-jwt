@@ -2441,9 +2441,11 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
 </li>
                   <li id="section-6.2-4.5.2.2.2.4">Validate the signature over the Holder Binding JWT.<a href="#section-6.2-4.5.2.2.2.4" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.5">Check that the Holder Binding JWT is valid using <code>iat</code>, and, if provided, <code>nbf</code> and <code>exp</code> claims.<a href="#section-6.2-4.5.2.2.2.5" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.5">Check that the <code>typ</code> of the Holder Binding JWT is <code>hb+jwt</code>.<a href="#section-6.2-4.5.2.2.2.5" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.6">Determine that the Holder Binding JWT is bound to the current transaction and was created for this Verifier (replay protection) by validating <code>nonce</code> and <code>aud</code> claims.<a href="#section-6.2-4.5.2.2.2.6" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.6">Check that the Holder Binding JWT is valid using <code>iat</code>, and, if provided, <code>nbf</code> and <code>exp</code> claims.<a href="#section-6.2-4.5.2.2.2.6" class="pilcrow">¶</a>
+</li>
+                  <li id="section-6.2-4.5.2.2.2.7">Determine that the Holder Binding JWT is bound to the current transaction and was created for this Verifier (replay protection) by validating <code>nonce</code> and <code>aud</code> claims.<a href="#section-6.2-4.5.2.2.2.7" class="pilcrow">¶</a>
 </li>
                 </ol>
 </li>

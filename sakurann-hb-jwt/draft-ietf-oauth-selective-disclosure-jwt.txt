@@ -1245,10 +1245,12 @@ Table of Contents
 
            4.  Validate the signature over the Holder Binding JWT.
 
-           5.  Check that the Holder Binding JWT is valid using iat,
+           5.  Check that the typ of the Holder Binding JWT is hb+jwt.
+
+           6.  Check that the Holder Binding JWT is valid using iat,
                and, if provided, nbf and exp claims.
 
-           6.  Determine that the Holder Binding JWT is bound to the
+           7.  Determine that the Holder Binding JWT is bound to the
                current transaction and was created for this Verifier
                (replay protection) by validating nonce and aud claims.
 
