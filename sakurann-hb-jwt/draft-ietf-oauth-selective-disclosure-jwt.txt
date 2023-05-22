@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 16 November 2023                                      Microsoft
+Expires: 23 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             15 May 2023
+                                                             22 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 November 2023.
+   This Internet-Draft will expire on 23 November 2023.
 
 Copyright Notice
 
@@ -111,12 +111,11 @@ Table of Contents
    12. Normative References
    13. Informative References
    Appendix A.  Additional Examples
-     A.1.  Example 2a: Handling Structured Claims
-     A.2.  Example 2b: Adding Decoys
-     A.3.  Example 3 - Complex Structured SD-JWT
-     A.4.  Example 4a - W3C Verifiable Credentials Data Model v2.0,
+     A.1.  Example 2: Handling Structured Claims
+     A.2.  Example 3 - Complex Structured SD-JWT
+     A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0,
            not using JSON-LD
-     A.5.  Example 4b - W3C Verifiable Credentials Data Model v2.0,
+     A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0,
            using JSON-LD
    Appendix B.  Disclosure Format Considerations
    Appendix C.  Document History
@@ -854,9 +853,9 @@ Table of Contents
    DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Esw3lLcOme
-   rFs2n3hzQPwSvn6kw0omhV9OUZ0EWJRDUpZA_oFfEe8GQEz0IYe7O5rNNZhV3TQFGdoE
-   KQBQ0Ypw
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
+   mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
+   HT1YvgLA
 
    The Issuer creates the following Disclosures:
 
@@ -972,9 +971,9 @@ Table of Contents
    DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Esw3lLcOme
-   rFs2n3hzQPwSvn6kw0omhV9OUZ0EWJRDUpZA_oFfEe8GQEz0IYe7O5rNNZhV3TQFGdoE
-   KQBQ0Ypw~WyJyU0x1em5oaUxQQkRSWkUxQ1o4OEtRIiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
+   mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
+   HT1YvgLA~WyJyU0x1em5oaUxQQkRSWkUxQ1o4OEtRIiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJhYTFPYmdlUkJnODJudnpMYnRQTklRIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2VWhsZU5HUmJtc0xDOFRndTh2OFdnIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJ2S0t6alFSOWtsbFh2OWVkNUJ1ZHZRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1027,33 +1026,30 @@ Table of Contents
    Binding JWT as recommended in Section 3.11 of [RFC8725].  * alg:
    REQUIRED.  A digital signature algorithm identifier such as per IANA
    "JSON Web Signature and Encryption Algorithms" registry.  MUST NOT be
-   none or an identifier for a symmetric algorithm (MAC).  * kid: kid:
-   CONDITIONAL.  JOSE Header containing the key ID.  MUST NOT be present
-   if jwk or x5c is present.  * jwk: CONDITIONAL.  JOSE Header
-   containing the key material the new Credential shall be bound to.
-   MUST NOT be present if kid or x5c is present.  * x5c: CONDITIONAL.
-   JOSE Header containing a certificate or certificate chain
-   corresponding to the key used to sign the JWT.  This element MAY be
-   used to convey a key attestation.  In such a case, the actual key
-   certificate will contain attributes related to the key properties.
-   MUST NOT be present if kid or jwk is present.  * in the JWT body, *
-   iss: REQUIRED.  The issuer of the Holder Binding JWT.  How the value
-   is represented is up to the protocol used and out of scope of this
-   specification.  * iat: REQUIRED.  The value of this claim MUST be the
-   time at which the Holder Binding JWT was issued using the syntax
-   defined in [RFC7519].  * aud: REQUIRED.  The intended receiver of the
-   Holder Binding JWT.  How the value is represented is up to the
+   none or an identifier for a symmetric algorithm (MAC).  * in the JWT
+   body, * iss: REQUIRED.  The issuer of the Holder Binding JWT.  How
+   the value is represented is up to the protocol used and out of scope
+   of this specification.  * iat: REQUIRED.  The value of this claim
+   MUST be the time at which the Holder Binding JWT was issued using the
+   syntax defined in [RFC7519].  * aud: REQUIRED.  The intended receiver
+   of the Holder Binding JWT.  How the value is represented is up to the
    protocol used and out of scope of this specification.  * nonce:
    REQUIRED.  Ensures the freshness of the signature.  The value type of
    this claim MUST be a string.  How this value is obtained is up to the
    protocol used and out of scope of this specification.
+
+   To validate the signature on the Holder Binding JWT, the Verifier
+   MUST use the key material in the SD-JWT.  If it is not clear from the
+   SD-JWT, HB-JWT MUST specify which key material the Verifier needs to
+   use to validate HB-JWT using JOSE header parameters such as kid and
+   x5c.
 
    Below is a non-normative example of a Holder Binding JWT payload:
 
    {
      "nonce": "XZOUco1u_gEPknxS78sWWg",
      "aud": "https://example.com/verifier",
-     "iat": 1681481715
+     "iat": 1683011539
    }
 
    Below is a non-normative example of a JWT produced by signing a
@@ -1061,8 +1057,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnI
    iwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2O
-   DE0ODE3MTV9.54Cg9LZcZgMhUT67eFMArAn71O7eUcVmUrROHHW2Qo-md7NSzz24mNhn
-   y9B94oY9oWr-pwo4Gb5DM8UtidcShA
+   DMwMTE1Mzl9.xAapcvJzV3OxQIHWOXmzYRP5qUbBQvdc-mlwaGjTQecIiovCBA1hVP2u
+   _rzbM_zwPY9hImY9658IGDfO-y0UBQ
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1095,17 +1091,17 @@ Table of Contents
    DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Esw3lLcOme
-   rFs2n3hzQPwSvn6kw0omhV9OUZ0EWJRDUpZA_oFfEe8GQEz0IYe7O5rNNZhV3TQFGdoE
-   KQBQ0Ypw~WyJOYTNWb0ZGblZ3MjhqT0FyazdJTlZnIiwgImFkZHJlc3MiLCB7InN0cmV
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
+   mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
+   HT1YvgLA~WyJOYTNWb0ZGblZ3MjhqT0FyazdJTlZnIiwgImFkZHJlc3MiLCB7InN0cmV
    ldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCA
    icmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJhYTFPYmdlUkJ
    nODJudnpMYnRQTklRIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyI2VWhsZU5HUmJtc0
    xDOFRndTh2OFdnIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~eyJhbGciOiAiRVMyNTYif
    Q.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnIiwgImF1ZCI6ICJodHRwcz
-   ovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODE0ODE3MTV9.54Cg9LZcZ
-   gMhUT67eFMArAn71O7eUcVmUrROHHW2Qo-md7NSzz24mNhny9B94oY9oWr-pwo4Gb5DM
-   8UtidcShA
+   ovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODMwMTE1Mzl9.xAapcvJzV
+   3OxQIHWOXmzYRP5qUbBQvdc-mlwaGjTQecIiovCBA1hVP2u_rzbM_zwPY9hImY9658IG
+   DfO-y0UBQ
 
 6.  Verification and Processing
 
@@ -1311,12 +1307,18 @@ Table of Contents
    Security considerations in this section help achieve the following
    properties:
 
-   *  Claim values issued by the Issuer cannot be obtained by the
-      adversary, if the Holder did not intend to disclose them.
+   *Selective Disclosure:* An adversary in the role of the Verifier
+   cannot obtain information from an SD-JWT about any claim name or
+   claim value that was not explicitly disclosed by the Holder unless
+   that information can be derived from other disclosed claims or
+   sources other than the presented SD-JWT.
 
-   *  Claim values that are not issued by the Issuer cannot be
-      successfully verified by the Verifier, if the Holder forged the
-      Disclosures.
+   *Integrity:* A malicious Holder cannot modify names or values of
+   selectively disclosable claims without detection by the Verifier.
+
+   Additionally, as described in Section 8.6, the application of Holder
+   Binding can ensure that the presenter of an SD-JWT credential is the
+   legitimate Holder of the credential.
 
 8.1.  Mandatory signing of the SD-JWT
 
@@ -1334,8 +1336,8 @@ Table of Contents
 8.2.  Manipulation of Disclosures
 
    Holders can manipulate the Disclosures by changing the values of the
-   claims before sending them to the Issuer.  The Issuer MUST check the
-   Disclosures to ensure that the values of the claims are correct,
+   claims before sending them to the Verifier.  The Verifier MUST check
+   the Disclosures to ensure that the values of the claims are correct,
    i.e., the digests of the Disclosures are actually present in the
    signed SD-JWT.
 
@@ -1640,9 +1642,10 @@ Table of Contents
    Christian Paquin, David Bakker, David Waite, Fabian Hauck, Filip
    Skokan, Giuseppe De Marco, John Mattsson, Justin Richer, Kushal Das,
    Matthew Miller, Mike Jones, Nat Sakimura, Orie Steele, Pieter
-   Kasselman, Ryosuke Abe, Shawn Butterfield, Torsten Lodderstedt, and
-   Vittorio Bertocci for their contributions (some of which substantial)
-   to this draft and to the initial set of implementations.
+   Kasselman, Ryosuke Abe, Shawn Butterfield, Torsten Lodderstedt,
+   Vittorio Bertocci, and Yaron Sheffer for their contributions (some of
+   which substantial) to this draft and to the initial set of
+   implementations.
 
    The work on this draft was started at OAuth Security Workshop 2022 in
    Trondheim, Norway.
@@ -1826,7 +1829,7 @@ Appendix A.  Additional Examples
 
    All of the following examples are non-normative.
 
-A.1.  Example 2a: Handling Structured Claims
+A.1.  Example 2: Handling Structured Claims
 
    This example uses the following object as the set of claims that the
    Issuer is issuing:
@@ -1846,23 +1849,39 @@ A.1.  Example 2a: Handling Structured Claims
      "birthdate": "1940-01-01"
    }
 
-   Note that in contrast to Example 1, here the Issuer decided to create
-   a structured object for the address claim, allowing for separate
-   disclosure of the individual members of the claim.
+   In contrast to Example 1, here the Issuer decided to create a
+   structured object for the address claim, allowing for separate
+   disclosure of the individual members of the claim, and also added
+   decoy digests to prevent the Verifier from deducing the true number
+   of claims.  The following payload is used for the SD-JWT:
 
    {
      "_sd": [
-       "-rAXuBrq1MIGJnPr_vGdgVhinHfvtw6HMvkMQ6rk1Po",
-       "ZRtxg42klTl-Ap_OiwNVh49ZCGM059AmHPayFqbMilE",
-       "g_WrTVyjFFsppeKOjcgAK8nLTeY8IcPAYSz00xNn5Rk",
-       "hblncirSgqjt8gTQ56jy7FUd1cpCg0orxca0C-o9aoo",
-       "lagH02GaboFAO6_d2R8jpdjO-Xxnh4aVAG9cE8iV4Sg",
-       "p3vzUx7kYcA_dOlOQpyf8Z8J4s1ZPfhXWZNFuI4JgvU",
-       "s2OMJlfL0E9i46-mM3sQKxJ0bEs3bNwBrzXhObM7iR0"
+       "H7QIC26TLRmWOWIZWqlE3JDki5cG5VeprTVJWfYVpgI",
+       "HTemkHzi8vElSb4qKs6W8pj5OkalTr-I02uy6mjlE9k",
+       "IG_O1HoyxAm6WzX8dbnhejWTyiNu1a2V3NpZ266-XYU",
+       "YoymiOj55SixQe6kDf_L8YuCM-e3KqEtvmIZ1zVIiWo",
+       "kjwlXbdnfjlq9hoGnUlpSxSvC9FJC9FQSvOZ7qosdQs",
+       "m6e74AtfwOyGWZbI0FYp_UUyv_DqFX9cLYf2HbhhxCs",
+       "w-kWo-F-1Tg3zNLvcaJG2sv4BL3YmFinEnVaR1lzdN4",
+       "zCskisHlC5JbSWZJ-wjDUHpziacQb9JunpXG-tI4v-o"
      ],
      "iss": "https://example.com/issuer",
      "iat": 1516239022,
      "exp": 1735689661,
+     "address": {
+       "_sd": [
+         "-BbHMWfo64APpq0nWg8956vWZ8I-DJ8w5Jqdgi1MKBM",
+         "5MMw8viS8yz15wgvjHQXPnt3xt9Y6dcqKX0Q3Eg61HU",
+         "5gfosFRCTFjzw-Z-AIybiHzIS59IL8WF2ubaY2TNHHA",
+         "DxndzC_T8a1q9ZxLNlKvuiWIUwZaFfEeNE-ma4huWkE",
+         "RR-YScyv2VOJfZBoQ23cRgiPCIkFOE2DnOxoAb0d1S0",
+         "WDkBxN7mn-O3Soc6ivCvYURY70vSvXtgvH2Lzhk9gOU",
+         "dRLsjsLyEGJ9wry-B4eMEc32L9rynYNHk-wWh_vgSs8",
+         "kQo-62_CSNN9molJSPRA30EA3NNcPcYYx3uB7oXxdUM",
+         "w1i7GGf1jCHyv-vXGTFV57MBwN94usyvswRZJ-Rkm2I"
+       ]
+     },
      "_sd_alg": "sha-256"
    }
 
@@ -1870,139 +1889,156 @@ A.1.  Example 2a: Handling Structured Claims
 
    *Claim sub:*
 
-   *  SHA-256 Hash: hblncirSgqjt8gTQ56jy7FUd1cpCg0orxca0C-o9aoo
+   *  SHA-256 Hash: zCskisHlC5JbSWZJ-wjDUHpziacQb9JunpXG-tI4v-o
 
    *  Disclosure:
-      WyIzWFQxYV8tOFBRNFlweEZnczRiUG9RIiwgInN1YiIsICI2YzVjMGE0OS1i
+      WyI4c0N1cEozbEoxSWRxM3VsRk1iQ2JRIiwgInN1YiIsICI2YzVjMGE0OS1i
       NTg5LTQzMWQtYmFlNy0yMTkxMjJhOWVjMmMiXQ
 
-   *  Contents: ["3XT1a_-8PQ4YpxFgs4bPoQ", "sub",
+   *  Contents: ["8sCupJ3lJ1Idq3ulFMbCbQ", "sub",
       "6c5c0a49-b589-431d-bae7-219122a9ec2c"]
 
    *Claim given_name:*
 
-   *  SHA-256 Hash: lagH02GaboFAO6_d2R8jpdjO-Xxnh4aVAG9cE8iV4Sg
+   *  SHA-256 Hash: YoymiOj55SixQe6kDf_L8YuCM-e3KqEtvmIZ1zVIiWo
 
    *  Disclosure:
-      WyJ3M3RSbkptLTZ4YXhtMHdWVFMxYV9nIiwgImdpdmVuX25hbWUiLCAiXHU1
+      WyJkNDVuR2RKOUFtYnVIdDZTMFVmVDFRIiwgImdpdmVuX25hbWUiLCAiXHU1
       OTJhXHU5MGNlIl0
 
-   *  Contents: ["w3tRnJm-6xaxm0wVTS1a_g", "given_name", "\u592a\u90ce"]
+   *  Contents: ["d45nGdJ9AmbuHt6S0UfT1Q", "given_name", "\u592a\u90ce"]
 
    *Claim family_name:*
 
-   *  SHA-256 Hash: -rAXuBrq1MIGJnPr_vGdgVhinHfvtw6HMvkMQ6rk1Po
+   *  SHA-256 Hash: kjwlXbdnfjlq9hoGnUlpSxSvC9FJC9FQSvOZ7qosdQs
 
    *  Disclosure:
-      WyJGM3MxUENGOUt3eklEaUtKajZrekpRIiwgImZhbWlseV9uYW1lIiwgIlx1
+      WyJhd296cnVrUFFqVVhDaVR2cnFRX253IiwgImZhbWlseV9uYW1lIiwgIlx1
       NWM3MVx1NzUzMCJd
 
-   *  Contents: ["F3s1PCF9KwzIDiKJj6kzJQ", "family_name",
+   *  Contents: ["awozrukPQjUXCiTvrqQ_nw", "family_name",
       "\u5c71\u7530"]
 
    *Claim email:*
 
-   *  SHA-256 Hash: p3vzUx7kYcA_dOlOQpyf8Z8J4s1ZPfhXWZNFuI4JgvU
+   *  SHA-256 Hash: IG_O1HoyxAm6WzX8dbnhejWTyiNu1a2V3NpZ266-XYU
 
    *  Disclosure:
-      WyJpQl9adWNHQ3dmampRald5MEV0RVlnIiwgImVtYWlsIiwgIlwidW51c3Vh
+      WyJ1ek5ybkNFTWV3dGFGUUpYZTFjcklBIiwgImVtYWlsIiwgIlwidW51c3Vh
       bCBlbWFpbCBhZGRyZXNzXCJAZXhhbXBsZS5qcCJd
 
-   *  Contents: ["iB_ZucGCwfjjQjWy0EtEYg", "email", "\"unusual email
+   *  Contents: ["uzNrnCEMewtaFQJXe1crIA", "email", "\"unusual email
       address\"@example.jp"]
 
    *Claim phone_number:*
 
-   *  SHA-256 Hash: ZRtxg42klTl-Ap_OiwNVh49ZCGM059AmHPayFqbMilE
+   *  SHA-256 Hash: HTemkHzi8vElSb4qKs6W8pj5OkalTr-I02uy6mjlE9k
 
    *  Disclosure:
-      WyJMR3hTaXJELTdsRHB6SWlsVHpYdXdnIiwgInBob25lX251bWJlciIsICIr
+      WyJiSGRLV1VhekRCZWh2anF5Nnc3WkJBIiwgInBob25lX251bWJlciIsICIr
       ODEtODAtMTIzNC01Njc4Il0
 
-   *  Contents: ["LGxSirD-7lDpzIilTzXuwg", "phone_number",
+   *  Contents: ["bHdKWUazDBehvjqy6w7ZBA", "phone_number",
       "+81-80-1234-5678"]
 
-   *Claim address:*
+   *Claim street_address:*
 
-   *  SHA-256 Hash: s2OMJlfL0E9i46-mM3sQKxJ0bEs3bNwBrzXhObM7iR0
+   *  SHA-256 Hash: kQo-62_CSNN9molJSPRA30EA3NNcPcYYx3uB7oXxdUM
 
    *  Disclosure:
-      WyJlT1hQUDJNYTAzNTNiai1qLTVPRGFnIiwgImFkZHJlc3MiLCB7InN0cmVl
-      dF9hZGRyZXNzIjogIlx1Njc3MVx1NGVhY1x1OTBmZFx1NmUyZlx1NTMzYVx1
-      ODI5ZFx1NTE2Y1x1NTcxMlx1ZmYxNFx1NGUwMVx1NzZlZVx1ZmYxMlx1MjIx
-      Mlx1ZmYxOCIsICJsb2NhbGl0eSI6ICJcdTY3NzFcdTRlYWNcdTkwZmQiLCAi
-      cmVnaW9uIjogIlx1NmUyZlx1NTMzYSIsICJjb3VudHJ5IjogIkpQIn1d
+      WyJwbm5aU3pET05hOE04VmxZVGV3QW9BIiwgInN0cmVldF9hZGRyZXNzIiwg
+      Ilx1Njc3MVx1NGVhY1x1OTBmZFx1NmUyZlx1NTMzYVx1ODI5ZFx1NTE2Y1x1
+      NTcxMlx1ZmYxNFx1NGUwMVx1NzZlZVx1ZmYxMlx1MjIxMlx1ZmYxOCJd
 
-   *  Contents: ["eOXPP2Ma0353bj-j-5ODag", "address", {"street_address":
-      "\u
-      6771\u4eac\u90fd\u6e2f\u533a\u829d\u516c\u5712\uff14\u4e01\u
-      76ee\uff12\u2212\uff18", "locality": "\u6771\u4eac\u90fd",
-      "region": "\u6e2f\u533a", "country": "JP"}]
+   *  Contents: ["pnnZSzDONa8M8VlYTewAoA", "street_address",
+      "\u6771\u4eac\u
+      90fd\u6e2f\u533a\u829d\u516c\u5712\uff14\u4e01\u76ee\uff12\u
+      2212\uff18"]
+
+   *Claim locality:*
+
+   *  SHA-256 Hash: DxndzC_T8a1q9ZxLNlKvuiWIUwZaFfEeNE-ma4huWkE
+
+   *  Disclosure:
+      WyI0Z2EzT0I5dTNJQUxSN2NlRkljS3lRIiwgImxvY2FsaXR5IiwgIlx1Njc3
+      MVx1NGVhY1x1OTBmZCJd
+
+   *  Contents: ["4ga3OB9u3IALR7ceFIcKyQ", "locality",
+      "\u6771\u4eac\u90fd"]
+
+   *Claim region:*
+
+   *  SHA-256 Hash: WDkBxN7mn-O3Soc6ivCvYURY70vSvXtgvH2Lzhk9gOU
+
+   *  Disclosure:
+      WyJOUnJPVlF1WS1lTWdOSi10czhpRW9RIiwgInJlZ2lvbiIsICJcdTZlMmZc
+      dTUzM2EiXQ
+
+   *  Contents: ["NRrOVQuY-eMgNJ-ts8iEoQ", "region", "\u6e2f\u533a"]
+
+   *Claim country:*
+
+   *  SHA-256 Hash: w1i7GGf1jCHyv-vXGTFV57MBwN94usyvswRZJ-Rkm2I
+
+   *  Disclosure:
+      WyJ4R3FYWHJvRzhxd3N2X1pMWFJDRnZRIiwgImNvdW50cnkiLCAiSlAiXQ
+
+   *  Contents: ["xGqXXroG8qwsv_ZLXRCFvQ", "country", "JP"]
 
    *Claim birthdate:*
 
-   *  SHA-256 Hash: g_WrTVyjFFsppeKOjcgAK8nLTeY8IcPAYSz00xNn5Rk
+   *  SHA-256 Hash: H7QIC26TLRmWOWIZWqlE3JDki5cG5VeprTVJWfYVpgI
 
    *  Disclosure:
-      WyJwN3dJOHpfenlzQUN4ODVYOTgtWmFRIiwgImJpcnRoZGF0ZSIsICIxOTQw
+      WyJPYjcydmRhcDBqSEFmdmdhVklqZDdnIiwgImJpcnRoZGF0ZSIsICIxOTQw
       LTAxLTAxIl0
 
-   *  Contents: ["p7wI8z_zysACx85X98-ZaQ", "birthdate", "1940-01-01"]
+   *  Contents: ["Ob72vdap0jHAfvgaVIjd7g", "birthdate", "1940-01-01"]
+
+   The Issuer added the following decoy digests:
+
+   *  5gfosFRCTFjzw-Z-AIybiHzIS59IL8WF2ubaY2TNHHA
+
+   *  dRLsjsLyEGJ9wry-B4eMEc32L9rynYNHk-wWh_vgSs8
+
+   *  -BbHMWfo64APpq0nWg8956vWZ8I-DJ8w5Jqdgi1MKBM
+
+   *  RR-YScyv2VOJfZBoQ23cRgiPCIkFOE2DnOxoAb0d1S0
+
+   *  5MMw8viS8yz15wgvjHQXPnt3xt9Y6dcqKX0Q3Eg61HU
+
+   *  m6e74AtfwOyGWZbI0FYp_UUyv_DqFX9cLYf2HbhhxCs
+
+   *  w-kWo-F-1Tg3zNLvcaJG2sv4BL3YmFinEnVaR1lzdN4
 
    A Presentation for the SD-JWT that discloses only region and country
    of the address property and without a Holder Binding JWT could look
    as follows:
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi1yQVh1QnJxMU1JR0puUHJfdkdkZ1Zoa
-   W5IZnZ0dzZITXZrTVE2cmsxUG8iLCAiWlJ0eGc0MmtsVGwtQXBfT2l3TlZoNDlaQ0dNM
-   DU5QW1IUGF5RnFiTWlsRSIsICJnX1dyVFZ5akZGc3BwZUtPamNnQUs4bkxUZVk4SWNQQ
-   VlTejAweE5uNVJrIiwgImhibG5jaXJTZ3FqdDhnVFE1Nmp5N0ZVZDFjcENnMG9yeGNhM
-   EMtbzlhb28iLCAibGFnSDAyR2Fib0ZBTzZfZDJSOGpwZGpPLVh4bmg0YVZBRzljRThpV
-   jRTZyIsICJwM3Z6VXg3a1ljQV9kT2xPUXB5ZjhaOEo0czFaUGZoWFdaTkZ1STRKZ3ZVI
-   iwgInMyT01KbGZMMEU5aTQ2LW1NM3NRS3hKMGJFczNiTndCcnpYaE9iTTdpUjAiXSwgI
-   mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNTE2MjM5M
-   DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.kkGeR4Kh
-   FK2JcP6B6Wm_tjqUbi3OdtSTfvjXmv-CBIFZJhfZfyFm_oQ3ExDlfYqsZj__vsqR1C9N
-   c632FoMYbQ~WyJGM3MxUENGOUt3eklEaUtKajZrekpRIiwgImZhbWlseV9uYW1lIiwgI
-   lx1NWM3MVx1NzUzMCJd~WyJwN3dJOHpfenlzQUN4ODVYOTgtWmFRIiwgImJpcnRoZGF0
-   ZSIsICIxOTQwLTAxLTAxIl0~WyJ3M3RSbkptLTZ4YXhtMHdWVFMxYV9nIiwgImdpdmVu
-   X25hbWUiLCAiXHU1OTJhXHU5MGNlIl0~WyJpQl9adWNHQ3dmampRald5MEV0RVlnIiwg
-   ImVtYWlsIiwgIlwidW51c3VhbCBlbWFpbCBhZGRyZXNzXCJAZXhhbXBsZS5qcCJd~WyJ
-   lT1hQUDJNYTAzNTNiai1qLTVPRGFnIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXN
-   zIjogIlx1Njc3MVx1NGVhY1x1OTBmZFx1NmUyZlx1NTMzYVx1ODI5ZFx1NTE2Y1x1NTc
-   xMlx1ZmYxNFx1NGUwMVx1NzZlZVx1ZmYxMlx1MjIxMlx1ZmYxOCIsICJsb2NhbGl0eSI
-   6ICJcdTY3NzFcdTRlYWNcdTkwZmQiLCAicmVnaW9uIjogIlx1NmUyZlx1NTMzYSIsICJ
-   jb3VudHJ5IjogIkpQIn1d~
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkg3UUlDMjZUTFJtV09XSVpXcWxFM0pEa
+   2k1Y0c1VmVwclRWSldmWVZwZ0kiLCAiSFRlbWtIemk4dkVsU2I0cUtzNlc4cGo1T2thb
+   FRyLUkwMnV5Nm1qbEU5ayIsICJJR19PMUhveXhBbTZXelg4ZGJuaGVqV1R5aU51MWEyV
+   jNOcFoyNjYtWFlVIiwgIllveW1pT2o1NVNpeFFlNmtEZl9MOFl1Q00tZTNLcUV0dm1JW
+   jF6VklpV28iLCAia2p3bFhiZG5mamxxOWhvR25VbHBTeFN2QzlGSkM5RlFTdk9aN3Fvc
+   2RRcyIsICJtNmU3NEF0ZndPeUdXWmJJMEZZcF9VVXl2X0RxRlg5Y0xZZjJIYmhoeENzI
+   iwgIncta1dvLUYtMVRnM3pOTHZjYUpHMnN2NEJMM1ltRmluRW5WYVIxbHpkTjQiLCAie
+   kNza2lzSGxDNUpiU1daSi13akRVSHB6aWFjUWI5SnVucFhHLXRJNHYtbyJdLCAiaXNzI
+   jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE1MTYyMzkwMjIsI
+   CJleHAiOiAxNzM1Njg5NjYxLCAiYWRkcmVzcyI6IHsiX3NkIjogWyItQmJITVdmbzY0Q
+   VBwcTBuV2c4OTU2dldaOEktREo4dzVKcWRnaTFNS0JNIiwgIjVNTXc4dmlTOHl6MTV3Z
+   3ZqSFFYUG50M3h0OVk2ZGNxS1gwUTNFZzYxSFUiLCAiNWdmb3NGUkNURmp6dy1aLUFJe
+   WJpSHpJUzU5SUw4V0YydWJhWTJUTkhIQSIsICJEeG5kekNfVDhhMXE5WnhMTmxLdnVpV
+   0lVd1phRmZFZU5FLW1hNGh1V2tFIiwgIlJSLVlTY3l2MlZPSmZaQm9RMjNjUmdpUENJa
+   0ZPRTJEbk94b0FiMGQxUzAiLCAiV0RrQnhON21uLU8zU29jNml2Q3ZZVVJZNzB2U3ZYd
+   Gd2SDJMemhrOWdPVSIsICJkUkxzanNMeUVHSjl3cnktQjRlTUVjMzJMOXJ5bllOSGstd
+   1doX3ZnU3M4IiwgImtRby02Ml9DU05OOW1vbEpTUFJBMzBFQTNOTmNQY1lZeDN1QjdvW
+   HhkVU0iLCAidzFpN0dHZjFqQ0h5di12WEdURlY1N01Cd045NHVzeXZzd1JaSi1Sa20yS
+   SJdfSwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.Kqd2fU4QJskfdyolBJsIz0oes6jKMPM4
+   b5LfTDxyLj-HatVgfCf9LHBHr5r66yOeiWeRJF9nRYCgzxoPW_NwKg~WyJOUnJPVlF1W
+   S1lTWdOSi10czhpRW9RIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJ4R3FYWH
+   JvRzhxd3N2X1pMWFJDRnZRIiwgImNvdW50cnkiLCAiSlAiXQ~
 
-A.2.  Example 2b: Adding Decoys
-
-   This example is based on the same set of user data as Example 2a, but
-   here, the Issuer decided to add decoy digests to the SD-JWT.
-
-   The SD-JWT payload is as follows:
-
-   {
-     "_sd": [
-       "Bjq8C3IYd_T7sPnFaLW0rFxcGS38tFaF4N04yxPapPM",
-       "CumxYvjP8bktgbI_AE6JNVCqAMu-WIqgl-uiXb0MdVU",
-       "E02ULAmabgHhofkyV8ity0bGQxknP_OwHuYk9pO91a8",
-       "Gb99XLWQ8dw3a6Mb6pbbzojv-JUr9mLifcPekGqfoN8",
-       "kEII5g1ez1VcLVApcjmUmZnYG2VRA8IxFBi0Q0FhLzc",
-       "x2i1zOePQ8VpoceJa_-Ln89TD7d-Px4BAY4G9sjELNk",
-       "z2WPjyH1cG3pwqhHVm89iX3gW82VmOV_0VlzMb0c0oQ",
-       "zA3zOqIDbohbtOInLFK9Qju1mbndVtawOdZkCyUoxmg",
-       "zPd_yrC5okdqofSD68hXpdR5UNkPr5N71UVaE-jcUYM"
-     ],
-     "iss": "https://example.com/issuer",
-     "iat": 1516239022,
-     "exp": 1735689661,
-     "_sd_alg": "sha-256"
-   }
-
-   Since the Disclosures or Presentation are not affected by the decoy
-   digests (other than a slightly larger SD-JWT), they are omitted here.
-
-A.3.  Example 3 - Complex Structured SD-JWT
+A.2.  Example 3 - Complex Structured SD-JWT
 
    In this example, an SD-JWT with a complex object is demonstrated.
    Here, the data structures defined in OIDC4IDA [OIDC.IDA] are used.
@@ -2290,8 +2326,8 @@ A.3.  Example 3 - Complex Structured SD-JWT
    TlxTnNuQTdHenJtWFBCS2tEbyIsICJkN2xuN3hPLVJSRVhtZWNCVkVwd0x3ckVqWjNGS
    3NfS0xoQ0Qwdkw3NFVzIiwgImZJVzZ6WFJ0UlNRTmNOSzVndnBSc1pGa2FOOEJNaDM2V
    Xdoc2RabHhvVG8iLCAiZlN3M1V5eHdORmZfQ2pZQ0NCWUNSeFpDR0ItTElTMzVQZXkyV
-   DdHX2NIdyJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.R5-Mu03Dn9uQMa2lsr5Wgi
-   FCHE7lGELJ6DNuqDIuRaHT_ATp74kM1mcXgs5dYP1pK2ne7DmvdNJlRWgsZlWHyw~WyJ
+   DdHX2NIdyJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.8nGooXf6Z6aLYoWFm1MD1D
+   o2Yb7eBe1dBjBrBPgX5ZMTuFrxjj1-GJybVopCW2JSMsfPm-RddeUyX9ATBvjO6g~WyJ
    jZllESjNFR2JFTFMyYkhsTWlrQ3FBIiwgInRpbWUiLCAiMjAxMi0wNC0yM1QxODoyNVo
    iXQ~WyJrMm53eWt1eGdhdERDVllxTVg3WXVRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyI5
    VEFiRnplajZoNGFDSVc2dTZoWFZBIiwgImFkZHJlc3MiLCB7ImxvY2FsaXR5IjogIk1h
@@ -2331,7 +2367,7 @@ A.3.  Example 3 - Complex Structured SD-JWT
      "_sd_alg": "sha-256"
    }
 
-A.4.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
+A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
       JSON-LD
 
    This example illustrates how to use the artifacts defined in this
@@ -2527,7 +2563,7 @@ A.4.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["7HzBAKwJKA93FihvBg1E8Q", "is_over_65", true]
 
-A.5.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
+A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
       JSON-LD
 
    This example illustrates how to use the artifacts defined in this
@@ -2676,11 +2712,11 @@ A.5.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.GmIwPfHqYYbnuO6cmsPdCDDHs5WFmfpUdaAdTxWIRCS0493ZSI
-   ghlRVaWaATger4TT2mB5w396_GpsHFOV_sNA~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
+   GpUOUYySFpRIn19fQ.BfacB6YsZCi-rufIENx98QsXOTzRGfSVzIjHr20XMICP4w6JgD
+   WIGX2fc1b8dV7Khjrj6TQmbQeQFxkI5NisAQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
    ZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnIiwgImF1ZCI6ICJodHRwczovL2V4YW1w
-   bGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODE0ODE3MTR9.evj1JyIX021xhde4P-n
-   kUaGLbRGRuw-bmmyv_VyoDzoYgTmV9F4nTzDsk-CGxHkV2oGJb5RCBmyRg_8TopTf-g
+   bGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODMwMTE1Mzl9.cNi2idzzj9Jy-zQV2Mp
+   EjzLmrCqWWMXbehwlwnChjrBNXc9_y5r6wqBU856ijly5wGoip4Ra97XQNuaewPYAIg
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2861,6 +2897,9 @@ Appendix C.  Document History
       requests
 
    *  Added considerations around forwarding credentials
+
+   *  Removed Example 2b and merged the demo of decoy digests into
+      Example 2a
 
    -04
 
