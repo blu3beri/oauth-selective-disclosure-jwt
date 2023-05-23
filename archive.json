@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-21T01:02:46.355943+00:00",
+  "timestamp": "2023-05-23T00:59:06.110812+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -6493,9 +6493,17 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-04-17T15:07:15Z",
-      "updatedAt": "2023-04-17T15:27:09Z",
+      "updatedAt": "2023-05-22T16:09:29Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Addressed in PR #273 ",
+          "createdAt": "2023-05-22T16:09:29Z",
+          "updatedAt": "2023-05-22T16:09:29Z"
+        }
+      ]
     },
     {
       "number": 260,
@@ -6822,7 +6830,7 @@
       "id": "I_kwDOHTmVzM5l6yfu",
       "title": "Typo in 8.2?",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/269",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yaronf",
       "authorAssociation": "NONE",
       "assignees": [
@@ -6831,8 +6839,8 @@
       "labels": [],
       "body": "I think the first paragraph mixes Issuer with Verifier.\r\n\r\nOld:\r\n> Holders can manipulate the Disclosures by changing the values of the claims before sending them to the Issuer. The Issuer MUST check the Disclosures to ensure that the values of the claims are correct, i.e., the digests of the Disclosures are actually present in the signed SD-JWT.\r\n\r\nNew:\r\n> Holders can manipulate the Disclosures by changing the values of the claims before sending them to the Verifier. The Verifier MUST check the Disclosures to ensure that the values of the claims are correct, i.e., the digests of the Disclosures are actually present in the signed SD-JWT.",
       "createdAt": "2023-05-15T11:36:44Z",
-      "updatedAt": "2023-05-15T13:50:34Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-22T09:09:13Z",
+      "closedAt": "2023-05-22T09:09:13Z",
       "comments": [
         {
           "author": "bc-pi",
@@ -25949,18 +25957,33 @@
       "labels": [],
       "body": "Discussions around defining SD-JWT-VC show that it would be very helpful for interoperability if HB JWT is normatively defined in SD-JWT specification itself. Using HB JWT is optional, but if used, it should be compliant to the definitions in SD-JWT.\r\n\r\nHow to represent validity (iat, exp, nbf) will probably need the most discussion...\r\n\r\nalso we should introduce an abbreviation `HB JWT`....\r\n\r\ncc @awoie ",
       "createdAt": "2023-05-08T02:42:51Z",
-      "updatedAt": "2023-05-15T14:45:25Z",
+      "updatedAt": "2023-05-22T23:54:23Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
-      "baseRefOid": "2087c75d8a03b35c6b68a3460184db47595d6754",
+      "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "sakurann-hb-jwt",
-      "headRefOid": "95947887a013e716d7d5666e59377f3c21bea2f6",
+      "headRefOid": "439971d79ab5c80519498280e4f9e9facb716678",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "need to re-generate example 4b, and 4a to update hb jwt header....",
+          "createdAt": "2023-05-22T23:47:45Z",
+          "updatedAt": "2023-05-22T23:47:45Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "cc @awoie please take a look (can't ask review from you...)",
+          "createdAt": "2023-05-22T23:54:23Z",
+          "updatedAt": "2023-05-22T23:54:23Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOHTmVzM5UerqB",
@@ -26165,6 +26188,26 @@
               "updatedAt": "2023-05-15T14:45:25Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5VtFj2",
+          "commit": {
+            "abbreviatedOid": "808fd40"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-22T23:46:41Z",
+          "updatedAt": "2023-05-22T23:46:41Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "I updated the code and added examples, but did not re-generate example 4b, and 4a (was too much)....",
+              "createdAt": "2023-05-22T23:46:41Z",
+              "updatedAt": "2023-05-22T23:46:41Z"
+            }
+          ]
         }
       ]
     },
@@ -26236,24 +26279,26 @@
       "id": "PR_kwDOHTmVzM5Qi6VH",
       "title": "Fix Issuer/Verifier mixup typo in sec 8.2",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/270",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bc-pi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": " to fix #269  ",
       "createdAt": "2023-05-15T19:20:21Z",
-      "updatedAt": "2023-05-15T21:29:02Z",
+      "updatedAt": "2023-05-22T19:35:39Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c863e4728293f8749090c887288b5449f55e4f14",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "bc/8-2-typo",
       "headRefOid": "b60ea6577133463b0a8741ac11d8030771f0621e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-05-22T09:09:12Z",
+      "mergedAt": "2023-05-22T09:09:12Z",
+      "mergedBy": "danielfett",
+      "mergeCommit": {
+        "oid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871"
+      },
       "comments": [],
       "reviews": [
         {
@@ -26268,8 +26313,62 @@
           "createdAt": "2023-05-15T21:29:02Z",
           "updatedAt": "2023-05-15T21:29:02Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5Vmirc",
+          "commit": {
+            "abbreviatedOid": "b60ea65"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-22T09:09:00Z",
+          "updatedAt": "2023-05-22T09:09:00Z",
+          "comments": []
         }
       ]
+    },
+    {
+      "number": 273,
+      "id": "PR_kwDOHTmVzM5RByaF",
+      "title": "Use external SD-JWT library to generate examples",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/273",
+      "state": "OPEN",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-22T15:04:14Z",
+      "updatedAt": "2023-05-22T22:11:00Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "danielfett/generated-examples",
+      "headRefOid": "3e030c064844e8e6815cef0ea3c28f8db042e6ad",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Since this is a 122 files-changed commit, here's the gist:\r\n\r\n- I removed the sd-jwt python code\r\n- I added code to the github action to pull the danielfett/sd-jwt library and generate the examples from the example specifications\r\n- Those now live in examples/*/specification.yml\r\n- I removed all the generated artifacts and updated the .gitignore accordingly.",
+          "createdAt": "2023-05-22T15:50:02Z",
+          "updatedAt": "2023-05-22T15:50:02Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for doing the work here (I know it wasn't insignificant) and for the gist of the changes. It is, as I'm sure you know, not easy to review or approve a change like this. I wanted to acknowledge the work but hoping we can discuss in our (usually) weekly meeting. \r\n\r\nIn the meantime, it does look like the decoy_digests.md stuff from the recent PR #251 didn't make it through this change. There are no digest values after the \"The Issuer added the following decoy digests:\" text at https://drafts.oauth.net/oauth-selective-disclosure-jwt/danielfett/generated-examples/draft-ietf-oauth-selective-disclosure-jwt.html#appendix-A.1-26 which I just happened to notice looking at this diff https://author-tools.ietf.org/api/iddiff?url_1=https://oauth-wg.github.io/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.txt&url_2=https://oauth-wg.github.io/oauth-selective-disclosure-jwt/danielfett/generated-examples/draft-ietf-oauth-selective-disclosure-jwt.txt which I just happened to notice was at https://drafts.oauth.net/oauth-selective-disclosure-jwt/ \r\n\r\n\r\n\r\n",
+          "createdAt": "2023-05-22T21:45:36Z",
+          "updatedAt": "2023-05-22T22:11:00Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
