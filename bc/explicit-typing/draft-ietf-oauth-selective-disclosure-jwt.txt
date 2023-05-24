@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 24 November 2023                                      Microsoft
+Expires: 25 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             23 May 2023
+                                                             24 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 November 2023.
+   This Internet-Draft will expire on 25 November 2023.
 
 Copyright Notice
 
@@ -371,8 +371,10 @@ Table of Contents
    more selectively disclosable claims.  It MAY also contain a Holder's
    public key or a reference thereto, as well as further claims such as
    iss, iat, etc. as defined or required by the application using SD-
-   JWTs.  Applications of SD-JWT SHOULD be explicitly typed using the
-   typ header parameter, see Section 8.10 for more details.
+   JWTs.
+
+   Applications of SD-JWT SHOULD be explicitly typed using the typ
+   header parameter.  See Section 8.10 for more details.
 
 5.1.1.  Selectively Disclosable Claims
 
@@ -1497,7 +1499,7 @@ Table of Contents
 8.10.  Explicit Typing
 
    Section 3.11 of [RFC8725] describes the use of explicit typing to
-   prevent confusion attacks where one kind of JWT to be confused for
+   prevent confusion attacks in which one kind of JWT is mistaken for
    another.  SD-JWTs are also potentially vulnerable to such confusion
    attacks, so it is RECOMMENDED to specify an explicit type by
    including the typ header parameter when the SD-JWT is issued, and for
