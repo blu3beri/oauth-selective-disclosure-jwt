@@ -1742,11 +1742,11 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <div class="lang-json sourcecode" id="section-5.1.1.5.1-2">
 <pre>{
   "_sd": [
-    "FphFFpj1vtr0rpYK-14fickGKMg3zf1fIpJXxTK8PAE"
+    "fOBUSQvo46yQO-wRwXBcGqvnbKIueISEL961_Sjd4do"
   ],
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "sub": "6c5c0a49-b589-431d-bae7-219122a9ec2c",
   "_sd_alg": "sha-256"
 }
@@ -1755,16 +1755,16 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <p id="section-5.1.1.5.1-3">The Issuer would create the following Disclosure:<a href="#section-5.1.1.5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.5.1-4"><strong>Claim <code>address</code>:</strong><a href="#section-5.1.1.5.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.5.1-5.1">SHA-256 Hash: <code>FphFFpj1vtr0rpYK-14fickGKMg3zf1fIpJXxTK8PAE</code><a href="#section-5.1.1.5.1-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.5.1-5.1">SHA-256 Hash: <code>fOBUSQvo46yQO-wRwXBcGqvnbKIueISEL961_Sjd4do</code><a href="#section-5.1.1.5.1-5.1" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.1-5.2">Disclosure:<br>
-                  <code>WyJpbVFmR2oxX00wRWw3NmtkdmY3RGF3IiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
+                  <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
                   <code>dF9hZGRyZXNzIjogIlNjaHVsc3RyLiAxMiIsICJsb2NhbGl0eSI6ICJTY2h1</code><br>
                   <code>bHBmb3J0YSIsICJyZWdpb24iOiAiU2FjaHNlbi1BbmhhbHQiLCAiY291bnRy</code><br>
                   <code>eSI6ICJERSJ9XQ</code><a href="#section-5.1.1.5.1-5.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.1-5.3">Contents:
-<code>["imQfGj1_M0El76kdvf7Daw", "address", {"street_address":</code><br>
+<code>["2GLC42sKQveCfGfryNRN9w", "address", {"street_address":</code><br>
                   <code>"Schulstr. 12", "locality": "Schulpforta", "region":</code><br>
                   <code>"Sachsen-Anhalt", "country": "DE"}]</code><a href="#section-5.1.1.5.1-5.3" class="pilcrow">¶</a>
 </li>
@@ -1780,15 +1780,15 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <div class="lang-json sourcecode" id="section-5.1.1.5.2-2">
 <pre>{
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "sub": "6c5c0a49-b589-431d-bae7-219122a9ec2c",
   "address": {
     "_sd": [
-      "G_FeM1D-U3tDJcHB7pwTNEElLal9FE9PUs0klHgeM1c",
-      "KlG6HEM6XWbymEJDfyDY4klJkQQ9iTuNG0LQXnE9mQ0",
-      "X96Emv4S9uzFUGkU8MmOlFzUwEtDNeT-ToXw3Fx9AfI",
-      "ffPGyxFBnNA1r60g2f796Hqq3dBGtaOogpnIBgRGdyY"
+      "6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0",
+      "9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM",
+      "KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88",
+      "WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM"
     ]
   },
   "_sd_alg": "sha-256"
@@ -1798,63 +1798,63 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <p id="section-5.1.1.5.2-3">In this case, the Issuer would use the following data in the Disclosures for the <code>address</code> sub-claims:<a href="#section-5.1.1.5.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.5.2-4"><strong>Claim <code>street_address</code>:</strong><a href="#section-5.1.1.5.2-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.5.2-5.1">SHA-256 Hash: <code>G_FeM1D-U3tDJcHB7pwTNEElLal9FE9PUs0klHgeM1c</code><a href="#section-5.1.1.5.2-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.5.2-5.1">SHA-256 Hash: <code>9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM</code><a href="#section-5.1.1.5.2-5.1" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-5.2">Disclosure:<br>
-                  <code>WyJRU05JaHVfbjZhMXJJOF8yZU5BUkNRIiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
+                  <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
                   <code>IlNjaHVsc3RyLiAxMiJd</code><a href="#section-5.1.1.5.2-5.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-5.3">Contents:
-<code>["QSNIhu_n6a1rI8_2eNARCQ", "street_address", "Schulstr. 12"]</code><a href="#section-5.1.1.5.2-5.3" class="pilcrow">¶</a>
+<code>["2GLC42sKQveCfGfryNRN9w", "street_address", "Schulstr. 12"]</code><a href="#section-5.1.1.5.2-5.3" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-5.1.1.5.2-6"><strong>Claim <code>locality</code>:</strong><a href="#section-5.1.1.5.2-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.5.2-7.1">SHA-256 Hash: <code>KlG6HEM6XWbymEJDfyDY4klJkQQ9iTuNG0LQXnE9mQ0</code><a href="#section-5.1.1.5.2-7.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.5.2-7.1">SHA-256 Hash: <code>6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0</code><a href="#section-5.1.1.5.2-7.1" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-7.2">Disclosure:<br>
-                  <code>WyJRUGtibHhUbmJTTEw5NEkyZlpJYkhBIiwgImxvY2FsaXR5IiwgIlNjaHVs</code><br>
+                  <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImxvY2FsaXR5IiwgIlNjaHVs</code><br>
                   <code>cGZvcnRhIl0</code><a href="#section-5.1.1.5.2-7.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-7.3">Contents:
-<code>["QPkblxTnbSLL94I2fZIbHA", "locality", "Schulpforta"]</code><a href="#section-5.1.1.5.2-7.3" class="pilcrow">¶</a>
+<code>["eluV5Og3gSNII8EYnsxA_A", "locality", "Schulpforta"]</code><a href="#section-5.1.1.5.2-7.3" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-5.1.1.5.2-8"><strong>Claim <code>region</code>:</strong><a href="#section-5.1.1.5.2-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.5.2-9.1">SHA-256 Hash: <code>ffPGyxFBnNA1r60g2f796Hqq3dBGtaOogpnIBgRGdyY</code><a href="#section-5.1.1.5.2-9.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.5.2-9.1">SHA-256 Hash: <code>KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88</code><a href="#section-5.1.1.5.2-9.1" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-9.2">Disclosure:<br>
-                  <code>WyJqUi1ZZWQwOEFFbzRnY29ncFQ1X1VBIiwgInJlZ2lvbiIsICJTYWNoc2Vu</code><br>
+                  <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgInJlZ2lvbiIsICJTYWNoc2Vu</code><br>
                   <code>LUFuaGFsdCJd</code><a href="#section-5.1.1.5.2-9.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-9.3">Contents:
-<code>["jR-Yed08AEo4gcogpT5_UA", "region", "Sachsen-Anhalt"]</code><a href="#section-5.1.1.5.2-9.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "region", "Sachsen-Anhalt"]</code><a href="#section-5.1.1.5.2-9.3" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-5.1.1.5.2-10"><strong>Claim <code>country</code>:</strong><a href="#section-5.1.1.5.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.5.2-11.1">SHA-256 Hash: <code>X96Emv4S9uzFUGkU8MmOlFzUwEtDNeT-ToXw3Fx9AfI</code><a href="#section-5.1.1.5.2-11.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.5.2-11.1">SHA-256 Hash: <code>WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM</code><a href="#section-5.1.1.5.2-11.1" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-11.2">Disclosure:<br>
-                  <code>WyJ5djNBblV6ODgtQUx3VjhISld6bi1nIiwgImNvdW50cnkiLCAiREUiXQ</code><a href="#section-5.1.1.5.2-11.2" class="pilcrow">¶</a>
+                  <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImNvdW50cnkiLCAiREUiXQ</code><a href="#section-5.1.1.5.2-11.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-5.1.1.5.2-11.3">Contents:
-<code>["yv3AnUz88-ALwV8HJWzn-g", "country", "DE"]</code><a href="#section-5.1.1.5.2-11.3" class="pilcrow">¶</a>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "country", "DE"]</code><a href="#section-5.1.1.5.2-11.3" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-5.1.1.5.2-12">The Issuer may also make one sub-claim of <code>address</code> non-selectively disclosable and hide only the other sub-claims:<a href="#section-5.1.1.5.2-12" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.1.1.5.2-13">
 <pre>{
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "sub": "6c5c0a49-b589-431d-bae7-219122a9ec2c",
   "address": {
     "_sd": [
-      "7rFDQjONCu_2unNkUT3DwzhmJXf0aaczX0ehGePLpII",
-      "NHVLP1NoyICWhfr890M8KbLCA_mm9B2SrT_MpyluyeA",
-      "XhaM20bv5qdxmIE8FGf1Jl3R2xe_lOxjh7ig_0Sd_kg"
+      "6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0",
+      "9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM",
+      "KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88"
     ],
     "country": "DE"
   },
@@ -1876,11 +1876,11 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <div class="lang-json sourcecode" id="section-5.1.1.6-2">
 <pre>{
   "_sd": [
-    "Lot9gM9VOOiyFS4FOR1ykwz-V-fB_xwF63jWemIH4d0"
+    "HvrKX6fPV0v9K_yCVFBiLFHsMaxcD_114Em6VT8x1lg"
   ],
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "sub": "6c5c0a49-b589-431d-bae7-219122a9ec2c",
   "_sd_alg": "sha-256"
 }
@@ -1889,69 +1889,69 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <p id="section-5.1.1.6-3">The Issuer creates Disclosures first for the sub-claims and then includes their digests in the Disclosure for the <code>address</code> claim:<a href="#section-5.1.1.6-3" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.6-4"><strong>Claim <code>street_address</code>:</strong><a href="#section-5.1.1.6-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.6-5.1">SHA-256 Hash: <code>udFWFx_91NgCjhLTHJAvvAHwNT2vlHBsWxPIOxK2Ydo</code><a href="#section-5.1.1.6-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.6-5.1">SHA-256 Hash: <code>9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM</code><a href="#section-5.1.1.6-5.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-5.2">Disclosure:<br>
-                <code>WyIyUzBkSXhpSE9CblVldFBKMW5GbERBIiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
+                <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
                 <code>IlNjaHVsc3RyLiAxMiJd</code><a href="#section-5.1.1.6-5.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-5.3">Contents:
-<code>["2S0dIxiHOBnUetPJ1nFlDA", "street_address", "Schulstr. 12"]</code><a href="#section-5.1.1.6-5.3" class="pilcrow">¶</a>
+<code>["2GLC42sKQveCfGfryNRN9w", "street_address", "Schulstr. 12"]</code><a href="#section-5.1.1.6-5.3" class="pilcrow">¶</a>
 </li>
             </ul>
 <p id="section-5.1.1.6-6"><strong>Claim <code>locality</code>:</strong><a href="#section-5.1.1.6-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.6-7.1">SHA-256 Hash: <code>1zgsu9Fe6bkbQY9zJsfPTo1uBPMVl48m4EafxJTYSu0</code><a href="#section-5.1.1.6-7.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.6-7.1">SHA-256 Hash: <code>6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0</code><a href="#section-5.1.1.6-7.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-7.2">Disclosure:<br>
-                <code>WyI5YU9BQzFHNHZlNFJjalJvTUtERWNnIiwgImxvY2FsaXR5IiwgIlNjaHVs</code><br>
+                <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImxvY2FsaXR5IiwgIlNjaHVs</code><br>
                 <code>cGZvcnRhIl0</code><a href="#section-5.1.1.6-7.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-7.3">Contents:
-<code>["9aOAC1G4ve4RcjRoMKDEcg", "locality", "Schulpforta"]</code><a href="#section-5.1.1.6-7.3" class="pilcrow">¶</a>
+<code>["eluV5Og3gSNII8EYnsxA_A", "locality", "Schulpforta"]</code><a href="#section-5.1.1.6-7.3" class="pilcrow">¶</a>
 </li>
             </ul>
 <p id="section-5.1.1.6-8"><strong>Claim <code>region</code>:</strong><a href="#section-5.1.1.6-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.6-9.1">SHA-256 Hash: <code>DKtN_qW_hayYCGCKihS39M3sobs1RTekxaKnMbE17-Q</code><a href="#section-5.1.1.6-9.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.6-9.1">SHA-256 Hash: <code>KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88</code><a href="#section-5.1.1.6-9.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-9.2">Disclosure:<br>
-                <code>WyJqdkZ5QUxBaGFaa0hBU0tCYUZqMGJBIiwgInJlZ2lvbiIsICJTYWNoc2Vu</code><br>
+                <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgInJlZ2lvbiIsICJTYWNoc2Vu</code><br>
                 <code>LUFuaGFsdCJd</code><a href="#section-5.1.1.6-9.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-9.3">Contents:
-<code>["jvFyALAhaZkHASKBaFj0bA", "region", "Sachsen-Anhalt"]</code><a href="#section-5.1.1.6-9.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "region", "Sachsen-Anhalt"]</code><a href="#section-5.1.1.6-9.3" class="pilcrow">¶</a>
 </li>
             </ul>
 <p id="section-5.1.1.6-10"><strong>Claim <code>country</code>:</strong><a href="#section-5.1.1.6-10" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.6-11.1">SHA-256 Hash: <code>h2DxxE80C7qRWxCQjwR96da46jr2B8bLSRwAdbZSRlo</code><a href="#section-5.1.1.6-11.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.6-11.1">SHA-256 Hash: <code>WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM</code><a href="#section-5.1.1.6-11.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-11.2">Disclosure:<br>
-                <code>WyI0dGNmbFJNZWdxUG54ZzZTUkQ2ZzBnIiwgImNvdW50cnkiLCAiREUiXQ</code><a href="#section-5.1.1.6-11.2" class="pilcrow">¶</a>
+                <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImNvdW50cnkiLCAiREUiXQ</code><a href="#section-5.1.1.6-11.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-11.3">Contents:
-<code>["4tcflRMegqPnxg6SRD6g0g", "country", "DE"]</code><a href="#section-5.1.1.6-11.3" class="pilcrow">¶</a>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "country", "DE"]</code><a href="#section-5.1.1.6-11.3" class="pilcrow">¶</a>
 </li>
             </ul>
 <p id="section-5.1.1.6-12"><strong>Claim <code>address</code>:</strong><a href="#section-5.1.1.6-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1.6-13.1">SHA-256 Hash: <code>Lot9gM9VOOiyFS4FOR1ykwz-V-fB_xwF63jWemIH4d0</code><a href="#section-5.1.1.6-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.1.6-13.1">SHA-256 Hash: <code>HvrKX6fPV0v9K_yCVFBiLFHsMaxcD_114Em6VT8x1lg</code><a href="#section-5.1.1.6-13.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-13.2">Disclosure:<br>
-                <code>WyJGcDBqLTd6Q2FOVFdmX3dLNjdzeGlnIiwgImFkZHJlc3MiLCB7Il9zZCI6</code><br>
-                <code>IFsiMXpnc3U5RmU2YmtiUVk5ekpzZlBUbzF1QlBNVmw0OG00RWFmeEpUWVN1</code><br>
-                <code>MCIsICJES3ROX3FXX2hheVlDR0NLaWhTMzlNM3NvYnMxUlRla3hhS25NYkUx</code><br>
-                <code>Ny1RIiwgImgyRHh4RTgwQzdxUld4Q1Fqd1I5NmRhNDZqcjJCOGJMU1J3QWRi</code><br>
-                <code>WlNSbG8iLCAidWRGV0Z4XzkxTmdDamhMVEhKQXZ2QUh3TlQydmxIQnNXeFBJ</code><br>
-                <code>T3hLMllkbyJdfV0</code><a href="#section-5.1.1.6-13.2" class="pilcrow">¶</a>
+                <code>WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImFkZHJlc3MiLCB7Il9zZCI6</code><br>
+                <code>IFsiNnZoOWJxLXpTNEdLTV83R3BnZ1ZiWXp6dTZvT0dYcm1OVkdQSFA3NVVk</code><br>
+                <code>MCIsICI5Z2pWdVh0ZEZST0NnUnJ0TmNHVVhtRjY1cmRlemlfNkVyX2o3Nmtt</code><br>
+                <code>WXlNIiwgIktVUkRQaDRaQzE5LTN0aXotRGYzOVY4ZWlkeTFvVjNhM0gxRGEy</code><br>
+                <code>TjBnODgiLCAiV045cjlkQ0JKOEhUQ3NTMmpLQVN4VGpFeVc1bTV4NjVfWl8y</code><br>
+                <code>cm8yamZYTSJdfV0</code><a href="#section-5.1.1.6-13.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1.1.6-13.3">Contents:
-<code>["Fp0j-7zCaNTWf_wK67sxig", "address", {"_sd":</code><br>
-                <code>["1zgsu9Fe6bkbQY9zJsfPTo1uBPMVl48m4EafxJTYSu0",</code><br>
-                <code>"DKtN_qW_hayYCGCKihS39M3sobs1RTekxaKnMbE17-Q",</code><br>
-                <code>"h2DxxE80C7qRWxCQjwR96da46jr2B8bLSRwAdbZSRlo",</code><br>
-                <code>"udFWFx_91NgCjhLTHJAvvAHwNT2vlHBsWxPIOxK2Ydo"]}]</code><a href="#section-5.1.1.6-13.3" class="pilcrow">¶</a>
+<code>["Qg_O64zqAxe412a108iroA", "address", {"_sd":</code><br>
+                <code>["6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0",</code><br>
+                <code>"9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM",</code><br>
+                <code>"KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88",</code><br>
+                <code>"WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM"]}]</code><a href="#section-5.1.1.6-13.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2017,17 +2017,17 @@ be disclosed in full.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.2-4">
 <pre>{
   "_sd": [
-    "5nXy0Z3QiEba1V1lJzeKhAOGQXFlKLIWCLlhf_O-cmo",
-    "9gZhHAhV7LZnOFZq_q7Fh8rzdqrrNM-hRWsVOlW3nuw",
-    "S-JPBSkvqliFv1__thuXt3IzX5B_ZXm4W2qs4BoNFrA",
-    "bviw7pWAkbzI078ZNVa_eMZvk0tdPa5w2o9R3Zycjo4",
-    "o-LBCDrFF6tC9ew1vAlUmw6Y30CHZF5jOUFhpx5mogI",
-    "pzkHIM9sv7oZH6YKDsRqNgFGLpEKIj3c5G6UKaTsAjQ",
-    "rnAzCT6DTy4TsX9QCDv2wwAE4Ze20uRigtVNQkA52X0"
+    "4HBn6aIY3WtuGGWTx-qUj6cdk6WBpZygltdFavPa7LY",
+    "8sm1QCf021pNnHACI5sP4m4KZgyNOOAYcTj9HNaC1wY",
+    "SDN79NLpAnHPmkrdeYdEa89XZdsk0M8DKYSQOU2ZxQc",
+    "XzFrzwscM6Gn6CJDc6vVK8BkMnfG8vOSKfpPIZdAfdE",
+    "gbOsI4Edq2x2Kw-w5wPEzakob9hV1cRD0ATN3oQL9JM",
+    "jMCXVz--9b8x37YcoDfXQinzw1wZcccfFRBCFGqdG2o",
+    "oKI1Gd2fwN5WwvjlFkohidGvim-31OulR3q0hrDO078"
   ],
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "_sd_alg": "sha-256",
   "cnf": {
     "jwk": {
@@ -2042,109 +2042,109 @@ be disclosed in full.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 </div>
 <p id="section-5.2-5">The SD-JWT is then signed by the Issuer to create a JWT like the following:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.2-6">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjVuWHkwWjNRaUViYTFWMWxKemVLaEFPR
-1FYRmxLTElXQ0xsaGZfTy1jbW8iLCAiOWdaaEhBaFY3TFpuT0ZacV9xN0ZoOHJ6ZHFyc
-k5NLWhSV3NWT2xXM251dyIsICJTLUpQQlNrdnFsaUZ2MV9fdGh1WHQzSXpYNUJfWlhtN
-FcycXM0Qm9ORnJBIiwgImJ2aXc3cFdBa2J6STA3OFpOVmFfZU1admswdGRQYTV3Mm85U
-jNaeWNqbzQiLCAiby1MQkNEckZGNnRDOWV3MXZBbFVtdzZZMzBDSFpGNWpPVUZocHg1b
-W9nSSIsICJwemtISU05c3Y3b1pINllLRHNScU5nRkdMcEVLSWozYzVHNlVLYVRzQWpRI
-iwgInJuQXpDVDZEVHk0VHNYOVFDRHYyd3dBRTRaZTIwdVJpZ3RWTlFrQTUyWDAiXSwgI
-mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNTE2MjM5M
-DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
+Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
+k9PQVljVGo5SE5hQzF3WSIsICJTRE43OU5McEFuSFBta3JkZVlkRWE4OVhaZHNrME04R
+EtZU1FPVTJaeFFjIiwgIlh6RnJ6d3NjTTZHbjZDSkRjNnZWSzhCa01uZkc4dk9TS2ZwU
+ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
+DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
+iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
+mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
-mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
-HT1YvgLA
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
+7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
+wOJGUEPw
 </pre><a href="#section-5.2-6" class="pilcrow">¶</a>
 </div>
 <p id="section-5.2-7">The Issuer creates the following Disclosures:<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 <p id="section-5.2-8"><strong>Claim <code>sub</code>:</strong><a href="#section-5.2-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-9.1">SHA-256 Hash: <code>pzkHIM9sv7oZH6YKDsRqNgFGLpEKIj3c5G6UKaTsAjQ</code><a href="#section-5.2-9.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-9.1">SHA-256 Hash: <code>4HBn6aIY3WtuGGWTx-qUj6cdk6WBpZygltdFavPa7LY</code><a href="#section-5.2-9.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-9.2">Disclosure:<br>
-            <code>WyJyU0x1em5oaUxQQkRSWkUxQ1o4OEtRIiwgInN1YiIsICJqb2huX2RvZV80</code><br>
+            <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80</code><br>
             <code>MiJd</code><a href="#section-5.2-9.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-9.3">Contents:
-<code>["rSLuznhiLPBDRZE1CZ88KQ", "sub", "john_doe_42"]</code><a href="#section-5.2-9.3" class="pilcrow">¶</a>
+<code>["2GLC42sKQveCfGfryNRN9w", "sub", "john_doe_42"]</code><a href="#section-5.2-9.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-10"><strong>Claim <code>given_name</code>:</strong><a href="#section-5.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-11.1">SHA-256 Hash: <code>S-JPBSkvqliFv1__thuXt3IzX5B_ZXm4W2qs4BoNFrA</code><a href="#section-5.2-11.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-11.1">SHA-256 Hash: <code>jMCXVz--9b8x37YcoDfXQinzw1wZcccfFRBCFGqdG2o</code><a href="#section-5.2-11.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-11.2">Disclosure:<br>
-            <code>WyJhYTFPYmdlUkJnODJudnpMYnRQTklRIiwgImdpdmVuX25hbWUiLCAiSm9o</code><br>
+            <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9o</code><br>
             <code>biJd</code><a href="#section-5.2-11.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-11.3">Contents:
-<code>["aa1ObgeRBg82nvzLbtPNIQ", "given_name", "John"]</code><a href="#section-5.2-11.3" class="pilcrow">¶</a>
+<code>["eluV5Og3gSNII8EYnsxA_A", "given_name", "John"]</code><a href="#section-5.2-11.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-12"><strong>Claim <code>family_name</code>:</strong><a href="#section-5.2-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-13.1">SHA-256 Hash: <code>o-LBCDrFF6tC9ew1vAlUmw6Y30CHZF5jOUFhpx5mogI</code><a href="#section-5.2-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-13.1">SHA-256 Hash: <code>8sm1QCf021pNnHACI5sP4m4KZgyNOOAYcTj9HNaC1wY</code><a href="#section-5.2-13.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-13.2">Disclosure:<br>
-            <code>WyI2VWhsZU5HUmJtc0xDOFRndTh2OFdnIiwgImZhbWlseV9uYW1lIiwgIkRv</code><br>
+            <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRv</code><br>
             <code>ZSJd</code><a href="#section-5.2-13.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-13.3">Contents:
-<code>["6UhleNGRbmsLC8Tgu8v8Wg", "family_name", "Doe"]</code><a href="#section-5.2-13.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "family_name", "Doe"]</code><a href="#section-5.2-13.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-14"><strong>Claim <code>email</code>:</strong><a href="#section-5.2-14" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-15.1">SHA-256 Hash: <code>bviw7pWAkbzI078ZNVa_eMZvk0tdPa5w2o9R3Zycjo4</code><a href="#section-5.2-15.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-15.1">SHA-256 Hash: <code>oKI1Gd2fwN5WwvjlFkohidGvim-31OulR3q0hrDO078</code><a href="#section-5.2-15.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-15.2">Disclosure:<br>
-            <code>WyJ2S0t6alFSOWtsbFh2OWVkNUJ1ZHZRIiwgImVtYWlsIiwgImpvaG5kb2VA</code><br>
+            <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VA</code><br>
             <code>ZXhhbXBsZS5jb20iXQ</code><a href="#section-5.2-15.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-15.3">Contents:
-<code>["vKKzjQR9kllXv9ed5BudvQ", "email", "johndoe@example.com"]</code><a href="#section-5.2-15.3" class="pilcrow">¶</a>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "email", "johndoe@example.com"]</code><a href="#section-5.2-15.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-16"><strong>Claim <code>phone_number</code>:</strong><a href="#section-5.2-16" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-17.1">SHA-256 Hash: <code>9gZhHAhV7LZnOFZq_q7Fh8rzdqrrNM-hRWsVOlW3nuw</code><a href="#section-5.2-17.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-17.1">SHA-256 Hash: <code>SDN79NLpAnHPmkrdeYdEa89XZdsk0M8DKYSQOU2ZxQc</code><a href="#section-5.2-17.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-17.2">Disclosure:<br>
-            <code>WyJVZEVmXzY0SEN0T1BpZDRFZmhPQWNRIiwgInBob25lX251bWJlciIsICIr</code><br>
+            <code>WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsICIr</code><br>
             <code>MS0yMDItNTU1LTAxMDEiXQ</code><a href="#section-5.2-17.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-17.3">Contents:
-<code>["UdEf_64HCtOPid4EfhOAcQ", "phone_number",</code><br>
+<code>["Qg_O64zqAxe412a108iroA", "phone_number",</code><br>
             <code>"+1-202-555-0101"]</code><a href="#section-5.2-17.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-18"><strong>Claim <code>address</code>:</strong><a href="#section-5.2-18" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-19.1">SHA-256 Hash: <code>5nXy0Z3QiEba1V1lJzeKhAOGQXFlKLIWCLlhf_O-cmo</code><a href="#section-5.2-19.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-19.1">SHA-256 Hash: <code>XzFrzwscM6Gn6CJDc6vVK8BkMnfG8vOSKfpPIZdAfdE</code><a href="#section-5.2-19.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-19.2">Disclosure:<br>
-            <code>WyJOYTNWb0ZGblZ3MjhqT0FyazdJTlZnIiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
+            <code>WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
             <code>dF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRv</code><br>
             <code>d24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0</code><a href="#section-5.2-19.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-19.3">Contents:
-<code>["Na3VoFFnVw28jOArk7INVg", "address", {"street_address":</code><br>
+<code>["AJx-095VPrpTtN4QMOqROA", "address", {"street_address":</code><br>
             <code>"123 Main St", "locality": "Anytown", "region": "Anystate",</code><br>
             <code>"country": "US"}]</code><a href="#section-5.2-19.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-20"><strong>Claim <code>birthdate</code>:</strong><a href="#section-5.2-20" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-21.1">SHA-256 Hash: <code>rnAzCT6DTy4TsX9QCDv2wwAE4Ze20uRigtVNQkA52X0</code><a href="#section-5.2-21.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2-21.1">SHA-256 Hash: <code>gbOsI4Edq2x2Kw-w5wPEzakob9hV1cRD0ATN3oQL9JM</code><a href="#section-5.2-21.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-21.2">Disclosure:<br>
-            <code>WyJkQW9mNHNlZTFGdDBXR2dHanVjZ2pRIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
+            <code>WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
             <code>LTAxLTAxIl0</code><a href="#section-5.2-21.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-21.3">Contents:
-<code>["dAof4see1Ft0WGgGjucgjQ", "birthdate", "1940-01-01"]</code><a href="#section-5.2-21.3" class="pilcrow">¶</a>
+<code>["Pc33JM2LchcU_lHggv_ufQ", "birthdate", "1940-01-01"]</code><a href="#section-5.2-21.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -2175,28 +2175,28 @@ digest values of the Disclosures included in the SD-JWT.<a href="#section-5.3-6"
           </h4>
 <p id="section-5.3.1-1">For Example 1, the Combined Format for Issuance looks as follows:<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.3.1-2">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjVuWHkwWjNRaUViYTFWMWxKemVLaEFPR
-1FYRmxLTElXQ0xsaGZfTy1jbW8iLCAiOWdaaEhBaFY3TFpuT0ZacV9xN0ZoOHJ6ZHFyc
-k5NLWhSV3NWT2xXM251dyIsICJTLUpQQlNrdnFsaUZ2MV9fdGh1WHQzSXpYNUJfWlhtN
-FcycXM0Qm9ORnJBIiwgImJ2aXc3cFdBa2J6STA3OFpOVmFfZU1admswdGRQYTV3Mm85U
-jNaeWNqbzQiLCAiby1MQkNEckZGNnRDOWV3MXZBbFVtdzZZMzBDSFpGNWpPVUZocHg1b
-W9nSSIsICJwemtISU05c3Y3b1pINllLRHNScU5nRkdMcEVLSWozYzVHNlVLYVRzQWpRI
-iwgInJuQXpDVDZEVHk0VHNYOVFDRHYyd3dBRTRaZTIwdVJpZ3RWTlFrQTUyWDAiXSwgI
-mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNTE2MjM5M
-DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
+Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
+k9PQVljVGo5SE5hQzF3WSIsICJTRE43OU5McEFuSFBta3JkZVlkRWE4OVhaZHNrME04R
+EtZU1FPVTJaeFFjIiwgIlh6RnJ6d3NjTTZHbjZDSkRjNnZWSzhCa01uZkc4dk9TS2ZwU
+ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
+DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
+iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
+mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
-mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
-HT1YvgLA~WyJyU0x1em5oaUxQQkRSWkUxQ1o4OEtRIiwgInN1YiIsICJqb2huX2RvZV8
-0MiJd~WyJhYTFPYmdlUkJnODJudnpMYnRQTklRIiwgImdpdmVuX25hbWUiLCAiSm9obi
-Jd~WyI2VWhsZU5HUmJtc0xDOFRndTh2OFdnIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
-WyJ2S0t6alFSOWtsbFh2OWVkNUJ1ZHZRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
-ZS5jb20iXQ~WyJVZEVmXzY0SEN0T1BpZDRFZmhPQWNRIiwgInBob25lX251bWJlciIsI
-CIrMS0yMDItNTU1LTAxMDEiXQ~WyJOYTNWb0ZGblZ3MjhqT0FyazdJTlZnIiwgImFkZH
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
+7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
+wOJGUEPw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
+Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
+WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
+ZS5jb20iXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsI
+CIrMS0yMDItNTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZH
 Jlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5Ij
 ogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV
-0~WyJkQW9mNHNlZTFGdDBXR2dHanVjZ2pRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxLT
+0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxLT
 AxIl0
 </pre><a href="#section-5.3.1-2" class="pilcrow">¶</a>
 </div>
@@ -2238,18 +2238,18 @@ other claims are obtained by the Holder is out of scope of this specification.<a
 <p id="section-5.4.1-2">Example Holder Binding JWT payload:<a href="#section-5.4.1-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.4.1-3">
 <pre>{
-  "nonce": "XZOUco1u_gEPknxS78sWWg",
+  "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1683011539
+  "iat": 1684969095
 }
 </pre><a href="#section-5.4.1-3" class="pilcrow">¶</a>
 </div>
 <p id="section-5.4.1-4">Which is then signed by the Holder to create a JWT like the following:<a href="#section-5.4.1-4" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.4.1-5">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnI
-iwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2O
-DMwMTE1Mzl9.xAapcvJzV3OxQIHWOXmzYRP5qUbBQvdc-mlwaGjTQecIiovCBA1hVP2u
-_rzbM_zwPY9hImY9658IGDfO-y0UBQ
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJod
+HRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.4Wp-
+9S3y4Mt_k88Y-yMTFOZnelw_Bg01VvyBnuIjmnXU30YPYmTyZuhA9BC75EQ7V1sx3J-t
+5fh20eWDFcXUwg
 </pre><a href="#section-5.4.1-5" class="pilcrow">¶</a>
 </div>
 <p id="section-5.4.1-6">Whether to require Holder Binding is up to the Verifier's policy,
@@ -2269,28 +2269,27 @@ the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1-8
 <p id="section-5.4.2-1">The following is a non-normative example of the contents of a Presentation for Example 1, disclosing
 the claims <code>given_name</code>, <code>family_name</code>, and <code>address</code>, as it would be sent from the Holder to the Verifier. The Holder Binding JWT as shown before is included as the last element.<a href="#section-5.4.2-1" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.4.2-2">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjVuWHkwWjNRaUViYTFWMWxKemVLaEFPR
-1FYRmxLTElXQ0xsaGZfTy1jbW8iLCAiOWdaaEhBaFY3TFpuT0ZacV9xN0ZoOHJ6ZHFyc
-k5NLWhSV3NWT2xXM251dyIsICJTLUpQQlNrdnFsaUZ2MV9fdGh1WHQzSXpYNUJfWlhtN
-FcycXM0Qm9ORnJBIiwgImJ2aXc3cFdBa2J6STA3OFpOVmFfZU1admswdGRQYTV3Mm85U
-jNaeWNqbzQiLCAiby1MQkNEckZGNnRDOWV3MXZBbFVtdzZZMzBDSFpGNWpPVUZocHg1b
-W9nSSIsICJwemtISU05c3Y3b1pINllLRHNScU5nRkdMcEVLSWozYzVHNlVLYVRzQWpRI
-iwgInJuQXpDVDZEVHk0VHNYOVFDRHYyd3dBRTRaZTIwdVJpZ3RWTlFrQTUyWDAiXSwgI
-mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNTE2MjM5M
-DIyLCAiZXhwIjogMTczNTY4OTY2MSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
+Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
+k9PQVljVGo5SE5hQzF3WSIsICJTRE43OU5McEFuSFBta3JkZVlkRWE4OVhaZHNrME04R
+EtZU1FPVTJaeFFjIiwgIlh6RnJ6d3NjTTZHbjZDSkRjNnZWSzhCa01uZkc4dk9TS2ZwU
+ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
+DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
+iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
+mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.x5dFead0oc
-mg4XTktHFqPh3AgOpgp_fT1nEE1g1-fWSD9vd9bHR2P3HDZs44eIBwa-GQZXGo_42XAt
-HT1YvgLA~WyJOYTNWb0ZGblZ3MjhqT0FyazdJTlZnIiwgImFkZHJlc3MiLCB7InN0cmV
-ldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCA
-icmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJhYTFPYmdlUkJ
-nODJudnpMYnRQTklRIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyI2VWhsZU5HUmJtc0
-xDOFRndTh2OFdnIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~eyJhbGciOiAiRVMyNTYif
-Q.eyJub25jZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnIiwgImF1ZCI6ICJodHRwcz
-ovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODMwMTE1Mzl9.xAapcvJzV
-3OxQIHWOXmzYRP5qUbBQvdc-mlwaGjTQecIiovCBA1hVP2u_rzbM_zwPY9hImY9658IG
-DfO-y0UBQ
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
+7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
+wOJGUEPw~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkR
+vZSJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF
+9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicm
+VnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJlbHVWNU9nM2dTTk
+lJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~eyJhbGciOiAiRVMyNTYif
+Q.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.4Wp-9S3y4Mt_k88Y-yMTFOZne
+lw_Bg01VvyBnuIjmnXU30YPYmTyZuhA9BC75EQ7V1sx3J-t5fh20eWDFcXUwg
 </pre><a href="#section-5.4.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3054,29 +3053,28 @@ the media type is encoded as an SD-JWT.<a href="#section-11.2-1" class="pilcrow"
 <div class="lang-json sourcecode" id="appendix-A.1-4">
 <pre>{
   "_sd": [
-    "H7QIC26TLRmWOWIZWqlE3JDki5cG5VeprTVJWfYVpgI",
-    "HTemkHzi8vElSb4qKs6W8pj5OkalTr-I02uy6mjlE9k",
-    "IG_O1HoyxAm6WzX8dbnhejWTyiNu1a2V3NpZ266-XYU",
-    "YoymiOj55SixQe6kDf_L8YuCM-e3KqEtvmIZ1zVIiWo",
-    "kjwlXbdnfjlq9hoGnUlpSxSvC9FJC9FQSvOZ7qosdQs",
-    "m6e74AtfwOyGWZbI0FYp_UUyv_DqFX9cLYf2HbhhxCs",
-    "w-kWo-F-1Tg3zNLvcaJG2sv4BL3YmFinEnVaR1lzdN4",
-    "zCskisHlC5JbSWZJ-wjDUHpziacQb9JunpXG-tI4v-o"
+    "C9inp6YoRaEXR427zYJP7Qrk1WH_8bdwOA_YUrUnGQU",
+    "Kuet1yAa0HIQvYnOVd59hcViO9Ug6J2kSfqYRBeowvE",
+    "MMldOFFzB2d0umlmpTIaGerhWdU_PpYfLvKhh_f_9aY",
+    "X6ZAYOII2vPN40V7xExZwVwz7yRmLNcVwt5DL8RLv4g",
+    "Y34zmIo0QLLOtdMpXGwjBgLvr17yEhhYT0FGofR-aIE",
+    "fyGp0WTwwPv2JDQln1lSiaeobZsMWA10bQ5989-9DTs",
+    "ommFAicVT8LGHCB0uywx7fYuo3MHYKO15cz-RZEYM5Q",
+    "s0BKYsLWxQQeU8tVlltM7MKsIRTrEIa1PkJmqxBBf5U"
   ],
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "address": {
     "_sd": [
-      "-BbHMWfo64APpq0nWg8956vWZ8I-DJ8w5Jqdgi1MKBM",
-      "5MMw8viS8yz15wgvjHQXPnt3xt9Y6dcqKX0Q3Eg61HU",
-      "5gfosFRCTFjzw-Z-AIybiHzIS59IL8WF2ubaY2TNHHA",
-      "DxndzC_T8a1q9ZxLNlKvuiWIUwZaFfEeNE-ma4huWkE",
-      "RR-YScyv2VOJfZBoQ23cRgiPCIkFOE2DnOxoAb0d1S0",
-      "WDkBxN7mn-O3Soc6ivCvYURY70vSvXtgvH2Lzhk9gOU",
-      "dRLsjsLyEGJ9wry-B4eMEc32L9rynYNHk-wWh_vgSs8",
-      "kQo-62_CSNN9molJSPRA30EA3NNcPcYYx3uB7oXxdUM",
-      "w1i7GGf1jCHyv-vXGTFV57MBwN94usyvswRZJ-Rkm2I"
+      "6aUhzYhZ7SJ1kVmagQAO3u2ETN2CC1aHheZpKnaF0_E",
+      "AzLlFobkJ2xiaupREPyoJz-9-NSldB6Cgjr7fUyoHzg",
+      "PzzcVu0qbMuBGSjulfewzkesD9zutOExn5EWNwkrQ-k",
+      "b2Dkw0jcIF9rGg8_PF8ZcvncW7zwZj5ryBWvXfrpzek",
+      "cPYJHIZ8Vu-f9CCyVub2UfgEk8jvvXezwK1p_JneeXQ",
+      "glT3hrSU7fSWgwF5UDZmWwBTw32gnUldIhi8hGVCaV4",
+      "rvJd6iq6T5ejmsBMoGwuNXh9qAAFATAci40oidEeVsA",
+      "uNHoWYhXsZhVJCNE2Dqy-zqt7t69gJKy5QaFv7GrMX4"
     ]
   },
   "_sd_alg": "sha-256"
@@ -3086,178 +3084,174 @@ the media type is encoded as an SD-JWT.<a href="#section-11.2-1" class="pilcrow"
 <p id="appendix-A.1-5">The Disclosures for this SD-JWT are as follows:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-6"><strong>Claim <code>sub</code>:</strong><a href="#appendix-A.1-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-7.1">SHA-256 Hash: <code>zCskisHlC5JbSWZJ-wjDUHpziacQb9JunpXG-tI4v-o</code><a href="#appendix-A.1-7.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-7.1">SHA-256 Hash: <code>X6ZAYOII2vPN40V7xExZwVwz7yRmLNcVwt5DL8RLv4g</code><a href="#appendix-A.1-7.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-7.2">Disclosure:<br>
-            <code>WyI4c0N1cEozbEoxSWRxM3VsRk1iQ2JRIiwgInN1YiIsICI2YzVjMGE0OS1i</code><br>
+            <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICI2YzVjMGE0OS1i</code><br>
             <code>NTg5LTQzMWQtYmFlNy0yMTkxMjJhOWVjMmMiXQ</code><a href="#appendix-A.1-7.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-7.3">Contents:
-<code>["8sCupJ3lJ1Idq3ulFMbCbQ", "sub",</code><br>
+<code>["2GLC42sKQveCfGfryNRN9w", "sub",</code><br>
             <code>"6c5c0a49-b589-431d-bae7-219122a9ec2c"]</code><a href="#appendix-A.1-7.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-8"><strong>Claim <code>given_name</code>:</strong><a href="#appendix-A.1-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-9.1">SHA-256 Hash: <code>YoymiOj55SixQe6kDf_L8YuCM-e3KqEtvmIZ1zVIiWo</code><a href="#appendix-A.1-9.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-9.1">SHA-256 Hash: <code>ommFAicVT8LGHCB0uywx7fYuo3MHYKO15cz-RZEYM5Q</code><a href="#appendix-A.1-9.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-9.2">Disclosure:<br>
-            <code>WyJkNDVuR2RKOUFtYnVIdDZTMFVmVDFRIiwgImdpdmVuX25hbWUiLCAiXHU1</code><br>
+            <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiXHU1</code><br>
             <code>OTJhXHU5MGNlIl0</code><a href="#appendix-A.1-9.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-9.3">Contents:
-<code>["d45nGdJ9AmbuHt6S0UfT1Q", "given_name", "\u592a\u90ce"]</code><a href="#appendix-A.1-9.3" class="pilcrow">¶</a>
+<code>["eluV5Og3gSNII8EYnsxA_A", "given_name", "\u592a\u90ce"]</code><a href="#appendix-A.1-9.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-10"><strong>Claim <code>family_name</code>:</strong><a href="#appendix-A.1-10" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-11.1">SHA-256 Hash: <code>kjwlXbdnfjlq9hoGnUlpSxSvC9FJC9FQSvOZ7qosdQs</code><a href="#appendix-A.1-11.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-11.1">SHA-256 Hash: <code>C9inp6YoRaEXR427zYJP7Qrk1WH_8bdwOA_YUrUnGQU</code><a href="#appendix-A.1-11.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-11.2">Disclosure:<br>
-            <code>WyJhd296cnVrUFFqVVhDaVR2cnFRX253IiwgImZhbWlseV9uYW1lIiwgIlx1</code><br>
+            <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIlx1</code><br>
             <code>NWM3MVx1NzUzMCJd</code><a href="#appendix-A.1-11.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-11.3">Contents:
-<code>["awozrukPQjUXCiTvrqQ_nw", "family_name", "\u5c71\u7530"]</code><a href="#appendix-A.1-11.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "family_name", "\u5c71\u7530"]</code><a href="#appendix-A.1-11.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-12"><strong>Claim <code>email</code>:</strong><a href="#appendix-A.1-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-13.1">SHA-256 Hash: <code>IG_O1HoyxAm6WzX8dbnhejWTyiNu1a2V3NpZ266-XYU</code><a href="#appendix-A.1-13.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-13.1">SHA-256 Hash: <code>Kuet1yAa0HIQvYnOVd59hcViO9Ug6J2kSfqYRBeowvE</code><a href="#appendix-A.1-13.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-13.2">Disclosure:<br>
-            <code>WyJ1ek5ybkNFTWV3dGFGUUpYZTFjcklBIiwgImVtYWlsIiwgIlwidW51c3Vh</code><br>
+            <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgIlwidW51c3Vh</code><br>
             <code>bCBlbWFpbCBhZGRyZXNzXCJAZXhhbXBsZS5qcCJd</code><a href="#appendix-A.1-13.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-13.3">Contents:
-<code>["uzNrnCEMewtaFQJXe1crIA", "email", "\"unusual email</code><br>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "email", "\"unusual email</code><br>
             <code>address\"@example.jp"]</code><a href="#appendix-A.1-13.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-14"><strong>Claim <code>phone_number</code>:</strong><a href="#appendix-A.1-14" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-15.1">SHA-256 Hash: <code>HTemkHzi8vElSb4qKs6W8pj5OkalTr-I02uy6mjlE9k</code><a href="#appendix-A.1-15.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-15.1">SHA-256 Hash: <code>s0BKYsLWxQQeU8tVlltM7MKsIRTrEIa1PkJmqxBBf5U</code><a href="#appendix-A.1-15.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-15.2">Disclosure:<br>
-            <code>WyJiSGRLV1VhekRCZWh2anF5Nnc3WkJBIiwgInBob25lX251bWJlciIsICIr</code><br>
+            <code>WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsICIr</code><br>
             <code>ODEtODAtMTIzNC01Njc4Il0</code><a href="#appendix-A.1-15.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-15.3">Contents:
-<code>["bHdKWUazDBehvjqy6w7ZBA", "phone_number",</code><br>
+<code>["Qg_O64zqAxe412a108iroA", "phone_number",</code><br>
             <code>"+81-80-1234-5678"]</code><a href="#appendix-A.1-15.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-16"><strong>Claim <code>street_address</code>:</strong><a href="#appendix-A.1-16" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-17.1">SHA-256 Hash: <code>kQo-62_CSNN9molJSPRA30EA3NNcPcYYx3uB7oXxdUM</code><a href="#appendix-A.1-17.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-17.1">SHA-256 Hash: <code>6aUhzYhZ7SJ1kVmagQAO3u2ETN2CC1aHheZpKnaF0_E</code><a href="#appendix-A.1-17.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-17.2">Disclosure:<br>
-            <code>WyJwbm5aU3pET05hOE04VmxZVGV3QW9BIiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
+            <code>WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgInN0cmVldF9hZGRyZXNzIiwg</code><br>
             <code>Ilx1Njc3MVx1NGVhY1x1OTBmZFx1NmUyZlx1NTMzYVx1ODI5ZFx1NTE2Y1x1</code><br>
             <code>NTcxMlx1ZmYxNFx1NGUwMVx1NzZlZVx1ZmYxMlx1MjIxMlx1ZmYxOCJd</code><a href="#appendix-A.1-17.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-17.3">Contents:
-<code>["pnnZSzDONa8M8VlYTewAoA", "street_address", "\u6771\u4eac\u</code><br>
+<code>["AJx-095VPrpTtN4QMOqROA", "street_address", "\u6771\u4eac\u</code><br>
             <code>90fd\u6e2f\u533a\u829d\u516c\u5712\uff14\u4e01\u76ee\uff12\u</code><br>
             <code>2212\uff18"]</code><a href="#appendix-A.1-17.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-18"><strong>Claim <code>locality</code>:</strong><a href="#appendix-A.1-18" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-19.1">SHA-256 Hash: <code>DxndzC_T8a1q9ZxLNlKvuiWIUwZaFfEeNE-ma4huWkE</code><a href="#appendix-A.1-19.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-19.1">SHA-256 Hash: <code>rvJd6iq6T5ejmsBMoGwuNXh9qAAFATAci40oidEeVsA</code><a href="#appendix-A.1-19.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-19.2">Disclosure:<br>
-            <code>WyI0Z2EzT0I5dTNJQUxSN2NlRkljS3lRIiwgImxvY2FsaXR5IiwgIlx1Njc3</code><br>
+            <code>WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImxvY2FsaXR5IiwgIlx1Njc3</code><br>
             <code>MVx1NGVhY1x1OTBmZCJd</code><a href="#appendix-A.1-19.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-19.3">Contents:
-<code>["4ga3OB9u3IALR7ceFIcKyQ", "locality", "\u6771\u4eac\u90fd"]</code><a href="#appendix-A.1-19.3" class="pilcrow">¶</a>
+<code>["Pc33JM2LchcU_lHggv_ufQ", "locality", "\u6771\u4eac\u90fd"]</code><a href="#appendix-A.1-19.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-20"><strong>Claim <code>region</code>:</strong><a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-21.1">SHA-256 Hash: <code>WDkBxN7mn-O3Soc6ivCvYURY70vSvXtgvH2Lzhk9gOU</code><a href="#appendix-A.1-21.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-21.1">SHA-256 Hash: <code>PzzcVu0qbMuBGSjulfewzkesD9zutOExn5EWNwkrQ-k</code><a href="#appendix-A.1-21.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-21.2">Disclosure:<br>
-            <code>WyJOUnJPVlF1WS1lTWdOSi10czhpRW9RIiwgInJlZ2lvbiIsICJcdTZlMmZc</code><br>
+            <code>WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZc</code><br>
             <code>dTUzM2EiXQ</code><a href="#appendix-A.1-21.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-21.3">Contents:
-<code>["NRrOVQuY-eMgNJ-ts8iEoQ", "region", "\u6e2f\u533a"]</code><a href="#appendix-A.1-21.3" class="pilcrow">¶</a>
+<code>["G02NSrQfjFXQ7Io09syajA", "region", "\u6e2f\u533a"]</code><a href="#appendix-A.1-21.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-22"><strong>Claim <code>country</code>:</strong><a href="#appendix-A.1-22" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-23.1">SHA-256 Hash: <code>w1i7GGf1jCHyv-vXGTFV57MBwN94usyvswRZJ-Rkm2I</code><a href="#appendix-A.1-23.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-23.1">SHA-256 Hash: <code>uNHoWYhXsZhVJCNE2Dqy-zqt7t69gJKy5QaFv7GrMX4</code><a href="#appendix-A.1-23.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-23.2">Disclosure:<br>
-            <code>WyJ4R3FYWHJvRzhxd3N2X1pMWFJDRnZRIiwgImNvdW50cnkiLCAiSlAiXQ</code><a href="#appendix-A.1-23.2" class="pilcrow">¶</a>
+            <code>WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ</code><a href="#appendix-A.1-23.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-23.3">Contents:
-<code>["xGqXXroG8qwsv_ZLXRCFvQ", "country", "JP"]</code><a href="#appendix-A.1-23.3" class="pilcrow">¶</a>
+<code>["lklxF5jMYlGTPUovMNIvCA", "country", "JP"]</code><a href="#appendix-A.1-23.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-24"><strong>Claim <code>birthdate</code>:</strong><a href="#appendix-A.1-24" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.1-25.1">SHA-256 Hash: <code>H7QIC26TLRmWOWIZWqlE3JDki5cG5VeprTVJWfYVpgI</code><a href="#appendix-A.1-25.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.1-25.1">SHA-256 Hash: <code>MMldOFFzB2d0umlmpTIaGerhWdU_PpYfLvKhh_f_9aY</code><a href="#appendix-A.1-25.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-25.2">Disclosure:<br>
-            <code>WyJPYjcydmRhcDBqSEFmdmdhVklqZDdnIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
+            <code>WyJ5eXRWYmRBUEdjZ2wyckk0QzlHU29nIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
             <code>LTAxLTAxIl0</code><a href="#appendix-A.1-25.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-25.3">Contents:
-<code>["Ob72vdap0jHAfvgaVIjd7g", "birthdate", "1940-01-01"]</code><a href="#appendix-A.1-25.3" class="pilcrow">¶</a>
+<code>["yytVbdAPGcgl2rI4C9GSog", "birthdate", "1940-01-01"]</code><a href="#appendix-A.1-25.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-26">The Issuer added the following decoy digests:<a href="#appendix-A.1-26" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.1-27.1">
-            <code>5gfosFRCTFjzw-Z-AIybiHzIS59IL8WF2ubaY2TNHHA</code><a href="#appendix-A.1-27.1" class="pilcrow">¶</a>
+            <code>AzLlFobkJ2xiaupREPyoJz-9-NSldB6Cgjr7fUyoHzg</code><a href="#appendix-A.1-27.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-27.2">
-            <code>dRLsjsLyEGJ9wry-B4eMEc32L9rynYNHk-wWh_vgSs8</code><a href="#appendix-A.1-27.2" class="pilcrow">¶</a>
+            <code>cPYJHIZ8Vu-f9CCyVub2UfgEk8jvvXezwK1p_JneeXQ</code><a href="#appendix-A.1-27.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-27.3">
-            <code>-BbHMWfo64APpq0nWg8956vWZ8I-DJ8w5Jqdgi1MKBM</code><a href="#appendix-A.1-27.3" class="pilcrow">¶</a>
+            <code>glT3hrSU7fSWgwF5UDZmWwBTw32gnUldIhi8hGVCaV4</code><a href="#appendix-A.1-27.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-27.4">
-            <code>RR-YScyv2VOJfZBoQ23cRgiPCIkFOE2DnOxoAb0d1S0</code><a href="#appendix-A.1-27.4" class="pilcrow">¶</a>
+            <code>b2Dkw0jcIF9rGg8_PF8ZcvncW7zwZj5ryBWvXfrpzek</code><a href="#appendix-A.1-27.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-27.5">
-            <code>5MMw8viS8yz15wgvjHQXPnt3xt9Y6dcqKX0Q3Eg61HU</code><a href="#appendix-A.1-27.5" class="pilcrow">¶</a>
+            <code>fyGp0WTwwPv2JDQln1lSiaeobZsMWA10bQ5989-9DTs</code><a href="#appendix-A.1-27.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-27.6">
-            <code>m6e74AtfwOyGWZbI0FYp_UUyv_DqFX9cLYf2HbhhxCs</code><a href="#appendix-A.1-27.6" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="appendix-A.1-27.7">
-            <code>w-kWo-F-1Tg3zNLvcaJG2sv4BL3YmFinEnVaR1lzdN4</code><a href="#appendix-A.1-27.7" class="pilcrow">¶</a>
+            <code>Y34zmIo0QLLOtdMpXGwjBgLvr17yEhhYT0FGofR-aIE</code><a href="#appendix-A.1-27.6" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.1-28">A Presentation for the SD-JWT that discloses only <code>region</code>
 and <code>country</code> of the <code>address</code> property and without a Holder Binding JWT could look as follows:<a href="#appendix-A.1-28" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.1-29">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkg3UUlDMjZUTFJtV09XSVpXcWxFM0pEa
-2k1Y0c1VmVwclRWSldmWVZwZ0kiLCAiSFRlbWtIemk4dkVsU2I0cUtzNlc4cGo1T2thb
-FRyLUkwMnV5Nm1qbEU5ayIsICJJR19PMUhveXhBbTZXelg4ZGJuaGVqV1R5aU51MWEyV
-jNOcFoyNjYtWFlVIiwgIllveW1pT2o1NVNpeFFlNmtEZl9MOFl1Q00tZTNLcUV0dm1JW
-jF6VklpV28iLCAia2p3bFhiZG5mamxxOWhvR25VbHBTeFN2QzlGSkM5RlFTdk9aN3Fvc
-2RRcyIsICJtNmU3NEF0ZndPeUdXWmJJMEZZcF9VVXl2X0RxRlg5Y0xZZjJIYmhoeENzI
-iwgIncta1dvLUYtMVRnM3pOTHZjYUpHMnN2NEJMM1ltRmluRW5WYVIxbHpkTjQiLCAie
-kNza2lzSGxDNUpiU1daSi13akRVSHB6aWFjUWI5SnVucFhHLXRJNHYtbyJdLCAiaXNzI
-jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE1MTYyMzkwMjIsI
-CJleHAiOiAxNzM1Njg5NjYxLCAiYWRkcmVzcyI6IHsiX3NkIjogWyItQmJITVdmbzY0Q
-VBwcTBuV2c4OTU2dldaOEktREo4dzVKcWRnaTFNS0JNIiwgIjVNTXc4dmlTOHl6MTV3Z
-3ZqSFFYUG50M3h0OVk2ZGNxS1gwUTNFZzYxSFUiLCAiNWdmb3NGUkNURmp6dy1aLUFJe
-WJpSHpJUzU5SUw4V0YydWJhWTJUTkhIQSIsICJEeG5kekNfVDhhMXE5WnhMTmxLdnVpV
-0lVd1phRmZFZU5FLW1hNGh1V2tFIiwgIlJSLVlTY3l2MlZPSmZaQm9RMjNjUmdpUENJa
-0ZPRTJEbk94b0FiMGQxUzAiLCAiV0RrQnhON21uLU8zU29jNml2Q3ZZVVJZNzB2U3ZYd
-Gd2SDJMemhrOWdPVSIsICJkUkxzanNMeUVHSjl3cnktQjRlTUVjMzJMOXJ5bllOSGstd
-1doX3ZnU3M4IiwgImtRby02Ml9DU05OOW1vbEpTUFJBMzBFQTNOTmNQY1lZeDN1QjdvW
-HhkVU0iLCAidzFpN0dHZjFqQ0h5di12WEdURlY1N01Cd045NHVzeXZzd1JaSi1Sa20yS
-SJdfSwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.Kqd2fU4QJskfdyolBJsIz0oes6jKMPM4
-b5LfTDxyLj-HatVgfCf9LHBHr5r66yOeiWeRJF9nRYCgzxoPW_NwKg~WyJOUnJPVlF1W
-S1lTWdOSi10czhpRW9RIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJ4R3FYWH
-JvRzhxd3N2X1pMWFJDRnZRIiwgImNvdW50cnkiLCAiSlAiXQ~
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkM5aW5wNllvUmFFWFI0Mjd6WUpQN1Fya
+zFXSF84YmR3T0FfWVVyVW5HUVUiLCAiS3VldDF5QWEwSElRdlluT1ZkNTloY1ZpTzlVZ
+zZKMmtTZnFZUkJlb3d2RSIsICJNTWxkT0ZGekIyZDB1bWxtcFRJYUdlcmhXZFVfUHBZZ
+kx2S2hoX2ZfOWFZIiwgIlg2WkFZT0lJMnZQTjQwVjd4RXhad1Z3ejd5Um1MTmNWd3Q1R
+Ew4Ukx2NGciLCAiWTM0em1JbzBRTExPdGRNcFhHd2pCZ0x2cjE3eUVoaFlUMEZHb2ZSL
+WFJRSIsICJmeUdwMFdUd3dQdjJKRFFsbjFsU2lhZW9iWnNNV0ExMGJRNTk4OS05RFRzI
+iwgIm9tbUZBaWNWVDhMR0hDQjB1eXd4N2ZZdW8zTUhZS08xNWN6LVJaRVlNNVEiLCAic
+zBCS1lzTFd4UVFlVTh0VmxsdE03TUtzSVJUckVJYTFQa0ptcXhCQmY1VSJdLCAiaXNzI
+jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsI
+CJleHAiOiAxODgzMDAwMDAwLCAiYWRkcmVzcyI6IHsiX3NkIjogWyI2YVVoelloWjdTS
+jFrVm1hZ1FBTzN1MkVUTjJDQzFhSGhlWnBLbmFGMF9FIiwgIkF6TGxGb2JrSjJ4aWF1c
+FJFUHlvSnotOS1OU2xkQjZDZ2pyN2ZVeW9IemciLCAiUHp6Y1Z1MHFiTXVCR1NqdWxmZ
+Xd6a2VzRDl6dXRPRXhuNUVXTndrclEtayIsICJiMkRrdzBqY0lGOXJHZzhfUEY4WmN2b
+mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
+nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
+GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
+G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.CysG3snZkoET95JJov_4rMBvyZ
+uNmW8IfjyfC3g7mhfVbR8UMaESPtOHb1xSfU9yUfz2y6iSTiYQNB9cOJeuAQ~WyJHMDJ
+OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
+a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3324,39 +3318,39 @@ structures defined in OIDC4IDA <span>[<a href="#OIDC.IDA" class="cite xref">OIDC
 <div class="lang-json sourcecode" id="appendix-A.2-5">
 <pre>{
   "_sd": [
-    "BjJ85b1mpIvorC35da8cPRCfN0OeoBUf7ZCA3w96xnM",
-    "XqnTomboGac-QASg2Q9V1uQGRQRkXL9jkveIzNcMmSM",
-    "wN-gqrZTxUtl1-v3S5wodjuAgE0YuBS66s9p4qxfgxg"
+    "-2yOfWMeZFQaqfZBhjGf-TX-qBNvkKxciFoiedsI5_8",
+    "8gJZ1CtqpoIon0v9ZI7BMGt1pbGmAsNI8c07_w1OcSY",
+    "QDh-IWNFfG-NglE5ZsBwid4ZSBjJBURZeyNJkftZgKg"
   ],
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "verified_claims": {
     "verification": {
       "_sd": [
-        "OSXqQur4cQzXkSlbTehtzOzsZBMgAIigvZmiNCV5Vd8",
-        "pnJqIq45n58u7BY1Z0nZYvL1nqucjI7mo_voHoq9oGU"
+        "7h4UE9qScvDKodXVCuoKfKBJpVBfXMF_TmAGVaZe3Sc",
+        "vTwe3raHIFYgFA3xaUD2aMxFz5oDo8iBu05qKlOg9Lw"
       ],
       "trust_framework": "de_aml",
       "evidence": [
         {
           "_sd": [
-            "FPNPZmj_KaKlIP2QWB55J1gHhA14mPlbVdR9bGBgH4w",
-            "Vytbjbb4wHiTvFi9WxsqJYqPPsW_nnvWvtp0U-Kuof8",
-            "evYB510b8xzp19Q7Gn1i2EgyN0-R26oFjeBB5IDTGYI",
-            "oOBXkmNPDoEJsh5K5hgc3wdMbJJzc9Rv0hOn0mU6Ym8"
+            "9wpjVPWuD7PK0nsQDL8B06lmdgV3LVybhHydQpTNyLI",
+            "G5EnhOAOoU9X_6QMNvzFXjpEA_Rc-AEtm1bG_wcaKIk",
+            "IhwFrWUB63RcZq9yvgZ0XPc7Gowh3O2kqXeBIswg1B4",
+            "WpxQ4HSoEtcTmCCKOeDslB_emucYLz2oO8oHNr1bEVQ"
           ]
         }
       ]
     },
     "claims": {
       "_sd": [
-        "OTog0pBGyAmwEqIhjSuf5Rq5UWTkIecAnutwB2nGUlk",
-        "U4P6UrikZAVE3mk82oLaPDiLX8hEXmEu9A6xO5j9mxE",
-        "Ylx9AxQmJxSR9CgZmFBnyKCha9qNsnA7GzrmXPBKkDo",
-        "d7ln7xO-RREXmecBVEpwLwrEjZ3FKs_KLhCD0vL74Us",
-        "fIW6zXRtRSQNcNK5gvpRsZFkaN8BMh36UwhsdZlxoTo",
-        "fSw3UyxwNFf_CjYCCBYCRxZCGB-LIS35Pey2T7G_cHw"
+        "Blf7DBmdHEzZMQHw8y11zCLA_76HesZ60cxfhCA1hNU",
+        "FnM1Y-eVqWi-h6P9zzArb35lfC43SjV-Zq9NJMAxSHc",
+        "c46n0Tz4KY0c6wNf5dQ1oUj47s16hb8NuFMqeo98_H0",
+        "hOIy3SMi_wM-SJOwmv0_skyfpihd3n8jyGZw56zicyM",
+        "m1kqaCwgKzKmb9u40bmR0Jm3HvUuijE-OCAt-goQTX8",
+        "y50czc0ISChy_bsba1dMoUuAOQ5AMmOSfGoEe81v1FU"
       ]
     }
   },
@@ -3367,77 +3361,77 @@ structures defined in OIDC4IDA <span>[<a href="#OIDC.IDA" class="cite xref">OIDC
 <p id="appendix-A.2-6">With the following Disclosures:<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-7"><strong>Claim <code>time</code>:</strong><a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-8.1">SHA-256 Hash: <code>OSXqQur4cQzXkSlbTehtzOzsZBMgAIigvZmiNCV5Vd8</code><a href="#appendix-A.2-8.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-8.1">SHA-256 Hash: <code>vTwe3raHIFYgFA3xaUD2aMxFz5oDo8iBu05qKlOg9Lw</code><a href="#appendix-A.2-8.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-8.2">Disclosure:<br>
-            <code>WyJjZllESjNFR2JFTFMyYkhsTWlrQ3FBIiwgInRpbWUiLCAiMjAxMi0wNC0y</code><br>
+            <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC0y</code><br>
             <code>M1QxODoyNVoiXQ</code><a href="#appendix-A.2-8.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-8.3">Contents:
-<code>["cfYDJ3EGbELS2bHlMikCqA", "time", "2012-04-23T18:25Z"]</code><a href="#appendix-A.2-8.3" class="pilcrow">¶</a>
+<code>["2GLC42sKQveCfGfryNRN9w", "time", "2012-04-23T18:25Z"]</code><a href="#appendix-A.2-8.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-9"><strong>Claim <code>verification_process</code>:</strong><a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-10.1">SHA-256 Hash: <code>pnJqIq45n58u7BY1Z0nZYvL1nqucjI7mo_voHoq9oGU</code><a href="#appendix-A.2-10.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-10.1">SHA-256 Hash: <code>7h4UE9qScvDKodXVCuoKfKBJpVBfXMF_TmAGVaZe3Sc</code><a href="#appendix-A.2-10.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-10.2">Disclosure:<br>
-            <code>WyJRWXFYWjdwdmdya3I3MjFNbkV5dVJnIiwgInZlcmlmaWNhdGlvbl9wcm9j</code><br>
+            <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgInZlcmlmaWNhdGlvbl9wcm9j</code><br>
             <code>ZXNzIiwgImYyNGM2Zi02ZDNmLTRlYzUtOTczZS1iMGQ4NTA2ZjNiYzciXQ</code><a href="#appendix-A.2-10.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-10.3">Contents:
-<code>["QYqXZ7pvgrkr721MnEyuRg", "verification_process",</code><br>
+<code>["eluV5Og3gSNII8EYnsxA_A", "verification_process",</code><br>
             <code>"f24c6f-6d3f-4ec5-973e-b0d8506f3bc7"]</code><a href="#appendix-A.2-10.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-11"><strong>Claim <code>type</code>:</strong><a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-12.1">SHA-256 Hash: <code>oOBXkmNPDoEJsh5K5hgc3wdMbJJzc9Rv0hOn0mU6Ym8</code><a href="#appendix-A.2-12.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-12.1">SHA-256 Hash: <code>G5EnhOAOoU9X_6QMNvzFXjpEA_Rc-AEtm1bG_wcaKIk</code><a href="#appendix-A.2-12.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-12.2">Disclosure:<br>
-            <code>WyJrZ2l1OHFOM1ppZ3kxZ3RGQ1owNlR3IiwgInR5cGUiLCAiZG9jdW1lbnQi</code><br>
+            <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgInR5cGUiLCAiZG9jdW1lbnQi</code><br>
             <code>XQ</code><a href="#appendix-A.2-12.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-12.3">Contents:
-<code>["kgiu8qN3Zigy1gtFCZ06Tw", "type", "document"]</code><a href="#appendix-A.2-12.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "type", "document"]</code><a href="#appendix-A.2-12.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-13"><strong>Claim <code>method</code>:</strong><a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-14.1">SHA-256 Hash: <code>evYB510b8xzp19Q7Gn1i2EgyN0-R26oFjeBB5IDTGYI</code><a href="#appendix-A.2-14.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-14.1">SHA-256 Hash: <code>WpxQ4HSoEtcTmCCKOeDslB_emucYLz2oO8oHNr1bEVQ</code><a href="#appendix-A.2-14.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-14.2">Disclosure:<br>
-            <code>WyJrMm53eWt1eGdhdERDVllxTVg3WXVRIiwgIm1ldGhvZCIsICJwaXBwIl0</code><a href="#appendix-A.2-14.2" class="pilcrow">¶</a>
+            <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm1ldGhvZCIsICJwaXBwIl0</code><a href="#appendix-A.2-14.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-14.3">Contents:
-<code>["k2nwykuxgatDCVYqMX7YuQ", "method", "pipp"]</code><a href="#appendix-A.2-14.3" class="pilcrow">¶</a>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "method", "pipp"]</code><a href="#appendix-A.2-14.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-15"><strong>Claim <code>time</code>:</strong><a href="#appendix-A.2-15" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-16.1">SHA-256 Hash: <code>Vytbjbb4wHiTvFi9WxsqJYqPPsW_nnvWvtp0U-Kuof8</code><a href="#appendix-A.2-16.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-16.1">SHA-256 Hash: <code>9wpjVPWuD7PK0nsQDL8B06lmdgV3LVybhHydQpTNyLI</code><a href="#appendix-A.2-16.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-16.2">Disclosure:<br>
-            <code>WyJFd2VBVWt3THJnVVpJaGZZbEgwY29RIiwgInRpbWUiLCAiMjAxMi0wNC0y</code><br>
+            <code>WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInRpbWUiLCAiMjAxMi0wNC0y</code><br>
             <code>MlQxMTozMFoiXQ</code><a href="#appendix-A.2-16.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-16.3">Contents:
-<code>["EweAUkwLrgUZIhfYlH0coQ", "time", "2012-04-22T11:30Z"]</code><a href="#appendix-A.2-16.3" class="pilcrow">¶</a>
+<code>["Qg_O64zqAxe412a108iroA", "time", "2012-04-22T11:30Z"]</code><a href="#appendix-A.2-16.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-17"><strong>Claim <code>document</code>:</strong><a href="#appendix-A.2-17" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-18.1">SHA-256 Hash: <code>FPNPZmj_KaKlIP2QWB55J1gHhA14mPlbVdR9bGBgH4w</code><a href="#appendix-A.2-18.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-18.1">SHA-256 Hash: <code>IhwFrWUB63RcZq9yvgZ0XPc7Gowh3O2kqXeBIswg1B4</code><a href="#appendix-A.2-18.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-18.2">Disclosure:<br>
-            <code>WyJXVDhPVC05RnJwbTk5WEpQa1UtWTdRIiwgImRvY3VtZW50IiwgeyJ0eXBl</code><br>
+            <code>WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImRvY3VtZW50IiwgeyJ0eXBl</code><br>
             <code>IjogImlkY2FyZCIsICJpc3N1ZXIiOiB7Im5hbWUiOiAiU3RhZHQgQXVnc2J1</code><br>
             <code>cmciLCAiY291bnRyeSI6ICJERSJ9LCAibnVtYmVyIjogIjUzNTU0NTU0Iiwg</code><br>
             <code>ImRhdGVfb2ZfaXNzdWFuY2UiOiAiMjAxMC0wMy0yMyIsICJkYXRlX29mX2V4</code><br>
             <code>cGlyeSI6ICIyMDIwLTAzLTIyIn1d</code><a href="#appendix-A.2-18.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-18.3">Contents:
-<code>["WT8OT-9Frpm99XJPkU-Y7Q", "document", {"type": "idcard",</code><br>
+<code>["AJx-095VPrpTtN4QMOqROA", "document", {"type": "idcard",</code><br>
             <code>"issuer": {"name": "Stadt Augsburg", "country": "DE"},</code><br>
             <code>"number": "53554554", "date_of_issuance": "2010-03-23",</code><br>
             <code>"date_of_expiry": "2020-03-22"}]</code><a href="#appendix-A.2-18.3" class="pilcrow">¶</a>
@@ -3445,148 +3439,148 @@ structures defined in OIDC4IDA <span>[<a href="#OIDC.IDA" class="cite xref">OIDC
         </ul>
 <p id="appendix-A.2-19"><strong>Claim <code>given_name</code>:</strong><a href="#appendix-A.2-19" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-20.1">SHA-256 Hash: <code>Ylx9AxQmJxSR9CgZmFBnyKCha9qNsnA7GzrmXPBKkDo</code><a href="#appendix-A.2-20.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-20.1">SHA-256 Hash: <code>FnM1Y-eVqWi-h6P9zzArb35lfC43SjV-Zq9NJMAxSHc</code><a href="#appendix-A.2-20.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-20.2">Disclosure:<br>
-            <code>WyJuVWtieGhxc2pyVTNaTEtVSGNBYWxBIiwgImdpdmVuX25hbWUiLCAiTWF4</code><br>
+            <code>WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImdpdmVuX25hbWUiLCAiTWF4</code><br>
             <code>Il0</code><a href="#appendix-A.2-20.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-20.3">Contents:
-<code>["nUkbxhqsjrU3ZLKUHcAalA", "given_name", "Max"]</code><a href="#appendix-A.2-20.3" class="pilcrow">¶</a>
+<code>["Pc33JM2LchcU_lHggv_ufQ", "given_name", "Max"]</code><a href="#appendix-A.2-20.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-21"><strong>Claim <code>family_name</code>:</strong><a href="#appendix-A.2-21" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-22.1">SHA-256 Hash: <code>fIW6zXRtRSQNcNK5gvpRsZFkaN8BMh36UwhsdZlxoTo</code><a href="#appendix-A.2-22.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-22.1">SHA-256 Hash: <code>hOIy3SMi_wM-SJOwmv0_skyfpihd3n8jyGZw56zicyM</code><a href="#appendix-A.2-22.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-22.2">Disclosure:<br>
-            <code>WyIyTmd0UExxQmU0QVhMVzR6SUNLWHJ3IiwgImZhbWlseV9uYW1lIiwgIk1c</code><br>
+            <code>WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImZhbWlseV9uYW1lIiwgIk1c</code><br>
             <code>dTAwZmNsbGVyIl0</code><a href="#appendix-A.2-22.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-22.3">Contents:
-<code>["2NgtPLqBe4AXLW4zICKXrw", "family_name", "M\u00fcller"]</code><a href="#appendix-A.2-22.3" class="pilcrow">¶</a>
+<code>["G02NSrQfjFXQ7Io09syajA", "family_name", "M\u00fcller"]</code><a href="#appendix-A.2-22.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-23"><strong>Claim <code>nationalities</code>:</strong><a href="#appendix-A.2-23" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-24.1">SHA-256 Hash: <code>d7ln7xO-RREXmecBVEpwLwrEjZ3FKs_KLhCD0vL74Us</code><a href="#appendix-A.2-24.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-24.1">SHA-256 Hash: <code>y50czc0ISChy_bsba1dMoUuAOQ5AMmOSfGoEe81v1FU</code><a href="#appendix-A.2-24.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-24.2">Disclosure:<br>
-            <code>WyJQUy1fNnFqdFk0akpOSlF5SkNpeU5BIiwgIm5hdGlvbmFsaXRpZXMiLCBb</code><br>
+            <code>WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIm5hdGlvbmFsaXRpZXMiLCBb</code><br>
             <code>IkRFIl1d</code><a href="#appendix-A.2-24.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-24.3">Contents:
-<code>["PS-_6qjtY4jJNJQyJCiyNA", "nationalities", ["DE"]]</code><a href="#appendix-A.2-24.3" class="pilcrow">¶</a>
+<code>["lklxF5jMYlGTPUovMNIvCA", "nationalities", ["DE"]]</code><a href="#appendix-A.2-24.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-25"><strong>Claim <code>birthdate</code>:</strong><a href="#appendix-A.2-25" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-26.1">SHA-256 Hash: <code>U4P6UrikZAVE3mk82oLaPDiLX8hEXmEu9A6xO5j9mxE</code><a href="#appendix-A.2-26.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-26.1">SHA-256 Hash: <code>c46n0Tz4KY0c6wNf5dQ1oUj47s16hb8NuFMqeo98_H0</code><a href="#appendix-A.2-26.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-26.2">Disclosure:<br>
-            <code>WyJMNExJMTRqVGFCVEZxV080MVM5TUlRIiwgImJpcnRoZGF0ZSIsICIxOTU2</code><br>
+            <code>WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgImJpcnRoZGF0ZSIsICIxOTU2</code><br>
             <code>LTAxLTI4Il0</code><a href="#appendix-A.2-26.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-26.3">Contents:
-<code>["L4LI14jTaBTFqWO41S9MIQ", "birthdate", "1956-01-28"]</code><a href="#appendix-A.2-26.3" class="pilcrow">¶</a>
+<code>["nPuoQnkRFq3BIeAm7AnXFA", "birthdate", "1956-01-28"]</code><a href="#appendix-A.2-26.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-27"><strong>Claim <code>place_of_birth</code>:</strong><a href="#appendix-A.2-27" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-28.1">SHA-256 Hash: <code>fSw3UyxwNFf_CjYCCBYCRxZCGB-LIS35Pey2T7G_cHw</code><a href="#appendix-A.2-28.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-28.1">SHA-256 Hash: <code>Blf7DBmdHEzZMQHw8y11zCLA_76HesZ60cxfhCA1hNU</code><a href="#appendix-A.2-28.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-28.2">Disclosure:<br>
-            <code>WyJsZ1pCenNHUUZ6bGlqRFZKa2ZCVGNRIiwgInBsYWNlX29mX2JpcnRoIiwg</code><br>
+            <code>WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgInBsYWNlX29mX2JpcnRoIiwg</code><br>
             <code>eyJjb3VudHJ5IjogIklTIiwgImxvY2FsaXR5IjogIlx1MDBkZXlra3ZhYlx1</code><br>
             <code>MDBlNmphcmtsYXVzdHVyIn1d</code><a href="#appendix-A.2-28.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-28.3">Contents:
-<code>["lgZBzsGQFzlijDVJkfBTcQ", "place_of_birth", {"country":</code><br>
+<code>["5bPs1IquZNa0hkaFzzzZNw", "place_of_birth", {"country":</code><br>
             <code>"IS", "locality": "\u00deykkvab\u00e6jarklaustur"}]</code><a href="#appendix-A.2-28.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-29"><strong>Claim <code>address</code>:</strong><a href="#appendix-A.2-29" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-30.1">SHA-256 Hash: <code>OTog0pBGyAmwEqIhjSuf5Rq5UWTkIecAnutwB2nGUlk</code><a href="#appendix-A.2-30.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-30.1">SHA-256 Hash: <code>m1kqaCwgKzKmb9u40bmR0Jm3HvUuijE-OCAt-goQTX8</code><a href="#appendix-A.2-30.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-30.2">Disclosure:<br>
-            <code>WyI5VEFiRnplajZoNGFDSVc2dTZoWFZBIiwgImFkZHJlc3MiLCB7ImxvY2Fs</code><br>
+            <code>WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkZHJlc3MiLCB7ImxvY2Fs</code><br>
             <code>aXR5IjogIk1heHN0YWR0IiwgInBvc3RhbF9jb2RlIjogIjEyMzQ0IiwgImNv</code><br>
             <code>dW50cnkiOiAiREUiLCAic3RyZWV0X2FkZHJlc3MiOiAiV2VpZGVuc3RyYVx1</code><br>
             <code>MDBkZmUgMjIifV0</code><a href="#appendix-A.2-30.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-30.3">Contents:
-<code>["9TAbFzej6h4aCIW6u6hXVA", "address", {"locality":</code><br>
+<code>["5a2W0_NrlEZzfqmk_7Pq-w", "address", {"locality":</code><br>
             <code>"Maxstadt", "postal_code": "12344", "country": "DE",</code><br>
             <code>"street_address": "Weidenstra\u00dfe 22"}]</code><a href="#appendix-A.2-30.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-31"><strong>Claim <code>birth_middle_name</code>:</strong><a href="#appendix-A.2-31" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-32.1">SHA-256 Hash: <code>BjJ85b1mpIvorC35da8cPRCfN0OeoBUf7ZCA3w96xnM</code><a href="#appendix-A.2-32.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-32.1">SHA-256 Hash: <code>-2yOfWMeZFQaqfZBhjGf-TX-qBNvkKxciFoiedsI5_8</code><a href="#appendix-A.2-32.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-32.2">Disclosure:<br>
-            <code>WyJZdVhXUzI3N3ZIX3RuRWZhWWw5S1R3IiwgImJpcnRoX21pZGRsZV9uYW1l</code><br>
+            <code>WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgImJpcnRoX21pZGRsZV9uYW1l</code><br>
             <code>IiwgIlRpbW90aGV1cyJd</code><a href="#appendix-A.2-32.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-32.3">Contents:
-<code>["YuXWS277vH_tnEfaYl9KTw", "birth_middle_name", "Timotheus"]</code><a href="#appendix-A.2-32.3" class="pilcrow">¶</a>
+<code>["y1sVU5wdfJahVdgwPgS7RQ", "birth_middle_name", "Timotheus"]</code><a href="#appendix-A.2-32.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-33"><strong>Claim <code>salutation</code>:</strong><a href="#appendix-A.2-33" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-34.1">SHA-256 Hash: <code>wN-gqrZTxUtl1-v3S5wodjuAgE0YuBS66s9p4qxfgxg</code><a href="#appendix-A.2-34.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-34.1">SHA-256 Hash: <code>8gJZ1CtqpoIon0v9ZI7BMGt1pbGmAsNI8c07_w1OcSY</code><a href="#appendix-A.2-34.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-34.2">Disclosure:<br>
-            <code>WyJPWEVMTkhsQ2NNS051cHN0T1F1N19RIiwgInNhbHV0YXRpb24iLCAiRHIu</code><br>
+            <code>WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgInNhbHV0YXRpb24iLCAiRHIu</code><br>
             <code>Il0</code><a href="#appendix-A.2-34.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-34.3">Contents:
-<code>["OXELNHlCcMKNupstOQu7_Q", "salutation", "Dr."]</code><a href="#appendix-A.2-34.3" class="pilcrow">¶</a>
+<code>["HbQ4X8srVW3QDxnIJdqyOA", "salutation", "Dr."]</code><a href="#appendix-A.2-34.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-35"><strong>Claim <code>msisdn</code>:</strong><a href="#appendix-A.2-35" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-36.1">SHA-256 Hash: <code>XqnTomboGac-QASg2Q9V1uQGRQRkXL9jkveIzNcMmSM</code><a href="#appendix-A.2-36.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.2-36.1">SHA-256 Hash: <code>QDh-IWNFfG-NglE5ZsBwid4ZSBjJBURZeyNJkftZgKg</code><a href="#appendix-A.2-36.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-36.2">Disclosure:<br>
-            <code>WyI2QzFBbVhiUjc5aG1zcWJfYkhfWHdBIiwgIm1zaXNkbiIsICI0OTEyMzQ1</code><br>
+            <code>WyJDOUdTb3VqdmlKcXVFZ1lmb2pDYjFBIiwgIm1zaXNkbiIsICI0OTEyMzQ1</code><br>
             <code>Njc4OSJd</code><a href="#appendix-A.2-36.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-36.3">Contents:
-<code>["6C1AmXbR79hmsqb_bH_XwA", "msisdn", "49123456789"]</code><a href="#appendix-A.2-36.3" class="pilcrow">¶</a>
+<code>["C9GSoujviJquEgYfojCb1A", "msisdn", "49123456789"]</code><a href="#appendix-A.2-36.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.2-37">The Verifier would receive the Issuer-signed SD-JWT together with a selection
 of the Disclosures. The Presentation in this example would look as follows:<a href="#appendix-A.2-37" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.2-38">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkJqSjg1YjFtcEl2b3JDMzVkYThjUFJDZ
-k4wT2VvQlVmN1pDQTN3OTZ4bk0iLCAiWHFuVG9tYm9HYWMtUUFTZzJROVYxdVFHUlFSa
-1hMOWprdmVJek5jTW1TTSIsICJ3Ti1ncXJaVHhVdGwxLXYzUzV3b2RqdUFnRTBZdUJTN
-jZzOXA0cXhmZ3hnIl0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiL
-CAiaWF0IjogMTUxNjIzOTAyMiwgImV4cCI6IDE3MzU2ODk2NjEsICJ2ZXJpZmllZF9jb
-GFpbXMiOiB7InZlcmlmaWNhdGlvbiI6IHsiX3NkIjogWyJPU1hxUXVyNGNRelhrU2xiV
-GVodHpPenNaQk1nQUlpZ3ZabWlOQ1Y1VmQ4IiwgInBuSnFJcTQ1bjU4dTdCWTFaMG5aW
-XZMMW5xdWNqSTdtb192b0hvcTlvR1UiXSwgInRydXN0X2ZyYW1ld29yayI6ICJkZV9hb
-WwiLCAiZXZpZGVuY2UiOiBbeyJfc2QiOiBbIkZQTlBabWpfS2FLbElQMlFXQjU1SjFnS
-GhBMTRtUGxiVmRSOWJHQmdINHciLCAiVnl0YmpiYjR3SGlUdkZpOVd4c3FKWXFQUHNXX
-25udld2dHAwVS1LdW9mOCIsICJldllCNTEwYjh4enAxOVE3R24xaTJFZ3lOMC1SMjZvR
-mplQkI1SURUR1lJIiwgIm9PQlhrbU5QRG9FSnNoNUs1aGdjM3dkTWJKSnpjOVJ2MGhPb
-jBtVTZZbTgiXX1dfSwgImNsYWltcyI6IHsiX3NkIjogWyJPVG9nMHBCR3lBbXdFcUloa
-lN1ZjVScTVVV1RrSWVjQW51dHdCMm5HVWxrIiwgIlU0UDZVcmlrWkFWRTNtazgyb0xhU
-ERpTFg4aEVYbUV1OUE2eE81ajlteEUiLCAiWWx4OUF4UW1KeFNSOUNnWm1GQm55S0NoY
-TlxTnNuQTdHenJtWFBCS2tEbyIsICJkN2xuN3hPLVJSRVhtZWNCVkVwd0x3ckVqWjNGS
-3NfS0xoQ0Qwdkw3NFVzIiwgImZJVzZ6WFJ0UlNRTmNOSzVndnBSc1pGa2FOOEJNaDM2V
-Xdoc2RabHhvVG8iLCAiZlN3M1V5eHdORmZfQ2pZQ0NCWUNSeFpDR0ItTElTMzVQZXkyV
-DdHX2NIdyJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.8nGooXf6Z6aLYoWFm1MD1D
-o2Yb7eBe1dBjBrBPgX5ZMTuFrxjj1-GJybVopCW2JSMsfPm-RddeUyX9ATBvjO6g~WyJ
-jZllESjNFR2JFTFMyYkhsTWlrQ3FBIiwgInRpbWUiLCAiMjAxMi0wNC0yM1QxODoyNVo
-iXQ~WyJrMm53eWt1eGdhdERDVllxTVg3WXVRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyI5
-VEFiRnplajZoNGFDSVc2dTZoWFZBIiwgImFkZHJlc3MiLCB7ImxvY2FsaXR5IjogIk1h
-eHN0YWR0IiwgInBvc3RhbF9jb2RlIjogIjEyMzQ0IiwgImNvdW50cnkiOiAiREUiLCAi
-c3RyZWV0X2FkZHJlc3MiOiAiV2VpZGVuc3RyYVx1MDBkZmUgMjIifV0~WyJuVWtieGhx
-c2pyVTNaTEtVSGNBYWxBIiwgImdpdmVuX25hbWUiLCAiTWF4Il0~WyIyTmd0UExxQmU0
-QVhMVzR6SUNLWHJ3IiwgImZhbWlseV9uYW1lIiwgIk1cdTAwZmNsbGVyIl0~
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi0yeU9mV01lWkZRYXFmWkJoakdmLVRYL
+XFCTnZrS3hjaUZvaWVkc0k1XzgiLCAiOGdKWjFDdHFwb0lvbjB2OVpJN0JNR3QxcGJHb
+UFzTkk4YzA3X3cxT2NTWSIsICJRRGgtSVdORmZHLU5nbEU1WnNCd2lkNFpTQmpKQlVSW
+mV5TkprZnRaZ0tnIl0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiL
+CAiaWF0IjogMTY4MzAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJ2ZXJpZmllZF9jb
+GFpbXMiOiB7InZlcmlmaWNhdGlvbiI6IHsiX3NkIjogWyI3aDRVRTlxU2N2REtvZFhWQ
+3VvS2ZLQkpwVkJmWE1GX1RtQUdWYVplM1NjIiwgInZUd2UzcmFISUZZZ0ZBM3hhVUQyY
+U14Rno1b0RvOGlCdTA1cUtsT2c5THciXSwgInRydXN0X2ZyYW1ld29yayI6ICJkZV9hb
+WwiLCAiZXZpZGVuY2UiOiBbeyJfc2QiOiBbIjl3cGpWUFd1RDdQSzBuc1FETDhCMDZsb
+WRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmhPQU9vVTlYXzZRTU52ekZYanBFQV9SY
+y1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjYzUmNacTl5dmdaMFhQYzdHb3doM08ya
+3FYZUJJc3dnMUI0IiwgIldweFE0SFNvRXRjVG1DQ0tPZURzbEJfZW11Y1lMejJvTzhvS
+E5yMWJFVlEiXX1dfSwgImNsYWltcyI6IHsiX3NkIjogWyJCbGY3REJtZEhFelpNUUh3O
+HkxMXpDTEFfNzZIZXNaNjBjeGZoQ0ExaE5VIiwgIkZuTTFZLWVWcVdpLWg2UDl6ekFyY
+jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
+3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
+244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
+0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.KNikBGbxWEL6JnUpwYxlSB
+Eb5zPZH_NU5vUEXmwcrCNOw62JN6mURKfBnnJGxwseZZ7vkSBS_bbRdYk8-uTgdA~WyI
+yR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC0yM1QxODoyNVo
+iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyJQ
+YzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImdpdmVuX25hbWUiLCAiTWF4Il0~WyJHMDJO
+U3JRZmpGWFE3SW8wOXN5YWpBIiwgImZhbWlseV9uYW1lIiwgIk1cdTAwZmNsbGVyIl0~
+WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkZHJlc3MiLCB7ImxvY2FsaXR5Ijog
+Ik1heHN0YWR0IiwgInBvc3RhbF9jb2RlIjogIjEyMzQ0IiwgImNvdW50cnkiOiAiREUi
+LCAic3RyZWV0X2FkZHJlc3MiOiAiV2VpZGVuc3RyYVx1MDBkZmUgMjIifV0~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -3594,8 +3588,8 @@ pass the following result on to the application for further processing:<a href="
 <div class="lang-json sourcecode" id="appendix-A.2-40">
 <pre>{
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "verified_claims": {
     "verification": {
       "trust_framework": "de_aml",
@@ -3607,14 +3601,14 @@ pass the following result on to the application for further processing:<a href="
       "time": "2012-04-23T18:25Z"
     },
     "claims": {
+      "given_name": "Max",
+      "family_name": "Müller",
       "address": {
         "locality": "Maxstadt",
         "postal_code": "12344",
         "country": "DE",
         "street_address": "Weidenstraße 22"
-      },
-      "given_name": "Max",
-      "family_name": "Müller"
+      }
     }
   },
   "_sd_alg": "sha-256"
@@ -3681,7 +3675,7 @@ a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="
 <pre>{
   "iss": "https://example.com",
   "iat": 1541493724,
-  "exp": 1735689661,
+  "exp": 1883000000,
   "jti": "http://example.com/credentials/3732",
   "nbf": 1541493724,
   "cnf": {
@@ -3699,15 +3693,15 @@ a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="
   "type": "IdentityCredential",
   "credentialSubject": {
     "_sd": [
-      "2cj0qo1YI8aGLOPCEzIr0mexil6_9tVz5KnIpY3fszs",
-      "H033gGqGyBCT7VmtYky-1gqqTg9JT8kg9WFJTTN1iVY",
-      "RKE58nhM1GLxUmfvPaZhxNEq8kNplQYnOZlLJosLomY",
-      "S7ebWHiOEgQDLG6JcpYkuMKMCb40uxFUSUimK94MuDc",
-      "WkP5oQu7qxPAxLVPKcFuP4rD5TC0T4CekiYi333zQP4",
-      "f4nimkh9dcwJ8JK46zlad_zgyYJfZFPImAWBNh86Kb0",
-      "goqT4HD2DOmnPF1wNMLNiYuj4SgYtKjfQQHO--CSh0o",
-      "lheBqvJLJPRLsoXVF68rmkn9jL73iGCF0V5sJjPlt68",
-      "tAQ3Er6qd3UwQLrZYRe3fMF4J6MXdz5tJMJfJw48I0g"
+      "09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY",
+      "2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI",
+      "EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA",
+      "IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw",
+      "JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE",
+      "PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI",
+      "TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo",
+      "jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI",
+      "jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4"
     ]
   },
   "_sd_alg": "sha-256"
@@ -3717,114 +3711,114 @@ a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="
 <p id="appendix-A.3-10">Disclosures:<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-11"><strong>Claim <code>given_name</code>:</strong><a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-12.1">SHA-256 Hash: <code>f4nimkh9dcwJ8JK46zlad_zgyYJfZFPImAWBNh86Kb0</code><a href="#appendix-A.3-12.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-12.1">SHA-256 Hash: <code>jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4</code><a href="#appendix-A.3-12.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-12.2">Disclosure:<br>
-            <code>WyJuWUpCd1Q0OERQTEtYcVd1UmJ4NVNRIiwgImdpdmVuX25hbWUiLCAiSm9o</code><br>
+            <code>WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9o</code><br>
             <code>biJd</code><a href="#appendix-A.3-12.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-12.3">Contents:
-<code>["nYJBwT48DPLKXqWuRbx5SQ", "given_name", "John"]</code><a href="#appendix-A.3-12.3" class="pilcrow">¶</a>
+<code>["2GLC42sKQveCfGfryNRN9w", "given_name", "John"]</code><a href="#appendix-A.3-12.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-13"><strong>Claim <code>family_name</code>:</strong><a href="#appendix-A.3-13" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-14.1">SHA-256 Hash: <code>2cj0qo1YI8aGLOPCEzIr0mexil6_9tVz5KnIpY3fszs</code><a href="#appendix-A.3-14.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-14.1">SHA-256 Hash: <code>TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo</code><a href="#appendix-A.3-14.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-14.2">Disclosure:<br>
-            <code>WyJFTXMzQjJ1LU5jUDdMeUljVnA5elhBIiwgImZhbWlseV9uYW1lIiwgIkRv</code><br>
+            <code>WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRv</code><br>
             <code>ZSJd</code><a href="#appendix-A.3-14.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-14.3">Contents:
-<code>["EMs3B2u-NcP7LyIcVp9zXA", "family_name", "Doe"]</code><a href="#appendix-A.3-14.3" class="pilcrow">¶</a>
+<code>["eluV5Og3gSNII8EYnsxA_A", "family_name", "Doe"]</code><a href="#appendix-A.3-14.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-15"><strong>Claim <code>email</code>:</strong><a href="#appendix-A.3-15" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-16.1">SHA-256 Hash: <code>H033gGqGyBCT7VmtYky-1gqqTg9JT8kg9WFJTTN1iVY</code><a href="#appendix-A.3-16.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-16.1">SHA-256 Hash: <code>JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE</code><a href="#appendix-A.3-16.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-16.2">Disclosure:<br>
-            <code>WyJMRDdSbG5WaHZPRTVoMkFGN280ZlN3IiwgImVtYWlsIiwgImpvaG5kb2VA</code><br>
+            <code>WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VA</code><br>
             <code>ZXhhbXBsZS5jb20iXQ</code><a href="#appendix-A.3-16.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-16.3">Contents:
-<code>["LD7RlnVhvOE5h2AF7o4fSw", "email", "johndoe@example.com"]</code><a href="#appendix-A.3-16.3" class="pilcrow">¶</a>
+<code>["6Ij7tM-a5iVPGboS5tmvVA", "email", "johndoe@example.com"]</code><a href="#appendix-A.3-16.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-17"><strong>Claim <code>phone_number</code>:</strong><a href="#appendix-A.3-17" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-18.1">SHA-256 Hash: <code>tAQ3Er6qd3UwQLrZYRe3fMF4J6MXdz5tJMJfJw48I0g</code><a href="#appendix-A.3-18.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-18.1">SHA-256 Hash: <code>PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI</code><a href="#appendix-A.3-18.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-18.2">Disclosure:<br>
-            <code>WyI5OUswamRYQjkxUUtUZXd0MEJneDZ3IiwgInBob25lX251bWJlciIsICIr</code><br>
+            <code>WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlciIsICIr</code><br>
             <code>MS0yMDItNTU1LTAxMDEiXQ</code><a href="#appendix-A.3-18.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-18.3">Contents:
-<code>["99K0jdXB91QKTewt0Bgx6w", "phone_number",</code><br>
+<code>["eI8ZWm9QnKPpNPeNenHdhQ", "phone_number",</code><br>
             <code>"+1-202-555-0101"]</code><a href="#appendix-A.3-18.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-19"><strong>Claim <code>address</code>:</strong><a href="#appendix-A.3-19" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-20.1">SHA-256 Hash: <code>lheBqvJLJPRLsoXVF68rmkn9jL73iGCF0V5sJjPlt68</code><a href="#appendix-A.3-20.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-20.1">SHA-256 Hash: <code>IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw</code><a href="#appendix-A.3-20.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-20.2">Disclosure:<br>
-            <code>WyJhRG8xSllUX0pkek9meFdPenRqZlJBIiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
+            <code>WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImFkZHJlc3MiLCB7InN0cmVl</code><br>
             <code>dF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRv</code><br>
             <code>d24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0</code><a href="#appendix-A.3-20.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-20.3">Contents:
-<code>["aDo1JYT_JdzOfxWOztjfRA", "address", {"street_address":</code><br>
+<code>["Qg_O64zqAxe412a108iroA", "address", {"street_address":</code><br>
             <code>"123 Main St", "locality": "Anytown", "region": "Anystate",</code><br>
             <code>"country": "US"}]</code><a href="#appendix-A.3-20.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-21"><strong>Claim <code>birthdate</code>:</strong><a href="#appendix-A.3-21" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-22.1">SHA-256 Hash: <code>WkP5oQu7qxPAxLVPKcFuP4rD5TC0T4CekiYi333zQP4</code><a href="#appendix-A.3-22.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-22.1">SHA-256 Hash: <code>jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI</code><a href="#appendix-A.3-22.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-22.2">Disclosure:<br>
-            <code>WyJEY1EycGhyQllXRG9VWVdMbVhtYV9BIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
+            <code>WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImJpcnRoZGF0ZSIsICIxOTQw</code><br>
             <code>LTAxLTAxIl0</code><a href="#appendix-A.3-22.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-22.3">Contents:
-<code>["DcQ2phrBYWDoUYWLmXma_A", "birthdate", "1940-01-01"]</code><a href="#appendix-A.3-22.3" class="pilcrow">¶</a>
+<code>["AJx-095VPrpTtN4QMOqROA", "birthdate", "1940-01-01"]</code><a href="#appendix-A.3-22.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-23"><strong>Claim <code>is_over_18</code>:</strong><a href="#appendix-A.3-23" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-24.1">SHA-256 Hash: <code>RKE58nhM1GLxUmfvPaZhxNEq8kNplQYnOZlLJosLomY</code><a href="#appendix-A.3-24.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-24.1">SHA-256 Hash: <code>09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY</code><a href="#appendix-A.3-24.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-24.2">Disclosure:<br>
-            <code>WyJtYUFIc0xpYWZfdW4za3VDN21Xb0J3IiwgImlzX292ZXJfMTgiLCB0cnVl</code><br>
+            <code>WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImlzX292ZXJfMTgiLCB0cnVl</code><br>
             <code>XQ</code><a href="#appendix-A.3-24.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-24.3">Contents:
-<code>["maAHsLiaf_un3kuC7mWoBw", "is_over_18", true]</code><a href="#appendix-A.3-24.3" class="pilcrow">¶</a>
+<code>["Pc33JM2LchcU_lHggv_ufQ", "is_over_18", true]</code><a href="#appendix-A.3-24.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-25"><strong>Claim <code>is_over_21</code>:</strong><a href="#appendix-A.3-25" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-26.1">SHA-256 Hash: <code>goqT4HD2DOmnPF1wNMLNiYuj4SgYtKjfQQHO--CSh0o</code><a href="#appendix-A.3-26.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-26.1">SHA-256 Hash: <code>2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI</code><a href="#appendix-A.3-26.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-26.2">Disclosure:<br>
-            <code>WyIyR2hKMHZjQ0xfNzNvNUZrbHV5NndRIiwgImlzX292ZXJfMjEiLCB0cnVl</code><br>
+            <code>WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImlzX292ZXJfMjEiLCB0cnVl</code><br>
             <code>XQ</code><a href="#appendix-A.3-26.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-26.3">Contents:
-<code>["2GhJ0vcCL_73o5Fkluy6wQ", "is_over_21", true]</code><a href="#appendix-A.3-26.3" class="pilcrow">¶</a>
+<code>["G02NSrQfjFXQ7Io09syajA", "is_over_21", true]</code><a href="#appendix-A.3-26.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="appendix-A.3-27"><strong>Claim <code>is_over_65</code>:</strong><a href="#appendix-A.3-27" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-28.1">SHA-256 Hash: <code>S7ebWHiOEgQDLG6JcpYkuMKMCb40uxFUSUimK94MuDc</code><a href="#appendix-A.3-28.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-A.3-28.1">SHA-256 Hash: <code>EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA</code><a href="#appendix-A.3-28.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-28.2">Disclosure:<br>
-            <code>WyI3SHpCQUt3SktBOTNGaWh2QmcxRThRIiwgImlzX292ZXJfNjUiLCB0cnVl</code><br>
+            <code>WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImlzX292ZXJfNjUiLCB0cnVl</code><br>
             <code>XQ</code><a href="#appendix-A.3-28.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.3-28.3">Contents:
-<code>["7HzBAKwJKA93FihvBg1E8Q", "is_over_65", true]</code><a href="#appendix-A.3-28.3" class="pilcrow">¶</a>
+<code>["lklxF5jMYlGTPUovMNIvCA", "is_over_65", true]</code><a href="#appendix-A.3-28.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -3889,8 +3883,8 @@ using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a 
 <div class="breakable lang-json sourcecode" id="appendix-A.4-9">
 <pre>{
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://w3id.org/vaccination/v1"
@@ -3943,7 +3937,7 @@ using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a 
 <p id="appendix-A.4-11">The following is a non-normative example of a Combined Format for Presentation for the SD-JWT with a Holder Binding JWT. It only discloses <code>type</code>, <code>medicinalProductName</code>, <code>atcCode</code> of the vaccine, <code>type</code> of the <code>recipient</code>, <code>type</code>, <code>order</code> and <code>dateOfVaccination</code>.<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.4-12">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1Z
-XIiLCAiaWF0IjogMTUxNjIzOTAyMiwgImV4cCI6IDE3MzU2ODk2NjEsICJAY29udGV4d
+XIiLCAiaWF0IjogMTY4MzAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJAY29udGV4d
 CI6IFsiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvdjEiLCAiaHR0c
 HM6Ly93M2lkLm9yZy92YWNjaW5hdGlvbi92MSJdLCAidHlwZSI6IFsiVmVyaWZpYWJsZ
 UNyZWRlbnRpYWwiLCAiVmFjY2luYXRpb25DZXJ0aWZpY2F0ZSJdLCAiaXNzdWVyIjogI
@@ -3966,19 +3960,19 @@ iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
 GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
 CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
 3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.BfacB6YsZCi-rufIENx98QsXOTzRGfSVzIjHr20XMICP4w6JgD
-WIGX2fc1b8dV7Khjrj6TQmbQeQFxkI5NisAQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
-ZSI6ICJYWk9VY28xdV9nRVBrbnhTNzhzV1dnIiwgImF1ZCI6ICJodHRwczovL2V4YW1w
-bGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODMwMTE1Mzl9.cNi2idzzj9Jy-zQV2Mp
-EjzLmrCqWWMXbehwlwnChjrBNXc9_y5r6wqBU856ijly5wGoip4Ra97XQNuaewPYAIg
+GpUOUYySFpRIn19fQ.hQ6n8hQ05dO5UToBzmAL63dhG8m14mW3uLZoEBeobuB5jIiz-t
+UjFlM5gOOfrY6d1Qm3N37dOXRVh0132JqoeQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
+ZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcmlm
+aWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.EJvnJ2fRxzX0ofgGTSnWwyvTtNycT2hOzTr
+bzKpuGF7BtP2wCATF75ReckqRQraOURNraPAxLGtmUzCPe5DiMw
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
 <div class="breakable lang-json sourcecode" id="appendix-A.4-14">
 <pre>{
   "iss": "https://example.com/issuer",
-  "iat": 1516239022,
-  "exp": 1735689661,
+  "iat": 1683000000,
+  "exp": 1883000000,
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://w3id.org/vaccination/v1"
