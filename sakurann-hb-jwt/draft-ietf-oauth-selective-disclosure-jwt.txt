@@ -2943,6 +2943,8 @@ Appendix C.  Document History
 
    -05
 
+   *  Defined the structure of the Holder Binding JWT.
+
    *  Added initial IANA media type and structured suffix registration
       requests
 
