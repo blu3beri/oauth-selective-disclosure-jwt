@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 23 November 2023                                      Microsoft
+Expires: 25 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             22 May 2023
+                                                             24 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 November 2023.
+   This Internet-Draft will expire on 25 November 2023.
 
 Copyright Notice
 
@@ -98,6 +98,7 @@ Table of Contents
      8.7.  Blinding Claim Names
      8.8.  Issuer Signature Key Distribution and Rotation
      8.9.  Forwarding Credentials
+     8.10. Explicit Typing
    9.  Privacy Considerations
      9.1.  Storage of Signed User Data
      9.2.  Confidentiality during Transport
@@ -371,6 +372,9 @@ Table of Contents
    public key or a reference thereto, as well as further claims such as
    iss, iat, etc. as defined or required by the application using SD-
    JWTs.
+
+   Applications of SD-JWT SHOULD be explicitly typed using the typ
+   header parameter.  See Section 8.10 for more details.
 
 5.1.1.  Selectively Disclosable Claims
 
@@ -1491,6 +1495,22 @@ Table of Contents
 
    In some scenarios this behavior could be desirable, but if it is not,
    Issuers need to support and Verifiers need to enforce Holder Binding.
+
+8.10.  Explicit Typing
+
+   Section 3.11 of [RFC8725] describes the use of explicit typing to
+   prevent confusion attacks in which one kind of JWT is mistaken for
+   another.  SD-JWTs are also potentially vulnerable to such confusion
+   attacks, so it is RECOMMENDED to specify an explicit type by
+   including the typ header parameter when the SD-JWT is issued, and for
+   Verifiers to check this value.
+
+   When explicit typing is employed for an SD-JWT, it is RECOMMENDED
+   that a media type name of the format "application/example+sd-jwt" be
+   used, where "example" is replaced by the identifier for the specific
+   kind of SD-JWT.  The definition of typ in Section 4.1.9 of [RFC7515]
+   recommends that the "application/" prefix be omitted, so "example+sd-
+   jwt" would be the value of the typ header parameter.
 
 9.  Privacy Considerations
 
@@ -2875,6 +2895,8 @@ Appendix C.  Document History
 
    *  Added initial IANA media type and structured suffix registration
       requests
+
+   *  Added recommendation for explicit typing of SD-JWTs
 
    *  Added considerations around forwarding credentials
 
