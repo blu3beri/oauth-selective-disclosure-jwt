@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-23T00:59:06.110812+00:00",
+  "timestamp": "2023-05-25T01:00:09.478059+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -5218,7 +5218,7 @@
       "labels": [],
       "body": "We currently do not support selective disclosure for elements in an array (we do support it for keys within objects within arrays, but not for arbitrary array elements).\r\n\r\nExample:\r\n\r\nThe key `foo` in `{\"foo\": [23, \"bar\", false]}` can be SD, but we can't apply SD to the array elements, i.e., we cannot disclose `23` without disclosing `\"bar\"`. \r\n\r\nProposal:\r\n\r\nFor object keys, we use the new key `_sd` to collect the disclosure hashes. For arrays, we would need to mark the array as selectively disclosable, e.g., by using a special first element in the array like this:\r\n\r\n`{\"foo\": [\"_sd\", \"7pHe1uQ5uSClgAxXdG0E6dKnBgXcxEO1zvoQO9E5Lr4\", \"9-VdSnvRTZNDo-4Bxcp3X-V9VtLOCRUkR6oLWZQl81I\",\r\n      \"nTzPZ3Q68z1Ko_9ao9LK0mSYXY5gY6UG6KEkQ_BdqU0\"]}`\r\n\r\nThe three hashes correspond to the three elements in the array. The verifier can resolve the disclosed elements into their original values and ignore/replace the other values. Order is preserved. This works for arbitrary element types.\r\n\r\nThis would not allow to mix SD and non-SD elements in an array, but it seems unlikely that that would be a problem. WDYT @bc-pi @Sakurann?\r\n   ",
       "createdAt": "2022-12-27T15:36:00Z",
-      "updatedAt": "2023-03-29T05:16:09Z",
+      "updatedAt": "2023-05-24T15:57:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -5311,6 +5311,111 @@
           "body": "Encoding an array name and an index into an array like `[\"array\", 2]` seems a good idea.",
           "createdAt": "2023-03-29T05:16:08Z",
           "updatedAt": "2023-03-29T05:16:08Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Daniel's slightly modified version of Taka's proposal seems like the way to go. ",
+          "createdAt": "2023-05-23T14:44:15Z",
+          "updatedAt": "2023-05-23T17:13:25Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "... and I'm just working on implementing this in the SD-JWT reference implementation.",
+          "createdAt": "2023-05-23T14:47:32Z",
+          "updatedAt": "2023-05-23T14:47:32Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "While implementing this I noticed a problem with the recently chosen approach: This approach relies on the fact that an array must be nested within an object. This means that \r\n\r\n- the approach does not work for top-level arrays (without defining another exception, like a \"null\" array name),\r\n- the approach does not work for arrays nested in arrays, and\r\n- the implementation for creating the SD-JWT becomes more complex: So far, a simple recursive function call was sufficient (each function call operating on a single key/value in an object at a time, creating the disclosure and returning the hash to add to the _sd element). Now if there's an array, we need to go back one level higher to find the _sd element and add more hashes there. The behavior is undefined for arrays-in-arrays.\r\n\r\n@TakahikoKawasaki Did you encounter any of these problems? What are your thoughts?\r\n\r\nI'm thinking about going back to the prefix variant, which suddenly seems **much more** attractive :-)",
+          "createdAt": "2023-05-23T16:54:43Z",
+          "updatedAt": "2023-05-23T16:54:43Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "@danielfett Good points. I didn't imagine the cases you mentioned. \ud83d\ude05 \r\n\r\n### Top-level Array\r\n\r\nIf you mean the data like below,\r\n\r\n```json\r\n[ \"apple\", \"banana\", \"cherry\" ]\r\n```\r\n\r\nthe following JSON for disclosure may work by using `null` as the array name\r\n\r\n```json\r\n[ \"<salt>\", [ null, 0 ], \"apple\" ]\r\n```\r\n\r\nand creating an outer JSON object like below.\r\n\r\n```json\r\n{\r\n  \"_sd\": [ \"<digest0>\" ]\r\n}\r\n```\r\n\r\nHowever, this approach would make it difficult to judge, if not possible, whether the outer JSON object has existed from the beginning or has been added just for the top-level anonymous array.\r\n\r\nTherefore, my gut feeling tells that `\"_sd\"` for array elements should exist in the array whichever approach (an additional `\"_sd\"` element or `_sd:` prefix) is used.\r\n\r\n### Nested Array\r\n\r\nThis needs special considerations. At least, it seems difficult to create disclosures and `\"_sd\"` arrays for the following data with the `[\"salt\",[\"array-name\",index],value]` approach...\r\n\r\n```json\r\n[ [ \"apple\", \"banana\", \"cherry\" ] ]\r\n```\r\n\r\nA conclusion is that discussions need to continue. \ud83d\ude05 \r\n",
+          "createdAt": "2023-05-23T17:50:15Z",
+          "updatedAt": "2023-05-23T17:50:15Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> the approach does not work for top-level arrays (without defining another exception, like a \"null\" array name),\r\n> the approach does not work for arrays nested in arrays\r\n\r\nOffhand, I feel like those could be considered acceptable limitations and that allowing for SD in top-level arrays or inside arrays nested in arrays isn't necessary. ",
+          "createdAt": "2023-05-23T18:28:36Z",
+          "updatedAt": "2023-05-23T18:28:36Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks @TakahikoKawasaki! I think I agree to your conclusions.\r\n\r\n@bc-pi I'd like to add that I'm actually less concerned about the restrictions themselves but feel that they (and the need to explain them) are strong indicators of a less-than-ideal approach.",
+          "createdAt": "2023-05-23T18:36:32Z",
+          "updatedAt": "2023-05-23T18:36:32Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> indicators of a less-than-ideal approach.\r\n\r\nThat's a fair/good point :) All the approaches thus far have had (in my mind anyway) some indicators of being less-than-ideal though. I'm not sure there's an obvious \"best\" one, so I'm not necessarily advocating for one over the other. I'm just trying to \"contribute\" to the discussions.  ",
+          "createdAt": "2023-05-23T19:07:23Z",
+          "updatedAt": "2023-05-23T19:07:23Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "I implemented the prefix solution now, but I introduced a mechanism to avoid one concern that I had. The basic idea is to use arrays like this:\r\n\r\n```json\r\n  \"nationalities\": [\r\n    \"_sd:Q7R_-cBP9LWCq9At1XWNRZyLTFHOr0S9fLcXQjyBgH4\",\r\n    \"_sd:o9qCZPD-_n0pa9nH_sBxtVKXuDyx1ALQjzYPrOJ3p4s\",\r\n    \"DE\"\r\n  ],\r\n```\r\n\r\n(Here, the third element is non-SD.)\r\n\r\nThe main concern that I had with this solution is that there may be conflicts. If somebody has data where `_sd` can appear as part of the data (for example, user-supplied data), the processing will not be correct. Therefore I propose to use `_sd:` as the default prefix, but to allow definition of a different prefix by adding the top-level key `_sd_arr_pfx`. For example, the prefix can consist of a nonce or another string that is guaranteed to not appear in real data items. This approach is similar to [boundaries in multipart MIME](https://en.wikipedia.org/wiki/Delimiter#Content_boundary). (There is no need to use `_sd_arr_pfx` if there are no arrays with SD or if the default prefix is used.)\r\n\r\nThe following is a full SD-JWT payload using the new array feature and defining `_sdx:` as a prefix:\r\n\r\n```json\r\n{\r\n  \"_sd\": [\r\n    \"sGmV2tSLHmJScETevXgTQ-bM7O5ZnQuu-ypqI2vB-JU\"\r\n  ],\r\n  \"iss\": \"https://example.com/issuer\",\r\n  \"iat\": 1683000000,\r\n  \"exp\": 1883000000,\r\n  \"sub\": \"john_doe_42\",\r\n  \"nationalities\": [\r\n    \"_sdx:Q7R_-cBP9LWCq9At1XWNRZyLTFHOr0S9fLcXQjyBgH4\",\r\n    \"_sdx:o9qCZPD-_n0pa9nH_sBxtVKXuDyx1ALQjzYPrOJ3p4s\",\r\n    \"DE\"\r\n  ],\r\n  \"is_over\": {\r\n    \"_sd\": [\r\n      \"NKZs2QqvniVtS3k-YXxMag_PiyUQizlgdsXgfIEWZcs\",\r\n      \"hLJKFgko4IvkO_R8lbX3xNRcaEo0t0awFMnrO0dXdvg\",\r\n      \"hN7ybNRpz_UIZAH4rPTNl_c07JyUQtzHlAwuyVrsQgs\"\r\n    ]\r\n  },\r\n  \"addresses\": [\r\n    {\r\n      \"street\": \"123 Main St\",\r\n      \"city\": \"Anytown\",\r\n      \"state\": \"NY\",\r\n      \"zip\": \"12345\",\r\n      \"type\": \"main_address\"\r\n    },\r\n    \"_sdx:TDx4IHvi4gxmIGbEKZa4AM6PYRIHtP5VxjraME72Nh8\"\r\n  ],\r\n  \"null_values\": [\r\n    null,\r\n    \"_sdx:YImgtY5gfEpLKDA8PQ93hkUCeAL0lz-UKsnK1IGJHFo\",\r\n    \"_sdx:duZZCCrTo-ROiWT8uEpPkgu_XnpsIWDtXhOqSOJ1EEo\",\r\n    null\r\n  ],\r\n  \"data_types\": [\r\n    \"_sdx:llHOoLZriL1NCNBOB3lLj5cFhZS2I4UvXeWIofOSyzU\",\r\n    \"_sdx:5h5X-YP38eRr7yS1sydUGJzbTXQiYoZy2CELGTpy63w\",\r\n    \"_sdx:ZcGhdemizhDvOKiM3huX69MO5MJ3k_6N4TDADYi1KI8\",\r\n    \"_sdx:MtEhyiQLsysJR9x6XgGPo2AS_audhRVXEZ3GsNVM30o\",\r\n    \"_sdx:auIGvdZGiGSzFmMXxM2ErtbN-5h-y0BIeFsl_aDEN48\",\r\n    \"_sdx:HTw5A7z-pzJ8RI37pC9Z2-1IyM-ZjVYG-iUkhpV4Ahw\",\r\n    \"_sdx:0MZET02ximXt6FxwBPOsEBUxuo_OBlNxQsfmRiatBeY\"\r\n  ],\r\n  \"nested_array\": [\r\n    [\r\n      \"_sdx:xlEWQP4kR9414Kyp5YqMNOBFMlcTa4zqR8ueeSVUCbs\",\r\n      \"_sdx:hcy7DI4AiQaPPTw40V6NYGzllLikLeyifv43a7SaX6w\"\r\n    ],\r\n    [\r\n      \"_sdx:czFUZij2d-W1nAOU68i6khwwphueeOyTwSJDCmh7gIk\",\r\n      \"_sdx:nLEUS7NSV2EUExiiET2itDjWi6dzV7re0Btcf0omUso\"\r\n    ]\r\n  ],\r\n  \"array_with_recursive_sd\": [\r\n    \"boring\",\r\n    \"_sdx:uaf1fEDM93C4zWX_PZlGCgcfkEgvMpEJUCCFozWCccY\",\r\n    [\r\n      \"_sdx:DWRkboVZ-cTya_WGt0-vaaQVmETozAtFip68mxU1Z0I\",\r\n      \"_sdx:RfQ40cSzxPe494mtOEbWjgA-ymegpiBiPyGTz2dyS4M\"\r\n    ]\r\n  ],\r\n  \"_sd_alg\": \"sha-256\",\r\n  \"cnf\": {\r\n    \"jwk\": {\r\n      \"kty\": \"EC\",\r\n      \"crv\": \"P-256\",\r\n      \"x\": \"TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc\",\r\n      \"y\": \"ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ\"\r\n    }\r\n  },\r\n  \"_sd_arr_pfx\": \"_sdx:\"\r\n}\r\n```\r\n\r\nThe code is in the sd-jwt repo, this is not finished yet but you should be able to play with the examples: https://github.com/danielfett/sd-jwt/pull/4\r\n\r\nLet me know what you think!",
+          "createdAt": "2023-05-24T14:35:33Z",
+          "updatedAt": "2023-05-24T14:42:37Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "Where to embed `\"_sd_arr_pfx\"` (and `\"_sd_alg\"`) in the case of a top-level anonymous array?",
+          "createdAt": "2023-05-24T14:53:56Z",
+          "updatedAt": "2023-05-24T14:53:56Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "That case is so far not covered by the spec. I think that might be acceptable.",
+          "createdAt": "2023-05-24T15:02:24Z",
+          "updatedAt": "2023-05-24T15:02:24Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Regular old JWT itself requires the JWS/JWE payload be a JSON object so that probably is acceptable (even with trying to be more accommodating to arbitrary JSON payloads).",
+          "createdAt": "2023-05-24T15:20:52Z",
+          "updatedAt": "2023-05-24T15:20:52Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "Another idea came up (brainstorming). Converting any element to a **map** which contains only `\"_sd\"` as a key. This approach conflicts with the current `\"_sd\"` **array** approach. I've not examined yet whether this approach would be able to work for all cases, though. Just showing an idea.\r\n\r\n### Example 1\r\n```json\r\n[\"A\", \"B\"]\r\n```\r\n\u2b07\ufe0f \r\n```json\r\n[\r\n  {\"_sd\":\"digest of [salt, 0, A]\"},\r\n  {\"_sd\":\"digest of [salt, 1, B]\"}\r\n]\r\n```\r\n\r\n### Example 2\r\n```json\r\n[\"A\", [ \"B\", \"C\" ]]\r\n```\r\n\u2b07\ufe0f \r\n```json\r\n[\r\n  {\"_sd\":\"digest of [salt, 0, A]\"},\r\n  [\r\n    {\"_sd\":\"digest of [salt, 0, B]\"},\r\n    {\"_sd\":\"digest of [salt, 1, C]\"}\r\n  ]\r\n]\r\n```\r\n\r\n### Example 3\r\n```json\r\n{\r\n  \"a\": \"A\",\r\n  \"b\": [\r\n    \"B\",\r\n    {\"c\": \"C\"},\r\n    {\"d\": \"D\"},\r\n    [\"E\"],\r\n    [\"F\"]\r\n  ]\r\n}\r\n```\r\n\u2b07\ufe0f \r\n```json\r\n{\r\n  {\"_sd\":\"digest of [salt, a, A]\"},\r\n  \"b\": [\r\n    {\"_sd\":\"digest of [salt, 0, B]\"},\r\n    {\r\n      {\"_sd\":\"digest of [salt, c, C]\"}\r\n    },\r\n    {\"_sd\":\"digest of [salt, 2, {d:D}]\"},\r\n    [\r\n      {\"_sd\":\"digest of [salt, 0, E]\"}\r\n    ],\r\n    {\"_sd\":\"digest of [salt, 4, [F]]\"}\r\n  ]\r\n}\r\n```\r\n",
+          "createdAt": "2023-05-24T15:35:16Z",
+          "updatedAt": "2023-05-24T15:35:16Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "Sorry, the above examples are malformed as JSON, probably.",
+          "createdAt": "2023-05-24T15:41:07Z",
+          "updatedAt": "2023-05-24T15:41:07Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "I meant the following is wrong.\r\n\r\n```json\r\n{\r\n  {\"_sd\": \"digest\"}\r\n}\r\n```\r\n\r\n---\r\n\r\nIn the case of a JSON object, an `\"_sd\"` array would work. In the case of array elements, a JSON object containing an `\"_sd\"` key would work.\r\n\r\n```json\r\n{\r\n  \"a\": \"A\",\r\n  \"b\": [\"B\"]\r\n}\r\n```\r\n\r\n```json\r\n{\r\n  \"_sd\": [\r\n    \"digest of [salt, a, A]\"\r\n  ],\r\n  \"b\": [\r\n    {\"_sd\":\"digest of [salt, 0, B]\"}\r\n  ]\r\n}\r\n```",
+          "createdAt": "2023-05-24T15:52:35Z",
+          "updatedAt": "2023-05-24T15:52:35Z"
+        },
+        {
+          "author": "TakahikoKawasaki",
+          "authorAssociation": "NONE",
+          "body": "Or, it may be possible to make `\"_sd\"` be always an array.\r\n\r\n```json\r\n{\r\n  \"_sd\": [\r\n    \"digest of [salt, a, A]\"\r\n  ],\r\n  \"b\": [\r\n    {\r\n      \"_sd\": [\r\n        \"digest of [salt, 0, B]\"\r\n      ]\r\n    }\r\n  ]\r\n}\r\n```",
+          "createdAt": "2023-05-24T15:57:54Z",
+          "updatedAt": "2023-05-24T15:57:54Z"
         }
       ]
     },
@@ -6484,7 +6589,7 @@
       "id": "I_kwDOHTmVzM5jn5xZ",
       "title": "Remove generated examples from repository and generate examples in build pipeline",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/259",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -6493,8 +6598,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-04-17T15:07:15Z",
-      "updatedAt": "2023-05-22T16:09:29Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-24T22:57:48Z",
+      "closedAt": "2023-05-24T22:57:48Z",
       "comments": [
         {
           "author": "danielfett",
@@ -6567,7 +6672,7 @@
       "id": "I_kwDOHTmVzM5luDLZ",
       "title": "complex.yml referenced in readme is missing",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/264",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "thomasdarimont",
       "authorAssociation": "NONE",
       "assignees": [
@@ -6576,8 +6681,8 @@
       "labels": [],
       "body": "The example mentioned in the readme does not work since the complex.yml file is missing:\r\n```\r\nsd_jwt sd_jwt/examples/complex.yml\r\n````\r\nyields:\r\n```\r\n$ sd_jwt sd_jwt/examples/complex.yml\r\nTraceback (most recent call last):\r\n  File \"/home/tom/.local/bin/sd_jwt\", line 170, in <module>\r\n    example = load_yaml_example(_args.example)\r\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"/home/tom/.local/bin/sd_jwt\", line 160, in load_yaml_example\r\n    with open(_args.example, \"r\") as f:\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'sd_jwt/examples/complex.yml'\r\n````\r\n",
       "createdAt": "2023-05-11T21:17:09Z",
-      "updatedAt": "2023-05-15T14:00:58Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-23T17:57:57Z",
+      "closedAt": "2023-05-23T17:57:57Z",
       "comments": [
         {
           "author": "danielfett",
@@ -6585,6 +6690,13 @@
           "body": "Gr\u00fc\u00dfe ins Saarland and thanks for catching that. The examples was renamed, we'll update the readme.",
           "createdAt": "2023-05-15T14:00:55Z",
           "updatedAt": "2023-05-15T14:00:55Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks again for catching this. I'll close this issue as the code will be moved to https://github.com/danielfett/sd-jwt. The Readme will be adapted accordingly in #273.",
+          "createdAt": "2023-05-23T17:57:57Z",
+          "updatedAt": "2023-05-23T17:57:57Z"
         }
       ]
     },
@@ -6602,7 +6714,7 @@
       "labels": [],
       "body": "We are adding JSON serialization which is prohibited by JWT, but allowed by JWS\r\n(cc @awoie @paulbastian)",
       "createdAt": "2023-05-13T14:37:33Z",
-      "updatedAt": "2023-05-15T14:30:54Z",
+      "updatedAt": "2023-05-24T20:30:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -6681,6 +6793,13 @@
           "body": "Solely for branding purposes, I think it should stay as \"SD-JWT\" for short name.\r\nas long as editors agree \"it is more general than JWT, specialized form of JWS\", and that is reflected, I am satisfied.",
           "createdAt": "2023-05-15T14:29:02Z",
           "updatedAt": "2023-05-15T14:29:02Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I would actually prefer this:\r\n>\r\n> >    SD-JWT: Selective Disclosure for JSON Web Tokens and JWS with JSON payloads\r\n\r\n\r\nProbably shouldn't mix long (JSON Web Tokens) and short (JWS) in the title so maybe: \r\n\r\n> SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads\r\n\r\n",
+          "createdAt": "2023-05-24T20:30:05Z",
+          "updatedAt": "2023-05-24T20:30:05Z"
         }
       ]
     },
@@ -6729,7 +6848,7 @@
       "id": "I_kwDOHTmVzM5l6rwj",
       "title": "Explicit typing",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/267",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yaronf",
       "authorAssociation": "NONE",
       "assignees": [
@@ -6738,8 +6857,8 @@
       "labels": [],
       "body": "Whether this format is JWT or JWT-like, the considerations in the [JWT BCP](https://www.rfc-editor.org/rfc/rfc8725.html#name-use-explicit-typing) still apply. Please consider adding a `typ` claim.\r\n\r\ncc @selfissued ",
       "createdAt": "2023-05-15T11:21:07Z",
-      "updatedAt": "2023-05-16T10:25:22Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-24T13:31:49Z",
+      "closedAt": "2023-05-24T13:31:49Z",
       "comments": [
         {
           "author": "bc-pi",
@@ -6775,6 +6894,20 @@
           "body": "* Add this sentence at the end of 5.1: The `typ` header parameter is RECOMMENDED, see Sec. 5.1.4 for more details.\r\n\r\n* And as a new Sec. 5.1.4, \"Explicit Typing\":\r\n\r\nA commonly seen attack is for one kind of JWT to be confused for another. Both regular JWTs as well as SD-JWTs are vulnerable to confusion attacks. To prevent these attacks, it is RECOMMENDED to specify an explicit type by including the `typ` header parameter when the token is issued, and for Verifiers to check this value. The relevant token's content type can be used, e.g. `credential-claims-set+json`, but often a more application-specific value is preferred. See Sec. 3.11 of RFC 8725 for more details.",
           "createdAt": "2023-05-16T10:25:22Z",
           "updatedAt": "2023-05-16T10:25:22Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks @yaronf, I took some inspiration from you words in creating PR #275. ",
+          "createdAt": "2023-05-24T03:31:28Z",
+          "updatedAt": "2023-05-24T03:31:28Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "merged PR #275 to close this one ",
+          "createdAt": "2023-05-24T13:31:48Z",
+          "updatedAt": "2023-05-24T13:31:48Z"
         }
       ]
     },
@@ -6882,6 +7015,30 @@
       "updatedAt": "2023-05-19T09:00:26Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 274,
+      "id": "I_kwDOHTmVzM5mnJbq",
+      "title": "Introduce proper term for payload (before turning it into a JWT)",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/274",
+      "state": "OPEN",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "There is currently no good name for the claims before they are packaged into the SD-JWT. \"Payload\" can refer to the payload of the SD-JWT, which may not contain all user claims. ",
+      "createdAt": "2023-05-23T08:41:48Z",
+      "updatedAt": "2023-05-24T19:24:35Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm not sure what the term should be but I'd agree that text like what we've got now, \"object as the set of claims that the Issuer is issuing\" [from sec 5](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.2-1) isn't easy to say or particularly meaningful out of context :) \r\n",
+          "createdAt": "2023-05-24T14:07:54Z",
+          "updatedAt": "2023-05-24T19:24:35Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -25957,13 +26114,13 @@
       "labels": [],
       "body": "Discussions around defining SD-JWT-VC show that it would be very helpful for interoperability if HB JWT is normatively defined in SD-JWT specification itself. Using HB JWT is optional, but if used, it should be compliant to the definitions in SD-JWT.\r\n\r\nHow to represent validity (iat, exp, nbf) will probably need the most discussion...\r\n\r\nalso we should introduce an abbreviation `HB JWT`....\r\n\r\ncc @awoie ",
       "createdAt": "2023-05-08T02:42:51Z",
-      "updatedAt": "2023-05-22T23:54:23Z",
+      "updatedAt": "2023-05-24T23:20:46Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "sakurann-hb-jwt",
-      "headRefOid": "439971d79ab5c80519498280e4f9e9facb716678",
+      "headRefOid": "fdc42f70537c4af8bc9890db186872dcbb02e300",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -25982,6 +26139,20 @@
           "body": "cc @awoie please take a look (can't ask review from you...)",
           "createdAt": "2023-05-22T23:54:23Z",
           "updatedAt": "2023-05-22T23:54:23Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This change is sufficient to warrant an entry in the doc history like just, \"Defined the structure of the Holder Binding JWT\"",
+          "createdAt": "2023-05-24T18:13:05Z",
+          "updatedAt": "2023-05-24T18:13:05Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "done, thank you, Brian",
+          "createdAt": "2023-05-24T23:20:45Z",
+          "updatedAt": "2023-05-24T23:20:45Z"
         }
       ],
       "reviews": [
@@ -26208,6 +26379,231 @@
               "updatedAt": "2023-05-22T23:46:41Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5Vws1r",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "awoie",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "direction looks great, just a few questions and comments.",
+          "createdAt": "2023-05-23T07:18:51Z",
+          "updatedAt": "2023-05-23T07:21:41Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "@Sakurann Does that mean I can use a DID as well? I don't want to be too restrictive in what can be used for verifying the HB-JWT? Being restrictive is the job of specific profiles such as the hi-assurance profile.",
+              "createdAt": "2023-05-23T07:18:51Z",
+              "updatedAt": "2023-05-23T07:21:41Z"
+            },
+            {
+              "originalPosition": 74,
+              "body": "Why is `hb+jwt` needed for this? We would also need to register a media type -> application/hb+jwt for this.",
+              "createdAt": "2023-05-23T07:19:53Z",
+              "updatedAt": "2023-05-23T07:21:41Z"
+            },
+            {
+              "originalPosition": 75,
+              "body": "If `nbf` and `exp` are not provided, then I think this step is not needed. How would somebody check whether the HB-JWT is valid if only `iat` is provided`",
+              "createdAt": "2023-05-23T07:20:45Z",
+              "updatedAt": "2023-05-23T07:21:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V1OIm",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T15:39:50Z",
+          "updatedAt": "2023-05-23T15:39:51Z",
+          "comments": [
+            {
+              "originalPosition": 74,
+              "body": "yes, that's the plan, to register",
+              "createdAt": "2023-05-23T15:39:50Z",
+              "updatedAt": "2023-05-23T15:39:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V1mOk",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T16:14:00Z",
+          "updatedAt": "2023-05-23T16:14:01Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "it's the same logic as [DPoP JWT](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-16#section-4.2). iat is sufficient to know if that HB-JWT is fresh enough.",
+              "createdAt": "2023-05-23T16:14:00Z",
+              "updatedAt": "2023-05-23T16:14:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V1mq2",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T16:15:04Z",
+          "updatedAt": "2023-05-23T16:15:04Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "I don't think anything in the text prevents DIDs. `kid` is expected to be used mainly with DIDs.",
+              "createdAt": "2023-05-23T16:15:04Z",
+              "updatedAt": "2023-05-23T16:15:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V1uUa",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T16:25:20Z",
+          "updatedAt": "2023-05-23T16:25:20Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "I think the idea is that the Verifier wants HB-JWTs that are relatively freshly created. And so would reject HB-JWTs that have an `iat` that falls outside some policy based window.  But something like that should probably said more explicitly because `iat` doesn't have any normative validity rules on its own. Maybe, \"Check that Holder Binding JWT was created within an acceptable timeframe as indicated by the `iat` claim\" or something along those lines.\r\n\r\nFWIW the idea is similar to DPoP and [Checking DPoP Proofs](https://www.ietf.org/archive/id/draft-ietf-oauth-dpop-16.html#name-checking-dpop-proofs) does have some text that attempts to say the the creation time of the JWT needs to be within an acceptable window.\r\n\r\nAnd rather than mentioning the`nbf` and `exp` claims maybe have another general item like \"Ensure that the Holder Binding JWT is valid in all other respects per [@!RFC7519].\"  that's more of a catch-all. ",
+              "createdAt": "2023-05-23T16:25:20Z",
+              "updatedAt": "2023-05-23T16:27:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V2vf_",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "awoie",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T19:19:19Z",
+          "updatedAt": "2023-05-23T19:19:19Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "sounds good.",
+              "createdAt": "2023-05-23T19:19:19Z",
+              "updatedAt": "2023-05-23T19:19:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V2vpx",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "awoie",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T19:19:45Z",
+          "updatedAt": "2023-05-23T19:19:46Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "ok, got it",
+              "createdAt": "2023-05-23T19:19:46Z",
+              "updatedAt": "2023-05-23T19:19:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V2vuG",
+          "commit": {
+            "abbreviatedOid": "37e1e4b"
+          },
+          "author": "awoie",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "lgtm",
+          "createdAt": "2023-05-23T19:19:58Z",
+          "updatedAt": "2023-05-23T19:19:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V-fqv",
+          "commit": {
+            "abbreviatedOid": "c0eea20"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-24T17:40:00Z",
+          "updatedAt": "2023-05-24T17:40:00Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "```suggestion\r\n       6. Check that the creation time of the Holder Binding JWT, as determined by the `iat` claim, is within an acceptable window.\r\n       7. Check that the Holder Binding JWT is valid in all other respects, per [@!RFC7519] and [@!RFC8725].\r\n```\r\nupdated the verfication steps as suggested.\r\n@awoie @bc-pi ",
+              "createdAt": "2023-05-24T17:40:00Z",
+              "updatedAt": "2023-05-24T17:40:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V-iU2",
+          "commit": {
+            "abbreviatedOid": "c0eea20"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-24T17:46:13Z",
+          "updatedAt": "2023-05-24T17:46:17Z",
+          "comments": [
+            {
+              "originalPosition": 74,
+              "body": "I added the IANA registration section in this PR :)",
+              "createdAt": "2023-05-24T17:46:13Z",
+              "updatedAt": "2023-05-24T17:46:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V-p9w",
+          "commit": {
+            "abbreviatedOid": "677183f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-24T18:05:15Z",
+          "updatedAt": "2023-05-24T18:05:16Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "wfm",
+              "createdAt": "2023-05-24T18:05:16Z",
+              "updatedAt": "2023-05-24T18:05:16Z"
+            }
+          ]
         }
       ]
     },
@@ -26334,24 +26730,26 @@
       "id": "PR_kwDOHTmVzM5RByaF",
       "title": "Use external SD-JWT library to generate examples",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/273",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
-      "body": "",
+      "body": "Fixes #259 ",
       "createdAt": "2023-05-22T15:04:14Z",
-      "updatedAt": "2023-05-22T22:11:00Z",
+      "updatedAt": "2023-05-24T22:57:48Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "danielfett/generated-examples",
-      "headRefOid": "3e030c064844e8e6815cef0ea3c28f8db042e6ad",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "31e15fe0c067fa420dd1f0c2445a4b4d18d3ba05",
+      "closedAt": "2023-05-24T22:57:47Z",
+      "mergedAt": "2023-05-24T22:57:47Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "82984e8f495cfc7cc512bfe766b4428c7109953d"
+      },
       "comments": [
         {
           "author": "danielfett",
@@ -26366,9 +26764,167 @@
           "body": "Thanks for doing the work here (I know it wasn't insignificant) and for the gist of the changes. It is, as I'm sure you know, not easy to review or approve a change like this. I wanted to acknowledge the work but hoping we can discuss in our (usually) weekly meeting. \r\n\r\nIn the meantime, it does look like the decoy_digests.md stuff from the recent PR #251 didn't make it through this change. There are no digest values after the \"The Issuer added the following decoy digests:\" text at https://drafts.oauth.net/oauth-selective-disclosure-jwt/danielfett/generated-examples/draft-ietf-oauth-selective-disclosure-jwt.html#appendix-A.1-26 which I just happened to notice looking at this diff https://author-tools.ietf.org/api/iddiff?url_1=https://oauth-wg.github.io/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.txt&url_2=https://oauth-wg.github.io/oauth-selective-disclosure-jwt/danielfett/generated-examples/draft-ietf-oauth-selective-disclosure-jwt.txt which I just happened to notice was at https://drafts.oauth.net/oauth-selective-disclosure-jwt/ \r\n\r\n\r\n\r\n",
           "createdAt": "2023-05-22T21:45:36Z",
           "updatedAt": "2023-05-22T22:11:00Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Thanks for catching that. The change was in the SD-JWT library repository, but there was a bug leading to an empty decoy_digests.md file. Should be fixed now.",
+          "createdAt": "2023-05-23T07:03:44Z",
+          "updatedAt": "2023-05-23T07:03:44Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for fixing that! \r\nNext question/observation/request: can or should the README.md be updated to reflect the use of the external lib and give regular folks (like myself) the steps to produce the examples locally and build the whole document?\r\n\r\n",
+          "createdAt": "2023-05-23T15:24:01Z",
+          "updatedAt": "2023-05-23T15:24:01Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "That is another very good point, @bc-pi! I modified the readme to add that information (and did some changes in the build process to account for a simplification I made in the SD-JWT library).\r\n\r\nhttps://github.com/oauth-wg/oauth-selective-disclosure-jwt/blob/483a4972f5c9b65fac821c7891ea9455d9e4aa9d/README.md",
+          "createdAt": "2023-05-23T17:55:53Z",
+          "updatedAt": "2023-05-23T17:55:53Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "I actually meant to have a line break before and after the \"or\", but I guess the (here intended) trailing white space was eaten by my VS Code (because I configured it to do so, duh!). I'm fine with the current version.",
+          "createdAt": "2023-05-24T07:40:32Z",
+          "updatedAt": "2023-05-24T07:40:32Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I was just trying to fix the 404 from https://github.com/danielfett/sd-jwt\\ ",
+          "createdAt": "2023-05-24T13:12:38Z",
+          "updatedAt": "2023-05-24T13:12:38Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5V2_zP",
+          "commit": {
+            "abbreviatedOid": "5f948d9"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-23T20:02:13Z",
+          "updatedAt": "2023-05-23T20:02:13Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\n - Install the sd-jwt library as described in https://github.com/danielfett/sd-jwt\r\n```",
+              "createdAt": "2023-05-23T20:02:13Z",
+              "updatedAt": "2023-05-23T20:02:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V3LWO",
+          "commit": {
+            "abbreviatedOid": "31e15fe"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-23T20:36:39Z",
+          "updatedAt": "2023-05-23T20:36:39Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5WAC8y",
+          "commit": {
+            "abbreviatedOid": "31e15fe"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-24T22:57:18Z",
+          "updatedAt": "2023-05-24T22:57:18Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 275,
+      "id": "PR_kwDOHTmVzM5RLdwJ",
+      "title": "Added recommendation for explicit typing of SD-JWTs (to address #267)",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/275",
+      "state": "MERGED",
+      "author": "bc-pi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-23T19:50:24Z",
+      "updatedAt": "2023-05-24T13:29:47Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "bc/explicit-typing",
+      "headRefOid": "ae9b1ff66eaa5b750e05769f4d37fe1fade379f1",
+      "closedAt": "2023-05-24T13:29:47Z",
+      "mergedAt": "2023-05-24T13:29:47Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "565f779175ddc62072210691b9a71494637b0291"
+      },
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, editorial comments taken. ",
+          "createdAt": "2023-05-24T13:29:37Z",
+          "updatedAt": "2023-05-24T13:29:37Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5V3EBL",
+          "commit": {
+            "abbreviatedOid": "595cc74"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-23T20:15:23Z",
+          "updatedAt": "2023-05-23T20:15:23Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5V5e7e",
+          "commit": {
+            "abbreviatedOid": "595cc74"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Thanks for preparing this! LGTM, just two small editorial comments.",
+          "createdAt": "2023-05-24T07:34:56Z",
+          "updatedAt": "2023-05-24T07:37:28Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n\r\nApplications of SD-JWT SHOULD be explicitly typed using the `typ` header parameter. See (#explicit_typing) for more details.\r\n```",
+              "createdAt": "2023-05-24T07:34:56Z",
+              "updatedAt": "2023-05-24T07:37:28Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nSection 3.11 of [@RFC8725] describes the use of explicit typing to prevent confusion attacks\r\nin which one kind of JWT is mistaken for another. SD-JWTs are also potentially\r\n```",
+              "createdAt": "2023-05-24T07:36:32Z",
+              "updatedAt": "2023-05-24T07:37:28Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
