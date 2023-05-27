@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 27 November 2023                                      Microsoft
+Expires: 28 November 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             26 May 2023
+                                                             27 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 November 2023.
+   This Internet-Draft will expire on 28 November 2023.
 
 Copyright Notice
 
@@ -1258,12 +1258,12 @@ Table of Contents
                as determined by the iat claim, is within an acceptable
                window.
 
-           7.  Check that the Holder Binding JWT is valid in all other
-               respects, per [RFC7519] and [RFC8725].
-
-           8.  Determine that the Holder Binding JWT is bound to the
+           7.  Determine that the Holder Binding JWT is bound to the
                current transaction and was created for this Verifier
                (replay protection) by validating nonce and aud claims.
+
+           8.  Check that the Holder Binding JWT is valid in all other
+               respects, per [RFC7519] and [RFC8725].
 
    If any step fails, the Presentation is not valid and processing MUST
    be aborted.
