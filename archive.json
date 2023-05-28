@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-25T01:00:09.478059+00:00",
+  "timestamp": "2023-05-28T01:05:24.999319+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -5218,7 +5218,7 @@
       "labels": [],
       "body": "We currently do not support selective disclosure for elements in an array (we do support it for keys within objects within arrays, but not for arbitrary array elements).\r\n\r\nExample:\r\n\r\nThe key `foo` in `{\"foo\": [23, \"bar\", false]}` can be SD, but we can't apply SD to the array elements, i.e., we cannot disclose `23` without disclosing `\"bar\"`. \r\n\r\nProposal:\r\n\r\nFor object keys, we use the new key `_sd` to collect the disclosure hashes. For arrays, we would need to mark the array as selectively disclosable, e.g., by using a special first element in the array like this:\r\n\r\n`{\"foo\": [\"_sd\", \"7pHe1uQ5uSClgAxXdG0E6dKnBgXcxEO1zvoQO9E5Lr4\", \"9-VdSnvRTZNDo-4Bxcp3X-V9VtLOCRUkR6oLWZQl81I\",\r\n      \"nTzPZ3Q68z1Ko_9ao9LK0mSYXY5gY6UG6KEkQ_BdqU0\"]}`\r\n\r\nThe three hashes correspond to the three elements in the array. The verifier can resolve the disclosed elements into their original values and ignore/replace the other values. Order is preserved. This works for arbitrary element types.\r\n\r\nThis would not allow to mix SD and non-SD elements in an array, but it seems unlikely that that would be a problem. WDYT @bc-pi @Sakurann?\r\n   ",
       "createdAt": "2022-12-27T15:36:00Z",
-      "updatedAt": "2023-05-24T15:57:55Z",
+      "updatedAt": "2023-05-26T13:38:56Z",
       "closedAt": null,
       "comments": [
         {
@@ -5416,6 +5416,41 @@
           "body": "Or, it may be possible to make `\"_sd\"` be always an array.\r\n\r\n```json\r\n{\r\n  \"_sd\": [\r\n    \"digest of [salt, a, A]\"\r\n  ],\r\n  \"b\": [\r\n    {\r\n      \"_sd\": [\r\n        \"digest of [salt, 0, B]\"\r\n      ]\r\n    }\r\n  ]\r\n}\r\n```",
           "createdAt": "2023-05-24T15:57:54Z",
           "updatedAt": "2023-05-24T15:57:54Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "I implemented the solution using objects `{\"_sd\": \"digest\"}` instead of strings `\"_sd:digest\"` as well now and I must say that both are very similar. When iterating through an array, it is slightly easier to check for a string prefix (\"_sd:...\") instead of checking that an entry is \r\n\r\n- an object\r\n- with exactly one element\r\n- which is not an array, but a string\r\n\r\nin order to avoid confusion with an object containing SD'd keys. I like about this solution that it doesn't involve string handling and it most likely doesn't need the `_sd_arr_pfx` construction to avoid conflicts. First of all, we're using the already defined \"_sd\", and second, we're only using it as a key value (which is generally less likely to contain very variable or user-supplied data). \r\n\r\nFor the disclosures, I think it makes sense to stick to a two-element format (`[\"eluV5Og3gSNII8EYnsxA_A\", \"CA\"]`). As Brian pointed out yesterday, we should keep the Disclosures short. And we don't need the position in the array if the position is already encoded in the SD-JWT itself.\r\n\r\nHere is a full example:\r\n\r\n```json\r\n{\r\n  \"_sd\": [\r\n    \"sGmV2tSLHmJScETevXgTQ-bM7O5ZnQuu-ypqI2vB-JU\"\r\n  ],\r\n  \"iss\": \"https://example.com/issuer\",\r\n  \"iat\": 1683000000,\r\n  \"exp\": 1883000000,\r\n  \"sub\": \"john_doe_42\",\r\n  \"nationalities\": [\r\n    {\r\n      \"_sd\": \"i7eKdHc_ZMOnhiyu3TJj5GVDQ7ZwJOMXFD3XgUbo8GQ\"\r\n    },\r\n    {\r\n      \"_sd\": \"usWXFPKaqKMreTrj72QD24wB8xc7lQ4zCnrnn8ZRVeo\"\r\n    },\r\n    \"DE\"\r\n  ],\r\n  \"is_over\": {\r\n    \"_sd\": [\r\n      \"2ovMJR_ZNMB6ngFK3SUQnRIgyM548DzR7tJFTO-ZzBM\",\r\n      \"CeVqxVUVHpva5Xp0X-NeUvhixjDYp7PTZ4BaFWGXUek\",\r\n      \"dg1pBJV-dABilqD2RYiG8z4gRtuDFdRBdlwHgdLFEx8\"\r\n    ]\r\n  },\r\n  \"addresses\": [\r\n    {\r\n      \"street\": \"123 Main St\",\r\n      \"city\": \"Anytown\",\r\n      \"state\": \"NY\",\r\n      \"zip\": \"12345\",\r\n      \"type\": \"main_address\"\r\n    },\r\n    {\r\n      \"_sd\": \"RNWcxPD8A1ZhAm6_wAiJSoSzIRb_w1QUaKGvS240K-Y\"\r\n    }\r\n  ],\r\n  \"null_values\": [\r\n    null,\r\n    {\r\n      \"_sd\": \"hhB5pziS4s0dSx0kql31vDtuo3JVDfB4VZ-YHcj2A9M\"\r\n    },\r\n    {\r\n      \"_sd\": \"o_VFRluA190wrH5E1yr2r39UyTnx3-m3qPREikSr6Qo\"\r\n    },\r\n    null\r\n  ],\r\n  \"data_types\": [\r\n    {\r\n      \"_sd\": \"nY72P6V5uHQe-BYkwYj-paG2y3fmj614FKQQhhk6T1E\"\r\n    },\r\n    {\r\n      \"_sd\": \"zt7kWPtZTpMYKPoaQd-L71L-aKYMYYNLOFOf-yH3uLY\"\r\n    },\r\n    {\r\n      \"_sd\": \"K1yxHJ4z10JKd2jRmQuziCym3D1oXB0NaFVLHEOv8XM\"\r\n    },\r\n    {\r\n      \"_sd\": \"yr-1NDhAaFYPvLrAzvdFfBwRJS_wn199JX0adDYa6Ak\"\r\n    },\r\n    {\r\n      \"_sd\": \"NoTOTjWq1_cYu3kfQKh3jWrx9OLSIIdhYX0_92-RD-Y\"\r\n    },\r\n    {\r\n      \"_sd\": \"biBLCP424CoDYTpBmden-zGmYOdE0GSHlerSaoYeQZ0\"\r\n    },\r\n    {\r\n      \"_sd\": \"_z-We_gbvKo84jpuhBQS9v9yVhDo2--FCDNWMHMezUQ\"\r\n    }\r\n  ],\r\n  \"nested_array\": [\r\n    [\r\n      {\r\n        \"_sd\": \"FbJ_W_M-Gl9rMUR8fcsMFdiHV-qEabiT-u9eHvNKSAA\"\r\n      },\r\n      {\r\n        \"_sd\": \"zo6muzFQJ9UCeFuy3Dq_YInQzLGimJVIztHGntWVxw0\"\r\n      }\r\n    ],\r\n    [\r\n      {\r\n        \"_sd\": \"n-TOQDur9EA2k9G_VVqlvkOYCzIFb28LKA99IaQfFt8\"\r\n      },\r\n      {\r\n        \"_sd\": \"xvJ7NwhRY93UqhcqVKF-Ap7HwZpKe1raEWZg_WozBBs\"\r\n      }\r\n    ]\r\n  ],\r\n  \"array_with_recursive_sd\": [\r\n    \"boring\",\r\n    {\r\n      \"_sd\": \"KIK9FOQ3C-jLxGW9oRYTL-AETF3eGolP8lyVRVFOqX8\"\r\n    },\r\n    [\r\n      {\r\n        \"_sd\": \"uN8DYtT68Do3MAO9deTagWZx-akgd6DmzI4x9xFN7bs\"\r\n      },\r\n      {\r\n        \"_sd\": \"F5STX6452Aw9VQyFh5vclX-SlUAuu_r_ax-ow35e4Jw\"\r\n      }\r\n    ]\r\n  ],\r\n  \"_sd_alg\": \"sha-256\",\r\n  \"cnf\": {\r\n    \"jwk\": {\r\n      \"kty\": \"EC\",\r\n      \"crv\": \"P-256\",\r\n      \"x\": \"TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc\",\r\n      \"y\": \"ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ\"\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `i7eKdHc_ZMOnhiyu3TJj5GVDQ7ZwJOMXFD3XgUbo8GQ`\r\n * Disclosure:\\\r\n`WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgIlVTIl0`\r\n * Contents:\r\n`[\"2GLC42sKQveCfGfryNRN9w\", \"US\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `usWXFPKaqKMreTrj72QD24wB8xc7lQ4zCnrnn8ZRVeo`\r\n * Disclosure:\\\r\n`WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgIkNBIl0`\r\n * Contents:\r\n`[\"eluV5Og3gSNII8EYnsxA_A\", \"CA\"]`\r\n\r\n\r\n__Claim `13`__:\r\n\r\n * SHA-256 Hash: `dg1pBJV-dABilqD2RYiG8z4gRtuDFdRBdlwHgdLFEx8`\r\n * Disclosure:\\\r\n`WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgIjEzIiwgdHJ1ZV0`\r\n * Contents:\r\n`[\"6Ij7tM-a5iVPGboS5tmvVA\", \"13\", true]`\r\n\r\n\r\n__Claim `18`__:\r\n\r\n * SHA-256 Hash: `CeVqxVUVHpva5Xp0X-NeUvhixjDYp7PTZ4BaFWGXUek`\r\n * Disclosure:\\\r\n`WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIjE4IiwgZmFsc2Vd`\r\n * Contents:\r\n`[\"eI8ZWm9QnKPpNPeNenHdhQ\", \"18\", false]`\r\n\r\n\r\n__Claim `21`__:\r\n\r\n * SHA-256 Hash: `2ovMJR_ZNMB6ngFK3SUQnRIgyM548DzR7tJFTO-ZzBM`\r\n * Disclosure:\\\r\n`WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgIjIxIiwgZmFsc2Vd`\r\n * Contents:\r\n`[\"Qg_O64zqAxe412a108iroA\", \"21\", false]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `RNWcxPD8A1ZhAm6_wAiJSoSzIRb_w1QUaKGvS240K-Y`\r\n * Disclosure:\\\r\n`WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgeyJzdHJlZXQiOiAiNDU2IE1h`\\\r\n`aW4gU3QiLCAiY2l0eSI6ICJBbnl0b3duIiwgInN0YXRlIjogIk5ZIiwgInpp`\\\r\n`cCI6ICIxMjM0NSIsICJ0eXBlIjogInNlY29uZGFyeV9hZGRyZXNzIn1d`\r\n * Contents:\r\n`[\"AJx-095VPrpTtN4QMOqROA\", {\"street\": \"456 Main St\", \"city\":`\\\r\n`\"Anytown\", \"state\": \"NY\", \"zip\": \"12345\", \"type\":`\\\r\n`\"secondary_address\"}]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `hhB5pziS4s0dSx0kql31vDtuo3JVDfB4VZ-YHcj2A9M`\r\n * Disclosure:\\\r\n`WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgbnVsbF0`\r\n * Contents:\r\n`[\"Pc33JM2LchcU_lHggv_ufQ\", null]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `o_VFRluA190wrH5E1yr2r39UyTnx3-m3qPREikSr6Qo`\r\n * Disclosure:\\\r\n`WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgbnVsbF0`\r\n * Contents:\r\n`[\"G02NSrQfjFXQ7Io09syajA\", null]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `nY72P6V5uHQe-BYkwYj-paG2y3fmj614FKQQhhk6T1E`\r\n * Disclosure:\\\r\n`WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgbnVsbF0`\r\n * Contents:\r\n`[\"lklxF5jMYlGTPUovMNIvCA\", null]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `zt7kWPtZTpMYKPoaQd-L71L-aKYMYYNLOFOf-yH3uLY`\r\n * Disclosure:\\\r\n`WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgNDJd`\r\n * Contents:\r\n`[\"nPuoQnkRFq3BIeAm7AnXFA\", 42]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `K1yxHJ4z10JKd2jRmQuziCym3D1oXB0NaFVLHEOv8XM`\r\n * Disclosure:\\\r\n`WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgMy4xNF0`\r\n * Contents:\r\n`[\"5bPs1IquZNa0hkaFzzzZNw\", 3.14]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `yr-1NDhAaFYPvLrAzvdFfBwRJS_wn199JX0adDYa6Ak`\r\n * Disclosure:\\\r\n`WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImZvbyJd`\r\n * Contents:\r\n`[\"5a2W0_NrlEZzfqmk_7Pq-w\", \"foo\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `NoTOTjWq1_cYu3kfQKh3jWrx9OLSIIdhYX0_92-RD-Y`\r\n * Disclosure:\\\r\n`WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgdHJ1ZV0`\r\n * Contents:\r\n`[\"y1sVU5wdfJahVdgwPgS7RQ\", true]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `biBLCP424CoDYTpBmden-zGmYOdE0GSHlerSaoYeQZ0`\r\n * Disclosure:\\\r\n`WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgWyJUZXN0Il1d`\r\n * Contents:\r\n`[\"HbQ4X8srVW3QDxnIJdqyOA\", [\"Test\"]]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `_z-We_gbvKo84jpuhBQS9v9yVhDo2--FCDNWMHMezUQ`\r\n * Disclosure:\\\r\n`WyJDOUdTb3VqdmlKcXVFZ1lmb2pDYjFBIiwgeyJmb28iOiAiYmFyIn1d`\r\n * Contents:\r\n`[\"C9GSoujviJquEgYfojCb1A\", {\"foo\": \"bar\"}]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `FbJ_W_M-Gl9rMUR8fcsMFdiHV-qEabiT-u9eHvNKSAA`\r\n * Disclosure:\\\r\n`WyJreDVrRjE3Vi14MEptd1V4OXZndnR3IiwgImZvbyJd`\r\n * Contents:\r\n`[\"kx5kF17V-x0JmwUx9vgvtw\", \"foo\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `zo6muzFQJ9UCeFuy3Dq_YInQzLGimJVIztHGntWVxw0`\r\n * Disclosure:\\\r\n`WyJIM28xdXN3UDc2MEZpMnllR2RWQ0VRIiwgImJhciJd`\r\n * Contents:\r\n`[\"H3o1uswP760Fi2yeGdVCEQ\", \"bar\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `n-TOQDur9EA2k9G_VVqlvkOYCzIFb28LKA99IaQfFt8`\r\n * Disclosure:\\\r\n`WyJPQktsVFZsdkxnLUFkd3FZR2JQOFpBIiwgImJheiJd`\r\n * Contents:\r\n`[\"OBKlTVlvLg-AdwqYGbP8ZA\", \"baz\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `xvJ7NwhRY93UqhcqVKF-Ap7HwZpKe1raEWZg_WozBBs`\r\n * Disclosure:\\\r\n`WyJNMEpiNTd0NDF1YnJrU3V5ckRUM3hBIiwgInF1eCJd`\r\n * Contents:\r\n`[\"M0Jb57t41ubrkSuyrDT3xA\", \"qux\"]`\r\n\r\n\r\n__Claim `baz`__:\r\n\r\n * SHA-256 Hash: `6ZSZVDX4TeL5yplka7RIt1w_V_BA2ebI041AEod-IAI`\r\n * Disclosure:\\\r\n`WyJEc210S05ncFY0ZEFIcGpyY2Fvc0F3IiwgImJheiIsIHsicXV4IjogInF1`\\\r\n`dXgifV0`\r\n * Contents:\r\n`[\"DsmtKNgpV4dAHpjrcaosAw\", \"baz\", {\"qux\": \"quux\"}]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `KIK9FOQ3C-jLxGW9oRYTL-AETF3eGolP8lyVRVFOqX8`\r\n * Disclosure:\\\r\n`WyJlSzVvNXBIZmd1cFBwbHRqMXFoQUp3IiwgeyJfc2QiOiBbIjZaU1pWRFg0`\\\r\n`VGVMNXlwbGthN1JJdDF3X1ZfQkEyZWJJMDQxQUVvZC1JQUkiXSwgImZvbyI6`\\\r\n`ICJiYXIifV0`\r\n * Contents:\r\n`[\"eK5o5pHfgupPpltj1qhAJw\", {\"_sd\":`\\\r\n`[\"6ZSZVDX4TeL5yplka7RIt1w_V_BA2ebI041AEod-IAI\"], \"foo\":`\\\r\n`\"bar\"}]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `uN8DYtT68Do3MAO9deTagWZx-akgd6DmzI4x9xFN7bs`\r\n * Disclosure:\\\r\n`WyJqN0FEZGIwVVZiMExpMGNpUGNQMGV3IiwgImZvbyJd`\r\n * Contents:\r\n`[\"j7ADdb0UVb0Li0ciPcP0ew\", \"foo\"]`\r\n\r\n\r\n__Array Entry__:\r\n\r\n * SHA-256 Hash: `F5STX6452Aw9VQyFh5vclX-SlUAuu_r_ax-ow35e4Jw`\r\n * Disclosure:\\\r\n`WyJXcHhKckZ1WDh1U2kycDRodDA5anZ3IiwgImJhciJd`\r\n * Contents:\r\n`[\"WpxJrFuX8uSi2p4ht09jvw\", \"bar\"]`\r\n\r\n\r\n__Claim `sd_array`__:\r\n\r\n * SHA-256 Hash: `sGmV2tSLHmJScETevXgTQ-bM7O5ZnQuu-ypqI2vB-JU`\r\n * Disclosure:\\\r\n`WyJhdFNtRkFDWU1iSlZLRDA1bzNKZ3RRIiwgInNkX2FycmF5IiwgWzMyLCAy`\\\r\n`M11d`\r\n * Contents:\r\n`[\"atSmFACYMbJVKD05o3JgtQ\", \"sd_array\", [32, 23]]`",
+          "createdAt": "2023-05-25T08:22:40Z",
+          "updatedAt": "2023-05-25T08:22:40Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "And here is another example showing both an SD'd array element and a single-key object with SD:\r\n\r\n```json\r\n{\r\n  \"iss\": \"https://example.com/issuer\",\r\n  \"iat\": 1683000000,\r\n  \"exp\": 1883000000,\r\n  \"addresses\": [\r\n    {\r\n      \"street\": \"123 Main St\",\r\n      \"city\": \"Anytown\",\r\n      \"state\": \"NY\",\r\n      \"zip\": \"12345\",\r\n      \"type\": \"main_address\"\r\n    },\r\n    {\r\n      \"_sd\": \"k63-wMoGu03I9dCyrrNnB0ncOXLZhYaA_Q4lCKFIWcU\"\r\n    }\r\n  ],\r\n  \"array_with_one_sd_object\": [\r\n    {\r\n      \"_sd\": [\r\n        \"1R6ziZ1b4uvXf4-DuKx0JSDRoeVTGrzJldw7Jgqac3Q\"\r\n      ]\r\n    }\r\n  ],\r\n  \"_sd_alg\": \"sha-256\"\r\n}\r\n```",
+          "createdAt": "2023-05-25T08:27:00Z",
+          "updatedAt": "2023-05-25T08:27:00Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Would you say you prefer the object `{\"_sd\": \"digest\"}` based approach over the string `\"_sd:digest\"` based approach, @danielfett? It does seem \"more correct\" to me. And not needing the `_sd_arr_pfx` construction is a plus. Looking at the examples you have, I must admit that I don't love the aesthetics of it. But that shouldn't be part of the criteria for choosing.  \r\n\r\n> using the already defined \"_sd\"\r\n\r\nThis is true and I agree that using a special key name is cleaner than a string prefix and much better avoids conflict.  However, we'd need to be a little careful with it's treatment in the text. There's a lot of current text that would need to be adjusted to allow for the `_sd` key to have different syntax and semantics based on where it is in the JSON. [This sentence](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.1.1.4-6) and [these steps](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-6.2-4.4.1) are just two examples. Which might be tricky and risky. We might want to use a new special key name. Maybe `_sda` or  `_sdae` or something (roughly for selectively disclosable array element but I'm just throwing out ideas). A different key might also be easier to see the difference when just looking at the JSON. \r\n\r\n\r\n",
+          "createdAt": "2023-05-25T19:21:25Z",
+          "updatedAt": "2023-05-25T19:21:25Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "The `{\"_sd\": \"digest\"}` feels cleaner, the `\"_sd:digest\"` looks a bit better. But I have a slight preference for the first one. What do @TakahikoKawasaki @Sakurann think?\r\n\r\nI think that using a different key makes sense. It is easier to implement (\"check for _sde\" instead of \"check for a single-element object, where _sd refers to a string not an array\") and we avoid polymorphism (`_sd` is always an array, `_sde` is always a string).\r\n\r\nNow for the bikeshedding part:\r\n\r\n- Ideally, we would use two or max three characters after the underscore.\r\n- `_sdae` is quite long\r\n- `_sda` or `_sde` (selective disclosure element) looks like a linux harddisk path, but would be fine\r\n- `_sa` or `_se` would short, but what would that stand for? `_se` is at least alphabetically next after `_sd`.\r\n- `_[]` or `[]` would look array-ish, but readers might interpret to much into the meaning of the string (\"Can I write `_[2]`?\")\r\n- just `_` is too short and might cause conflicts\r\n- `[_]` looks like a nice placeholder, but doesn't follow our own convention to start with `_`\r\n- `...` transports the meaning that something is elided at this position in the array (and this is an operator with a remotely related meaning both in JavaScript and Python)\r\n- `__` or `_*` or `_:` or `=>` are other options, but I don't think I like them\r\n\r\nAny other ideas? I think I like `...` and `_se` most.",
+          "createdAt": "2023-05-26T07:47:59Z",
+          "updatedAt": "2023-05-26T09:03:26Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Any other ideas? \r\n\r\njust more bikeshedding but perhaps `_sdi` or `_si` where the `i` is loosely for item in the array ",
+          "createdAt": "2023-05-26T13:38:55Z",
+          "updatedAt": "2023-05-26T13:38:55Z"
         }
       ]
     },
@@ -6714,7 +6749,7 @@
       "labels": [],
       "body": "We are adding JSON serialization which is prohibited by JWT, but allowed by JWS\r\n(cc @awoie @paulbastian)",
       "createdAt": "2023-05-13T14:37:33Z",
-      "updatedAt": "2023-05-24T20:30:06Z",
+      "updatedAt": "2023-05-25T22:42:13Z",
       "closedAt": null,
       "comments": [
         {
@@ -6800,6 +6835,13 @@
           "body": "> I would actually prefer this:\r\n>\r\n> >    SD-JWT: Selective Disclosure for JSON Web Tokens and JWS with JSON payloads\r\n\r\n\r\nProbably shouldn't mix long (JSON Web Tokens) and short (JWS) in the title so maybe: \r\n\r\n> SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads\r\n\r\n",
           "createdAt": "2023-05-24T20:30:05Z",
           "updatedAt": "2023-05-24T20:30:05Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR #276 updates the title to be more inclusive of general JWS with JSON and added some corresponding/explanatory text to the Abstract and Introduction. I'm not convinced this is the right thing to do or that PR is the right way to do it. But it's there as something concrete to discuss. ",
+          "createdAt": "2023-05-25T22:42:13Z",
+          "updatedAt": "2023-05-25T22:42:13Z"
         }
       ]
     },
@@ -7037,6 +7079,65 @@
           "body": "I'm not sure what the term should be but I'd agree that text like what we've got now, \"object as the set of claims that the Issuer is issuing\" [from sec 5](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.2-1) isn't easy to say or particularly meaningful out of context :) \r\n",
           "createdAt": "2023-05-24T14:07:54Z",
           "updatedAt": "2023-05-24T19:24:35Z"
+        }
+      ]
+    },
+    {
+      "number": 277,
+      "id": "I_kwDOHTmVzM5nBc-O",
+      "title": "Presented form of an SD-JWT using holder binding doesn't prove integrity of disclosures back to holder",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/277",
+      "state": "OPEN",
+      "author": "tplooker",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "From what I can understand an SD-JWT that is presented by a holder using holder binding doesn't prove integrity of the disclosures to the holder, only instead back to the issuer. This means a party in the middle could remove values that were intended to be presented from a presented form SD-JWT without a verifier being able to detect it, similarly a party that knows the claim values and salts could inject other disclosure values beyond what the holder intended to present (e.g an issuer). \r\n\r\nIn general I believe the presented form of an SD-JWT should provide holder integrity over the disclosures when holder binding is in use.",
+      "createdAt": "2023-05-27T03:35:28Z",
+      "updatedAt": "2023-05-27T23:38:08Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "As a proposed solution to this that doesn't really effect the existing structure, I would suggest adding in a claim to the holder binding JWT that includes an array of the digests being revealed in the overall presentation and add language that requires processing of and validation of this claim by a verifier.",
+          "createdAt": "2023-05-27T04:41:28Z",
+          "updatedAt": "2023-05-27T04:41:28Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "For example the HB JWT would look like\r\n\r\n```\r\n{\r\n  \"nonce\": \"XZOUco1u_gEPknxS78sWWg\",\r\n  \"aud\": \"https://example.com/verifier\",\r\n  \"iat\": 1677838084,\r\n  \"_sd\": [\r\n    \"5nXy0Z3QiEba1V1lJzeKhAOGQXFlKLIWCLlhf_O-cmo\",\r\n    \"9gZhHAhV7LZnOFZq_q7Fh8rzdqrrNM-hRWsVOlW3nuw\",\r\n    \"S-JPBSkvqliFv1__thuXt3IzX5B_ZXm4W2qs4BoNFrA\",\r\n    \"bviw7pWAkbzI078ZNVa_eMZvk0tdPa5w2o9R3Zycjo4\",\r\n    \"o-LBCDrFF6tC9ew1vAlUmw6Y30CHZF5jOUFhpx5mogI\",\r\n    \"pzkHIM9sv7oZH6YKDsRqNgFGLpEKIj3c5G6UKaTsAjQ\",\r\n    \"rnAzCT6DTy4TsX9QCDv2wwAE4Ze20uRigtVNQkA52X0\"\r\n   ]\r\n}\r\n```\r\n\r\nWhere the digests in the `_sd` array match the disclosures presented.",
+          "createdAt": "2023-05-27T04:43:41Z",
+          "updatedAt": "2023-05-27T04:44:15Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "Another possible solution is to just include a hash of everything that precedes the HB JWT, this would be simpler to verify and also more terse in overall payload length.",
+          "createdAt": "2023-05-27T04:48:38Z",
+          "updatedAt": "2023-05-27T04:48:38Z"
+        },
+        {
+          "author": "paulbastian",
+          "authorAssociation": "NONE",
+          "body": "That's great Tobias. I think it's easier to include `Hash (SD-JWT~disclosure 1~disclosure 2~)` because this is what the holder has to build anyway?\nThe verifier would strip of the HB-JWT, hash the rest and check if it matches the new claim in the HB-JWT",
+          "createdAt": "2023-05-27T07:20:30Z",
+          "updatedAt": "2023-05-27T07:22:07Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It took me some work to convince @danielfett that the holder signing the disclosures wasn't needed. So I must admit that I wasn't exactly exited to see this issue an reopen the discussion. He's \"the security guy\" though so I'll defer to his judgement here. But I remain unconvinced that it is needed. The integrity of the disclosures as issued by the issuer is the important thing. The integrity of the number of disclosures sent by the holder over what really should be a secure channel anyway just doesn't seem like a concern to me.  Maybe I'm not paranoid enough...\r\n\r\nIf we do add something for this, I prefer the approach of one hash in the HB-JWT that is calculated over the whole presentation up to but not including the HB-JWT. That kind of thing does introduce one more opportunity for interop problems, however, and ones that can be difficult to debug in practice. \r\n\r\n\r\n\r\n\r\n\r\n",
+          "createdAt": "2023-05-27T21:52:59Z",
+          "updatedAt": "2023-05-27T22:16:43Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "I agree integrity of the disclosures back to the issuer is the most important, however I do think holder integrity is also required otherwise it leaves presentations free to a form of unintuitive manipulation that I can see having downstream consequences such as a verifier stripping information from a presentation and saying \"i wasnt presented that claim\", or a man in the middle dropping information from a presentation. Really what a lack of holder integrity does here in general is introduce ambiguity, e.g did the verifier strip claims from a presentation, did the holder never reveal them or did someone in the middle drop them. I understand that we want to be careful about managing implementation complexity to avoid interoperability issues, but I do think the single hash over everything that precedes the HB-JWT is relatively easy to perform. ",
+          "createdAt": "2023-05-27T23:38:08Z",
+          "updatedAt": "2023-05-27T23:38:08Z"
         }
       ]
     }
@@ -26114,13 +26215,13 @@
       "labels": [],
       "body": "Discussions around defining SD-JWT-VC show that it would be very helpful for interoperability if HB JWT is normatively defined in SD-JWT specification itself. Using HB JWT is optional, but if used, it should be compliant to the definitions in SD-JWT.\r\n\r\nHow to represent validity (iat, exp, nbf) will probably need the most discussion...\r\n\r\nalso we should introduce an abbreviation `HB JWT`....\r\n\r\ncc @awoie ",
       "createdAt": "2023-05-08T02:42:51Z",
-      "updatedAt": "2023-05-24T23:20:46Z",
+      "updatedAt": "2023-05-27T21:55:15Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "sakurann-hb-jwt",
-      "headRefOid": "fdc42f70537c4af8bc9890db186872dcbb02e300",
+      "headRefOid": "1ce10919264ee3835c629f83defd5f56060d8f55",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -26604,6 +26705,39 @@
               "updatedAt": "2023-05-24T18:05:16Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5WPDjq",
+          "commit": {
+            "abbreviatedOid": "7457d60"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-26T18:54:14Z",
+          "updatedAt": "2023-05-26T18:54:14Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "swap these two and fix the numbering\r\n\r\n```suggestion\r\n       7. Determine that the Holder Binding JWT is bound to the current transaction and was created for this Verifier (replay protection) by validating `nonce` and `aud` claims.\r\n       8. Check that the Holder Binding JWT is valid in all other respects, per [@!RFC7519] and [@!RFC8725].\r\n```",
+              "createdAt": "2023-05-26T18:54:14Z",
+              "updatedAt": "2023-05-26T18:55:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5WSN2g",
+          "commit": {
+            "abbreviatedOid": "1ce1091"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-27T21:55:15Z",
+          "updatedAt": "2023-05-27T21:55:15Z",
+          "comments": []
         }
       ]
     },
@@ -26925,6 +27059,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 276,
+      "id": "PR_kwDOHTmVzM5RYnQF",
+      "title": "Updated title to be more inclusive of general JWS with JSON and added some corresponding text to the Abstract and Intro",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/276",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Honestly, I'm not sure about this one.  But I said I'd put together a PR for #265 with an update to the title and some qualifying text. So this is that PR as something to discuss anyway. \r\n\r\nAt least these few sentences took me an embarrassingly long time to write :/ ",
+      "createdAt": "2023-05-25T22:28:49Z",
+      "updatedAt": "2023-05-26T14:15:06Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "82984e8f495cfc7cc512bfe766b4428c7109953d",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "bc/also-jws",
+      "headRefOid": "c32d94f2e61af06347e23a916d2f63d5cd4079b5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
