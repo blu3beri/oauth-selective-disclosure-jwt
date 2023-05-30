@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-28T01:05:24.999319+00:00",
+  "timestamp": "2023-05-30T01:01:38.268449+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -7094,7 +7094,7 @@
       "labels": [],
       "body": "From what I can understand an SD-JWT that is presented by a holder using holder binding doesn't prove integrity of the disclosures to the holder, only instead back to the issuer. This means a party in the middle could remove values that were intended to be presented from a presented form SD-JWT without a verifier being able to detect it, similarly a party that knows the claim values and salts could inject other disclosure values beyond what the holder intended to present (e.g an issuer). \r\n\r\nIn general I believe the presented form of an SD-JWT should provide holder integrity over the disclosures when holder binding is in use.",
       "createdAt": "2023-05-27T03:35:28Z",
-      "updatedAt": "2023-05-27T23:38:08Z",
+      "updatedAt": "2023-05-29T03:15:02Z",
       "closedAt": null,
       "comments": [
         {
@@ -7128,16 +7128,16 @@
         {
           "author": "bc-pi",
           "authorAssociation": "COLLABORATOR",
-          "body": "It took me some work to convince @danielfett that the holder signing the disclosures wasn't needed. So I must admit that I wasn't exactly exited to see this issue an reopen the discussion. He's \"the security guy\" though so I'll defer to his judgement here. But I remain unconvinced that it is needed. The integrity of the disclosures as issued by the issuer is the important thing. The integrity of the number of disclosures sent by the holder over what really should be a secure channel anyway just doesn't seem like a concern to me.  Maybe I'm not paranoid enough...\r\n\r\nIf we do add something for this, I prefer the approach of one hash in the HB-JWT that is calculated over the whole presentation up to but not including the HB-JWT. That kind of thing does introduce one more opportunity for interop problems, however, and ones that can be difficult to debug in practice. \r\n\r\n\r\n\r\n\r\n\r\n",
+          "body": "It took me some work to convince @danielfett that the holder signing the disclosures wasn't needed. So I must admit that I wasn't exactly exited to see this issue and reopen the discussion. He's \"the security guy\" though so I'll defer to his judgement here. But I remain unconvinced that it is needed. The integrity of the disclosures as issued by the issuer is the important thing. The integrity of the number of disclosures sent by the holder over what really should be a secure channel anyway just doesn't seem like a concern to me.  Maybe I'm not paranoid enough...\r\n\r\nIf we do add something for this, I prefer the approach of one hash in the HB-JWT that is calculated over the whole presentation up to but not including the HB-JWT. That kind of thing does introduce one more opportunity for interop problems, however, and ones that can be difficult to debug in practice. \r\n\r\n\r\n\r\n\r\n\r\n",
           "createdAt": "2023-05-27T21:52:59Z",
-          "updatedAt": "2023-05-27T22:16:43Z"
+          "updatedAt": "2023-05-28T19:43:23Z"
         },
         {
           "author": "tplooker",
           "authorAssociation": "NONE",
-          "body": "I agree integrity of the disclosures back to the issuer is the most important, however I do think holder integrity is also required otherwise it leaves presentations free to a form of unintuitive manipulation that I can see having downstream consequences such as a verifier stripping information from a presentation and saying \"i wasnt presented that claim\", or a man in the middle dropping information from a presentation. Really what a lack of holder integrity does here in general is introduce ambiguity, e.g did the verifier strip claims from a presentation, did the holder never reveal them or did someone in the middle drop them. I understand that we want to be careful about managing implementation complexity to avoid interoperability issues, but I do think the single hash over everything that precedes the HB-JWT is relatively easy to perform. ",
+          "body": "I agree that integrity of the disclosures back to the issuer is the most important, however I do think holder integrity is also required otherwise it leaves presentations free to a form of unintuitive manipulation that I can see having downstream consequences such as a verifier stripping information from a presentation and saying \"i wasnt presented that claim\", or a man in the middle dropping information from a presentation. Really what a lack of holder integrity does here in general is introduce ambiguity, e.g did the verifier strip claims from a presentation, did the holder never reveal them or did someone in the middle drop them. I understand that we want to be careful about managing implementation complexity to avoid interoperability issues, but I do think the single hash over everything that precedes the HB-JWT is relatively easy to perform. ",
           "createdAt": "2023-05-27T23:38:08Z",
-          "updatedAt": "2023-05-27T23:38:08Z"
+          "updatedAt": "2023-05-29T03:15:02Z"
         }
       ]
     }
