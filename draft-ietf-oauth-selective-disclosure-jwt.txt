@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 25 November 2023                                      Microsoft
+Expires: 1 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             24 May 2023
+                                                             30 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 November 2023.
+   This Internet-Draft will expire on 1 December 2023.
 
 Copyright Notice
 
@@ -177,7 +177,7 @@ Table of Contents
    not, however, learn any claim values not disclosed in the
    Disclosures.
 
-   This document also describes an optional mechanism for Holder
+   This document also specifies an optional mechanism for Holder
    Binding, or the concept of binding an SD-JWT to key material
    controlled by the Holder.  The strength of the Holder Binding is
    conditional upon the trust in the protection of the private key of
@@ -318,19 +318,18 @@ Table of Contents
 
 4.3.  Optional Holder Binding
 
-   Holder Binding is an optional feature.  For example, when
-   Cryptographic Holder Binding is required by the use-case, the SD-JWT
-   must contain information about the key material controlled by the
-   Holder.
+   Holder Binding is an optional feature.  When Cryptographic Holder
+   Binding is required by the use-case, the SD-JWT MUST contain
+   information about the key material controlled by the Holder.
 
    Note: How the public key is included in SD-JWT is out of scope of
    this document.  It can be passed by value or by reference.
 
-   The Holder can then create a signed document, the Holder Binding JWT,
-   using its private key.  This document contains some data provided by
-   the Verifier (out of scope of this document) to ensure the freshness
-   of the signature, for example, a nonce and an indicator of the
-   intended audience for the document.
+   The Holder can then create a signed document, the Holder Binding JWT
+   as defined in Section 5.4.1.1, using its private key.  This document
+   contains some data provided by the Verifier such as a nonce to ensure
+   the freshness of the signature, and audience to indicate the intended
+   audience for the document.
 
    The Holder Binding JWT can be included in the Combined Format for
    Presentation and sent to the Verifier along with the SD-JWT and the
@@ -858,9 +857,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
-   7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
-   wOJGUEPw
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
+   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
+   vXZwNZ9w
 
    The Issuer creates the following Disclosures:
 
@@ -976,9 +975,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
-   7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
-   wOJGUEPw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
+   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
+   vXZwNZ9w~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1020,27 +1019,55 @@ Table of Contents
 5.4.1.  Enabling Holder Binding
 
    The Holder MAY add an optional JWT to prove Holder Binding to the
-   Verifier.  The precise contents of the JWT are out of scope of this
-   specification.  Usually, a nonce and aud claim are included to show
-   that the proof is intended for the Verifier and to prevent replay
-   attacks.  How the nonce or other claims are obtained by the Holder is
+   Verifier.
+
+5.4.1.1.  Structure of the Holder Binding JWT
+
+   This section defines the contents of the Holder Binding JWT.
+
+   The JWT MUST contain the following elements: * in the JOSE header, *
+   typ: REQUIRED.  MUST be hb+jwt, which explicitly types the Holder
+   Binding JWT as recommended in Section 3.11 of [RFC8725].  * alg:
+   REQUIRED.  A digital signature algorithm identifier such as per IANA
+   "JSON Web Signature and Encryption Algorithms" registry.  MUST NOT be
+   none or an identifier for a symmetric algorithm (MAC).  * in the JWT
+   body, * iat: REQUIRED.  The value of this claim MUST be the time at
+   which the Holder Binding JWT was issued using the syntax defined in
+   [RFC7519].  * aud: REQUIRED.  The intended receiver of the Holder
+   Binding JWT.  How the value is represented is up to the protocol used
+   and out of scope of this specification.  * nonce: REQUIRED.  Ensures
+   the freshness of the signature.  The value type of this claim MUST be
+   a string.  How this value is obtained is up to the protocol used and
    out of scope of this specification.
 
-   Example Holder Binding JWT payload:
+   To validate the signature on the Holder Binding JWT, the Verifier
+   MUST use the key material in the SD-JWT.  If it is not clear from the
+   SD-JWT, HB-JWT MUST specify which key material the Verifier needs to
+   use to validate HB-JWT using JOSE header parameters such as kid and
+   x5c.
+
+   Below is a non-normative example of a Holder Binding JWT header:
+
+   {
+     "alg": "ES256",
+     "typ": "hb+jwt"
+   }
+
+   Below is a non-normative example of a Holder Binding JWT payload:
 
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1684969095
+     "iat": 1685482774
    }
 
-   Which is then signed by the Holder to create a JWT like the
-   following:
+   Below is a non-normative example of a Holder Binding JWT produced by
+   signing a payload in the example above:
 
    eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJod
-   HRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.4Wp-
-   9S3y4Mt_k88Y-yMTFOZnelw_Bg01VvyBnuIjmnXU30YPYmTyZuhA9BC75EQ7V1sx3J-t
-   5fh20eWDFcXUwg
+   HRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.8bHd
+   0HaZwKZ9Vj5oKRBQVjfwwUJOuf3GdM7V4sYnuSRfgz88ihGPwQYobyDt42D99K9aBXUQ
+   5Cg4IrE56Ww3fw
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1073,16 +1100,16 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.LYJEdOPUkb
-   7332JtJTTZxNznv364X2cutcT4CrszsSJeJxbNP-v6uwlg_c1hXbr-bvlYiTMpVuTekr
-   wOJGUEPw~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkR
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
+   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
+   vXZwNZ9w~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkR
    vZSJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF
    9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicm
    VnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJlbHVWNU9nM2dTTk
    lJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~eyJhbGciOiAiRVMyNTYif
    Q.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.4Wp-9S3y4Mt_k88Y-yMTFOZne
-   lw_Bg01VvyBnuIjmnXU30YPYmTyZuhA9BC75EQ7V1sx3J-t5fh20eWDFcXUwg
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.8bHd0HaZwKZ9Vj5oKRBQVjfww
+   UJOuf3GdM7V4sYnuSRfgz88ihGPwQYobyDt42D99K9aBXUQ5Cg4IrE56Ww3fw
 
 6.  Verification and Processing
 
@@ -1228,14 +1255,18 @@ Table of Contents
 
            4.  Validate the signature over the Holder Binding JWT.
 
-           5.  Check that the Holder Binding JWT is valid using nbf,
-               iat, and exp claims, if provided in the Holder Binding
-               JWT.
+           5.  Check that the typ of the Holder Binding JWT is hb+jwt.
 
-           6.  Determine that the Holder Binding JWT is bound to the
+           6.  Check that the creation time of the Holder Binding JWT,
+               as determined by the iat claim, is within an acceptable
+               window.
+
+           7.  Determine that the Holder Binding JWT is bound to the
                current transaction and was created for this Verifier
-               (replay protection).  This is usually achieved by a nonce
-               and aud field within the Holder Binding JWT.
+               (replay protection) by validating nonce and aud claims.
+
+           8.  Check that the Holder Binding JWT is valid in all other
+               respects, per [RFC7519] and [RFC8725].
 
    If any step fails, the Presentation is not valid and processing MUST
    be aborted.
@@ -1657,8 +1688,9 @@ Table of Contents
 
    This section requests registration of the "application/sd-jwt" media
    type [RFC2046] in the "Media Types" registry [IANA.MediaTypes] in the
-   manner described in [RFC6838], which can be used to indicate that the
-   content is an SD-JWT.
+   manner described in [RFC6838].
+
+   To indicate that the content is an SD-JWT:
 
    *  Type name: application
 
@@ -1671,6 +1703,48 @@ Table of Contents
    *  Encoding considerations: binary; application/sd-jwt values are a
       series of base64url-encoded values (some of which may be the empty
       string) separated by period ('.') or tilde ('~') characters.
+
+   *  Security considerations: See the Security Considerations section
+      of [[ this specification ]], [RFC7519], and [RFC8725].
+
+   *  Interoperability considerations: n/a
+
+   *  Published specification: [[ this specification ]]
+
+   *  Applications that use this media type: TBD
+
+   *  Fragment identifier considerations: n/a
+
+   *  Additional information: Magic number(s): n/a File extension(s): n/
+      a Macintosh file type code(s): n/a
+
+   *  Person & email address to contact for further information: Daniel
+      Fett, mail@danielfett.de
+
+   *  Intended usage: COMMON
+
+   *  Restrictions on usage: none
+
+   *  Author: Daniel Fett, mail@danielfett.de
+
+   *  Change Controller: IESG
+
+   *  Provisional registration?  No
+
+   To indicate that the content is a Holder Binding JWT:
+
+   *  Type name: application
+
+   *  Subtype name: hd+jwt
+
+   *  Required parameters: n/a
+
+   *  Optional parameters: n/a
+
+   *  Encoding considerations: binary; A Holder Binding JWT is a JWT;
+      JWT values are encoded as a series of base64url-encoded values
+      (some of which may be the empty string) separated by period ('.')
+      characters.
 
    *  Security considerations: See the Security Considerations section
       of [[ this specification ]], [RFC7519], and [RFC8725].
@@ -2028,8 +2102,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.CysG3snZkoET95JJov_4rMBvyZ
-   uNmW8IfjyfC3g7mhfVbR8UMaESPtOHb1xSfU9yUfz2y6iSTiYQNB9cOJeuAQ~WyJHMDJ
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.vQrTabJMVcpryQllPsv-O99RBU
+   kPNpUFmSBoK_LpEluY2y0-Tmp_5bJzeENDWV0bYVAvsc38GGh9deRQK_QnSw~WyJHMDJ
    OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
    a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 
@@ -2299,9 +2373,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["C9GSoujviJquEgYfojCb1A", "msisdn", "49123456789"]
 
-   The Verifier would receive the Issuer-signed SD-JWT together with a
-   selection of the Disclosures.  The Presentation in this example would
-   look as follows:
+   The following is a non-normative example of a Combined Format for
+   Presentation without a Holder Binding JWT that the Verifier would
+   receive with a selection of the Disclosures:
 
    eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi0yeU9mV01lWkZRYXFmWkJoakdmLVRYL
    XFCTnZrS3hjaUZvaWVkc0k1XzgiLCAiOGdKWjFDdHFwb0lvbjB2OVpJN0JNR3QxcGJHb
@@ -2321,8 +2395,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.KNikBGbxWEL6JnUpwYxlSB
-   Eb5zPZH_NU5vUEXmwcrCNOw62JN6mURKfBnnJGxwseZZ7vkSBS_bbRdYk8-uTgdA~WyI
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.5LLom8nDKXJbfi2iO31UlF
+   OAJqXHHuaVqRJ39fXpAyAitT-xncEIGeIUPAthmRdJzHoSGwY89kSQSso2w7S1fg~WyI
    yR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC0yM1QxODoyNVo
    iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyJQ
    YzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImdpdmVuX25hbWUiLCAiTWF4Il0~WyJHMDJO
@@ -2707,11 +2781,11 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.hQ6n8hQ05dO5UToBzmAL63dhG8m14mW3uLZoEBeobuB5jIiz-t
-   UjFlM5gOOfrY6d1Qm3N37dOXRVh0132JqoeQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
+   GpUOUYySFpRIn19fQ.-XLzq4bbHmmEyAYLKID0T9PpEa1aZy_Eaa1yxJnXoJIMCDwrHB
+   ug6hUyNO4xCRYy8WcJ3cOk32-M-iJQZBeyDQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
    ZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcmlm
-   aWVyIiwgImlhdCI6IDE2ODQ5NjkwOTV9.EJvnJ2fRxzX0ofgGTSnWwyvTtNycT2hOzTr
-   bzKpuGF7BtP2wCATF75ReckqRQraOURNraPAxLGtmUzCPe5DiMw
+   aWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.OG761l0QqR5l1kQRTIYIp07Gr4wsWoEO5UQ
+   A1IC1Ln5xMCbKKt6b4bc8QdfG7FFsCR_wXx-l6Btk64OCmOinYQ
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2887,6 +2961,8 @@ Appendix C.  Document History
    [[ To be removed from the final specification ]]
 
    -05
+
+   *  Defined the structure of the Holder Binding JWT.
 
    *  Added initial IANA media type and structured suffix registration
       requests
