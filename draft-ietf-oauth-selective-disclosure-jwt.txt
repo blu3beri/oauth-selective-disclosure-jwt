@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 1 December 2023                                       Microsoft
+Expires: 2 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             30 May 2023
+                                                             31 May 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 December 2023.
+   This Internet-Draft will expire on 2 December 2023.
 
 Copyright Notice
 
@@ -264,8 +264,8 @@ Table of Contents
               |            |
               +------------+
                     |
-                Issues SD-JWT
-        and Issuer-Issued Disclosures
+               Issues SD-JWT
+              and Disclosures
                     |
                     v
               +------------+
@@ -275,7 +275,7 @@ Table of Contents
               +------------+
                     |
               Presents SD-JWT
-      and Holder-Selected Disclosures
+         and selected Disclosures
                     |
                     v
               +-------------+
@@ -588,7 +588,7 @@ Table of Contents
 
    The Issuer would create the following Disclosure:
 
-   *Claim address:*
+   *Claim address*:
 
    *  SHA-256 Hash: fOBUSQvo46yQO-wRwXBcGqvnbKIueISEL961_Sjd4do
 
@@ -626,7 +626,7 @@ Table of Contents
    In this case, the Issuer would use the following data in the
    Disclosures for the address sub-claims:
 
-   *Claim street_address:*
+   *Claim street_address*:
 
    *  SHA-256 Hash: 9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM
 
@@ -637,7 +637,7 @@ Table of Contents
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "street_address", "Schulstr.
       12"]
 
-   *Claim locality:*
+   *Claim locality*:
 
    *  SHA-256 Hash: 6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0
 
@@ -647,7 +647,7 @@ Table of Contents
 
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "locality", "Schulpforta"]
 
-   *Claim region:*
+   *Claim region*:
 
    *  SHA-256 Hash: KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88
 
@@ -657,7 +657,7 @@ Table of Contents
 
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "region", "Sachsen-Anhalt"]
 
-   *Claim country:*
+   *Claim country*:
 
    *  SHA-256 Hash: WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM
 
@@ -707,7 +707,7 @@ Table of Contents
    The Issuer creates Disclosures first for the sub-claims and then
    includes their digests in the Disclosure for the address claim:
 
-   *Claim street_address:*
+   *Claim street_address*:
 
    *  SHA-256 Hash: 9gjVuXtdFROCgRrtNcGUXmF65rdezi_6Er_j76kmYyM
 
@@ -718,7 +718,7 @@ Table of Contents
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "street_address", "Schulstr.
       12"]
 
-   *Claim locality:*
+   *Claim locality*:
 
    *  SHA-256 Hash: 6vh9bq-zS4GKM_7GpggVbYzzu6oOGXrmNVGPHP75Ud0
 
@@ -728,7 +728,7 @@ Table of Contents
 
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "locality", "Schulpforta"]
 
-   *Claim region:*
+   *Claim region*:
 
    *  SHA-256 Hash: KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88
 
@@ -738,7 +738,7 @@ Table of Contents
 
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "region", "Sachsen-Anhalt"]
 
-   *Claim country:*
+   *Claim country*:
 
    *  SHA-256 Hash: WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM
 
@@ -747,7 +747,7 @@ Table of Contents
 
    *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "country", "DE"]
 
-   *Claim address:*
+   *Claim address*:
 
    *  SHA-256 Hash: HvrKX6fPV0v9K_yCVFBiLFHsMaxcD_114Em6VT8x1lg
 
@@ -857,13 +857,13 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
-   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
-   vXZwNZ9w
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
+   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
+   UzJwIVaQ
 
    The Issuer creates the following Disclosures:
 
-   *Claim sub:*
+   *Claim sub*:
 
    *  SHA-256 Hash: 4HBn6aIY3WtuGGWTx-qUj6cdk6WBpZygltdFavPa7LY
 
@@ -873,7 +873,7 @@ Table of Contents
 
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "sub", "john_doe_42"]
 
-   *Claim given_name:*
+   *Claim given_name*:
 
    *  SHA-256 Hash: jMCXVz--9b8x37YcoDfXQinzw1wZcccfFRBCFGqdG2o
 
@@ -883,7 +883,7 @@ Table of Contents
 
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "given_name", "John"]
 
-   *Claim family_name:*
+   *Claim family_name*:
 
    *  SHA-256 Hash: 8sm1QCf021pNnHACI5sP4m4KZgyNOOAYcTj9HNaC1wY
 
@@ -893,7 +893,7 @@ Table of Contents
 
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "family_name", "Doe"]
 
-   *Claim email:*
+   *Claim email*:
 
    *  SHA-256 Hash: oKI1Gd2fwN5WwvjlFkohidGvim-31OulR3q0hrDO078
 
@@ -904,7 +904,7 @@ Table of Contents
    *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "email",
       "johndoe@example.com"]
 
-   *Claim phone_number:*
+   *Claim phone_number*:
 
    *  SHA-256 Hash: SDN79NLpAnHPmkrdeYdEa89XZdsk0M8DKYSQOU2ZxQc
 
@@ -915,7 +915,7 @@ Table of Contents
    *  Contents: ["Qg_O64zqAxe412a108iroA", "phone_number",
       "+1-202-555-0101"]
 
-   *Claim address:*
+   *Claim address*:
 
    *  SHA-256 Hash: XzFrzwscM6Gn6CJDc6vVK8BkMnfG8vOSKfpPIZdAfdE
 
@@ -928,7 +928,7 @@ Table of Contents
       "123 Main St", "locality": "Anytown", "region": "Anystate",
       "country": "US"}]
 
-   *Claim birthdate:*
+   *Claim birthdate*:
 
    *  SHA-256 Hash: gbOsI4Edq2x2Kw-w5wPEzakob9hV1cRD0ATN3oQL9JM
 
@@ -975,9 +975,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
-   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
-   vXZwNZ9w~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
+   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
+   UzJwIVaQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1058,16 +1058,16 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1685482774
+     "iat": 1685493405
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
    signing a payload in the example above:
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJod
-   HRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.8bHd
-   0HaZwKZ9Vj5oKRBQVjfwwUJOuf3GdM7V4sYnuSRfgz88ihGPwQYobyDt42D99K9aBXUQ
-   5Cg4IrE56Ww3fw
+   eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
+   3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
+   6IDE2ODU0OTM0MDV9.xU2KCcAx_fuHbmyUIWQ9B7KNJs1VP8qb4J5q6kjO_04NtHRxtU
+   RhgNqFBhHtstqnId4pafcbQmPlFhX7tOwLrQ
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1100,16 +1100,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.UDJu3aBKuR
-   9nxwcGDroedkxEYSUMziaTx8WuED5i7v-vWaMrCUYkfPDaj2vILo1aaS5YNxz-1PKkOn
-   vXZwNZ9w~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkR
-   vZSJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF
-   9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicm
-   VnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJlbHVWNU9nM2dTTk
-   lJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~eyJhbGciOiAiRVMyNTYif
-   Q.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.8bHd0HaZwKZ9Vj5oKRBQVjfww
-   UJOuf3GdM7V4sYnuSRfgz88ihGPwQYobyDt42D99K9aBXUQ5Cg4IrE56Ww3fw
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
+   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
+   UzJwIVaQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+   IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
+   wgImlhdCI6IDE2ODU0OTM0MDV9.xU2KCcAx_fuHbmyUIWQ9B7KNJs1VP8qb4J5q6kjO_
+   04NtHRxtURhgNqFBhHtstqnId4pafcbQmPlFhX7tOwLrQ
 
 6.  Verification and Processing
 
@@ -1959,7 +1955,7 @@ A.1.  Example 2: Handling Structured Claims
 
    The Disclosures for this SD-JWT are as follows:
 
-   *Claim sub:*
+   *Claim sub*:
 
    *  SHA-256 Hash: X6ZAYOII2vPN40V7xExZwVwz7yRmLNcVwt5DL8RLv4g
 
@@ -1970,7 +1966,7 @@ A.1.  Example 2: Handling Structured Claims
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "sub",
       "6c5c0a49-b589-431d-bae7-219122a9ec2c"]
 
-   *Claim given_name:*
+   *Claim given_name*:
 
    *  SHA-256 Hash: ommFAicVT8LGHCB0uywx7fYuo3MHYKO15cz-RZEYM5Q
 
@@ -1980,7 +1976,7 @@ A.1.  Example 2: Handling Structured Claims
 
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "given_name", "\u592a\u90ce"]
 
-   *Claim family_name:*
+   *Claim family_name*:
 
    *  SHA-256 Hash: C9inp6YoRaEXR427zYJP7Qrk1WH_8bdwOA_YUrUnGQU
 
@@ -1991,7 +1987,7 @@ A.1.  Example 2: Handling Structured Claims
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "family_name",
       "\u5c71\u7530"]
 
-   *Claim email:*
+   *Claim email*:
 
    *  SHA-256 Hash: Kuet1yAa0HIQvYnOVd59hcViO9Ug6J2kSfqYRBeowvE
 
@@ -2002,7 +1998,7 @@ A.1.  Example 2: Handling Structured Claims
    *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "email", "\"unusual email
       address\"@example.jp"]
 
-   *Claim phone_number:*
+   *Claim phone_number*:
 
    *  SHA-256 Hash: s0BKYsLWxQQeU8tVlltM7MKsIRTrEIa1PkJmqxBBf5U
 
@@ -2013,7 +2009,7 @@ A.1.  Example 2: Handling Structured Claims
    *  Contents: ["Qg_O64zqAxe412a108iroA", "phone_number",
       "+81-80-1234-5678"]
 
-   *Claim street_address:*
+   *Claim street_address*:
 
    *  SHA-256 Hash: 6aUhzYhZ7SJ1kVmagQAO3u2ETN2CC1aHheZpKnaF0_E
 
@@ -2027,7 +2023,7 @@ A.1.  Example 2: Handling Structured Claims
       90fd\u6e2f\u533a\u829d\u516c\u5712\uff14\u4e01\u76ee\uff12\u
       2212\uff18"]
 
-   *Claim locality:*
+   *Claim locality*:
 
    *  SHA-256 Hash: rvJd6iq6T5ejmsBMoGwuNXh9qAAFATAci40oidEeVsA
 
@@ -2038,7 +2034,7 @@ A.1.  Example 2: Handling Structured Claims
    *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "locality",
       "\u6771\u4eac\u90fd"]
 
-   *Claim region:*
+   *Claim region*:
 
    *  SHA-256 Hash: PzzcVu0qbMuBGSjulfewzkesD9zutOExn5EWNwkrQ-k
 
@@ -2048,7 +2044,7 @@ A.1.  Example 2: Handling Structured Claims
 
    *  Contents: ["G02NSrQfjFXQ7Io09syajA", "region", "\u6e2f\u533a"]
 
-   *Claim country:*
+   *Claim country*:
 
    *  SHA-256 Hash: uNHoWYhXsZhVJCNE2Dqy-zqt7t69gJKy5QaFv7GrMX4
 
@@ -2057,7 +2053,7 @@ A.1.  Example 2: Handling Structured Claims
 
    *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "country", "JP"]
 
-   *Claim birthdate:*
+   *Claim birthdate*:
 
    *  SHA-256 Hash: MMldOFFzB2d0umlmpTIaGerhWdU_PpYfLvKhh_f_9aY
 
@@ -2102,10 +2098,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.vQrTabJMVcpryQllPsv-O99RBU
-   kPNpUFmSBoK_LpEluY2y0-Tmp_5bJzeENDWV0bYVAvsc38GGh9deRQK_QnSw~WyJHMDJ
-   OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
-   a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.cjfvL5XGNReS7e2Y8V51eb195t
+   Gh6Jk-f0OMME55I9Zkhl-zLBV_OJBqdihxpZVIkS7q6q4eVUFCKTnkXtqc_w~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2209,7 +2203,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    With the following Disclosures:
 
-   *Claim time:*
+   *Claim time*:
 
    *  SHA-256 Hash: vTwe3raHIFYgFA3xaUD2aMxFz5oDo8iBu05qKlOg9Lw
 
@@ -2219,7 +2213,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "time", "2012-04-23T18:25Z"]
 
-   *Claim verification_process:*
+   *Claim verification_process*:
 
    *  SHA-256 Hash: 7h4UE9qScvDKodXVCuoKfKBJpVBfXMF_TmAGVaZe3Sc
 
@@ -2230,7 +2224,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "verification_process",
       "f24c6f-6d3f-4ec5-973e-b0d8506f3bc7"]
 
-   *Claim type:*
+   *Claim type*:
 
    *  SHA-256 Hash: G5EnhOAOoU9X_6QMNvzFXjpEA_Rc-AEtm1bG_wcaKIk
 
@@ -2240,7 +2234,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "type", "document"]
 
-   *Claim method:*
+   *Claim method*:
 
    *  SHA-256 Hash: WpxQ4HSoEtcTmCCKOeDslB_emucYLz2oO8oHNr1bEVQ
 
@@ -2249,7 +2243,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "method", "pipp"]
 
-   *Claim time:*
+   *Claim time*:
 
    *  SHA-256 Hash: 9wpjVPWuD7PK0nsQDL8B06lmdgV3LVybhHydQpTNyLI
 
@@ -2259,7 +2253,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["Qg_O64zqAxe412a108iroA", "time", "2012-04-22T11:30Z"]
 
-   *Claim document:*
+   *Claim document*:
 
    *  SHA-256 Hash: IhwFrWUB63RcZq9yvgZ0XPc7Gowh3O2kqXeBIswg1B4
 
@@ -2276,7 +2270,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
       "number": "53554554", "date_of_issuance": "2010-03-23",
       "date_of_expiry": "2020-03-22"}]
 
-   *Claim given_name:*
+   *Claim given_name*:
 
    *  SHA-256 Hash: FnM1Y-eVqWi-h6P9zzArb35lfC43SjV-Zq9NJMAxSHc
 
@@ -2286,7 +2280,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "given_name", "Max"]
 
-   *Claim family_name:*
+   *Claim family_name*:
 
    *  SHA-256 Hash: hOIy3SMi_wM-SJOwmv0_skyfpihd3n8jyGZw56zicyM
 
@@ -2296,7 +2290,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["G02NSrQfjFXQ7Io09syajA", "family_name", "M\u00fcller"]
 
-   *Claim nationalities:*
+   *Claim nationalities*:
 
    *  SHA-256 Hash: y50czc0ISChy_bsba1dMoUuAOQ5AMmOSfGoEe81v1FU
 
@@ -2306,7 +2300,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "nationalities", ["DE"]]
 
-   *Claim birthdate:*
+   *Claim birthdate*:
 
    *  SHA-256 Hash: c46n0Tz4KY0c6wNf5dQ1oUj47s16hb8NuFMqeo98_H0
 
@@ -2316,7 +2310,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "birthdate", "1956-01-28"]
 
-   *Claim place_of_birth:*
+   *Claim place_of_birth*:
 
    *  SHA-256 Hash: Blf7DBmdHEzZMQHw8y11zCLA_76HesZ60cxfhCA1hNU
 
@@ -2328,7 +2322,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
    *  Contents: ["5bPs1IquZNa0hkaFzzzZNw", "place_of_birth", {"country":
       "IS", "locality": "\u00deykkvab\u00e6jarklaustur"}]
 
-   *Claim address:*
+   *Claim address*:
 
    *  SHA-256 Hash: m1kqaCwgKzKmb9u40bmR0Jm3HvUuijE-OCAt-goQTX8
 
@@ -2342,7 +2336,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
       "Maxstadt", "postal_code": "12344", "country": "DE",
       "street_address": "Weidenstra\u00dfe 22"}]
 
-   *Claim birth_middle_name:*
+   *Claim birth_middle_name*:
 
    *  SHA-256 Hash: -2yOfWMeZFQaqfZBhjGf-TX-qBNvkKxciFoiedsI5_8
 
@@ -2353,7 +2347,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
    *  Contents: ["y1sVU5wdfJahVdgwPgS7RQ", "birth_middle_name",
       "Timotheus"]
 
-   *Claim salutation:*
+   *Claim salutation*:
 
    *  SHA-256 Hash: 8gJZ1CtqpoIon0v9ZI7BMGt1pbGmAsNI8c07_w1OcSY
 
@@ -2363,7 +2357,7 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    *  Contents: ["HbQ4X8srVW3QDxnIJdqyOA", "salutation", "Dr."]
 
-   *Claim msisdn:*
+   *Claim msisdn*:
 
    *  SHA-256 Hash: QDh-IWNFfG-NglE5ZsBwid4ZSBjJBURZeyNJkftZgKg
 
@@ -2395,15 +2389,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.5LLom8nDKXJbfi2iO31UlF
-   OAJqXHHuaVqRJ39fXpAyAitT-xncEIGeIUPAthmRdJzHoSGwY89kSQSso2w7S1fg~WyI
-   yR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC0yM1QxODoyNVo
-   iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyJQ
-   YzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImdpdmVuX25hbWUiLCAiTWF4Il0~WyJHMDJO
-   U3JRZmpGWFE3SW8wOXN5YWpBIiwgImZhbWlseV9uYW1lIiwgIk1cdTAwZmNsbGVyIl0~
-   WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkZHJlc3MiLCB7ImxvY2FsaXR5Ijog
-   Ik1heHN0YWR0IiwgInBvc3RhbF9jb2RlIjogIjEyMzQ0IiwgImNvdW50cnkiOiAiREUi
-   LCAic3RyZWV0X2FkZHJlc3MiOiAiV2VpZGVuc3RyYVx1MDBkZmUgMjIifV0~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.KHjYTVO6i5fw9t1zZibNsQ
+   fhkdcsb5MFtkOMYCXNtG9aRrnAXy58AgvsjPqSAl9pfA93EuMffuRskk7OGg5CvQ~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2416,22 +2403,10 @@ A.2.  Example 3 - Complex Structured SD-JWT
        "verification": {
          "trust_framework": "de_aml",
          "evidence": [
-           {
-             "method": "pipp"
-           }
-         ],
-         "time": "2012-04-23T18:25Z"
+           {}
+         ]
        },
-       "claims": {
-         "given_name": "Max",
-         "family_name": "Müller",
-         "address": {
-           "locality": "Maxstadt",
-           "postal_code": "12344",
-           "country": "DE",
-           "street_address": "Weidenstraße 22"
-         }
-       }
+       "claims": {}
      },
      "_sd_alg": "sha-256"
    }
@@ -2537,7 +2512,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    Disclosures:
 
-   *Claim given_name:*
+   *Claim given_name*:
 
    *  SHA-256 Hash: jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4
 
@@ -2547,7 +2522,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["2GLC42sKQveCfGfryNRN9w", "given_name", "John"]
 
-   *Claim family_name:*
+   *Claim family_name*:
 
    *  SHA-256 Hash: TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo
 
@@ -2557,7 +2532,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "family_name", "Doe"]
 
-   *Claim email:*
+   *Claim email*:
 
    *  SHA-256 Hash: JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE
 
@@ -2568,7 +2543,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
    *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "email",
       "johndoe@example.com"]
 
-   *Claim phone_number:*
+   *Claim phone_number*:
 
    *  SHA-256 Hash: PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI
 
@@ -2579,7 +2554,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
    *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "phone_number",
       "+1-202-555-0101"]
 
-   *Claim address:*
+   *Claim address*:
 
    *  SHA-256 Hash: IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw
 
@@ -2592,7 +2567,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
       "123 Main St", "locality": "Anytown", "region": "Anystate",
       "country": "US"}]
 
-   *Claim birthdate:*
+   *Claim birthdate*:
 
    *  SHA-256 Hash: jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI
 
@@ -2602,7 +2577,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["AJx-095VPrpTtN4QMOqROA", "birthdate", "1940-01-01"]
 
-   *Claim is_over_18:*
+   *Claim is_over_18*:
 
    *  SHA-256 Hash: 09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY
 
@@ -2612,7 +2587,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "is_over_18", true]
 
-   *Claim is_over_21:*
+   *Claim is_over_21*:
 
    *  SHA-256 Hash: 2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI
 
@@ -2622,7 +2597,7 @@ A.3.  Example 4a - W3C Verifiable Credentials Data Model v2.0, not using
 
    *  Contents: ["G02NSrQfjFXQ7Io09syajA", "is_over_21", true]
 
-   *Claim is_over_65:*
+   *Claim is_over_65*:
 
    *  SHA-256 Hash: EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA
 
@@ -2781,11 +2756,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.-XLzq4bbHmmEyAYLKID0T9PpEa1aZy_Eaa1yxJnXoJIMCDwrHB
-   ug6hUyNO4xCRYy8WcJ3cOk32-M-iJQZBeyDQ~eyJhbGciOiAiRVMyNTYifQ.eyJub25j
-   ZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcmlm
-   aWVyIiwgImlhdCI6IDE2ODU0ODI3NzR9.OG761l0QqR5l1kQRTIYIp07Gr4wsWoEO5UQ
-   A1IC1Ln5xMCbKKt6b4bc8QdfG7FFsCR_wXx-l6Btk64OCmOinYQ
+   GpUOUYySFpRIn19fQ.g_1aZ3T99Php_nIyj9WwpNRhvyoW9ct-H1ZOU3IBXa_r--N7gC
+   y6a9a4HU-m8eW2xcP5MnvfU5PUcS4Azkep-w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0OTM0MDV9.yqUU0ZjqtHMAg
+   K6_W6xdfqiwSOBDrYs5xxDKOLdaDQ4DcrCDXXwefAhSy1BpkV7M576X3VlV51U_A3mbe
+   7tixw
 
    After the validation, the Verifier will have the following data for
    further processing:
