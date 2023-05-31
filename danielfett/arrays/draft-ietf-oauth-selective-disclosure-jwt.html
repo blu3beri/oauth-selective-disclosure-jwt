@@ -1786,7 +1786,7 @@ are all valid and encode the same claim value:<a href="#section-5.2.1-8" class="
           </h4>
 <p id="section-5.4.1-1">Digests of Disclosures for object properties are added to an array under the new
 key <code>_sd</code> in the object. The <code>_sd</code> key MUST refer to an array of strings, each
-string being a digest of a Disclosure or a decoy digest as described below.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
+string being a digest of a Disclosure or a decoy digest as described in <a href="#decoy_digests" class="auto internal xref">Section 5.5</a>.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.4.1-2">The array MAY be empty in case the Issuer decided not to selectively disclose
 any of the claims at that level. However, it is RECOMMENDED to omit the <code>_sd</code>
 key in this case to save space.<a href="#section-5.4.1-2" class="pilcrow">¶</a></p>
@@ -1827,6 +1827,10 @@ of the <code>nationalities</code> array selectively disclosable:<a href="#sectio
 }
 </pre><a href="#section-5.4.2-3" class="pilcrow">¶</a>
 </div>
+<p id="section-5.4.2-4">As described in <a href="#verifier_verification" class="auto internal xref">Section 6.2</a>, Verifiers ignore all selectively
+disclosable array elements for which they did not receive a Disclosure. In the
+example above, the verification process would output an array with only one
+element unless a matching Disclosure for the second element is received.<a href="#section-5.4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1878,9 +1882,7 @@ not contain decoy digests unless explicitly stated.<a href="#section-5.5-4" clas
 }
 </pre><a href="#section-5.6-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.6-3">The following non-normative example shows the payload of an SD-JWT. The Issuer
-is using a flat structure in this case, i.e., all of the claims in the <code>address</code> claim can only
-be disclosed in full. In <a href="#nested_data" class="auto internal xref">Section 5.7</a>, other options are discussed.<a href="#section-5.6-3" class="pilcrow">¶</a></p>
+<p id="section-5.6-3">The following non-normative example shows a payload of an SD-JWT for this End-User data:<a href="#section-5.6-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.6-4">
 <pre>{
   "_sd": [
@@ -1915,26 +1917,19 @@ be disclosed in full. In <a href="#nested_data" class="auto internal xref">Secti
 }
 </pre><a href="#section-5.6-4" class="pilcrow">¶</a>
 </div>
-<p id="section-5.6-5">The SD-JWT is then signed by the Issuer to create a JWT like the following:<a href="#section-5.6-5" class="pilcrow">¶</a></p>
-<div class="lang-txt sourcecode" id="section-5.6-6">
-<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIklsRHpJS2VpWmREd3BxcEs2WmZieXBoR
-nZ6NUZnbldhLXNONndxUVhDaXciLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
-TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
-EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
-mZVYW9tTG8iLCAiamRyVEU4WWNiWTRFaWZ1Z2loaUFlX0JQZWt4SlFaSUNlaVVRd1k5U
-XF4SSIsICJqc3U5eVZ1bHdRUWxoRmxNXzNKbHpNYVNGemdsaFFHMERwZmF5UXdMVUs0I
-l0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4M
-zAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJzdWIiOiAidXNlcl80MiIsICJuYXRpb
-25hbGl0aWVzIjogW3siLi4uIjogIjVxU3h6bkt1OXhDU29vN19IOXJScjFweXR5OHlLM
-Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
-lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-al1-Flyg
-</pre><a href="#section-5.6-6" class="pilcrow">¶</a>
-</div>
+<p id="section-5.6-5">The Issuer in this case made the following decisions:<a href="#section-5.6-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.6-6.1">The <code>nationalities</code> array is always visible, but its contents are selectively disclosable.<a href="#section-5.6-6.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.6-6.2">The <code>sub</code> element and essential verification data (<code>iss</code>, <code>iat</code>, <code>cnf</code>, etc.) are always visible.<a href="#section-5.6-6.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.6-6.3">All other End-User claims are selectively disclosable.<a href="#section-5.6-6.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.6-6.4">For <code>address</code>, the Issuer is using a flat structure, i.e., all of the claims
+in the <code>address</code> claim can only be disclosed in full. Other options are
+discussed in <a href="#nested_data" class="auto internal xref">Section 5.7</a>.<a href="#section-5.6-6.4" class="pilcrow">¶</a>
+</li>
+        </ul>
 <p id="section-5.6-7">The Issuer creates the following Disclosures:<a href="#section-5.6-7" class="pilcrow">¶</a></p>
 <p id="section-5.6-8"><strong>Claim <code>given_name</code></strong>:<a href="#section-5.6-8" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2034,6 +2029,26 @@ al1-Flyg
 <code>["G02NSrQfjFXQ7Io09syajA", "DE"]</code><a href="#section-5.6-23.3" class="pilcrow">¶</a>
 </li>
         </ul>
+<p id="section-5.6-24">The SD-JWT is then signed by the Issuer to create a JWT like the following:<a href="#section-5.6-24" class="pilcrow">¶</a></p>
+<div class="lang-txt sourcecode" id="section-5.6-25">
+<pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIklsRHpJS2VpWmREd3BxcEs2WmZieXBoR
+nZ6NUZnbldhLXNONndxUVhDaXciLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
+TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
+EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
+mZVYW9tTG8iLCAiamRyVEU4WWNiWTRFaWZ1Z2loaUFlX0JQZWt4SlFaSUNlaVVRd1k5U
+XF4SSIsICJqc3U5eVZ1bHdRUWxoRmxNXzNKbHpNYVNGemdsaFFHMERwZmF5UXdMVUs0I
+l0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4M
+zAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJzdWIiOiAidXNlcl80MiIsICJuYXRpb
+25hbGl0aWVzIjogW3siLi4uIjogIjVxU3h6bkt1OXhDU29vN19IOXJScjFweXR5OHlLM
+Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
+lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
+iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
+TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+zLzND_ng
+</pre><a href="#section-5.6-25" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="nested_data">
@@ -2351,9 +2366,9 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-al1-Flyg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+zLzND_ng~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
 obiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZS
 Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhb
 XBsZS5jb20iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlci
@@ -2424,7 +2439,7 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1685553831
+  "iat": 1685555610
 }
 </pre><a href="#section-5.11.1.1-7" class="pilcrow">¶</a>
 </div>
@@ -2432,8 +2447,8 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.11.1.1-9">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODU1NTM4MzF9.ZbLcUzp3z2HknBRYZXsQ4O_A3zyRdC5c6OuQhlOXgF-kYxQrsq
-9GqH5cixYY-F7qYNryAHpbvHZxXLFibNk3Mw
+6IDE2ODU1NTU2MTB9.yCRBRvydZ4WqqkNucBGewSoG3zzEML46u_7QCbhYqOrQfxXsBS
+4ToyE7XmhZIEFvZBv4QLs3W-n40R98Lwo1Cg
 </pre><a href="#section-5.11.1.1-9" class="pilcrow">¶</a>
 </div>
 <p id="section-5.11.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
@@ -2468,15 +2483,15 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-al1-Flyg~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+zLzND_ng~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
 vZSJd~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obi
 Jd~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiL
 CAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJo
-dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTM4MzF9.ZbL
-cUzp3z2HknBRYZXsQ4O_A3zyRdC5c6OuQhlOXgF-kYxQrsq9GqH5cixYY-F7qYNryAHp
-bvHZxXLFibNk3Mw
+dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTU2MTB9.yCR
+BRvydZ4WqqkNucBGewSoG3zzEML46u_7QCbhYqOrQfxXsBS4ToyE7XmhZIEFvZBv4QLs
+3W-n40R98Lwo1Cg
 </pre><a href="#section-5.11.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3480,8 +3495,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.jQ0-vDRATk-qEfUL6cU20Bd0_e
-GQeFLerHcWup-pntx81kvQnd2pj6GhslF7mUpwsf3CXfv5bIDbvZT9NZWVWg~
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.RJcTY4_maYuMKVBzDfgBILMDzy
+AFvQEbYA1npc8M5LrVaI4-bwB0tXzeuQncSOx_gjCvtZVMBWs8X7Jit9LCQw~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3803,8 +3818,8 @@ jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
 3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
 244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
 0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.Ej1WS7MVVWLAjAW83ni3E6
-yxLx9mmVUg06SgYB7qunaZMv4CfJMJdg2vKsewEF1z_lW13zeMDJn0LVnr-9kqew~
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.UPG5fShwifwIjwKjR7oeqM
+LauDJaiN_-NYjJ9fjws7CUUTlUnRgKeEGPRzgqYhAR_8Tt2TR8ZSUWEX5w7VM5vA~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -4172,12 +4187,12 @@ iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
 GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
 CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
 3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.iG111inNQGJWi8r-LnvVL_ze6O6-bCYaXPzmBilriwVDcp-FJa
-vFFD2i8WOysk4ddl3giJLI58E3KBVlkNus7g~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+GpUOUYySFpRIn19fQ.xHXzZrxR478JkCc2NEFm5sA4FlKo_diOtaHguDCZmo8WnYrgYu
+-n_3L1H7N0_7e0niOcuRqAyIm3g38YDFWytQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
 gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTM4MzF9.bjmC2P_ElEOxA
-tB6ol8I0YXvv1p4cLEGx0W2eb08ijW74XGLoYaKqOHixGWOm8AIafU-CabjUoKf1uKqF
-O5PYw
+V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTU2MTB9.GlkDBvPbZxvb6
+MggdoUuk9p7KBqShOCUBIGXsnoCQRJyjXl_2tTargwcgvUl5mbhDGta4yBuM8evLh4dy
+SohXg
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
@@ -4345,15 +4360,17 @@ data. The original JSON data is then used by the application. See
 <p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">-05<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-3.1">Defined the structure of the Holder Binding JWT.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-C-3.1">Add support for selective disclosure of array elements.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.2">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.2" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.2">Defined the structure of the Holder Binding JWT.<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.3">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.3" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.3">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.4">Added considerations around forwarding credentials<a href="#appendix-C-3.4" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.4">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.5">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.5">Added considerations around forwarding credentials<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="appendix-C-3.6">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.6" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-C-4">-04<a href="#appendix-C-4" class="pilcrow">¶</a></p>

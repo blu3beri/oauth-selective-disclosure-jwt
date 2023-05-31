@@ -562,7 +562,7 @@ Table of Contents
    Digests of Disclosures for object properties are added to an array
    under the new key _sd in the object.  The _sd key MUST refer to an
    array of strings, each string being a digest of a Disclosure or a
-   decoy digest as described below.
+   decoy digest as described in Section 5.5.
 
    The array MAY be empty in case the Issuer decided not to selectively
    disclose any of the claims at that level.  However, it is RECOMMENDED
@@ -600,6 +600,12 @@ Table of Contents
    {
      "nationalities": ["DE", {"...": "w0I8EKcdCtUPkGCNUrfwVp2xEgNjtoIDlOxc9-PlOhs"}]
    }
+
+   As described in Section 6.2, Verifiers ignore all selectively
+   disclosable array elements for which they did not receive a
+   Disclosure.  In the example above, the verification process would
+   output an array with only one element unless a matching Disclosure
+   for the second element is received.
 
 5.5.  Decoy Digests
 
@@ -645,10 +651,8 @@ Table of Contents
      ]
    }
 
-   The following non-normative example shows the payload of an SD-JWT.
-   The Issuer is using a flat structure in this case, i.e., all of the
-   claims in the address claim can only be disclosed in full.  In
-   Section 5.7, other options are discussed.
+   The following non-normative example shows a payload of an SD-JWT for
+   this End-User data:
 
    {
      "_sd": [
@@ -682,25 +686,19 @@ Table of Contents
      }
    }
 
-   The SD-JWT is then signed by the Issuer to create a JWT like the
-   following:
+   The Issuer in this case made the following decisions:
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIklsRHpJS2VpWmREd3BxcEs2WmZieXBoR
-   nZ6NUZnbldhLXNONndxUVhDaXciLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
-   TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
-   EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
-   mZVYW9tTG8iLCAiamRyVEU4WWNiWTRFaWZ1Z2loaUFlX0JQZWt4SlFaSUNlaVVRd1k5U
-   XF4SSIsICJqc3U5eVZ1bHdRUWxoRmxNXzNKbHpNYVNGemdsaFFHMERwZmF5UXdMVUs0I
-   l0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4M
-   zAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJzdWIiOiAidXNlcl80MiIsICJuYXRpb
-   25hbGl0aWVzIjogW3siLi4uIjogIjVxU3h6bkt1OXhDU29vN19IOXJScjFweXR5OHlLM
-   Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
-   lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-   iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-   TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-   zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-   al1-Flyg
+   *  The nationalities array is always visible, but its contents are
+      selectively disclosable.
+
+   *  The sub element and essential verification data (iss, iat, cnf,
+      etc.) are always visible.
+
+   *  All other End-User claims are selectively disclosable.
+
+   *  For address, the Issuer is using a flat structure, i.e., all of
+      the claims in the address claim can only be disclosed in full.
+      Other options are discussed in Section 5.7.
 
    The Issuer creates the following Disclosures:
 
@@ -786,6 +784,26 @@ Table of Contents
       WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgIkRFIl0
 
    *  Contents: ["G02NSrQfjFXQ7Io09syajA", "DE"]
+
+   The SD-JWT is then signed by the Issuer to create a JWT like the
+   following:
+
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIklsRHpJS2VpWmREd3BxcEs2WmZieXBoR
+   nZ6NUZnbldhLXNONndxUVhDaXciLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
+   TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
+   EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
+   mZVYW9tTG8iLCAiamRyVEU4WWNiWTRFaWZ1Z2loaUFlX0JQZWt4SlFaSUNlaVVRd1k5U
+   XF4SSIsICJqc3U5eVZ1bHdRUWxoRmxNXzNKbHpNYVNGemdsaFFHMERwZmF5UXdMVUs0I
+   l0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4M
+   zAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJzdWIiOiAidXNlcl80MiIsICJuYXRpb
+   25hbGl0aWVzIjogW3siLi4uIjogIjVxU3h6bkt1OXhDU29vN19IOXJScjFweXR5OHlLM
+   Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
+   lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
+   iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
+   TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+   Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+   zLzND_ng
 
 5.7.  Note on Nested Data in SD-JWTs
 
@@ -1091,9 +1109,9 @@ Table of Contents
    lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-   zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-   al1-Flyg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+   Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+   zLzND_ng~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
    obiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZS
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhb
    XBsZS5jb20iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlci
@@ -1174,7 +1192,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1685553831
+     "iat": 1685555610
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
@@ -1182,8 +1200,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODU1NTM4MzF9.ZbLcUzp3z2HknBRYZXsQ4O_A3zyRdC5c6OuQhlOXgF-kYxQrsq
-   9GqH5cixYY-F7qYNryAHpbvHZxXLFibNk3Mw
+   6IDE2ODU1NTU2MTB9.yCRBRvydZ4WqqkNucBGewSoG3zzEML46u_7QCbhYqOrQfxXsBS
+   4ToyE7XmhZIEFvZBv4QLs3W-n40R98Lwo1Cg
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1218,15 +1236,15 @@ Table of Contents
    lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cC5hWAbuzM
-   zoPn4g01mp1lOx-GKB0czDPEC0L6strz--hr5OzvuLK9zJuMdAOP5gdO8h0mBOPGyG4a
-   al1-Flyg~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.myUfdoHIeE
+   Bx5iXaPVJ9Z5C5Em-T636FM-v1h_qjnQNQMuKGP2Pl5g8zEUJoBgn_lLhV43B6LpPtCW
+   zLzND_ng~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
    vZSJd~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiL
    CAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJo
-   dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTM4MzF9.ZbL
-   cUzp3z2HknBRYZXsQ4O_A3zyRdC5c6OuQhlOXgF-kYxQrsq9GqH5cixYY-F7qYNryAHp
-   bvHZxXLFibNk3Mw
+   dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTU2MTB9.yCR
+   BRvydZ4WqqkNucBGewSoG3zzEML46u_7QCbhYqOrQfxXsBS4ToyE7XmhZIEFvZBv4QLs
+   3W-n40R98Lwo1Cg
 
 6.  Verification and Processing
 
@@ -2219,8 +2237,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.jQ0-vDRATk-qEfUL6cU20Bd0_e
-   GQeFLerHcWup-pntx81kvQnd2pj6GhslF7mUpwsf3CXfv5bIDbvZT9NZWVWg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.RJcTY4_maYuMKVBzDfgBILMDzy
+   AFvQEbYA1npc8M5LrVaI4-bwB0tXzeuQncSOx_gjCvtZVMBWs8X7Jit9LCQw~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2510,8 +2528,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.Ej1WS7MVVWLAjAW83ni3E6
-   yxLx9mmVUg06SgYB7qunaZMv4CfJMJdg2vKsewEF1z_lW13zeMDJn0LVnr-9kqew~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.UPG5fShwifwIjwKjR7oeqM
+   LauDJaiN_-NYjJ9fjws7CUUTlUnRgKeEGPRzgqYhAR_8Tt2TR8ZSUWEX5w7VM5vA~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2877,12 +2895,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.iG111inNQGJWi8r-LnvVL_ze6O6-bCYaXPzmBilriwVDcp-FJa
-   vFFD2i8WOysk4ddl3giJLI58E3KBVlkNus7g~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.xHXzZrxR478JkCc2NEFm5sA4FlKo_diOtaHguDCZmo8WnYrgYu
+   -n_3L1H7N0_7e0niOcuRqAyIm3g38YDFWytQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTM4MzF9.bjmC2P_ElEOxA
-   tB6ol8I0YXvv1p4cLEGx0W2eb08ijW74XGLoYaKqOHixGWOm8AIafU-CabjUoKf1uKqF
-   O5PYw
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NTU2MTB9.GlkDBvPbZxvb6
+   MggdoUuk9p7KBqShOCUBIGXsnoCQRJyjXl_2tTargwcgvUl5mbhDGta4yBuM8evLh4dy
+   SohXg
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -3058,6 +3076,8 @@ Appendix C.  Document History
    [[ To be removed from the final specification ]]
 
    -05
+
+   *  Add support for selective disclosure of array elements.
 
    *  Defined the structure of the Holder Binding JWT.
 
