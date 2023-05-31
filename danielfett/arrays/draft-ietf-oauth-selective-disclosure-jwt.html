@@ -1423,7 +1423,7 @@ similarly intended to be general-purpose specification.<a href="#section-1-4" cl
 mechanisms defined in this document can be used for other use cases as well.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">In an Issuer-signed SD-JWT, claims can be hidden, but cryptographically
 protected against undetected modification. "Claims" here refers to both
-object properties (key/value pairs) as well as array elements. When issuing the SD-JWT to
+object properties (key-value pairs) as well as array elements. When issuing the SD-JWT to
 the Holder, the Issuer also sends the cleartext counterparts of all hidden
 claims, the so-called Disclosures, separate from the SD-JWT itself.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">The Holder decides which claims to disclose to a Verifier and forwards the respective
@@ -1499,7 +1499,7 @@ that supports selective disclosure as defined in this document and can contain b
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-1.5">Disclosure:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-1.6">A combination of a salt, a cleartext claim name (in case the claim is a key/value pair and not an array element), and a cleartext claim value, all of which are used to calculate a digest for the respective claim.<a href="#section-2-1.6" class="pilcrow">¶</a>
+        <dd style="margin-left: 1.5em" id="section-2-1.6">A combination of a salt, a cleartext claim name (in case the claim is a key-value pair and not an array element), and a cleartext claim value, all of which are used to calculate a digest for the respective claim.<a href="#section-2-1.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-1.7">Cryptographic Holder Binding:</dt>
@@ -1578,7 +1578,7 @@ conceptual level, abstracting from the data formats described in <a href="#data_
         <h3 id="name-sd-jwt-and-disclosures">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-sd-jwt-and-disclosures" class="section-name selfRef">SD-JWT and Disclosures</a>
         </h3>
-<p id="section-4.1-1">An SD-JWT, at its core, is a digitally signed JSON document containing digests over the selectively disclosable claims with the Disclosures outside the document. Selectively disclosable claims can be individual object properties (key/value pairs) or array elements.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">An SD-JWT, at its core, is a digitally signed JSON document containing digests over the selectively disclosable claims with the Disclosures outside the document. Selectively disclosable claims can be individual object properties (key-value pairs) or array elements.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">Each digest value ensures the integrity of, and maps to, the respective Disclosure.  Digest values are calculated using a hash function over the Disclosures, each of which contains the claim name (only in case the claim is an object property), the claim value, and a random salt. The Disclosures are sent to the Holder together with the SD-JWT in the Combined Format for Issuance defined in <a href="#combined_format_for_issuance" class="auto internal xref">Section 5.10</a>.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">An SD-JWT MAY also contain clear-text claims that are always disclosed to the Verifier.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1665,7 +1665,7 @@ MUST NOT use <code>none</code> or an identifier for a symmetric algorithm (MAC).
         <h3 id="name-creating-disclosures">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-creating-disclosures" class="section-name selfRef">Creating Disclosures</a>
         </h3>
-<p id="section-5.2-1">Disclosures are created differently depending on whether a claim is an object property (key/value pair) or an array element.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">Disclosures are created differently depending on whether a claim is an object property (key-value pair) or an array element.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.2-2.1">For a claim that is an object property, the Issuer creates a Disclosure as described next.<a href="#section-5.2-2.1" class="pilcrow">¶</a>
 </li>
@@ -1779,6 +1779,9 @@ are all valid and encode the same claim value:<a href="#section-5.2.1-8" class="
         <h3 id="name-embedding-disclosure-digest">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-embedding-disclosure-digest" class="section-name selfRef">Embedding Disclosure Digests in SD-JWTs</a>
         </h3>
+<p id="section-5.4-1">Digests of disclosures are embedded into the SD-JWT instead of the original
+claims. The precise way of embedding the digests depends on the type of the
+claim, as described in the following sections.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <div id="object-properties">
 <section id="section-5.4.1">
           <h4 id="name-object-properties">
@@ -1792,9 +1795,9 @@ any of the claims at that level. However, it is RECOMMENDED to omit the <code>_s
 key in this case to save space.<a href="#section-5.4.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.4.1-3">The Issuer MUST hide the original order of the claims in the array. To ensure
 this, it is RECOMMENDED to shuffle the array of hashes (after potentially adding
-decoy digests), e.g., by sorting it alphanumerically or randomly. The precise
-method does not matter as long as it does not depend on the original order of
-elements.<a href="#section-5.4.1-3" class="pilcrow">¶</a></p>
+decoy digests as described in <a href="#decoy_digests" class="auto internal xref">Section 5.5</a>), e.g., by sorting it
+alphanumerically or randomly. The precise method does not matter as long as it
+does not depend on the original order of elements.<a href="#section-5.4.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.4.1-4">For example, using the digest of the object property Disclosure created above,
 the Issuer could create the following SD-JWT payload to make <code>family_name</code>
 selectively disclosable:<a href="#section-5.4.1-4" class="pilcrow">¶</a></p>
@@ -2044,9 +2047,9 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hFDm88ybIY
-Dxff5Ac5bnJwDbMGvK0OWLi9xS8VtMHQeuY7I2N8gyfuZXqu3LBlAI85z52MTpqY4Uk1
-WhCU0vZQ
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
+3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
+YZlD9b-w
 </pre><a href="#section-5.6-25" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2056,8 +2059,11 @@ WhCU0vZQ
         <h3 id="name-note-on-nested-data-in-sd-j">
 <a href="#section-5.7" class="section-number selfRef">5.7. </a><a href="#name-note-on-nested-data-in-sd-j" class="section-name selfRef">Note on Nested Data in SD-JWTs</a>
         </h3>
-<p id="section-5.7-1">Being JSON, an object in an SD-JWT payload MAY contain key-value pairs where the value is another object. In SD-JWT, the Issuer decides for each key individually, on each level of the JSON, whether the key should be selectively disclosable or not. This choice can be made on each level independent from whether keys higher in the hierarchy are selectively disclosable.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
-<p id="section-5.7-2">For any selectively disclosable claim, the <code>_sd</code> key containing the digest value MUST be included in the SD-JWT at the same level as the original claim. It follows that the <code>_sd</code> key MAY appear multiple times in an SD-JWT. It MAY even appear within Disclosures.<a href="#section-5.7-2" class="pilcrow">¶</a></p>
+<p id="section-5.7-1">Being JSON, an object in an SD-JWT payload MAY contain key-value pairs where the value is another object or objects MAY be elements in arrays. In SD-JWT, the Issuer decides for each claim individually, on each level of the JSON, whether the claim should be selectively disclosable or not. This choice can be made on each level independent from whether keys higher in the hierarchy are selectively disclosable.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
+<p id="section-5.7-2">From this it follows that the <code>_sd</code> key containing digests MAY appear multiple
+times in an SD-JWT, and likewise, there MAY be multiple arrays within the
+hierarchy with each having selectively disclosable elements. Digests of
+selectively disclosable claims MAY even appear within other Disclosures.<a href="#section-5.7-2" class="pilcrow">¶</a></p>
 <p id="section-5.7-3">The following examples illustrate some of the options an Issuer has. It is up to the Issuer to decide which option to use, depending on, for example, the expected use cases for the SD-JWT, requirements for privacy, size considerations, or ecosystem requirements.<a href="#section-5.7-3" class="pilcrow">¶</a></p>
 <p id="section-5.7-4">The following claim set is used as an example throughout this section:<a href="#section-5.7-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.7-5">
@@ -2304,13 +2310,17 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
         <h3 id="name-hash-function-claim">
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-hash-function-claim" class="section-name selfRef">Hash Function Claim</a>
         </h3>
-<p id="section-5.8-1">The claim <code>_sd_alg</code> indicates the hash algorithm
-used by the Issuer to generate the digests over the salts and the
-claim values. If the  <code>_sd_alg</code> claim is not present, a default value of <code>sha-256</code> is used.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
-<p id="section-5.8-2">The hash algorithm identifier MUST be a hash algorithm value from the "Hash Name String" column in the IANA "Named Information Hash Algorithm" registry <span>[<a href="#IANA.Hash.Algorithms" class="cite xref">IANA.Hash.Algorithms</a>]</span>
-or a value defined in another specification and/or profile of this specification.<a href="#section-5.8-2" class="pilcrow">¶</a></p>
-<p id="section-5.8-3">To promote interoperability, implementations MUST support the <code>sha-256</code> hash algorithm.<a href="#section-5.8-3" class="pilcrow">¶</a></p>
-<p id="section-5.8-4">See <a href="#security_considerations" class="auto internal xref">Section 8</a> for requirements regarding entropy of the salt, minimum length of the salt, and choice of a hash algorithm.<a href="#section-5.8-4" class="pilcrow">¶</a></p>
+<p id="section-5.8-1">The claim <code>_sd_alg</code> indicates the hash algorithm used by the Issuer to generate
+the digests over the salts and the claim values. If the  <code>_sd_alg</code> claim is not
+present, a default value of <code>sha-256</code> is used.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
+<p id="section-5.8-2">The hash algorithm identifier MUST be a hash algorithm value from the "Hash Name
+String" column in the IANA "Named Information Hash Algorithm" registry
+<span>[<a href="#IANA.Hash.Algorithms" class="cite xref">IANA.Hash.Algorithms</a>]</span> or a value defined in another specification and/or
+profile of this specification.<a href="#section-5.8-2" class="pilcrow">¶</a></p>
+<p id="section-5.8-3">To promote interoperability, implementations MUST support the <code>sha-256</code> hash
+algorithm.<a href="#section-5.8-3" class="pilcrow">¶</a></p>
+<p id="section-5.8-4">See <a href="#security_considerations" class="auto internal xref">Section 8</a> for requirements regarding entropy of the salt,
+minimum length of the salt, and choice of a hash algorithm.<a href="#section-5.8-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="holder_public_key_claim">
@@ -2324,7 +2334,8 @@ associated with the Holder, or a reference thereto.<a href="#section-5.9-1" clas
 established. For example, the Holder MAY provide a key pair to the Issuer,
 the Issuer MAY create the key pair for the Holder, or
 Holder and Issuer MAY use pre-established key material.<a href="#section-5.9-2" class="pilcrow">¶</a></p>
-<p id="section-5.9-3">Note: Examples in this document use <code>cnf</code> Claim defined in <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> to include raw public key by value in SD-JWT.<a href="#section-5.9-3" class="pilcrow">¶</a></p>
+<p id="section-5.9-3">Note: Examples in this document use <code>cnf</code> Claim defined in <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> to include
+raw public key by value in SD-JWT.<a href="#section-5.9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="combined_format_for_issuance">
@@ -2366,9 +2377,9 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hFDm88ybIY
-Dxff5Ac5bnJwDbMGvK0OWLi9xS8VtMHQeuY7I2N8gyfuZXqu3LBlAI85z52MTpqY4Uk1
-WhCU0vZQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
+3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
+YZlD9b-w~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
 obiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZS
 Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhb
 XBsZS5jb20iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlci
@@ -2439,7 +2450,7 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1685573004
+  "iat": 1685576943
 }
 </pre><a href="#section-5.11.1.1-7" class="pilcrow">¶</a>
 </div>
@@ -2447,8 +2458,8 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.11.1.1-9">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODU1NzMwMDR9.YB6_DuM1qwIcEhru22LgGxDC1wtP38mUjmFaz9FX9mwpx7HKLh
-gHD84f6Em-02C7lvJR26ozITsP6P4zo4Z-kg
+6IDE2ODU1NzY5NDN9.MQeQzRajasZHlwvfwsE7QlXmYO39CfUTNqZePSGiHkCUMvAzSY
+3_fUT4kZ2DGwwzcyOXw5Q8WO2Ul9IGrRJOZA
 </pre><a href="#section-5.11.1.1-9" class="pilcrow">¶</a>
 </div>
 <p id="section-5.11.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
@@ -2483,15 +2494,15 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hFDm88ybIY
-Dxff5Ac5bnJwDbMGvK0OWLi9xS8VtMHQeuY7I2N8gyfuZXqu3LBlAI85z52MTpqY4Uk1
-WhCU0vZQ~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
+3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
+YZlD9b-w~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
 vZSJd~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obi
 Jd~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiL
 CAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJo
-dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzMwMDR9.YB6
-_DuM1qwIcEhru22LgGxDC1wtP38mUjmFaz9FX9mwpx7HKLhgHD84f6Em-02C7lvJR26o
-zITsP6P4zo4Z-kg
+dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzY5NDN9.MQe
+QzRajasZHlwvfwsE7QlXmYO39CfUTNqZePSGiHkCUMvAzSY3_fUT4kZ2DGwwzcyOXw5Q
+8WO2Ul9IGrRJOZA
 </pre><a href="#section-5.11.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2517,12 +2528,12 @@ a Combined Format for Issuance:<a href="#section-6.1-1" class="pilcrow">¶</a></
 </li>
           <li id="section-6.1-2.2">Hash all of the Disclosures separately.<a href="#section-6.1-2.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.1-2.3">Find the <code>_sd</code> arrays in the SD-JWT where the digests of the Disclosures are
-included and decode the respective plaintext values from the Disclosures at the
-appropriate places. The processing MUST take into account that digests might be
-included not only directly in the SD-JWT, but also in other Disclosures. If there
-is a Disclosure with a digest that cannot be found in any <code>_sd</code> array, the SD-JWT
-is invalid and the Holder MUST reject the SD-JWT.<a href="#section-6.1-2.3" class="pilcrow">¶</a>
+          <li id="section-6.1-2.3">Find the objects and array elements in the SD-JWT where the digests of the
+Disclosures are included and decode the respective plaintext values from the
+Disclosures at the appropriate places. The processing MUST take into account
+that digests might be included not only directly in the SD-JWT, but also in
+other Disclosures. If there is a Disclosure with a digest that cannot be
+found, the SD-JWT is invalid and the Holder MUST reject the SD-JWT.<a href="#section-6.1-2.3" class="pilcrow">¶</a>
 </li>
         </ol>
 <p id="section-6.1-3">It is up to the Holder how to maintain the mapping between the Disclosures and the plaintext claim values to be able to display them to the End-User when needed.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
@@ -2578,7 +2589,7 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
             </ol>
 </li>
           <li id="section-6.2-4.4">
-            <p id="section-6.2-4.4.1">Process the Disclosures and <code>_sd</code> keys in the SD-JWT as follows:<a href="#section-6.2-4.4.1" class="pilcrow">¶</a></p>
+            <p id="section-6.2-4.4.1">Process the Disclosures and embedded digests in the SD-JWT as follows:<a href="#section-6.2-4.4.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2">
 <li id="section-6.2-4.4.2.1">
                 <p id="section-6.2-4.4.2.1.1">For each Disclosure provided:<a href="#section-6.2-4.4.2.1.1" class="pilcrow">¶</a></p>
@@ -2588,32 +2599,52 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
                 </ol>
 </li>
               <li id="section-6.2-4.4.2.2">
-                <p id="section-6.2-4.4.2.2.1">Find all <code>_sd</code> keys in the SD-JWT payload. For each such key perform the following steps (*):<a href="#section-6.2-4.4.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-6.2-4.4.2.2.1">(*) Identify all embedded digests in the SD-JWT as follows:<a href="#section-6.2-4.4.2.2.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2.2.2">
-<li id="section-6.2-4.4.2.2.2.1">If the key does not refer to an array, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.2.2.1" class="pilcrow">¶</a>
+<li id="section-6.2-4.4.2.2.2.1">Find all objects having an <code>_sd</code> key that refers to an array.<a href="#section-6.2-4.4.2.2.2.1" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.4.2.2.2.2">
-                    <p id="section-6.2-4.4.2.2.2.2.1">Otherwise, process each entry in the <code>_sd</code> array as follows:<a href="#section-6.2-4.4.2.2.2.2.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2.2.2.2.2">
-<li id="section-6.2-4.4.2.2.2.2.2.1">Compare the value with the digests calculated previously and find the matching Disclosure. If no such Disclosure can be found, the digest MUST be ignored.<a href="#section-6.2-4.4.2.2.2.2.2.1" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.4.2.2.2.2">Find all array elements that are objects with one key, that key being <code>...</code> and referring to a string.<a href="#section-6.2-4.4.2.2.2.2" class="pilcrow">¶</a>
 </li>
-                      <li id="section-6.2-4.4.2.2.2.2.2.2">If the Disclosure is not a JSON-encoded array of three elements, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.2.2.2.2.2" class="pilcrow">¶</a>
+                </ol>
 </li>
-                      <li id="section-6.2-4.4.2.2.2.2.2.3">Insert, at the level of the <code>_sd</code> key, a new claim using the claim name and claim value from the Disclosure.<a href="#section-6.2-4.4.2.2.2.2.2.3" class="pilcrow">¶</a>
+              <li id="section-6.2-4.4.2.3">
+                <p id="section-6.2-4.4.2.3.1">(**) For each embedded digest:<a href="#section-6.2-4.4.2.3.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2.3.2">
+<li id="section-6.2-4.4.2.3.2.1">Compare the value with the digests calculated previously and find the matching Disclosure. If no such Disclosure can be found, the digest MUST be ignored.<a href="#section-6.2-4.4.2.3.2.1" class="pilcrow">¶</a>
 </li>
-                      <li id="section-6.2-4.4.2.2.2.2.2.4">If the claim name already exists at the same level, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.2.2.2.2.4" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.4.2.3.2.2">
+                    <p id="section-6.2-4.4.2.3.2.2.1">If the digest was found in an object's <code>_sd</code> key:<a href="#section-6.2-4.4.2.3.2.2.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2.3.2.2.2">
+<li id="section-6.2-4.4.2.3.2.2.2.1">If the Disclosure is not a JSON-encoded array of three elements, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.3.2.2.2.1" class="pilcrow">¶</a>
 </li>
-                      <li id="section-6.2-4.4.2.2.2.2.2.5">If the decoded value contains an <code>_sd</code> key in an object, recursively process the key using the steps described in (*).<a href="#section-6.2-4.4.2.2.2.2.2.5" class="pilcrow">¶</a>
+                      <li id="section-6.2-4.4.2.3.2.2.2.2">Insert, at the level of the <code>_sd</code> key, a new claim using the claim name and claim value from the Disclosure.<a href="#section-6.2-4.4.2.3.2.2.2.2" class="pilcrow">¶</a>
+</li>
+                      <li id="section-6.2-4.4.2.3.2.2.2.3">If the claim name already exists at the same level, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.3.2.2.2.3" class="pilcrow">¶</a>
+</li>
+                      <li id="section-6.2-4.4.2.3.2.2.2.4">Recursively process the value using the steps described in (*) and (**).<a href="#section-6.2-4.4.2.3.2.2.2.4" class="pilcrow">¶</a>
+</li>
+                    </ol>
+</li>
+                  <li id="section-6.2-4.4.2.3.2.3">
+                    <p id="section-6.2-4.4.2.3.2.3.1">If the digest was found in an array element:<a href="#section-6.2-4.4.2.3.2.3.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.2-4.4.2.3.2.3.2">
+<li id="section-6.2-4.4.2.3.2.3.2.1">If the Disclosure is not a JSON-encoded array of two elements, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.3.2.3.2.1" class="pilcrow">¶</a>
+</li>
+                      <li id="section-6.2-4.4.2.3.2.3.2.2">Replace the array element with the claim value from the Disclosure.<a href="#section-6.2-4.4.2.3.2.3.2.2" class="pilcrow">¶</a>
+</li>
+                      <li id="section-6.2-4.4.2.3.2.3.2.3">Recursively process the value using the steps described in (*) and (**).<a href="#section-6.2-4.4.2.3.2.3.2.3" class="pilcrow">¶</a>
 </li>
                     </ol>
 </li>
                 </ol>
 </li>
-              <li id="section-6.2-4.4.2.3">If any digests were found more than once in the previous step, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.3" class="pilcrow">¶</a>
+              <li id="section-6.2-4.4.2.4">If any digests were found more than once in the previous step, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.4.2.4" class="pilcrow">¶</a>
 </li>
-              <li id="section-6.2-4.4.2.4">Remove all <code>_sd</code> keys from the SD-JWT payload.<a href="#section-6.2-4.4.2.4" class="pilcrow">¶</a>
+              <li id="section-6.2-4.4.2.5">Remove all array elements for which the digest was not found in the previous step.<a href="#section-6.2-4.4.2.5" class="pilcrow">¶</a>
 </li>
-              <li id="section-6.2-4.4.2.5">Remove the claim <code>_sd_alg</code> from the SD-JWT payload.<a href="#section-6.2-4.4.2.5" class="pilcrow">¶</a>
+              <li id="section-6.2-4.4.2.6">Remove all <code>_sd</code> keys from the SD-JWT payload.<a href="#section-6.2-4.4.2.6" class="pilcrow">¶</a>
+</li>
+              <li id="section-6.2-4.4.2.7">Remove the claim <code>_sd_alg</code> from the SD-JWT payload.<a href="#section-6.2-4.4.2.7" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
@@ -3495,8 +3526,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.omwtw5pVQEFCm57OZ6rkNZQM4k
-Na2GZ949jdDHAzXNzfj9Ch5xagm37EncW2M70NAs1oq4X_T6nIt0p_Uy-IMA~
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.fOCVbyY24tplWzF6Kx15nIPZXR
+c6li5wej2aDmCEukQZRQxRMfwoNW6myOFGcyYHbtUr7TNhl-N0w61GPReaPQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3818,8 +3849,8 @@ jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
 3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
 244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
 0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.19XZVUZ5OoISlgPzdlX6KL
-ik22fufG2iCZ2SbkakIYapnb-cg1P1AkoBnrXetRqU4N-BOVuojcIpcd7iTzLrCA~
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.wbiWw9OXs7dShwcQ9SDq-O
+ezPFkPAVNNcwmLu0v8icGg3KLUPcqbIYEB8G1Q_lAm-DGK9H7ZfsQhreQ2pu2YUQ~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -4187,12 +4218,12 @@ iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
 GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
 CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
 3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.XXjfs6fI8qjkOWRnY_CF_isi--9RXOFiecfQPuueDOS2Gykeuz
-XQ0okpdAqaaL8BG4cd9JvdHUM-_VjbIe3THA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+GpUOUYySFpRIn19fQ.NHPuUQYx4ZvkewJarHQJPjM8Kb8HWdlxNt6Mgx6x03VJQm0aEu
+YsF5Y0FH8-UNgYhJSEWTwwLWOiCK4_ao5eog~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
 gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzMwMDR9._pbg62-bqCp7u
--1A7ecBbg6FbtE5eCiWQk3QU8az7J8_pmMeCgfVz_Tfv2ed_6-r9oltoaWpBSQwXkX1l
-WM72w
+V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzY5NDN9.lW8LPk9cdSlHk
+giynXWiemnAUJn0s3lxZaETywHSlTIcKAfBw0ZJseXVXh0c4ES_vKk6UQPiNfCDPZdBZ
+2_jTQ
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
