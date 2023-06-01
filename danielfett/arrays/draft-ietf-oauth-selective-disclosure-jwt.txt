@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 2 December 2023                                       Microsoft
+Expires: 3 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             31 May 2023
+                                                             1 June 2023
 
 
                  Selective Disclosure for JWTs (SD-JWT)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 December 2023.
+   This Internet-Draft will expire on 3 December 2023.
 
 Copyright Notice
 
@@ -807,9 +807,9 @@ Table of Contents
    lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
-   3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
-   YZlD9b-w
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.sa5AkVQtuB
+   PFEAY0LHZdsqGRpXjiibLVPg7UbVyaEc1BDJDUEFCLM8MwUTRZT5Uo3H8cKo6NC7g-tu
+   56K86xgQ
 
 5.7.  Note on Nested Data in SD-JWTs
 
@@ -1117,9 +1117,9 @@ Table of Contents
    lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
-   3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
-   YZlD9b-w~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.sa5AkVQtuB
+   PFEAY0LHZdsqGRpXjiibLVPg7UbVyaEc1BDJDUEFCLM8MwUTRZT5Uo3H8cKo6NC7g-tu
+   56K86xgQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
    obiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZS
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhb
    XBsZS5jb20iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlci
@@ -1200,7 +1200,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1685576943
+     "iat": 1685577805
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
@@ -1208,8 +1208,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODU1NzY5NDN9.MQeQzRajasZHlwvfwsE7QlXmYO39CfUTNqZePSGiHkCUMvAzSY
-   3_fUT4kZ2DGwwzcyOXw5Q8WO2Ul9IGrRJOZA
+   6IDE2ODU1Nzc4MDV9.QMEO4FE4woAc30FVG3L4Rjy9AloC5SkTkHEdm_7WwaxBOIax6n
+   PWoNmFblIBtsGiFwAz9mz7CA7jmF78UMLsow
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1244,15 +1244,15 @@ Table of Contents
    lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.hszUOEe48o
-   3tW7heXLfhOkODkTEt5j0sMPoPIO0xg6dfNAXb8WW1-51WFupG8wDWMwNGIsri4cGJ8R
-   YZlD9b-w~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.sa5AkVQtuB
+   PFEAY0LHZdsqGRpXjiibLVPg7UbVyaEc1BDJDUEFCLM8MwUTRZT5Uo3H8cKo6NC7g-tu
+   56K86xgQ~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkR
    vZSJd~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiL
    CAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJo
-   dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzY5NDN9.MQe
-   QzRajasZHlwvfwsE7QlXmYO39CfUTNqZePSGiHkCUMvAzSY3_fUT4kZ2DGwwzcyOXw5Q
-   8WO2Ul9IGrRJOZA
+   dHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1Nzc4MDV9.QME
+   O4FE4woAc30FVG3L4Rjy9AloC5SkTkHEdm_7WwaxBOIax6nPWoNmFblIBtsGiFwAz9mz
+   7CA7jmF78UMLsow
 
 6.  Verification and Processing
 
@@ -1351,7 +1351,7 @@ Table of Contents
            2.  Find all array elements that are objects with one key,
                that key being ... and referring to a string.
 
-       3.  (**) For each embedded digest:
+       3.  (**) For each embedded digest found in the previous step:
 
            1.  Compare the value with the digests calculated previously
                and find the matching Disclosure.  If no such Disclosure
@@ -1359,8 +1359,8 @@ Table of Contents
 
            2.  If the digest was found in an object's _sd key:
 
-               1.  If the Disclosure is not a JSON-encoded array of
-                   three elements, the Verifier MUST reject the
+               1.  If the respective Disclosure is not a JSON-encoded
+                   array of three elements, the Verifier MUST reject the
                    Presentation.
 
                2.  Insert, at the level of the _sd key, a new claim
@@ -1375,8 +1375,9 @@ Table of Contents
 
            3.  If the digest was found in an array element:
 
-               1.  If the Disclosure is not a JSON-encoded array of two
-                   elements, the Verifier MUST reject the Presentation.
+               1.  If the respective Disclosure is not a JSON-encoded
+                   array of two elements, the Verifier MUST reject the
+                   Presentation.
 
                2.  Replace the array element with the claim value from
                    the Disclosure.
@@ -1390,7 +1391,8 @@ Table of Contents
        5.  Remove all array elements for which the digest was not found
            in the previous step.
 
-       6.  Remove all _sd keys from the SD-JWT payload.
+       6.  Remove all _sd keys and their contents from the SD-JWT
+           payload.
 
        7.  Remove the claim _sd_alg from the SD-JWT payload.
 
@@ -2261,8 +2263,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.fOCVbyY24tplWzF6Kx15nIPZXR
-   c6li5wej2aDmCEukQZRQxRMfwoNW6myOFGcyYHbtUr7TNhl-N0w61GPReaPQ~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.rTQc2IuUippYACnJNhPnWn17yg
+   iIsIiriYgn93TEOcMHNKfK_EC_pECSdvhhrRtfX6QwzxedM51skgqEnOIjxQ~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2552,8 +2554,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.wbiWw9OXs7dShwcQ9SDq-O
-   ezPFkPAVNNcwmLu0v8icGg3KLUPcqbIYEB8G1Q_lAm-DGK9H7ZfsQhreQ2pu2YUQ~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.TrIOW20gbkegHlvj9I548Q
+   WR3tk1v9LwJnKfpq5omZjri6OHb5qWeQ8zVbxWTlL2FUwOy3wrReImskDMIqwd8Q~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2919,12 +2921,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.NHPuUQYx4ZvkewJarHQJPjM8Kb8HWdlxNt6Mgx6x03VJQm0aEu
-   YsF5Y0FH8-UNgYhJSEWTwwLWOiCK4_ao5eog~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.ZHD53eGXWOvCpKnSwSliuFFH6qN-g8IE35byQHNnhsiTNDDNuj
+   FY4m-EgJyDih01DKabek5UUZh797oGQaD2WA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1NzY5NDN9.lW8LPk9cdSlHk
-   giynXWiemnAUJn0s3lxZaETywHSlTIcKAfBw0ZJseXVXh0c4ES_vKk6UQPiNfCDPZdBZ
-   2_jTQ
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU1Nzc4MDV9.E1NUmHNoLuN9q
+   Ri5lbhmEy_cstgVrLlZNvWkKafhwJRRpqbVuw_WY1vk1_-HTIhim3dlbK0RJpJ__VZNQ
+   RORcg
 
    After the validation, the Verifier will have the following data for
    further processing:
