@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-30T01:01:38.268449+00:00",
+  "timestamp": "2023-06-01T01:21:18.786893+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -244,7 +244,7 @@
       "id": "I_kwDOHTmVzM5KhQ-o",
       "title": "Term \"holder\" has a mismatch with legal notions in EU Data Act etc. ",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sakimura",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -253,8 +253,8 @@
       ],
       "body": "\"holder\" is not a good term to use in this context as it overlaps with a legal term that maps to claims sources. (cf. EU Data Act, Australian Consumer Data Regulation, etc. )\r\n\r\nPerhaps we can just use \"wallet\" for this purpose. ",
       "createdAt": "2022-05-27T01:12:41Z",
-      "updatedAt": "2022-06-29T01:30:21Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-30T22:32:30Z",
+      "closedAt": "2023-05-30T22:32:30Z",
       "comments": [
         {
           "author": "danielfett",
@@ -346,6 +346,13 @@
           "body": "but in ISO mDL world, we are moving forward with the term \"holder\". no one from EU/Australia seemed to be concerned. Apparently, document Holder is also typical term from the document business.",
           "createdAt": "2022-06-29T01:30:14Z",
           "updatedAt": "2022-06-29T01:30:21Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[The European Digital Identity Wallet Architecture and Reference Framework](https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework) uses term holder. \r\n\r\nBut there are suggestions to use key binding instead of holder binding in issue #281 - suggest to continue the discussion there.",
+          "createdAt": "2023-05-30T22:32:30Z",
+          "updatedAt": "2023-05-30T22:32:30Z"
         }
       ]
     },
@@ -2083,15 +2090,15 @@
       "id": "I_kwDOHTmVzM5L_eC5",
       "title": "Add proper header claims in SD-JWT",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/60",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "peppelinux",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "We have \r\n\r\n````\r\n{\r\n  \"alg\": \"RS256\"\r\n}\r\n````\r\n\r\nwe may have something like\r\n\r\n````\r\n{\r\n  \"typ\": \"SD-JWT\"\r\n  \"alg\": \"RS256\"\r\n}\r\n````",
       "createdAt": "2022-06-17T11:42:04Z",
-      "updatedAt": "2023-04-18T08:06:27Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-30T22:27:19Z",
+      "closedAt": "2023-05-30T22:27:19Z",
       "comments": [
         {
           "author": "tlodderstedt",
@@ -2190,6 +2197,13 @@
           "body": "> What about this solution? \r\n\r\nI usually like your ideas @danielfett but would be strongly opposed to that. \r\n\r\nIMHO this draft should not say or mandate anything about \"typ\" headers. Leave that to the application to use (or not) as appropriate. But `\"typ\": \"sd+jwt\"` isn't really meaningful or useful on it's own (similar to `\"typ\": \"JWT\"`, the WTF from RFC7519) and so we don't need special SD-JWT features for it. \r\n\r\nIt _maybe_ worthwhile to define media type(s) for the combined format(s) that could be used to signal what the thing is in like HTTP `Content-Type` or `cty` header of an enclosing JWE.  Maybe. \r\n",
           "createdAt": "2022-12-08T20:13:39Z",
           "updatedAt": "2022-12-08T20:13:39Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved with PR #249 ",
+          "createdAt": "2023-05-30T22:27:18Z",
+          "updatedAt": "2023-05-30T22:27:18Z"
         }
       ]
     },
@@ -5218,7 +5232,7 @@
       "labels": [],
       "body": "We currently do not support selective disclosure for elements in an array (we do support it for keys within objects within arrays, but not for arbitrary array elements).\r\n\r\nExample:\r\n\r\nThe key `foo` in `{\"foo\": [23, \"bar\", false]}` can be SD, but we can't apply SD to the array elements, i.e., we cannot disclose `23` without disclosing `\"bar\"`. \r\n\r\nProposal:\r\n\r\nFor object keys, we use the new key `_sd` to collect the disclosure hashes. For arrays, we would need to mark the array as selectively disclosable, e.g., by using a special first element in the array like this:\r\n\r\n`{\"foo\": [\"_sd\", \"7pHe1uQ5uSClgAxXdG0E6dKnBgXcxEO1zvoQO9E5Lr4\", \"9-VdSnvRTZNDo-4Bxcp3X-V9VtLOCRUkR6oLWZQl81I\",\r\n      \"nTzPZ3Q68z1Ko_9ao9LK0mSYXY5gY6UG6KEkQ_BdqU0\"]}`\r\n\r\nThe three hashes correspond to the three elements in the array. The verifier can resolve the disclosed elements into their original values and ignore/replace the other values. Order is preserved. This works for arbitrary element types.\r\n\r\nThis would not allow to mix SD and non-SD elements in an array, but it seems unlikely that that would be a problem. WDYT @bc-pi @Sakurann?\r\n   ",
       "createdAt": "2022-12-27T15:36:00Z",
-      "updatedAt": "2023-05-26T13:38:56Z",
+      "updatedAt": "2023-05-31T22:12:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -5451,6 +5465,27 @@
           "body": "> Any other ideas? \r\n\r\njust more bikeshedding but perhaps `_sdi` or `_si` where the `i` is loosely for item in the array ",
           "createdAt": "2023-05-26T13:38:55Z",
           "updatedAt": "2023-05-26T13:38:55Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I vote for `{\"_sd\": \"digest\"}` because it avoids the concern we had earlier on the collision of the `_sd:` prefix and potentially introducing \"_sd_arr_pfx\". and it also feels cleaner and is easier to check for `_sd` from Daniel's experience.",
+          "createdAt": "2023-05-30T22:44:22Z",
+          "updatedAt": "2023-05-30T22:44:22Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I also like `...` \r\ndon't want to think every single time what `_sa`, `_si`, `_sde` etc stands for and other characters proposed feel like might cause conflicts. though `_:` looks cute..",
+          "createdAt": "2023-05-30T22:45:36Z",
+          "updatedAt": "2023-05-30T22:45:36Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "Pull request for spec text: #283 ",
+          "createdAt": "2023-05-31T22:12:22Z",
+          "updatedAt": "2023-05-31T22:12:22Z"
         }
       ]
     },
@@ -5847,9 +5882,17 @@
       "labels": [],
       "body": "Got external feedback:\r\n\r\n* The tooling should allow custom values in the header\r\n* We currently have no way to show the headers",
       "createdAt": "2023-02-20T15:40:00Z",
-      "updatedAt": "2023-02-20T15:40:01Z",
+      "updatedAt": "2023-05-30T22:34:33Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "more relevant to externalized reference implementation repo now. header to HB JWT is introduced in this PR: https://github.com/danielfett/sd-jwt/pull/3 ",
+          "createdAt": "2023-05-30T22:34:33Z",
+          "updatedAt": "2023-05-30T22:34:33Z"
+        }
+      ]
     },
     {
       "number": 218,
@@ -6022,7 +6065,7 @@
       "id": "I_kwDOHTmVzM5gpPVF",
       "title": "Add more details on attacker model",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/235",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -6033,9 +6076,17 @@
       ],
       "body": "Issue #87 discusses the security and privacy targets. This was fixed in PR #225, but we should add more details on the attacker model.",
       "createdAt": "2023-03-13T12:50:15Z",
-      "updatedAt": "2023-04-14T13:34:04Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-05-30T22:27:20Z",
+      "closedAt": "2023-05-30T22:27:20Z",
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR was merged",
+          "createdAt": "2023-05-30T22:27:20Z",
+          "updatedAt": "2023-05-30T22:27:20Z"
+        }
+      ]
     },
     {
       "number": 236,
@@ -6096,7 +6147,7 @@
       "id": "I_kwDOHTmVzM5h6or0",
       "title": "Example 2 mismatch",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/240",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "christianpaquin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -6105,8 +6156,8 @@
       ],
       "body": "[Example 2b](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-example-2b-adding-decoys) states that it was created using data from [Example 2a](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-example-2a-handling-structu), but adding decoy values. I'd expect its `_sd` param to be a superset of example 2a's, but it's not the case. Am I missing something?",
       "createdAt": "2023-03-27T20:23:08Z",
-      "updatedAt": "2023-04-17T11:11:28Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-30T22:28:10Z",
+      "closedAt": "2023-05-30T22:28:09Z",
       "comments": [
         {
           "author": "danielfett",
@@ -6114,6 +6165,13 @@
           "body": "Example 2b includes different nonces than Example 2a.\r\n\r\nWe try to use deterministic random numbers to generate the examples, but in this case, due to the order in which the decoys and regular salts are created, this approach does not produce the same nonces for the same \"real\" disclosures.",
           "createdAt": "2023-03-29T02:02:56Z",
           "updatedAt": "2023-03-29T02:02:56Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR was merged ",
+          "createdAt": "2023-05-30T22:28:09Z",
+          "updatedAt": "2023-05-30T22:28:09Z"
         }
       ]
     },
@@ -6426,15 +6484,15 @@
       "id": "I_kwDOHTmVzM5jhz1y",
       "title": "make holder binding JWT first in the combined formats for presentation",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/253",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Sakurann",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Would it make sense to change the order of strings in the combined formats for presentation, so that the holder binding JWT is first? that way it is easier to understand whether it is a combined format for presentation or issuance?",
       "createdAt": "2023-04-16T09:28:48Z",
-      "updatedAt": "2023-05-08T02:10:14Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-30T22:27:55Z",
+      "closedAt": "2023-05-30T22:27:55Z",
       "comments": [
         {
           "author": "bc-pi",
@@ -6478,7 +6536,7 @@
       "labels": [],
       "body": "I find myself using `combined format for presentation/issuance` to refer to the entire `series of base64url-encoded values`, which is not exactly accurate..? would it make sense to rename to something like `combined issuance/presentation values\"?",
       "createdAt": "2023-04-16T09:33:11Z",
-      "updatedAt": "2023-05-15T12:18:37Z",
+      "updatedAt": "2023-05-31T23:09:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -6536,6 +6594,20 @@
           "body": "Can we call it \"presentation object\" or \"presentation envelope\" or \"presentation container\", \"issuance object\" or \"issuance envelope\" or \"issuance container\". When referred to in other specs, it would be much easier to read.",
           "createdAt": "2023-05-15T12:18:37Z",
           "updatedAt": "2023-05-15T12:18:37Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Editors are leaning towards `SD-JWT Issuance format` and `SD-JWT Presentation format`. and short names will establish themselves :) ",
+          "createdAt": "2023-05-31T22:47:56Z",
+          "updatedAt": "2023-05-31T22:47:56Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think it might not be even necessary to distinguish these two in the specification and just merge both sections together.\r\n\r\ngood point. editors are leaning towards having one section \"SD-JWT Issuance/Presentation format\" where the Issuance format is `<SD-JWT>~<Disclosure>...<Disclosure>~`, so same as Presentation format without HB JWT. ",
+          "createdAt": "2023-05-31T23:09:26Z",
+          "updatedAt": "2023-05-31T23:09:26Z"
         }
       ]
     },
@@ -6964,10 +7036,12 @@
       "assignees": [
         "danielfett"
       ],
-      "labels": [],
+      "labels": [
+        "needs-PR"
+      ],
       "body": "In the section [Verification by the Verifier](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#name-verification-by-the-verifie), we should require that the Verifier should check that each claim's value is valid JSON. This should probably be after step 4.3.2.2. If weird claim values are accepted, e.g. `[\"bla\",` (no closing bracket) we'd be open to interesting injection attacks.",
       "createdAt": "2023-05-15T11:31:41Z",
-      "updatedAt": "2023-05-15T16:46:33Z",
+      "updatedAt": "2023-05-31T23:01:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -7031,15 +7105,17 @@
       "id": "I_kwDOHTmVzM5mMWEv",
       "title": "Terms \"Holder-Selected Disclosures\" and \"Issuer-Issued D.\"",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/271",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-PR"
+      ],
       "body": "We're using the above terms only in this figure: https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-3\r\n\r\nThe terms are not wrong, but we should lower-case them as they're not defined terms any longer.",
       "createdAt": "2023-05-17T19:11:01Z",
-      "updatedAt": "2023-05-17T19:11:01Z",
-      "closedAt": null,
+      "updatedAt": "2023-05-31T00:36:13Z",
+      "closedAt": "2023-05-31T00:36:13Z",
       "comments": []
     },
     {
@@ -7070,7 +7146,7 @@
       "labels": [],
       "body": "There is currently no good name for the claims before they are packaged into the SD-JWT. \"Payload\" can refer to the payload of the SD-JWT, which may not contain all user claims. ",
       "createdAt": "2023-05-23T08:41:48Z",
-      "updatedAt": "2023-05-24T19:24:35Z",
+      "updatedAt": "2023-05-31T22:40:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -7079,6 +7155,13 @@
           "body": "I'm not sure what the term should be but I'd agree that text like what we've got now, \"object as the set of claims that the Issuer is issuing\" [from sec 5](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.2-1) isn't easy to say or particularly meaningful out of context :) \r\n",
           "createdAt": "2023-05-24T14:07:54Z",
           "updatedAt": "2023-05-24T19:24:35Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We use \"the set of claims that the Issuer is issuing\" when explaining in the Examples section what is in the payload. I kind of like it?",
+          "createdAt": "2023-05-31T22:40:39Z",
+          "updatedAt": "2023-05-31T22:40:39Z"
         }
       ]
     },
@@ -7091,10 +7174,12 @@
       "author": "tplooker",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "needs-PR"
+      ],
       "body": "From what I can understand an SD-JWT that is presented by a holder using holder binding doesn't prove integrity of the disclosures to the holder, only instead back to the issuer. This means a party in the middle could remove values that were intended to be presented from a presented form SD-JWT without a verifier being able to detect it, similarly a party that knows the claim values and salts could inject other disclosure values beyond what the holder intended to present (e.g an issuer). \r\n\r\nIn general I believe the presented form of an SD-JWT should provide holder integrity over the disclosures when holder binding is in use.",
       "createdAt": "2023-05-27T03:35:28Z",
-      "updatedAt": "2023-05-29T03:15:02Z",
+      "updatedAt": "2023-05-31T10:28:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -7138,8 +7223,144 @@
           "body": "I agree that integrity of the disclosures back to the issuer is the most important, however I do think holder integrity is also required otherwise it leaves presentations free to a form of unintuitive manipulation that I can see having downstream consequences such as a verifier stripping information from a presentation and saying \"i wasnt presented that claim\", or a man in the middle dropping information from a presentation. Really what a lack of holder integrity does here in general is introduce ambiguity, e.g did the verifier strip claims from a presentation, did the holder never reveal them or did someone in the middle drop them. I understand that we want to be careful about managing implementation complexity to avoid interoperability issues, but I do think the single hash over everything that precedes the HB-JWT is relatively easy to perform. ",
           "createdAt": "2023-05-27T23:38:08Z",
           "updatedAt": "2023-05-29T03:15:02Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "We just discussed this among the editors. We see the following problems with signing over the disclosures or their digests:\r\n\r\n- When holder binding is not used, this method of proving integrity of the disclosure set is not possible.\r\n- For the JSON Serialization, we would need to define a different way to do it. There is no obvious way how to sign over the JSON-serialized SD-JWT in that case.\r\n\r\nMeanwhile, we think there are good reasons not do this:\r\n\r\n- The specification promises integrity of the data, but does not guarantee to the verifier that a holder wanted to release this exact dataset even in presence of an adversary. We should call this out more expicitly and will create a PR for this.\r\n- In the presence of such a powerful adversary, it seems plausible that the protection can be circumvented or stronger attacks can be mounted; e.g., by manipulating the request to the holder as well.\r\n- For these reasons, integrity and non-repudiation of the message, if needed, must be provided by the transport protocol (in the most simple form by TLS to protect integrity, but things like JARM can provide a second layer for integrity and provide non-repudiation).\r\n-  Hashing can be hard to debug and adds another complexity for developers.\r\n\r\n",
+          "createdAt": "2023-05-30T22:19:10Z",
+          "updatedAt": "2023-05-30T22:19:10Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "Appreciate the context but I'm not sure I agree with the conclusions here\r\n\r\n> When holder binding is not used, this method of proving integrity of the disclosure set is not possible.\r\n\r\nThis is true but I dont think this a reason not to do this, following this logic one would not define a HB-JWT in the first place because SD-JWTs without it dont have replay attack detection capability.\r\n\r\n> For the JSON Serialization, we would need to define a different way to do it. There is no obvious way how to sign over the JSON-serialized SD-JWT in that case.\r\n\r\nUnderstand there is complexity here and a solution would need to exist for consistency reasons one such that I believe would work is [the solution I proposed above](https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/277#issuecomment-1565205222) which is slightly more complex then validating a single hash, but very much the kind of expected behaviour already going on with SD-JWT when it comes to validating disclosures.\r\n\r\n> The specification promises integrity of the data, but does not guarantee to the verifier that a holder wanted to release this exact dataset even in presence of an adversary. We should call this out more expicitly and will create a PR for this.\r\n\r\nIm not sure what the presences of an adversary here has to do with it, this is about having no ambiguity around what was sent and that once that presentation is prepared it cant be modified in anyway without it being cryptographically invalid.\r\n\r\n> In the presence of such a powerful adversary, it seems plausible that the protection can be circumvented or stronger attacks can be mounted; e.g., by manipulating the request to the holder as well.\r\n\r\nI think this is kind of a seperate issue, if the holder was tricked into revealing more information then intended that doesn't negate the need for wanting integrity around what was presented, in fact ironically it perhaps underscores the importance of having such an integrity check in the first place.\r\n\r\n> For these reasons, integrity and non-repudiation of the message, if needed, must be provided by the transport protocol (in the most simple form by TLS to protect integrity, but things like JARM can provide a second layer for integrity and provide non-repudiation).\r\n\r\nThis is certainly possible but part of the point I was trying to make is it splits where the integrity in a presented SD-JWT comes from, e.g most of it is from the signatures, the rest from the transport and that can make it awkward to evaluate from a security perspective. \r\n\r\n> Hashing can be hard to debug and adds another complexity for developers.\r\n\r\nI mean considering how much hashing is used as a primitive in this spec I really do find it a bit hard to believe this check is where implementations will struggle. I agree it adds another check though which is additional implementation work, but I think the cost is worth it. \r\n\r\nAs a compromise perhaps it could be added as an optional check in the sort of same way the at_hash is optional in OpenID Connect (for different reasons entirely of course).",
+          "createdAt": "2023-05-31T10:27:25Z",
+          "updatedAt": "2023-05-31T10:28:05Z"
         }
       ]
+    },
+    {
+      "number": 278,
+      "id": "I_kwDOHTmVzM5nNa7D",
+      "title": "Guidance on what to do when encountering an invalid _sd value",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/278",
+      "state": "OPEN",
+      "author": "tplooker",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "needs-PR"
+      ],
+      "body": "Its clear from the draft the expected format of the `_sd` member in an SD-JWT, however the processing behaviour for verifying parties when this is incorrect is unclear, e.g should a verifier error, or ignore in the following cases.\r\n\r\n1. Where the value of an `_sd` claim is not an array, instead some other permitted JSON type.\r\n2. Where the value of an `_sd` claim is an array, but polymorphic e.g containing elements that are not strings as expected.\r\n\r\nI would assume a verifier should fail in either case?",
+      "createdAt": "2023-05-30T06:13:28Z",
+      "updatedAt": "2023-05-30T11:25:20Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "I think 1 is covered by this:\r\n\r\n> Find all _sd keys in the SD-JWT payload. For each such key perform the following steps (*): \r\n>   * If the key does not refer to an array, the Verifier MUST reject the Presentation.\r\n\r\n2 is not explicitly covered yet, but should be.",
+          "createdAt": "2023-05-30T11:25:09Z",
+          "updatedAt": "2023-05-30T11:25:09Z"
+        }
+      ]
+    },
+    {
+      "number": 279,
+      "id": "I_kwDOHTmVzM5nNc8D",
+      "title": "Suggested efficiency update to the verification procedure",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/279",
+      "state": "CLOSED",
+      "author": "tplooker",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently [section 6.2](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-6.2) implies that you validate the disclosure is a JSON array of three elements after you have matched it to a digest in the JWT, this would appear less efficient then validating all disclosures prior to checking for matches and substituting values.",
+      "createdAt": "2023-05-30T06:17:34Z",
+      "updatedAt": "2023-05-30T20:08:50Z",
+      "closedAt": "2023-05-30T20:08:50Z",
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "We should keep that as it currently is for the following reasons:\r\n\r\n- First matching it in the SD-JWT makes it harder or near impossible to exploit JSON parsing bugs at least for the disclosures, and\r\n- (more importantly) as we will [introduce arrays](https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/194) which most likely will use two instead of three elements in the disclosure, it is important to know what to expect first before verifying the disclosure.",
+          "createdAt": "2023-05-30T11:23:34Z",
+          "updatedAt": "2023-05-30T11:23:34Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Only looking at disclosures for which there is a digest in the JWT also helps reduce the likelihood that an implementation will mistakenly use the content of maliciously inserted disclosures. ",
+          "createdAt": "2023-05-30T15:35:58Z",
+          "updatedAt": "2023-05-30T15:36:29Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "Understood, thinking about it again in that light makes sense from a security perspective in effect you are proving issuer integrity over the payload before even attempting to parse the payload as JSON, which is consistent with how vanilla JWT processing works",
+          "createdAt": "2023-05-30T20:08:50Z",
+          "updatedAt": "2023-05-30T20:08:50Z"
+        }
+      ]
+    },
+    {
+      "number": 280,
+      "id": "I_kwDOHTmVzM5nNd47",
+      "title": "Guidance on what to do when a disclosure presented does not match to a digest element in JWT",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/280",
+      "state": "OPEN",
+      "author": "tplooker",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "needs-PR"
+      ],
+      "body": "There is language in the specification which defines behaviour (to error) when encountering duplicate usages of a single disclosure, but I couldn't find any guidance on what to do if a supplied disclosure does not match to any digest in the JWT.\r\n\r\nSuggested behaviour here would be to error, but is that too strict?",
+      "createdAt": "2023-05-30T06:19:38Z",
+      "updatedAt": "2023-05-31T09:55:40Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "For the holder, the [current text](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#section-6.1) specifies:\r\n\r\n> If there is a Disclosure with a digest that cannot be found in any _sd array, the SD-JWT is invalid and the Holder MUST reject the SD-JWT.\r\n\r\nFor the Verifier, we say\r\n\r\n> Verifiers MUST ensure that (...) the SD-JWT is valid, i.e., it is signed by the Issuer and the signature is valid, all Disclosures are correct, i.e., their digests are referenced in the SD-JWT or in other Disclosures referenced in the SD-JWT (...)\r\n\r\nThis is however not currently reflected in the Algorithm provided in Section 6.2. We might want to add that after this step:\r\n\r\n> If any digests were found more than once in the previous step, the Verifier MUST reject the Presentation.",
+          "createdAt": "2023-05-30T11:20:03Z",
+          "updatedAt": "2023-05-30T11:20:03Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "See also Issue #244 where we concluded the we don't need such a check. In any case we need to resolve the disconnect between the requirements on the Verifier and the actual algorithm as shown in my previous comment.",
+          "createdAt": "2023-05-30T22:35:34Z",
+          "updatedAt": "2023-05-30T22:35:34Z"
+        },
+        {
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "body": "Understood, it would appear the consensus is not to be so strict then? E.g a verifier processing an SD-JWT that contains a digest that is un-used should just ignore it?",
+          "createdAt": "2023-05-31T09:55:39Z",
+          "updatedAt": "2023-05-31T09:55:39Z"
+        }
+      ]
+    },
+    {
+      "number": 281,
+      "id": "I_kwDOHTmVzM5nTRnc",
+      "title": "A better name for HB-JWT is KB-JWT",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/281",
+      "state": "OPEN",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "needs-PR"
+      ],
+      "body": "In some use cases of SD-JWT, the key for what we currently call Holder Binding may not be bound to a holder (but, for example, to a device). We should therefore consider renaming Holder Binding to Key Binding.",
+      "createdAt": "2023-05-30T22:27:48Z",
+      "updatedAt": "2023-05-30T22:27:57Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -26208,24 +26429,26 @@
       "id": "PR_kwDOHTmVzM5P9JPz",
       "title": "define HB-JWT normatively",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/262",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Sakurann",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Discussions around defining SD-JWT-VC show that it would be very helpful for interoperability if HB JWT is normatively defined in SD-JWT specification itself. Using HB JWT is optional, but if used, it should be compliant to the definitions in SD-JWT.\r\n\r\nHow to represent validity (iat, exp, nbf) will probably need the most discussion...\r\n\r\nalso we should introduce an abbreviation `HB JWT`....\r\n\r\ncc @awoie ",
       "createdAt": "2023-05-08T02:42:51Z",
-      "updatedAt": "2023-05-27T21:55:15Z",
+      "updatedAt": "2023-05-30T21:39:10Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "sakurann-hb-jwt",
       "headRefOid": "1ce10919264ee3835c629f83defd5f56060d8f55",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-05-30T21:39:09Z",
+      "mergedAt": "2023-05-30T21:39:09Z",
+      "mergedBy": "danielfett",
+      "mergeCommit": {
+        "oid": "1419c5cdebfc733a18ab5b4c402cc3277dfbf634"
+      },
       "comments": [
         {
           "author": "Sakurann",
@@ -26738,6 +26961,19 @@
           "createdAt": "2023-05-27T21:55:15Z",
           "updatedAt": "2023-05-27T21:55:15Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5WiZxU",
+          "commit": {
+            "abbreviatedOid": "1ce1091"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-30T21:38:57Z",
+          "updatedAt": "2023-05-30T21:38:57Z",
+          "comments": []
         }
       ]
     },
@@ -27072,7 +27308,7 @@
       "labels": [],
       "body": "Honestly, I'm not sure about this one.  But I said I'd put together a PR for #265 with an update to the title and some qualifying text. So this is that PR as something to discuss anyway. \r\n\r\nAt least these few sentences took me an embarrassingly long time to write :/ ",
       "createdAt": "2023-05-25T22:28:49Z",
-      "updatedAt": "2023-05-26T14:15:06Z",
+      "updatedAt": "2023-05-31T12:46:18Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "82984e8f495cfc7cc512bfe766b4428c7109953d",
@@ -27084,7 +27320,123 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5WnNrB",
+          "commit": {
+            "abbreviatedOid": "c32d94f"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-31T12:46:17Z",
+          "updatedAt": "2023-05-31T12:46:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 282,
+      "id": "PR_kwDOHTmVzM5Ru5a2",
+      "title": "[ed] remove old terminology",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/282",
+      "state": "MERGED",
+      "author": "Sakurann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "resolves #271 ",
+      "createdAt": "2023-05-30T23:05:03Z",
+      "updatedAt": "2023-05-31T00:36:12Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "1419c5cdebfc733a18ab5b4c402cc3277dfbf634",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "sakurann-figure-terms",
+      "headRefOid": "a6c518101bb448bdc8f0edcddbcaa1017feaea8d",
+      "closedAt": "2023-05-31T00:36:11Z",
+      "mergedAt": "2023-05-31T00:36:11Z",
+      "mergedBy": "danielfett",
+      "mergeCommit": {
+        "oid": "b60afd49c5377b62f83de13ab601bb583eac9b7d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5Wi_3A",
+          "commit": {
+            "abbreviatedOid": "a6c5181"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-31T00:01:30Z",
+          "updatedAt": "2023-05-31T00:01:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5WjEqc",
+          "commit": {
+            "abbreviatedOid": "a6c5181"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-05-31T00:35:53Z",
+          "updatedAt": "2023-05-31T00:35:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 283,
+      "id": "PR_kwDOHTmVzM5R0BXJ",
+      "title": "Array feature specification",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/283",
+      "state": "OPEN",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-31T17:11:26Z",
+      "updatedAt": "2023-06-01T00:02:52Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "b60afd49c5377b62f83de13ab601bb583eac9b7d",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "danielfett/arrays",
+      "headRefOid": "a9eeff130325c1f87d771111f2de0575aed6d828",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5WrpMN",
+          "commit": {
+            "abbreviatedOid": "bd2f5bb"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-31T22:42:49Z",
+          "updatedAt": "2023-05-31T22:42:49Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\n:  A combination of a salt, a cleartext claim name (in case the claim is a key/value pair and not an array element), and a cleartext claim value, all of which are used to calculate a digest for the respective claim.\r\n```",
+              "createdAt": "2023-05-31T22:42:49Z",
+              "updatedAt": "2023-05-31T22:42:49Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
