@@ -5,19 +5,22 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 2 December 2023                                       Microsoft
+Expires: 4 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             31 May 2023
+                                                             2 June 2023
 
 
-                 Selective Disclosure for JWTs (SD-JWT)
+    SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
             draft-ietf-oauth-selective-disclosure-jwt-latest
 
 Abstract
 
-   This document specifies conventions for creating JSON Web Token (JWT)
-   documents that support selective disclosure of JWT claims.
+   This specification defines a mechanism for selective disclosure of
+   individual elements of a JSON object used as the payload of a JSON
+   Web Signature (JWS) structure.  It encompasses various applications,
+   including but not limited to the selective disclosure of JSON Web
+   Tokens (JWT) claims.
 
 Discussion Venues
 
@@ -45,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 December 2023.
+   This Internet-Draft will expire on 4 December 2023.
 
 Copyright Notice
 
@@ -124,9 +127,17 @@ Table of Contents
 
 1.  Introduction
 
-   The JSON-based [RFC8259] representation of claims in a signed JSON
-   Web Token (JWT) [RFC7519] is secured against modification using JSON
-   Web Signature (JWS) [RFC7515] digital signatures.  A consumer of a
+   This document specifies conventions for creating JSON Web Signature
+   (JWS) [RFC7515] structures with JSON [RFC8259] objects as the payload
+   while supporting selective disclosure of individual elements of that
+   JSON.  Because JSON Web Token (JWT) [RFC7519] is a very prevalent
+   application of JWS with a JSON payload, the selective disclosure of
+   JWT claims receives primary treatment herein.  However, that does not
+   preclude the mechanism's applicability to other or more general
+   applications of JWS with JSON payloads.
+
+   The JSON-based representation of claims in a signed JWT is secured
+   against modification using JWS digital signatures.  A consumer of a
    signed JWT that has checked the signature can safely assume that the
    contents of the token have not been modified.  However, anyone
    receiving an unencrypted JWT can read all the claims.  Likewise,
@@ -857,9 +868,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
-   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
-   UzJwIVaQ
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
+   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
+   pt4IXO7Q
 
    The Issuer creates the following Disclosures:
 
@@ -975,9 +986,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
-   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
-   UzJwIVaQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
+   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
+   pt4IXO7Q~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1058,7 +1069,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1685493405
+     "iat": 1685668947
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
@@ -1066,8 +1077,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODU0OTM0MDV9.xU2KCcAx_fuHbmyUIWQ9B7KNJs1VP8qb4J5q6kjO_04NtHRxtU
-   RhgNqFBhHtstqnId4pafcbQmPlFhX7tOwLrQ
+   6IDE2ODU2Njg5NDd9.f2l0Hyl0pk6y7Ri0BmBSMFJ_3HrOAOSF6N4P6cRkR7PyE64TM0
+   UPiX9PwRKmG05oBcR9hIrs3n_anbF-ZKXn7A
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1100,12 +1111,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.StwMc9_8p6
-   oN_V3_HUnq4fjwFQfg4Iif9gbAsiyAcI8ddLlq0EXMfVB9Cm1ClKhwE3TvAVcKxjnuBC
-   UzJwIVaQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
+   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
+   pt4IXO7Q~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODU0OTM0MDV9.xU2KCcAx_fuHbmyUIWQ9B7KNJs1VP8qb4J5q6kjO_
-   04NtHRxtURhgNqFBhHtstqnId4pafcbQmPlFhX7tOwLrQ
+   wgImlhdCI6IDE2ODU2Njg5NDd9.f2l0Hyl0pk6y7Ri0BmBSMFJ_3HrOAOSF6N4P6cRkR
+   7PyE64TM0UPiX9PwRKmG05oBcR9hIrs3n_anbF-ZKXn7A
 
 6.  Verification and Processing
 
@@ -2098,8 +2109,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.cjfvL5XGNReS7e2Y8V51eb195t
-   Gh6Jk-f0OMME55I9Zkhl-zLBV_OJBqdihxpZVIkS7q6q4eVUFCKTnkXtqc_w~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.qOmRtuo8HRWEODCqZJ-dBwXIog
+   lUAuhc5hwm2JOgnsSKcuJn-Xrg-9Ltd0ZXHr8SMem7LjPhTlAMz38Eb4hQsw~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2389,8 +2400,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.KHjYTVO6i5fw9t1zZibNsQ
-   fhkdcsb5MFtkOMYCXNtG9aRrnAXy58AgvsjPqSAl9pfA93EuMffuRskk7OGg5CvQ~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.SJFjUCfOZuZ13_byDIIIhH
+   Defu_MHg2rfUkCKr0D2Id6x9mNmiVuXFC7N5Vc4TEqtOjkdiyzT4-jxUHi_gm4ew~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2756,12 +2767,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.g_1aZ3T99Php_nIyj9WwpNRhvyoW9ct-H1ZOU3IBXa_r--N7gC
-   y6a9a4HU-m8eW2xcP5MnvfU5PUcS4Azkep-w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.qVUzbprLAMAnkeigw1MIaaKA2AXlWci9JyQ9qw4qSzHaKvQCns
+   yiKUOAFrxmu9LFgI6SKAM5EB2zQwU2GHOa5w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU0OTM0MDV9.yqUU0ZjqtHMAg
-   K6_W6xdfqiwSOBDrYs5xxDKOLdaDQ4DcrCDXXwefAhSy1BpkV7M576X3VlV51U_A3mbe
-   7tixw
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU2Njg5NDd9.mlKkuZAlEwq59
+   CfOqA0kbJmSqaQpHD_NKgApKDwFR_aPdIU76ZYrZ2q9J_6Gv6_p32XCEWn9dpWXj5QaE
+   7AuPw
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2949,6 +2960,9 @@ Appendix C.  Document History
 
    *  Removed Example 2b and merged the demo of decoy digests into
       Example 2a
+
+   *  Updated title to be more inclusive of JWS with JSON and added some
+      corresponding text to the Abstract and Intro
 
    -04
 
