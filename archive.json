@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-04T01:17:36.168114+00:00",
+  "timestamp": "2023-06-06T01:09:32.525461+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -2392,7 +2392,7 @@
       "id": "I_kwDOHTmVzM5MeKsG",
       "title": "Define an content-type for the bas64url encoded artifacts in the HTTP Requests and Responses",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/74",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "peppelinux",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2404,8 +2404,8 @@
       ],
       "body": "We should consider to define a content-type and returning this in the HTTP Response, may we imagine something like `application/sd-jwt-svc`?\r\n\r\nand for the request `application/sd-jwt-release`",
       "createdAt": "2022-06-23T21:45:16Z",
-      "updatedAt": "2023-06-02T01:54:15Z",
-      "closedAt": null,
+      "updatedAt": "2023-06-05T13:24:35Z",
+      "closedAt": "2023-06-05T13:24:35Z",
       "comments": [
         {
           "author": "Sakurann",
@@ -20474,7 +20474,7 @@
       "labels": [],
       "body": "for #199 and as we noticed on our sync call today ",
       "createdAt": "2023-01-18T17:37:14Z",
-      "updatedAt": "2023-01-19T12:51:17Z",
+      "updatedAt": "2023-06-04T21:50:49Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "8f530a248958057b28ebcf994092c83450e77de8",
@@ -20866,7 +20866,7 @@
       "labels": [],
       "body": "Rename and move the c14n section to an appendix. Also add a paragraph attempting to provide a bit more context in the new location. \r\n\r\nfor #175 ",
       "createdAt": "2023-02-03T22:43:00Z",
-      "updatedAt": "2023-02-10T14:55:49Z",
+      "updatedAt": "2023-06-04T21:50:33Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "3fe80e9796bd49cd5f9578ea3f2faf45dff5c509",
@@ -20957,7 +20957,7 @@
       "labels": [],
       "body": "More explicitly state that SD-JWTs have to be signed asymmetrically (no MAC and no `none`)\r\n\r\nOne item out of John Mattsson's review: https://mailarchive.ietf.org/arch/msg/oauth/QhyXsK8ZXFBbkIcH5LNjMPC1zX4/",
       "createdAt": "2023-02-03T23:59:09Z",
-      "updatedAt": "2023-02-06T16:31:21Z",
+      "updatedAt": "2023-06-04T21:50:46Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "218b08052d934f4eb997dbe01595b089769ba12d",
@@ -21169,7 +21169,7 @@
       "labels": [],
       "body": "basically removing the example JWT header JSON (which aren't shown elsewhere FWIW) that had a fictitious `typ` and meaningless `kid` and didn't add anything to understanding/following the example ",
       "createdAt": "2023-02-09T23:26:05Z",
-      "updatedAt": "2023-02-10T14:56:41Z",
+      "updatedAt": "2023-06-04T21:50:35Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "fcf3315d434913db48ab5683f371c51dd251f8d5",
@@ -21476,7 +21476,7 @@
       "labels": [],
       "body": "for #214 \r\nchange the domain of the email from \"nihon.com\" to \"example.jp\" in simple_structured.yml and simple_structured_with_decoys.yml and update the associated examples with the sd_jwt tooling ",
       "createdAt": "2023-02-22T21:49:07Z",
-      "updatedAt": "2023-02-27T08:15:06Z",
+      "updatedAt": "2023-06-04T21:50:31Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "8f91205cc44046cf77b67e0e96db3633a260cf5b",
@@ -22067,7 +22067,7 @@
       "labels": [],
       "body": "salt to just always be a string (for #218) ",
       "createdAt": "2023-02-27T17:55:01Z",
-      "updatedAt": "2023-02-28T16:37:54Z",
+      "updatedAt": "2023-06-04T21:50:54Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "9df497b93097bca06babe51994ddaa80faf985f8",
@@ -22142,7 +22142,7 @@
       "labels": [],
       "body": "for #219",
       "createdAt": "2023-02-27T23:46:43Z",
-      "updatedAt": "2023-02-28T10:21:32Z",
+      "updatedAt": "2023-06-04T21:50:58Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "9df497b93097bca06babe51994ddaa80faf985f8",
@@ -24299,7 +24299,7 @@
       "labels": [],
       "body": "Addresses Issue #144 and expresses ISO 18013-5 mDL data model using SD-JWT.\r\n18013-5 itself is in CBOR, so this SD-JWT includes all of the data elements/use claims that are mandatory by 18013-5 in JSON.\r\n\r\nuses same data set as in [OID4VP ISO mDL example](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-iso-mobile-driving-licence-)\r\n\r\nGiven EUDIW ARF, this PR and PR #210 should probably be combined into one.",
       "createdAt": "2023-03-11T01:18:18Z",
-      "updatedAt": "2023-03-13T13:28:49Z",
+      "updatedAt": "2023-06-05T08:41:47Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "a94e2d1a2c4306a45e7d4a42df482d3fa19a9972",
@@ -24349,6 +24349,32 @@
               "body": "Is this intended to be here?",
               "createdAt": "2023-03-13T09:41:22Z",
               "updatedAt": "2023-03-13T09:51:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XJMQy",
+          "commit": {
+            "abbreviatedOid": "2851599"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-06-05T08:40:57Z",
+          "updatedAt": "2023-06-05T08:41:46Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "the same by me, shouldn't this text be removed?",
+              "createdAt": "2023-06-05T08:40:58Z",
+              "updatedAt": "2023-06-05T08:41:46Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "why \"n\" is the only claim enclosed in double quotes?",
+              "createdAt": "2023-06-05T08:41:35Z",
+              "updatedAt": "2023-06-05T08:41:46Z"
             }
           ]
         }
@@ -24563,7 +24589,7 @@
       "labels": [],
       "body": "Add a -04 placeholder to the doc history (to hopefully avoid a mixup like last time) ",
       "createdAt": "2023-03-13T15:38:23Z",
-      "updatedAt": "2023-03-13T15:51:06Z",
+      "updatedAt": "2023-06-04T21:51:16Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "9b6fc6abc40aba045853d9b4793d5ba35385a4c5",
@@ -27354,7 +27380,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-05-23T19:50:24Z",
-      "updatedAt": "2023-05-24T13:29:47Z",
+      "updatedAt": "2023-06-04T21:50:10Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "c3e2ad685e73d47f688ba0ff63b7e8bee04c8871",
@@ -27430,7 +27456,7 @@
       "labels": [],
       "body": "Honestly, I'm not sure about this one.  But I said I'd put together a PR for #265 with an update to the title and some qualifying text. So this is that PR as something to discuss anyway. \r\n\r\nAt least these few sentences took me an embarrassingly long time to write :/ ",
       "createdAt": "2023-05-25T22:28:49Z",
-      "updatedAt": "2023-06-02T01:21:55Z",
+      "updatedAt": "2023-06-04T21:50:09Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "82984e8f495cfc7cc512bfe766b4428c7109953d",
@@ -27620,6 +27646,86 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 285,
+      "id": "PR_kwDOHTmVzM5SKzGS",
+      "title": "fix: [Hash algs] only RIPEMD versions earlier that 160 are not usable.",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/285",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "RIPEMD-160 is usable, but not its predecessors. \r\n\r\nFor this reason this PR removes RIPEMD-160 from the list of the weak algs by saying that only  -160 predecessors must not be used.",
+      "createdAt": "2023-06-05T08:46:57Z",
+      "updatedAt": "2023-06-05T16:35:46Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "332ded8faf20d528c5c05e04cebed28aab1a0d33",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "ripemd-redention",
+      "headRefOid": "c0802bfa73e2e03502d489e8382423331d3a4f42",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5XLEJo",
+          "commit": {
+            "abbreviatedOid": "b485922"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-05T13:16:33Z",
+          "updatedAt": "2023-06-05T13:16:34Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I'd suggest that, to the extent possible, this document not try to be an arbitrator of what hash algorithms are insecure. \r\n\r\n```suggestion\r\nFurthermore, the hash algorithms MD2, MD4, MD5, and SHA-1\r\n```",
+              "createdAt": "2023-06-05T13:16:33Z",
+              "updatedAt": "2023-06-05T13:16:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XLtkq",
+          "commit": {
+            "abbreviatedOid": "b485922"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-05T14:30:22Z",
+          "updatedAt": "2023-06-05T14:30:22Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Done @bc-pi, thank you",
+              "createdAt": "2023-06-05T14:30:22Z",
+              "updatedAt": "2023-06-05T14:30:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XMuJ7",
+          "commit": {
+            "abbreviatedOid": "c0802bf"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-05T16:35:46Z",
+          "updatedAt": "2023-06-05T16:35:46Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
