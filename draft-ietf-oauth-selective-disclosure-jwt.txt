@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 4 December 2023                                       Microsoft
+Expires: 8 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             2 June 2023
+                                                             6 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 December 2023.
+   This Internet-Draft will expire on 8 December 2023.
 
 Copyright Notice
 
@@ -868,9 +868,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
-   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
-   pt4IXO7Q
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.D5Bz_zGDLc
+   bw2Dlce5UcvQ4_gJKnfJnoXIUJAK_xTLGdICXWO4jTfWwmi2NySE1OcYrE7x48upMBD9
+   kf9ip8BQ
 
    The Issuer creates the following Disclosures:
 
@@ -986,9 +986,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
-   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
-   pt4IXO7Q~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.D5Bz_zGDLc
+   bw2Dlce5UcvQ4_gJKnfJnoXIUJAK_xTLGdICXWO4jTfWwmi2NySE1OcYrE7x48upMBD9
+   kf9ip8BQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1069,7 +1069,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1685668947
+     "iat": 1686063745
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
@@ -1077,8 +1077,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODU2Njg5NDd9.f2l0Hyl0pk6y7Ri0BmBSMFJ_3HrOAOSF6N4P6cRkR7PyE64TM0
-   UPiX9PwRKmG05oBcR9hIrs3n_anbF-ZKXn7A
+   6IDE2ODYwNjM3NDV9.wtCXsPNezbd7_nhc7vbSWIebBmchddaaVxw6HpElSvrTmNwxuM
+   H-QJ6S1SHTEqccYFipZmGn_uJD0b4wJnt_Dw
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1111,12 +1111,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Vq7d9Uxms-
-   EDLwT0-Or7z2diBNVfaEUKW1Bjg-q-9aY_Hi42xI8RpFaKYzykbsHE1z6jjn9eU7a2dI
-   pt4IXO7Q~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.D5Bz_zGDLc
+   bw2Dlce5UcvQ4_gJKnfJnoXIUJAK_xTLGdICXWO4jTfWwmi2NySE1OcYrE7x48upMBD9
+   kf9ip8BQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODU2Njg5NDd9.f2l0Hyl0pk6y7Ri0BmBSMFJ_3HrOAOSF6N4P6cRkR
-   7PyE64TM0UPiX9PwRKmG05oBcR9hIrs3n_anbF-ZKXn7A
+   wgImlhdCI6IDE2ODYwNjM3NDV9.wtCXsPNezbd7_nhc7vbSWIebBmchddaaVxw6HpElS
+   vrTmNwxuMH-QJ6S1SHTEqccYFipZmGn_uJD0b4wJnt_Dw
 
 6.  Verification and Processing
 
@@ -1411,8 +1411,8 @@ Table of Contents
    heavily truncated digests, such as sha-256-32 and sha-256-64, which
    are unfit for security applications).
 
-   Furthermore, the hash algorithms MD2, MD4, MD5, RIPEMD-160, and SHA-1
-   revealed fundamental weaknesses and they MUST NOT be used.
+   Furthermore, the hash algorithms MD2, MD4, MD5, and SHA-1 revealed
+   fundamental weaknesses and they MUST NOT be used.
 
 8.6.  Holder Binding
 
@@ -2109,8 +2109,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.qOmRtuo8HRWEODCqZJ-dBwXIog
-   lUAuhc5hwm2JOgnsSKcuJn-Xrg-9Ltd0ZXHr8SMem7LjPhTlAMz38Eb4hQsw~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.H04ycfNRBh0OSM6_JpXMyjHYxT
+   Abv38oFyMHf64jnYp51wfnIJ4QwjP8dajETiPPGsfXmRRSrXTNdZlt30RYug~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2400,8 +2400,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.SJFjUCfOZuZ13_byDIIIhH
-   Defu_MHg2rfUkCKr0D2Id6x9mNmiVuXFC7N5Vc4TEqtOjkdiyzT4-jxUHi_gm4ew~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.pVJmxIvv6wGFu7WQoYfFCl
+   7PEVxGcHi_3en4nnjx47aWpep7L_DQmtTDFh9V5gakRE6r7Ljt2AbHmp8dTfldMA~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2767,12 +2767,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.qVUzbprLAMAnkeigw1MIaaKA2AXlWci9JyQ9qw4qSzHaKvQCns
-   yiKUOAFrxmu9LFgI6SKAM5EB2zQwU2GHOa5w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.mFpKTsK0OulPCr-pbghcNCYq1A_9JkAyBtrPjpwiKgSPaCaLAj
+   58sSM4v-SoyOSL4JKuiQ9U8TzQVwgji5Di4g~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODU2Njg5NDd9.mlKkuZAlEwq59
-   CfOqA0kbJmSqaQpHD_NKgApKDwFR_aPdIU76ZYrZ2q9J_6Gv6_p32XCEWn9dpWXj5QaE
-   7AuPw
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYwNjM3NDV9.XIryMZidNzUkN
+   1rwZ1Au-jAhv6Fyo6jY417A90Rx7C10S50iEy1INjoeJGZ9i9AVb8hN2j0X2911-dq9y
+   B_jhA
 
    After the validation, the Verifier will have the following data for
    further processing:
