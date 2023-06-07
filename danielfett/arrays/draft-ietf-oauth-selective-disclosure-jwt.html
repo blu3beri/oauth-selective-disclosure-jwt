@@ -2031,9 +2031,9 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.pGoq3I8K2d
-gV0Qe4VjSs6MhPWqU1FBH2OJgpaokj1KgU4OjuWNdajS0zT4ZrjrqO-FtGmJ8i0S83Z1
-n3oiSHHg
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.lsFbqibKKL
+U9I8GGE-ZXXzwqxQA9TTRzK8YD_7Uvhp7yE08O6tdNcvxxDPFJTBhwiJii26nzIYHw_Q
+bK9tqwKw
 </pre><a href="#section-5.5-25" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2338,8 +2338,8 @@ associated with the Holder, or a reference thereto.<a href="#section-5.9-1" clas
 established. For example, the Holder MAY provide a key pair to the Issuer,
 the Issuer MAY create the key pair for the Holder, or
 Holder and Issuer MAY use pre-established key material.<a href="#section-5.9-2" class="pilcrow">¶</a></p>
-<p id="section-5.9-3">Note: Examples in this document use <code>cnf</code> Claim defined in <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> to include
-raw public key by value in SD-JWT.<a href="#section-5.9-3" class="pilcrow">¶</a></p>
+<p id="section-5.9-3">Note: Examples in this document use the <code>cnf</code> Claim defined in <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> to include
+the raw public key by value in SD-JWT.<a href="#section-5.9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="combined_format_for_issuance">
@@ -2381,9 +2381,9 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.pGoq3I8K2d
-gV0Qe4VjSs6MhPWqU1FBH2OJgpaokj1KgU4OjuWNdajS0zT4ZrjrqO-FtGmJ8i0S83Z1
-n3oiSHHg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.lsFbqibKKL
+U9I8GGE-ZXXzwqxQA9TTRzK8YD_7Uvhp7yE08O6tdNcvxxDPFJTBhwiJii26nzIYHw_Q
+bK9tqwKw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9
 obiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZS
 Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhb
 XBsZS5jb20iXQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlci
@@ -2454,7 +2454,7 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1686122576
+  "iat": 1686122709
 }
 </pre><a href="#section-5.11.1.1-7" class="pilcrow">¶</a>
 </div>
@@ -2462,8 +2462,8 @@ a Disclosure more than once.<a href="#section-5.11-7" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.11.1.1-9">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODYxMjI1NzZ9.Eexg6pCegvPBAUaln5T-1fekOeYxtfSq2zdX2X8Ftdpf8TeJA0
-QSeNEg9Je0g3uFSbRdFn9r7CSzj2zUwkgxWA
+6IDE2ODYxMjI3MDl9.RhP62TT_aPw7Zaq3fhSWk7wHpKLbuQwBFa6y1HXe6J7O5FIbn6
+z9zcZOZeCgP-O6V8B5dT0QfClYVGAr0Txd2Q
 </pre><a href="#section-5.11.1.1-9" class="pilcrow">¶</a>
 </div>
 <p id="section-5.11.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
@@ -2498,17 +2498,17 @@ Es3cURXY1RUYTFzTmsifSwgeyIuLi4iOiAicUJuQWNuRmJ2YS1ET1d1WElqalBXVHY0T
 lZaVlU3REk2WTZmMkc4bWhURSJ9XSwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.pGoq3I8K2d
-gV0Qe4VjSs6MhPWqU1FBH2OJgpaokj1KgU4OjuWNdajS0zT4ZrjrqO-FtGmJ8i0S83Z1
-n3oiSHHg~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImFkZHJlc3MiLCB7InN0cmV
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.lsFbqibKKL
+U9I8GGE-ZXXzwqxQA9TTRzK8YD_7Uvhp7yE08O6tdNcvxxDPFJTBhwiJii26nzIYHw_Q
+bK9tqwKw~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImFkZHJlc3MiLCB7InN0cmV
 ldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCA
 icmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyJlbHVWNU9nM2d
 TTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyIyR0xDNDJzS1F2ZU
 NmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJQYzMzSk0yTGNoY1Vfb
 EhnZ3ZfdWZRIiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.
 eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29t
-L3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjI1NzZ9.Eexg6pCegvPBAUaln5T-1fekOeY
-xtfSq2zdX2X8Ftdpf8TeJA0QSeNEg9Je0g3uFSbRdFn9r7CSzj2zUwkgxWA
+L3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjI3MDl9.RhP62TT_aPw7Zaq3fhSWk7wHpKL
+buQwBFa6y1HXe6J7O5FIbn6z9zcZOZeCgP-O6V8B5dT0QfClYVGAr0Txd2Q
 </pre><a href="#section-5.11.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3532,8 +3532,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.kXwFUeqGIGReUUKmnxQY8avmrO
-xrCAR3ou9gJfzOVyHihj1dEgtItIIDNeIZIVm80BKIIg3dwxlgvuxWlLbr2w~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.JajdcTQjxcWc9Wu7nrXXdO_ugN
+VpIRCFRI7r_kgvJ_4wUgzfmDGqGfSE791mjmXILRgxTI7nzZQjKwragF2inw~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -3868,9 +3868,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.boWh3hFFi
-jZlUH9OFaiWp7VT03m5jPMco0FtLCeX9EFsMs834z92wBaowzY85yEPF4r9nQmZqxL7j
-a1eEHKx8Q~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.C0vMJ8oHE
+XATVRe-BNgyzG28eEIgCD1yi09dEKSWgfZj_F64Y3PaQPXrC8YvLZ1iuVmsa8uXdIgM_
+TaCA2Ae9w~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4444,16 +4444,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.QY7NXb8pAgHzdq5i442oB5RuqS9QrN_I5GhD6jh1N2ISn
-xJtnzsOKMJKbMq8cLMwhrDVa_1EdqQluyWLAuauQg~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.hBoB5AbuOBK8q7FMcCUjdYrvpcFdX-vXd6EZWMbv0VkDr
+cz6S-XoHLSICk6rPPkP-xx3Il0nZryCQQYoaVWRHQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjI1NzZ9.eMKbBRXF_uv1lUqcG-82wfEyB
-3hweNKgRDTT_pcXGe1MuWy-Q1HxiXjN9HKwMMGQlzXNOiPLd3SenECm4icEKQ
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjI3MDl9.CfVWAM-p_xiq4eGrrf0lFg7JV
+tDur7ZOHxuDYibGITipK-xH4krrTJ_h28Ruz7O9Vikdmp4XG0wrK3XWabcmmA
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
