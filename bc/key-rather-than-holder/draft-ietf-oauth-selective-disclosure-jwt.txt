@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 8 December 2023                                       Microsoft
+Expires: 9 December 2023                                       Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             6 June 2023
+                                                             7 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 December 2023.
+   This Internet-Draft will expire on 9 December 2023.
 
 Copyright Notice
 
@@ -97,7 +97,7 @@ Table of Contents
      8.3.  Entropy of the salt
      8.4.  Minimum length of the salt
      8.5.  Choice of a Hash Algorithm
-     8.6.  Binding to the Holder
+     8.6.  Key Binding
      8.7.  Blinding Claim Names
      8.8.  Issuer Signature Key Distribution and Rotation
      8.9.  Forwarding Credentials
@@ -190,9 +190,9 @@ Table of Contents
 
    This document also specifies an optional mechanism for Key Binding,
    or the concept of binding an SD-JWT to key material controlled by the
-   Holder.  The strength of the key binding is conditional upon the
-   trust in the protection of the private key of the key pair an SD-JWT
-   is bound to.
+   Holder.  The strength of the binding is conditional upon the trust in
+   the protection of the private key of the key pair an SD-JWT is bound
+   to.
 
    SD-JWT can be used with any JSON-based representation of claims,
    including JSON-LD.
@@ -866,9 +866,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tJHN8mTKA5
-   Yc_CQkaUoFZwlgXHN_qj3w6RucTau0mVehIMpHXy4HTAel35-wma1_zoIbWK7VrdrqFL
-   S-0aQShg
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.b2BMgoxaEZ
+   dcHJQiZaasrEOQAUquIHWKa0-vgtxqpVj5A1rOATmFiLcRNoxO_RG8ci2EoOp4EZm_gr
+   FO486puw
 
    The Issuer creates the following Disclosures:
 
@@ -985,9 +985,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tJHN8mTKA5
-   Yc_CQkaUoFZwlgXHN_qj3w6RucTau0mVehIMpHXy4HTAel35-wma1_zoIbWK7VrdrqFL
-   S-0aQShg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.b2BMgoxaEZ
+   dcHJQiZaasrEOQAUquIHWKa0-vgtxqpVj5A1rOATmFiLcRNoxO_RG8ci2EoOp4EZm_gr
+   FO486puw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1068,7 +1068,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686062504
+     "iat": 1686170083
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1076,8 +1076,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODYwNjI1MDR9.q3tjbvSbCFzBxbVMYMaAo-YujP-AU52b38FB0FFqUVzl5BzmAW
-   RxzQglp_S4zWFnahS_XJnomYxOx6IXzFWs6w
+   6IDE2ODYxNzAwODN9.zMo5ZFw5I2PuOSu_o6R1oAR0sa4kh-Iv2K0xGJHKasTt-acfSo
+   kJxKzg1twAfJtnx7vEQ1K-R6OYpp7PtsZKKg
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1110,12 +1110,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tJHN8mTKA5
-   Yc_CQkaUoFZwlgXHN_qj3w6RucTau0mVehIMpHXy4HTAel35-wma1_zoIbWK7VrdrqFL
-   S-0aQShg~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.b2BMgoxaEZ
+   dcHJQiZaasrEOQAUquIHWKa0-vgtxqpVj5A1rOATmFiLcRNoxO_RG8ci2EoOp4EZm_gr
+   FO486puw~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODYwNjI1MDR9.q3tjbvSbCFzBxbVMYMaAo-YujP-AU52b38FB0FFqU
-   Vzl5BzmAWRxzQglp_S4zWFnahS_XJnomYxOx6IXzFWs6w
+   wgImlhdCI6IDE2ODYxNzAwODN9.zMo5ZFw5I2PuOSu_o6R1oAR0sa4kh-Iv2K0xGJHKa
+   sTt-acfSokJxKzg1twAfJtnx7vEQ1K-R6OYpp7PtsZKKg
 
 6.  Verification and Processing
 
@@ -1335,10 +1335,9 @@ Table of Contents
    *Integrity:* A malicious Holder cannot modify names or values of
    selectively disclosable claims without detection by the Verifier.
 
-   Additionally, as described in Section 8.6, an Issuer binding an SD-
-   JWT to a Holder and a Verifier checking that binding can ensure that
-   the presenter of an SD-JWT credential is the legitimate Holder of the
-   credential.
+   Additionally, as described in Section 8.6, the application of Key
+   Binding can ensure that the presenter of an SD-JWT credential is the
+   legitimate Holder of the credential.
 
 8.1.  Mandatory signing of the SD-JWT
 
@@ -1413,68 +1412,32 @@ Table of Contents
    Furthermore, the hash algorithms MD2, MD4, MD5, RIPEMD-160, and SHA-1
    revealed fundamental weaknesses and they MUST NOT be used.
 
-8.6.  Binding to the Holder
+8.6.  Key Binding
 
-   Binding an SD-JWT credential to a Holder, and verification of the
-   binding, aims to ensure that the presenter of the SD-JWT is actually
-   the legitimate Holder of the credential.  There are, in general, two
-   approaches to such binding: claims-based binding and Cryptographic
-   Key Binding.
+   Key Binding aims to ensure that the presenter of an SD-JWT credential
+   is actually the legitimate Holder of the credential.  An SD-JWT with
+   Key Binding contains a public key, or a reference to a public key,
+   that corresponds to a private key possessed by the Holder.  The
+   Verifier requires that the Holder prove possession of that private
+   key when presenting the SD-JWT credential.
 
-   Claims-based binding means that the Issuer includes claims in the SD-
-   JWT that a Verifier can correlate with the Holder, potentially with
-   the help of other credentials presented at the same time.  For
-   example, in a vaccination certificate, the Issuer can include a claim
-   that contains the Holder's name and birthdate, and a Verifier can
-   correlate this data with the Holder's passport that has to be
-   presented together with the vaccination certificate - either as a
-   digital credential or a physical document.
+   Without Key Binding, a Verifier only gets the proof that the
+   credential was issued by a particular Issuer, but the credential
+   itself can be replayed by anyone who gets access to it.  This means
+   that, for example, after a credential was leaked to an attacker, the
+   attacker can present the credential to any verifier that does not
+   require a binding.  But also a malicious Verifier to which the Holder
+   presented the credential can present the credential to another
+   Verifier if that other Verifier does not require Key Binding.
 
-   Cryptographic Key Binding means that the Issuer includes some
-   cryptographic data, usually a public key, belonging to the Holder.
-   The Holder can then sign over some data defined by the Verifier to
-   prove that the Holder is in possession of the private key.
-
-   Without verifying a binding to the Holder, a Verifier only gets the
-   proof that the credential was issued by a particular Issuer, but the
-   credential itself can be replayed by anyone who gets access to it.
-   This means that, for example, after a credential was leaked to an
-   attacker, the attacker can present the credential to any verifier
-   that does not require a binding.  But also a malicious Verifier to
-   which the Holder presented the credential can present the credential
-   to another Verifier if that other Verifier does not require a
-   binding.
-
-   Verifiers MUST decide whether a binding to the Holder is required for
-   a particular use case or not before verifying a credential.  This
-   decision can be informed by various factors including, but not
-   limited to the following: business requirements, the use case, the
-   type of binding between a Holder and its credential that is required
-   for a use case, the sensitivity of the use case, the expected
-   properties of a credential, the type and contents of other
-   credentials expected to be presented at the same time, etc.
-
-   This can be showcased based on two scenarios for a mobile driver's
-   license use case for SD-JWT:
-
-   *Scenario A:* For the verification of the driver's license when
-   stopped by a police officer for exceeding a speed limit, verifying
-   the binding of the credential may be necessary to ensure that the
-   person driving the car and presenting the license is the actual
-   Holder of the license.  The Verifier (e.g., the software used by the
-   police officer) will ensure that a Key Binding JWT is present and
-   signed with the Holder's private key.  Claims-based binding may be
-   used as well, e.g., by including a first name, last name and a date
-   of birth that matches that of an insurance policy paper.
-
-   *Scenario B:* A rental car agency may want to ensure, for insurance
-   purposes, that all drivers named on the rental contract own a
-   government-issued driver's license.  The signer of the rental
-   contract can present the mobile driver's license of all named
-   drivers.  In this case, the rental car agency does not need to check
-   the license's binding as the goal is not to verify the identity of
-   the person presenting the license, but to verify that a license
-   exists and is valid.
+   Verifiers MUST decide whether Key Binding is required for a
+   particular use case before verifying a credential.  This decision can
+   be informed by various factors including, but not limited to the
+   following: business requirements, the use case, the type of binding
+   between a Holder and its credential that is required for a use case,
+   the sensitivity of the use case, the expected properties of a
+   credential, the type and contents of other credentials expected to be
+   presented at the same time, etc.
 
    It is important that a Verifier does not make its security policy
    decisions based on data that can be influenced by an attacker or that
@@ -2110,8 +2073,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.QSjc0jeNOeuISD-GuUzr7I62fa
-   b0yQczRKpZHMpCUstqO4HKnBzppWv_OshKcdesHlQCDg_wsKqXmbYOcER9pg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.9K8gGFNYYIu90ZbKN7POZPIEhH
+   6qR7mTjMWdN8TyjtVaRjnc0057VOcQF3eyDDHmye8YN5WA3ME0JhmK_alY7Q~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2401,8 +2364,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.A2PSRelpqBIDNODdbzikhp
-   085-yaGqiRgfv0Gq3SvE4rsn2zcMv2ROKPO1BXkltCJu3EvuQSFZjlDcY4-P0RyA~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.4z04TOtt-7tjsE6Cz3So8M
+   sD8GCvkWdFKn_sih9Vs8YPtY5EmnXfvx4hB5QhMovVNjsp_CTmtA-f504KSdoliA~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2768,12 +2731,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.p_uatGA_tBdHD7SdXTrqvuwq1YD5gyFvrHkcVeBHLlSNyANPBB
-   6ZKjizpt6c5-yI9s80zKZTT5WW5J8wOpfB5w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.TllBqoXc8fQfHWtTn-q9RaUcvb12RkccpGK79B1xVBxxVVZQWG
+   aaHpE4UgsRuM3-jabFbMBZMP63Bep1Zr_GSA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYwNjI1MDR9.0WH9Wth0DzRlP
-   tLGgbBsptxE_WN7cCPvftQYs6lXpnyEUelOlj48yIfDs0RUydMkYltRotRZHS4pSHn-p
-   C_tpA
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxNzAwODN9.P1SRaJwUhphj4
+   2V_-UEkamFVrmXm6qSrBtnYsZwWobj9ivJdJDG2NBQcet1Duux-UZMdGgy0TV3uTssfR
+   n88dw
 
    After the validation, the Verifier will have the following data for
    further processing:
