@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-06T01:09:32.525461+00:00",
+  "timestamp": "2023-06-08T01:08:14.400280+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -6999,10 +6999,12 @@
       "assignees": [
         "danielfett"
       ],
-      "labels": [],
+      "labels": [
+        "has-PR"
+      ],
       "body": "Now that `_sd` is allowed at multiple locations in the JSON document, including recursively, I would expect Sec. 5.1.2 to define explicitly where the `_sd_alg` claim should appear. Once at the top of the document? Can it also appear alongside `_sd` claims located deeper in the document?\r\n\r\nAlso, please change the section heading from \"hash function\" to \"hash algorithm\", for consistency.",
       "createdAt": "2023-05-15T10:59:44Z",
-      "updatedAt": "2023-05-15T14:10:52Z",
+      "updatedAt": "2023-06-07T09:15:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -27566,13 +27568,13 @@
       "labels": [],
       "body": "Editor's copy for this branch: https://drafts.oauth.net/oauth-selective-disclosure-jwt/danielfett/arrays/draft-ietf-oauth-selective-disclosure-jwt.html",
       "createdAt": "2023-05-31T17:11:26Z",
-      "updatedAt": "2023-06-02T01:42:01Z",
+      "updatedAt": "2023-06-07T16:06:08Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "b60afd49c5377b62f83de13ab601bb583eac9b7d",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "danielfett/arrays",
-      "headRefOid": "170501dec116684c62a5af31a321f9c92d7a92e3",
+      "headRefOid": "c973a582b6a46722f8f20a78304a2af48e83ff15",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -27618,6 +27620,139 @@
               "updatedAt": "2023-06-02T01:41:31Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XZC9C",
+          "commit": {
+            "abbreviatedOid": "fcc90f4"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-06T21:57:07Z",
+          "updatedAt": "2023-06-06T21:57:08Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "```suggestion\r\nThe payload of an SD-JWT is a JSON object according to the following rules:\r\n```\r\n\r\nI know it's implied and maybe even obvious but I still think explicitly saying \"JSON object\" here is worthwhile. ",
+              "createdAt": "2023-06-06T21:57:07Z",
+              "updatedAt": "2023-06-06T21:57:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XZEP0",
+          "commit": {
+            "abbreviatedOid": "fcc90f4"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-06T22:01:56Z",
+          "updatedAt": "2023-06-06T22:01:56Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "```suggestion\r\n 3. The payload MAY contain one or more decoy digests to hide the number of claims in the SD-JWT, created and formatted as described in (#decoy_digests).\r\n```",
+              "createdAt": "2023-06-06T22:01:56Z",
+              "updatedAt": "2023-06-06T22:01:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XZfJn",
+          "commit": {
+            "abbreviatedOid": "fcc90f4"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-06T23:36:55Z",
+          "updatedAt": "2023-06-06T23:36:56Z",
+          "comments": [
+            {
+              "originalPosition": 404,
+              "body": "```suggestion\r\nNote: Examples in this document use the `cnf` Claim defined in [@RFC7800] to include\r\n```",
+              "createdAt": "2023-06-06T23:36:56Z",
+              "updatedAt": "2023-06-06T23:36:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XbkxU",
+          "commit": {
+            "abbreviatedOid": "78534e5"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-07T07:24:29Z",
+          "updatedAt": "2023-06-07T07:24:30Z",
+          "comments": [
+            {
+              "originalPosition": 405,
+              "body": "```suggestion\r\nNote: Examples in this document use the `cnf` Claim defined in [@RFC7800] to include\r\nthe raw public key by value in SD-JWT.\r\n```",
+              "createdAt": "2023-06-07T07:24:29Z",
+              "updatedAt": "2023-06-07T07:24:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XgOHj",
+          "commit": {
+            "abbreviatedOid": "fcc90f4"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-07T15:57:54Z",
+          "updatedAt": "2023-06-07T15:57:54Z",
+          "comments": [
+            {
+              "originalPosition": 256,
+              "body": "```suggestion\r\n  \"nationalities\": \r\n    [\"DE\", {\"...\": \"w0I8EKcdCtUPkGCNUrfwVp2xEgNjtoIDlOxc9-PlOhs\"}]\r\n```\r\n\r\njust a line break so it doesn't overrun width-wise ",
+              "createdAt": "2023-06-07T15:57:54Z",
+              "updatedAt": "2023-06-07T15:57:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XgQJU",
+          "commit": {
+            "abbreviatedOid": "0a24b9d"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-07T16:02:00Z",
+          "updatedAt": "2023-06-07T16:02:00Z",
+          "comments": [
+            {
+              "originalPosition": 256,
+              "body": "```suggestion\r\n  \"nationalities\":\r\n```",
+              "createdAt": "2023-06-07T16:02:00Z",
+              "updatedAt": "2023-06-07T16:02:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XgSOS",
+          "commit": {
+            "abbreviatedOid": "c973a58"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-07T16:06:08Z",
+          "updatedAt": "2023-06-07T16:06:08Z",
+          "comments": []
         }
       ]
     },
@@ -27652,24 +27787,26 @@
       "id": "PR_kwDOHTmVzM5SKzGS",
       "title": "fix: [Hash algs] only RIPEMD versions earlier that 160 are not usable.",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/285",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "peppelinux",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "RIPEMD-160 is usable, but not its predecessors. \r\n\r\nFor this reason this PR removes RIPEMD-160 from the list of the weak algs by saying that only  -160 predecessors must not be used.",
       "createdAt": "2023-06-05T08:46:57Z",
-      "updatedAt": "2023-06-05T16:35:46Z",
+      "updatedAt": "2023-06-06T15:01:54Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "332ded8faf20d528c5c05e04cebed28aab1a0d33",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "ripemd-redention",
       "headRefOid": "c0802bfa73e2e03502d489e8382423331d3a4f42",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-06-06T15:01:54Z",
+      "mergedAt": "2023-06-06T15:01:54Z",
+      "mergedBy": "danielfett",
+      "mergeCommit": {
+        "oid": "23752789bc05aaeee51b3a10f08a870d76e4e057"
+      },
       "comments": [],
       "reviews": [
         {
@@ -27723,6 +27860,121 @@
           "body": "",
           "createdAt": "2023-06-05T16:35:46Z",
           "updatedAt": "2023-06-05T16:35:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XQmmG",
+          "commit": {
+            "abbreviatedOid": "c0802bf"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you!",
+          "createdAt": "2023-06-06T01:12:29Z",
+          "updatedAt": "2023-06-06T01:12:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5XWK20",
+          "commit": {
+            "abbreviatedOid": "c0802bf"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-06T15:01:47Z",
+          "updatedAt": "2023-06-06T15:01:47Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 286,
+      "id": "PR_kwDOHTmVzM5SUFkh",
+      "title": "use the term Key Binding rather than Holder Binding",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/286",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Change to use Key Binding and Key Binding JWT rather than Holder Binding and Holder Binding JWT. \r\n\r\nfor issue #281",
+      "createdAt": "2023-06-06T14:39:17Z",
+      "updatedAt": "2023-06-07T22:57:46Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "332ded8faf20d528c5c05e04cebed28aab1a0d33",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "bc/key-rather-than-holder",
+      "headRefOid": "14325f6cf73a84faa29c2d7974631c951926de11",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Did some more work on this based on discussions yesterday and I believe it's now ready for review @Sakurann and @danielfett  ",
+          "createdAt": "2023-06-07T21:47:41Z",
+          "updatedAt": "2023-06-07T21:47:41Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Editor's copy for this branch: https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc/key-rather-than-holder/draft-ietf-oauth-selective-disclosure-jwt.html \r\n\r\nAlso snuck in a fix to [this formatting issue](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-structure-of-the-holder-bin) so the [bullet list shows](https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc/key-rather-than-holder/draft-ietf-oauth-selective-disclosure-jwt.html#name-structure-of-the-key-bindin). ",
+          "createdAt": "2023-06-07T22:33:42Z",
+          "updatedAt": "2023-06-07T22:57:46Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 287,
+      "id": "PR_kwDOHTmVzM5SY5Lf",
+      "title": "Clarify usage of _sd_alg to fix #266",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/287",
+      "state": "OPEN",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-06-07T09:14:58Z",
+      "updatedAt": "2023-06-07T14:06:27Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "23752789bc05aaeee51b3a10f08a870d76e4e057",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "danielfett/fix-266",
+      "headRefOid": "6de1cdfec4682a0ee303202839f15fbe8f04537e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Text looks good but it's going to clash with the array work https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/283/files#diff-40bc3800dd9a7d4411799637caf0b01f82a01242d57264a2e4beb408c3835704R513-R515 ",
+          "createdAt": "2023-06-07T14:06:27Z",
+          "updatedAt": "2023-06-07T14:06:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5XeSE7",
+          "commit": {
+            "abbreviatedOid": "6de1cdf"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-07T12:42:41Z",
+          "updatedAt": "2023-06-07T12:42:41Z",
           "comments": []
         }
       ]
