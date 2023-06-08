@@ -2059,9 +2059,9 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tnFAlbrbx-
-upGHMl1j4TMlKXwPVPH1BrNGFU8rQ3e6rE-xnKHBO_RYLRhPxa4YxyK3OUd1SDPHZmQ9
-N5lIiXXQ
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.dAOGcbwsz_
+cHkB-RvH6Ox1nbrLYqxbB4nLLOooUDRs6OXQKK_IZfZIECs4Q3F4IwBapeG2E2Huj0vV
+aM8fDlSQ
 </pre><a href="#section-5.2-6" class="pilcrow">¶</a>
 </div>
 <p id="section-5.2-7">The Issuer creates the following Disclosures:<a href="#section-5.2-7" class="pilcrow">¶</a></p>
@@ -2192,9 +2192,9 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tnFAlbrbx-
-upGHMl1j4TMlKXwPVPH1BrNGFU8rQ3e6rE-xnKHBO_RYLRhPxa4YxyK3OUd1SDPHZmQ9
-N5lIiXXQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.dAOGcbwsz_
+cHkB-RvH6Ox1nbrLYqxbB4nLLOooUDRs6OXQKK_IZfZIECs4Q3F4IwBapeG2E2Huj0vV
+aM8fDlSQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
 0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
 Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
 WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -2243,47 +2243,67 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
 <a href="#section-5.4.1.1" class="section-number selfRef">5.4.1.1. </a><a href="#name-structure-of-the-holder-bin" class="section-name selfRef">Structure of the Holder Binding JWT</a>
             </h5>
 <p id="section-5.4.1.1-1">This section defines the contents of the Holder Binding JWT.<a href="#section-5.4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-2">The JWT MUST contain the following elements:
-  * in the JOSE header,
-    * <code>typ</code>: REQUIRED. MUST be <code>hb+jwt</code>, which explicitly types the Holder Binding JWT as recommended in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.
-    * <code>alg</code>: REQUIRED. A digital signature algorithm identifier such as per IANA "JSON Web Signature and Encryption Algorithms" registry. MUST NOT be <code>none</code> or an identifier for a symmetric algorithm (MAC).
-  * in the JWT body,
-    * <code>iat</code>: REQUIRED. The value of this claim MUST be the time at which the Holder Binding JWT was issued using the syntax defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
-    * <code>aud</code>: REQUIRED. The intended receiver of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.
-    * <code>nonce</code>: REQUIRED. Ensures the freshness of the signature. The value type of this claim MUST be a string. How this value is obtained is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-3">To validate the signature on the Holder Binding JWT, the Verifier MUST use the key material in the SD-JWT. If it is not clear from the SD-JWT, HB-JWT MUST specify which key material the Verifier needs to use to validate HB-JWT using JOSE header parameters such as <code>kid</code> and <code>x5c</code>.<a href="#section-5.4.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-4">Below is a non-normative example of a Holder Binding JWT header:<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.4.1.1-5">
+<p id="section-5.4.1.1-2">The JWT MUST contain the following elements:<a href="#section-5.4.1.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.4.1.1-3.1">
+                <p id="section-5.4.1.1-3.1.1">in the JOSE header,<a href="#section-5.4.1.1-3.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.4.1.1-3.1.2.1">
+                    <code>typ</code>: REQUIRED. MUST be <code>hb+jwt</code>, which explicitly types the Holder Binding JWT as recommended in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.4.1.1-3.1.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-5.4.1.1-3.1.2.2">
+                    <code>alg</code>: REQUIRED. A digital signature algorithm identifier such as per IANA "JSON Web Signature and Encryption Algorithms" registry. MUST NOT be <code>none</code> or an identifier for a symmetric algorithm (MAC).<a href="#section-5.4.1.1-3.1.2.2" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="normal" id="section-5.4.1.1-3.2">
+                <p id="section-5.4.1.1-3.2.1">in the JWT body,<a href="#section-5.4.1.1-3.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.4.1.1-3.2.2.1">
+                    <code>iat</code>: REQUIRED. The value of this claim MUST be the time at which the Holder Binding JWT was issued using the syntax defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.4.1.1-3.2.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-5.4.1.1-3.2.2.2">
+                    <code>aud</code>: REQUIRED. The intended receiver of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-3.2.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-5.4.1.1-3.2.2.3">
+                    <code>nonce</code>: REQUIRED. Ensures the freshness of the signature. The value type of this claim MUST be a string. How this value is obtained is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-3.2.2.3" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+            </ul>
+<p id="section-5.4.1.1-4">To validate the signature on the Holder Binding JWT, the Verifier MUST use the key material in the SD-JWT. If it is not clear from the SD-JWT, HB-JWT MUST specify which key material the Verifier needs to use to validate HB-JWT using JOSE header parameters such as <code>kid</code> and <code>x5c</code>.<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-5">Below is a non-normative example of a Holder Binding JWT header:<a href="#section-5.4.1.1-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.4.1.1-6">
 <pre>{
   "alg": "ES256",
   "typ": "hb+jwt"
 }
-</pre><a href="#section-5.4.1.1-5" class="pilcrow">¶</a>
+</pre><a href="#section-5.4.1.1-6" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-6">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-6" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-5.4.1.1-7">
+<p id="section-5.4.1.1-7">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-7" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-5.4.1.1-8">
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1686189236
+  "iat": 1686189298
 }
-</pre><a href="#section-5.4.1.1-7" class="pilcrow">¶</a>
+</pre><a href="#section-5.4.1.1-8" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-8">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-8" class="pilcrow">¶</a></p>
-<div class="lang-txt sourcecode" id="section-5.4.1.1-9">
+<p id="section-5.4.1.1-9">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-9" class="pilcrow">¶</a></p>
+<div class="lang-txt sourcecode" id="section-5.4.1.1-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODYxODkyMzZ9.WFBz14SUUlOVTz9Hm8US4e0THEIio_OKlsAMEuBhVmYfLXdraG
-Pc-UiL9GdE3pJxaIW9mcDp3hfnR_4dpJR-6Q
-</pre><a href="#section-5.4.1.1-9" class="pilcrow">¶</a>
+6IDE2ODYxODkyOTh9.CQcUYU3GjpFHv_YYIuWAOihyxJMPt4a2nbHcHddYPbvXc4B1jK
+8cPlQYbwaVqCOn6a9e3__TjHLPMA3G2ItGMA
+</pre><a href="#section-5.4.1.1-10" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
-based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-10" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-11">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
+<p id="section-5.4.1.1-11">Whether to require Holder Binding is up to the Verifier's policy,
+based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-11" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-12">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
 e.g., when the Combined Format for Presentation without a Holder Binding JWT is itself embedded in a
-signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-11" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-12">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
-the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-12" class="pilcrow">¶</a></p>
+signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-12" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-13">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
+the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2307,12 +2327,12 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.tnFAlbrbx-
-upGHMl1j4TMlKXwPVPH1BrNGFU8rQ3e6rE-xnKHBO_RYLRhPxa4YxyK3OUd1SDPHZmQ9
-N5lIiXXQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.dAOGcbwsz_
+cHkB-RvH6Ox1nbrLYqxbB4nLLOooUDRs6OXQKK_IZfZIECs4Q3F4IwBapeG2E2Huj0vV
+aM8fDlSQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
 IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-wgImlhdCI6IDE2ODYxODkyMzZ9.WFBz14SUUlOVTz9Hm8US4e0THEIio_OKlsAMEuBhV
-mYfLXdraGPc-UiL9GdE3pJxaIW9mcDp3hfnR_4dpJR-6Q
+wgImlhdCI6IDE2ODYxODkyOTh9.CQcUYU3GjpFHv_YYIuWAOihyxJMPt4a2nbHcHddYP
+bvXc4B1jK8cPlQYbwaVqCOn6a9e3__TjHLPMA3G2ItGMA
 </pre><a href="#section-5.4.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3316,8 +3336,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.Oo4yDWzQ7puSC_zP7tQhsU46-T
-ZXBBKRzMHlJeZpp7Mqwmm4e9UctjWhoGY_e841oCsgTDObtXJly9uJjk0Gtw~
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.Cl86VZus8kt7QLXY-xWCvUmX8A
+O7r06pQAwK-qpyGXMoX12zyiGM2y6hAjyhxFLrh4nY_bQFmU3YlDmcGW8n4A~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3639,8 +3659,8 @@ jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
 3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
 244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
 0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.hapbGhMZ3DlZKQnBrs6BSC
-Ng3c4ONLsY5imFXo5Gh9oTlXdpHsGRNTbjGmrI3QJusKEdamLYybsip-B4MtnDYQ~
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.Izu57HvAi5L42SBTDfM3vQ
+V4YZCkwifqE0aWtaxjsfghWjWsrWW9dt0SRpQ9pSBAexuBYThWDbV1MuDPecJtVA~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -4008,12 +4028,12 @@ iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
 GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
 CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
 3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.aqlDj1nV6QWdw0neUqvOWmgC_yln3g_hnKzPUCsPLXPo0O3vic
-Wq37JpevPMXH6b9yGJJZceaAySZFjNM0jaeA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+GpUOUYySFpRIn19fQ.a4hN4nBfE5_mLWfLLskCrrwoQ1ckXJUhn5pSXHClZyO8Xb1RQY
+fv75KcLTPuLTqKBI2C49zGwdjdd3z5RRAV7A~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
 gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxODkyMzZ9.xGuB4rRGCB5sR
-zjcfkSUxfg3h7ctYcw7Mpwn4w2_4YLS_QCHoCPUxNj8iZMjtQmgJMvVRU8Tuc5zfoAfw
-0eaWA
+V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxODkyOTh9.B9Wzt0EZJef6b
+W11FcZSt5ceF45mt1E7EhY3rVodMCVOMO3LNUBmK2csV_oE05FqTB58lrixkJ2Mxj4Cj
+hwuuA
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
