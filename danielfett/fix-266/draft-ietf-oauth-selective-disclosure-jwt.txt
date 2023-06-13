@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 9 December 2023                                       Microsoft
+Expires: 15 December 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                             7 June 2023
+                                                            13 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 December 2023.
+   This Internet-Draft will expire on 15 December 2023.
 
 Copyright Notice
 
@@ -779,10 +779,10 @@ Table of Contents
 5.1.2.  Hash Function Claim
 
    The claim _sd_alg indicates the hash algorithm used by the Issuer to
-   generate the digests.  This claim MAY appear at the top level of the
-   SD-JWT payload, but MUST NOT be used in any object nested within the
-   payload.  If the _sd_alg claim is not present at the top level, a
-   default value of sha-256 is used.
+   generate the digests.  When used, this claim MUST appear at the top
+   level of the SD-JWT payload.  It MUST NOT be used in any object
+   nested within the payload.  If the _sd_alg claim is not present at
+   the top level, a default value of sha-256 MUST be used.
 
    The hash algorithm identifier MUST be a hash algorithm value from the
    "Hash Name String" column in the IANA "Named Information Hash
@@ -845,15 +845,7 @@ Table of Contents
      "iss": "https://example.com/issuer",
      "iat": 1683000000,
      "exp": 1883000000,
-     "_sd_alg": "sha-256",
-     "cnf": {
-       "jwk": {
-         "kty": "EC",
-         "crv": "P-256",
-         "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-         "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-       }
-     }
+     "_sd_alg": "sha-256"
    }
 
    The SD-JWT is then signed by the Issuer to create a JWT like the
@@ -867,12 +859,9 @@ Table of Contents
    DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
    iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
    mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-   iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-   TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-   q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-   mqOqKOag
+   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+   36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+   Xw-AuPgNtw
 
    The Issuer creates the following Disclosures:
 
@@ -985,21 +974,18 @@ Table of Contents
    DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
    iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
    mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-   iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-   TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-   q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-   mqOqKOag~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
-   0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
-   Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
-   WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
-   ZS5jb20iXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsI
-   CIrMS0yMDItNTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZH
-   Jlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5Ij
-   ogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV
-   0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxLT
-   AxIl0
+   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+   36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+   Xw-AuPgNtw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZ
+   V80MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9o
+   biJd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
+   d~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbX
+   BsZS5jb20iXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciI
+   sICIrMS0yMDItNTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFk
+   ZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5
+   IjogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMi
+   fV0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAx
+   LTAxIl0
 
    (Line breaks for presentation only.)
 
@@ -1068,19 +1054,8 @@ Table of Contents
 
    Below is a non-normative example of a Holder Binding JWT payload:
 
-   {
-     "nonce": "1234567890",
-     "aud": "https://example.com/verifier",
-     "iat": 1686129302
-   }
-
    Below is a non-normative example of a Holder Binding JWT produced by
    signing a payload in the example above:
-
-   eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
-   3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODYxMjkzMDJ9.3TnYonOQi6cGiWSRPM-1SecF4ego3mXq4Wa0JFlEp1E2KA-Tbx
-   hFyYw7t4uXDB7pUwy1EsH2X2xHVx26OJS28Q
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1110,15 +1085,9 @@ Table of Contents
    DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
    iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
    mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-   iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-   TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-   q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-   mqOqKOag~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
-   IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODYxMjkzMDJ9.3TnYonOQi6cGiWSRPM-1SecF4ego3mXq4Wa0JFlEp
-   1E2KA-TbxhFyYw7t4uXDB7pUwy1EsH2X2xHVx26OJS28Q
+   DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+   36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+   Xw-AuPgNtw~
 
 6.  Verification and Processing
 
@@ -2111,8 +2080,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.YiVc8VhWA9FlfbUJqZyIlau5d_
-   1FslOVzDc2Ja0LEIMfUfK08otpC0nIreWBNSfQdJhAWPL5m6WUTKMEcr2Xxg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.1d7NcR0irzrRu6xv3Xd7F1dN1d
+   ig4YxSYL6nEarYVvPlEZZ1QSWXMpY3GOJ5j9VX4PNffHp8ZFAnve5sb74v9A~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2402,8 +2371,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.2uIqSCfLUs-O-kGfLXUFQx
-   oE1DGb-HnoqtDhDeJ9KGmr1bMalil3O9TpkZRRW6PbGnsIGwPBh3FASTDjLhsbug~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.5XRlYJgQqbMfYRuGcKT-Zb
+   yzschHbB0PJOSX6W3YPEV7wRzGs9QdtHJpImdRzAkAMqxvcFqV2_PZQ9BsRsHsQg~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2727,15 +2696,7 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
        "batchNumber": "1626382736",
        "healthProfessional": "883110000015376"
      },
-     "_sd_alg": "sha-256",
-     "cnf": {
-       "jwk": {
-         "kty": "EC",
-         "crv": "P-256",
-         "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-         "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-       }
-     }
+     "_sd_alg": "sha-256"
    }
 
    Disclosures:
@@ -2766,15 +2727,8 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    CAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50IiwgImFkbWluaXN0ZXJpbmdDZW50cmUiO
    iAiUHJheGlzIFNvbW1lcmdhcnRlbiIsICJiYXRjaE51bWJlciI6ICIxNjI2MzgyNzM2I
    iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
-   GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
-   CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
-   3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.sutHK_mQY1dxzB5dNkUOq2qVfBZGktnOmya9AIAkn4ov-TKvU8
-   iHgwNwwzTOQsYThy5hy2f2gnu2QkTq2gdv7w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
-   gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjkzMDJ9.BeJ9uQ61hUqnU
-   qRHfQn_oCg2XcYOKH5mNjPPP_OX_hlIw82TJM5B5nkl019zkTB7m-KRgrVnqZHVLc3ge
-   4qDaw
+   GciOiAic2hhLTI1NiJ9.Hvl2hEXDB-edKSIP167_XqjsYtg-PNlVc1SPIWk8q7PMlRFc
+   JNsc7P99lDjSLmGdNtKMudVxPS4V1czsUmbmVQ~
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2819,15 +2773,7 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
        "batchNumber": "1626382736",
        "healthProfessional": "883110000015376"
      },
-     "_sd_alg": "sha-256",
-     "cnf": {
-       "jwk": {
-         "kty": "EC",
-         "crv": "P-256",
-         "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-         "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-       }
-     }
+     "_sd_alg": "sha-256"
    }
 
 Appendix B.  Disclosure Format Considerations

@@ -13,16 +13,16 @@
 used as the payload of a JSON Web Signature (JWS) structure.
 It encompasses various applications, including but not limited to the selective disclosure of JSON Web Tokens (JWT) claims. 
     " name="description">
-<meta content="xml2rfc 3.17.2" name="generator">
+<meta content="xml2rfc 3.17.3" name="generator">
 <meta content="security" name="keyword">
 <meta content="oauth2" name="keyword">
 <meta content="draft-ietf-oauth-selective-disclosure-jwt-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.17.2
+  xml2rfc 3.17.3
     Python 3.11.3
     appdirs 1.4.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.2
+    google-i18n-address 3.0.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.2
@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fett, et al.</td>
-<td class="center">Expires 9 December 2023</td>
+<td class="center">Expires 15 December 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-oauth-selective-disclosure-jwt-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-06-07" class="published">7 June 2023</time>
+<time datetime="2023-06-13" class="published">13 June 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-09">9 December 2023</time></dd>
+<dd class="expires"><time datetime="2023-12-15">15 December 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ It encompasses various applications, including but not limited to the selective 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1970,9 +1970,9 @@ for readability. JSON does not allow line breaks in strings.<a href="#section-5.
 <a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-hash-function-claim" class="section-name selfRef">Hash Function Claim</a>
           </h4>
 <p id="section-5.1.2-1">The claim <code>_sd_alg</code> indicates the hash algorithm used by the Issuer to generate
-the digests. This claim MAY appear at the top level of the SD-JWT payload, but
+the digests. When used, this claim MUST appear at the top level of the SD-JWT payload. It
 MUST NOT be used in any object nested within the payload. If the  <code>_sd_alg</code>
-claim is not present at the top level, a default value of <code>sha-256</code> is used.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+claim is not present at the top level, a default value of <code>sha-256</code> MUST be used.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.2-2">The hash algorithm identifier MUST be a hash algorithm value from the "Hash Name String" column in the IANA "Named Information Hash Algorithm" registry <span>[<a href="#IANA.Hash.Algorithms" class="cite xref">IANA.Hash.Algorithms</a>]</span>
 or a value defined in another specification and/or profile of this specification.<a href="#section-5.1.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.1.2-3">To promote interoperability, implementations MUST support the <code>sha-256</code> hash algorithm.<a href="#section-5.1.2-3" class="pilcrow">¶</a></p>
@@ -2035,15 +2035,7 @@ be disclosed in full.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
   "iss": "https://example.com/issuer",
   "iat": 1683000000,
   "exp": 1883000000,
-  "_sd_alg": "sha-256",
-  "cnf": {
-    "jwk": {
-      "kty": "EC",
-      "crv": "P-256",
-      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-    }
-  }
+  "_sd_alg": "sha-256"
 }
 </pre><a href="#section-5.2-4" class="pilcrow">¶</a>
 </div>
@@ -2057,12 +2049,9 @@ ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
 DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
 iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
 mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-mqOqKOag
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+Xw-AuPgNtw
 </pre><a href="#section-5.2-6" class="pilcrow">¶</a>
 </div>
 <p id="section-5.2-7">The Issuer creates the following Disclosures:<a href="#section-5.2-7" class="pilcrow">¶</a></p>
@@ -2190,21 +2179,18 @@ ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
 DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
 iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
 mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-mqOqKOag~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
-0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
-Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
-WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
-ZS5jb20iXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsI
-CIrMS0yMDItNTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZH
-Jlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5Ij
-ogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV
-0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxLT
-AxIl0
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+Xw-AuPgNtw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZ
+V80MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9o
+biJd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
+d~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbX
+BsZS5jb20iXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciI
+sICIrMS0yMDItNTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFk
+ZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5
+IjogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMi
+fV0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAx
+LTAxIl0
 </pre><a href="#section-5.3.1-2" class="pilcrow">¶</a>
 </div>
 <p id="section-5.3.1-3">(Line breaks for presentation only.)<a href="#section-5.3.1-3" class="pilcrow">¶</a></p>
@@ -2262,29 +2248,14 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
 </pre><a href="#section-5.4.1.1-5" class="pilcrow">¶</a>
 </div>
 <p id="section-5.4.1.1-6">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-6" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-5.4.1.1-7">
-<pre>{
-  "nonce": "1234567890",
-  "aud": "https://example.com/verifier",
-  "iat": 1686129302
-}
-</pre><a href="#section-5.4.1.1-7" class="pilcrow">¶</a>
-</div>
-<p id="section-5.4.1.1-8">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-8" class="pilcrow">¶</a></p>
-<div class="lang-txt sourcecode" id="section-5.4.1.1-9">
-<pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
-3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODYxMjkzMDJ9.3TnYonOQi6cGiWSRPM-1SecF4ego3mXq4Wa0JFlEp1E2KA-Tbx
-hFyYw7t4uXDB7pUwy1EsH2X2xHVx26OJS28Q
-</pre><a href="#section-5.4.1.1-9" class="pilcrow">¶</a>
-</div>
-<p id="section-5.4.1.1-10">Whether to require Holder Binding is up to the Verifier's policy,
-based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-10" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-11">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
+<p id="section-5.4.1.1-7">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-8">Whether to require Holder Binding is up to the Verifier's policy,
+based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-9">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
 e.g., when the Combined Format for Presentation without a Holder Binding JWT is itself embedded in a
-signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-11" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-12">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
-the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-12" class="pilcrow">¶</a></p>
+signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-10">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
+the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2305,15 +2276,9 @@ ElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQVROM29RT
 DlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
 iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiXSwgI
 mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
-DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
-iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
-TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kt7XpjCOgC
-q1i68Sbn8t-ydYW2jw9xEzK0n0SbiKAwSlXYlcAMjcH1Ssn4aFiAXrRczZm26-GhJD-G
-mqOqKOag~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
-IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-wgImlhdCI6IDE2ODYxMjkzMDJ9.3TnYonOQi6cGiWSRPM-1SecF4ego3mXq4Wa0JFlEp
-1E2KA-TbxhFyYw7t4uXDB7pUwy1EsH2X2xHVx26OJS28Q
+DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiJ9.ZbE4Oia0
+36Pefg_-YMO2i9wOigOzgsryX7W8gn-bL4ZGwGs0wpp1e9hTuB_9kTbWpWphTbjaG2y_
+Xw-AuPgNtw~
 </pre><a href="#section-5.4.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3317,8 +3282,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.YiVc8VhWA9FlfbUJqZyIlau5d_
-1FslOVzDc2Ja0LEIMfUfK08otpC0nIreWBNSfQdJhAWPL5m6WUTKMEcr2Xxg~
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.1d7NcR0irzrRu6xv3Xd7F1dN1d
+ig4YxSYL6nEarYVvPlEZZ1QSWXMpY3GOJ5j9VX4PNffHp8ZFAnve5sb74v9A~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3640,8 +3605,8 @@ jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
 3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
 244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
 0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.2uIqSCfLUs-O-kGfLXUFQx
-oE1DGb-HnoqtDhDeJ9KGmr1bMalil3O9TpkZRRW6PbGnsIGwPBh3FASTDjLhsbug~
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.5XRlYJgQqbMfYRuGcKT-Zb
+yzschHbB0PJOSX6W3YPEV7wRzGs9QdtHJpImdRzAkAMqxvcFqV2_PZQ9BsRsHsQg~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -3929,7 +3894,7 @@ using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a 
 </pre><a href="#appendix-A.4-7" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-8">The payload of a corresponding SD-JWT looks as follows:<a href="#appendix-A.4-8" class="pilcrow">¶</a></p>
-<div class="breakable lang-json sourcecode" id="appendix-A.4-9">
+<div class="lang-json sourcecode" id="appendix-A.4-9">
 <pre>{
   "iss": "https://example.com/issuer",
   "iat": 1683000000,
@@ -3970,15 +3935,7 @@ using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a 
     "batchNumber": "1626382736",
     "healthProfessional": "883110000015376"
   },
-  "_sd_alg": "sha-256",
-  "cnf": {
-    "jwk": {
-      "kty": "EC",
-      "crv": "P-256",
-      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-    }
-  }
+  "_sd_alg": "sha-256"
 }
 </pre><a href="#appendix-A.4-9" class="pilcrow">¶</a>
 </div>
@@ -4006,19 +3963,12 @@ CJnaXZlbk5hbWUiOiAiTWFyaW9uIiwgImZhbWlseU5hbWUiOiAiTXVzdGVybWFubiJ9L
 CAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50IiwgImFkbWluaXN0ZXJpbmdDZW50cmUiO
 iAiUHJheGlzIFNvbW1lcmdhcnRlbiIsICJiYXRjaE51bWJlciI6ICIxNjI2MzgyNzM2I
 iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
-GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
-CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
-3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.sutHK_mQY1dxzB5dNkUOq2qVfBZGktnOmya9AIAkn4ov-TKvU8
-iHgwNwwzTOQsYThy5hy2f2gnu2QkTq2gdv7w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
-gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxMjkzMDJ9.BeJ9uQ61hUqnU
-qRHfQn_oCg2XcYOKH5mNjPPP_OX_hlIw82TJM5B5nkl019zkTB7m-KRgrVnqZHVLc3ge
-4qDaw
+GciOiAic2hhLTI1NiJ9.Hvl2hEXDB-edKSIP167_XqjsYtg-PNlVc1SPIWk8q7PMlRFc
+JNsc7P99lDjSLmGdNtKMudVxPS4V1czsUmbmVQ~
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
-<div class="breakable lang-json sourcecode" id="appendix-A.4-14">
+<div class="lang-json sourcecode" id="appendix-A.4-14">
 <pre>{
   "iss": "https://example.com/issuer",
   "iat": 1683000000,
@@ -4059,15 +4009,7 @@ qRHfQn_oCg2XcYOKH5mNjPPP_OX_hlIw82TJM5B5nkl019zkTB7m-KRgrVnqZHVLc3ge
     "batchNumber": "1626382736",
     "healthProfessional": "883110000015376"
   },
-  "_sd_alg": "sha-256",
-  "cnf": {
-    "jwk": {
-      "kty": "EC",
-      "crv": "P-256",
-      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-    }
-  }
+  "_sd_alg": "sha-256"
 }
 </pre><a href="#appendix-A.4-14" class="pilcrow">¶</a>
 </div>
