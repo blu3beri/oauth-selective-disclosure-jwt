@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fett, et al.</td>
-<td class="center">Expires 10 December 2023</td>
+<td class="center">Expires 15 December 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-oauth-selective-disclosure-jwt-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-06-08" class="published">8 June 2023</time>
+<time datetime="2023-06-13" class="published">13 June 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-10">10 December 2023</time></dd>
+<dd class="expires"><time datetime="2023-12-15">15 December 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ It encompasses various applications, including but not limited to the selective 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 10 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1185,7 +1185,7 @@ It encompasses various applications, including but not limited to the selective 
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-disclosing-to-a-verifier" class="internal xref">Disclosing to a Verifier</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-optional-holder-binding" class="internal xref">Optional Holder Binding</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-optional-key-binding" class="internal xref">Optional Key Binding</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
                 <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-verification" class="internal xref">Verification</a></p>
@@ -1224,7 +1224,7 @@ It encompasses various applications, including but not limited to the selective 
                 <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-combined-format-for-present" class="internal xref">Combined Format for Presentation</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4.2.1">
-                    <p id="section-toc.1-1.5.2.4.2.1.1"><a href="#section-5.4.1" class="auto internal xref">5.4.1</a>.  <a href="#name-enabling-holder-binding" class="internal xref">Enabling Holder Binding</a></p>
+                    <p id="section-toc.1-1.5.2.4.2.1.1"><a href="#section-5.4.1" class="auto internal xref">5.4.1</a>.  <a href="#name-enabling-key-binding" class="internal xref">Enabling Key Binding</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4.2.2">
                     <p id="section-toc.1-1.5.2.4.2.2.1"><a href="#section-5.4.2" class="auto internal xref">5.4.2</a>.  <a href="#name-example-2" class="internal xref">Example</a></p>
@@ -1266,7 +1266,7 @@ It encompasses various applications, including but not limited to the selective 
                 <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="auto internal xref">8.5</a>.  <a href="#name-choice-of-a-hash-algorithm" class="internal xref">Choice of a Hash Algorithm</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
-                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-holder-binding" class="internal xref">Holder Binding</a></p>
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-key-binding" class="internal xref">Key Binding</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.7">
                 <p id="section-toc.1-1.8.2.7.1"><a href="#section-8.7" class="auto internal xref">8.7</a>.  <a href="#name-blinding-claim-names" class="internal xref">Blinding Claim Names</a></p>
@@ -1400,9 +1400,11 @@ Disclosures together with the SD-JWT to the Verifier. The Verifier
 has to verify that all disclosed claim values were part of the original,
 Issuer-signed SD-JWT. The Verifier will not, however, learn any claim
 values not disclosed in the Disclosures.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">This document also specifies an optional mechanism for Holder Binding,
-or the concept of binding an SD-JWT to key material controlled by the
-Holder. The strength of the Holder Binding is conditional upon the trust
+<p id="section-1-9">This document also specifies an optional mechanism for Key Binding,
+which is the concept of binding an SD-JWT to a Holder's public key
+and requiring that the Holder prove possession of the corresponding
+private key when presenting the SD-JWT.
+The strength of the binding is conditional upon the trust
 in the protection of the private key of the key pair an SD-JWT is bound to.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">SD-JWT can be used with any JSON-based representation of claims, including JSON-LD.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">This specification aims to be easy to implement and to leverage
@@ -1471,10 +1473,10 @@ that supports selective disclosure as defined in this document and can contain b
         <dd style="margin-left: 1.5em" id="section-2-1.6">A combination of a salt, a cleartext claim name, and a cleartext claim value, all of which are used to calculate a digest for the respective claim.<a href="#section-2-1.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-1.7">Cryptographic Holder Binding:</dt>
+<dt id="section-2-1.7">Key Binding:</dt>
         <dd style="margin-left: 1.5em" id="section-2-1.8">Ability of the Holder to prove legitimate possession of an SD-JWT by proving
-control over the same private key during the issuance and presentation. An SD-JWT with Holder Binding contains
-a public key or a reference to a public key that matches to the private key controlled by the Holder.<a href="#section-2-1.8" class="pilcrow">¶</a>
+control over the same private key during the issuance and presentation. An SD-JWT with Key Binding contains
+a public key, or a reference to a public key, that matches to the private key controlled by the Holder.<a href="#section-2-1.8" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-1.9">Issuer:</dt>
@@ -1560,18 +1562,18 @@ conceptual level, abstracting from the data formats described in <a href="#data_
 <p id="section-4.2-1">To disclose to a Verifier a subset of the SD-JWT claim values, a Holder sends only the Disclosures of those selectively released claims to the Verifier along with the SD-JWT in the Combined Format for Presentation defined in <a href="#combined_format_for_presentation" class="auto internal xref">Section 5.4</a>.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="optional-holder-binding">
+<div id="optional-key-binding">
 <section id="section-4.3">
-        <h3 id="name-optional-holder-binding">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-optional-holder-binding" class="section-name selfRef">Optional Holder Binding</a>
+        <h3 id="name-optional-key-binding">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-optional-key-binding" class="section-name selfRef">Optional Key Binding</a>
         </h3>
-<p id="section-4.3-1">Holder Binding is an optional feature. When Cryptographic Holder Binding is required by the use-case, the SD-JWT MUST contain information about the key material controlled by the Holder.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">Key Binding is an optional feature. When Key Binding is required by the use-case, the SD-JWT MUST contain information about the key material controlled by the Holder.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3-2">Note: How the public key is included in SD-JWT is out of scope of this document. It can be passed by value or by reference.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">The Holder can then create a signed document, the Holder Binding JWT as defined in <a href="#hb-jwt" class="auto internal xref">Section 5.4.1.1</a>, using its private key. This document contains some
+<p id="section-4.3-3">The Holder can then create a signed document, the Key Binding JWT as defined in <a href="#kb-jwt" class="auto internal xref">Section 5.4.1.1</a>, using its private key. This document contains some
 data provided by the Verifier such as a nonce to ensure the freshness of the signature, and audience to indicate the
 intended audience for the document.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">The Holder Binding JWT can be included in the Combined Format for Presentation and sent to the Verifier along with the SD-JWT and the Holder-Selected Disclosures.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
-<p id="section-4.3-5">Note that there may be other ways to send the Holder Binding JWT to the Verifier or to prove Holder Binding. In these cases, inclusion of the Holder Binding JWT in the Combined Format for Presentation is not required.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">The Key Binding JWT can be included in the Combined Format for Presentation and sent to the Verifier along with the SD-JWT and the Holder-Selected Disclosures.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-5">Note that there may be other ways to send a Key Binding JWT to the Verifier or for the Holder to prove possession of the key material included in an SD-JWT. In these cases, inclusion of the Key Binding JWT in the Combined Format for Presentation is not required.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="verification">
@@ -1583,7 +1585,7 @@ intended audience for the document.<a href="#section-4.3-3" class="pilcrow">¶</
 <ul class="normal">
 <li class="normal" id="section-4.4-2.1">receives the Combined Format for Presentation from the Holder and verifies the signature of the SD-JWT using the Issuer's public key,<a href="#section-4.4-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.4-2.2">verifies the Holder Binding JWT, if Holder Binding is required by the Verifier's policy, using the public key included in the SD-JWT,<a href="#section-4.4-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.4-2.2">verifies the Key Binding JWT, if Key Binding is required by the Verifier's policy, using the public key included in the SD-JWT,<a href="#section-4.4-2.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.4-2.3">calculates the digests over the Holder-Selected Disclosures and verifies that each digest is contained in the SD-JWT.<a href="#section-4.4-2.3" class="pilcrow">¶</a>
 </li>
@@ -1598,7 +1600,7 @@ intended audience for the document.<a href="#section-4.3-3" class="pilcrow">¶</
       <h2 id="name-data-formats">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-data-formats" class="section-name selfRef">Data Formats</a>
       </h2>
-<p id="section-5-1">This section defines data formats for SD-JWTs, Disclosures, Holder Binding JWTs and formats for combining these elements for transport.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">This section defines data formats for SD-JWTs, Disclosures, Key Binding JWTs and formats for combining these elements for transport.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="format-of-an-sd-jwt">
 <section id="section-5.1">
         <h3 id="name-format-of-an-sd-jwt">
@@ -1983,7 +1985,7 @@ or a value defined in another specification and/or profile of this specification
           <h4 id="name-holder-public-key-claim">
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-holder-public-key-claim" class="section-name selfRef">Holder Public Key Claim</a>
           </h4>
-<p id="section-5.1.3-1">If the Issuer wants to enable Holder Binding, it MAY include a public key
+<p id="section-5.1.3-1">If the Issuer wants to enable Key Binding, it includes a public key
 associated with the Holder, or a reference thereto.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.3-2">It is out of the scope of this document to describe how the Holder key pair is
 established. For example, the Holder MAY provide a key pair to the Issuer,
@@ -2059,9 +2061,9 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cs8BVUknsA
-e6yRqJLBkJs5uP1tGDh54UyTIZtQHve_z-FXnT-eYXZVSC6bNKHvAclU_Vs91QQNzr-1
-1tYgETtg
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.ruM1T0FctW
+GDCVJVvziV6_gIYJCU6M6f_ryBpj3Jo3wTnifZo5mVV-jwZEmA656DF2VIqi5sNqKP-L
+wrNGGjLQ
 </pre><a href="#section-5.2-6" class="pilcrow">¶</a>
 </div>
 <p id="section-5.2-7">The Issuer creates the following Disclosures:<a href="#section-5.2-7" class="pilcrow">¶</a></p>
@@ -2179,7 +2181,7 @@ digest values of the Disclosures included in the SD-JWT.<a href="#section-5.3-6"
           <h4 id="name-example">
 <a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-example" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-5.3.1-1">For Example 1, the Combined Format for Issuance looks as follows:<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.1-1">For <a href="#example-1">Example 1</a>, the Combined Format for Issuance looks as follows:<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.3.1-2">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
 Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
@@ -2192,9 +2194,9 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cs8BVUknsA
-e6yRqJLBkJs5uP1tGDh54UyTIZtQHve_z-FXnT-eYXZVSC6bNKHvAclU_Vs91QQNzr-1
-1tYgETtg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.ruM1T0FctW
+GDCVJVvziV6_gIYJCU6M6f_ryBpj3Jo3wTnifZo5mVV-jwZEmA656DF2VIqi5sNqKP-L
+wrNGGjLQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
 0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
 Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
 WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -2220,10 +2222,10 @@ AxIl0
 subset of the Disclosures to the Verifier.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <p id="section-5.4-2">The data format for sending the SD-JWT and the Disclosures to the Verifier MUST be a series of base64url-encoded values, each separated from the next by a single tilde ('~') character as follows:<a href="#section-5.4-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.4-3">
-<pre>&lt;SD-JWT&gt;~&lt;Disclosure 1&gt;~&lt;Disclosure 2&gt;~...~&lt;Disclosure M&gt;~&lt;optional Holder Binding JWT&gt;
+<pre>&lt;SD-JWT&gt;~&lt;Disclosure 1&gt;~&lt;Disclosure 2&gt;~...~&lt;Disclosure M&gt;~&lt;optional Key Binding JWT&gt;
 </pre><a href="#section-5.4-3" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4-4">The order of the base64url-encoded values MUST be an SD-JWT, Disclosures, and an optional Holder Binding JWT. In case there is no Holder Binding JWT, the last element MUST be an empty string. The last separating tilde character MUST NOT be omitted.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
+<p id="section-5.4-4">The order of the base64url-encoded values MUST be an SD-JWT, Disclosures, and an optional Key Binding JWT. In case there is no Key Binding JWT, the last element MUST be an empty string. The last separating tilde character MUST NOT be omitted.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
 <p id="section-5.4-5">This is called the Combined Format for Presentation.<a href="#section-5.4-5" class="pilcrow">¶</a></p>
 <p id="section-5.4-6">The Holder MAY send any subset of the Disclosures to the Verifier, i.e.,
 none, multiple, or all Disclosures. For data that the Holder does not want to reveal
@@ -2231,25 +2233,25 @@ to the Verifier, the Holder MUST NOT send Disclosures or reveal the salt values 
 other way.<a href="#section-5.4-6" class="pilcrow">¶</a></p>
 <p id="section-5.4-7">A Holder MUST NOT send a Disclosure that was not included in the SD-JWT or send
 a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
-<div id="enabling_holder_binding">
+<div id="enabling_key_binding">
 <section id="section-5.4.1">
-          <h4 id="name-enabling-holder-binding">
-<a href="#section-5.4.1" class="section-number selfRef">5.4.1. </a><a href="#name-enabling-holder-binding" class="section-name selfRef">Enabling Holder Binding</a>
+          <h4 id="name-enabling-key-binding">
+<a href="#section-5.4.1" class="section-number selfRef">5.4.1. </a><a href="#name-enabling-key-binding" class="section-name selfRef">Enabling Key Binding</a>
           </h4>
-<p id="section-5.4.1-1">The Holder MAY add an optional JWT to prove Holder Binding to the Verifier.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
-<div id="hb-jwt">
+<p id="section-5.4.1-1">The Holder MAY add an optional JWT to prove the Key Binding to the Verifier.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
+<div id="kb-jwt">
 <section id="section-5.4.1.1">
-            <h5 id="name-structure-of-the-holder-bin">
-<a href="#section-5.4.1.1" class="section-number selfRef">5.4.1.1. </a><a href="#name-structure-of-the-holder-bin" class="section-name selfRef">Structure of the Holder Binding JWT</a>
+            <h5 id="name-structure-of-the-key-bindin">
+<a href="#section-5.4.1.1" class="section-number selfRef">5.4.1.1. </a><a href="#name-structure-of-the-key-bindin" class="section-name selfRef">Structure of the Key Binding JWT</a>
             </h5>
-<p id="section-5.4.1.1-1">This section defines the contents of the Holder Binding JWT.<a href="#section-5.4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-1">This section defines the contents of the Key Binding JWT.<a href="#section-5.4.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.4.1.1-2">The JWT MUST contain the following elements:<a href="#section-5.4.1.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.4.1.1-3.1">
                 <p id="section-5.4.1.1-3.1.1">in the JOSE header,<a href="#section-5.4.1.1-3.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.4.1.1-3.1.2.1">
-                    <code>typ</code>: REQUIRED. MUST be <code>hb+jwt</code>, which explicitly types the Holder Binding JWT as recommended in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.4.1.1-3.1.2.1" class="pilcrow">¶</a>
+                    <code>typ</code>: REQUIRED. MUST be <code>kb+jwt</code>, which explicitly types the Key Binding JWT as recommended in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.4.1.1-3.1.2.1" class="pilcrow">¶</a>
 </li>
                   <li class="normal" id="section-5.4.1.1-3.1.2.2">
                     <code>alg</code>: REQUIRED. A digital signature algorithm identifier such as per IANA "JSON Web Signature and Encryption Algorithms" registry. MUST NOT be <code>none</code> or an identifier for a symmetric algorithm (MAC).<a href="#section-5.4.1.1-3.1.2.2" class="pilcrow">¶</a>
@@ -2260,10 +2262,10 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
                 <p id="section-5.4.1.1-3.2.1">in the JWT body,<a href="#section-5.4.1.1-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.4.1.1-3.2.2.1">
-                    <code>iat</code>: REQUIRED. The value of this claim MUST be the time at which the Holder Binding JWT was issued using the syntax defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.4.1.1-3.2.2.1" class="pilcrow">¶</a>
+                    <code>iat</code>: REQUIRED. The value of this claim MUST be the time at which the Key Binding JWT was issued using the syntax defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.4.1.1-3.2.2.1" class="pilcrow">¶</a>
 </li>
                   <li class="normal" id="section-5.4.1.1-3.2.2.2">
-                    <code>aud</code>: REQUIRED. The intended receiver of the Holder Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-3.2.2.2" class="pilcrow">¶</a>
+                    <code>aud</code>: REQUIRED. The intended receiver of the Key Binding JWT. How the value is represented is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-3.2.2.2" class="pilcrow">¶</a>
 </li>
                   <li class="normal" id="section-5.4.1.1-3.2.2.3">
                     <code>nonce</code>: REQUIRED. Ensures the freshness of the signature. The value type of this claim MUST be a string. How this value is obtained is up to the protocol used and out of scope of this specification.<a href="#section-5.4.1.1-3.2.2.3" class="pilcrow">¶</a>
@@ -2271,38 +2273,38 @@ a Disclosure more than once.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
                 </ul>
 </li>
             </ul>
-<p id="section-5.4.1.1-4">To validate the signature on the Holder Binding JWT, the Verifier MUST use the key material in the SD-JWT. If it is not clear from the SD-JWT, HB-JWT MUST specify which key material the Verifier needs to use to validate HB-JWT using JOSE header parameters such as <code>kid</code> and <code>x5c</code>.<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-5">Below is a non-normative example of a Holder Binding JWT header:<a href="#section-5.4.1.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-4">To validate the signature on the Key Binding JWT, the Verifier MUST use the key material in the SD-JWT. If it is not clear from the SD-JWT, the Key Binding JWT MUST specify which key material the Verifier needs to use to validate Key Binding JWT signature using JOSE header parameters such as <code>kid</code> and <code>x5c</code>.<a href="#section-5.4.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-5">Below is a non-normative example of a Key Binding JWT header:<a href="#section-5.4.1.1-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.4.1.1-6">
 <pre>{
   "alg": "ES256",
-  "typ": "hb+jwt"
+  "typ": "kb+jwt"
 }
 </pre><a href="#section-5.4.1.1-6" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-7">Below is a non-normative example of a Holder Binding JWT payload:<a href="#section-5.4.1.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-7">Below is a non-normative example of a Key Binding JWT payload:<a href="#section-5.4.1.1-7" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.4.1.1-8">
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1686189423
+  "iat": 1686664623
 }
 </pre><a href="#section-5.4.1.1-8" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-9">Below is a non-normative example of a Holder Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-5.4.1.1-9">Below is a non-normative example of a Key Binding JWT produced by signing a payload in the example above:<a href="#section-5.4.1.1-9" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.4.1.1-10">
-<pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
+<pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODYxODk0MjN9.c0bR6d7hV6KC9M1DwP5KPfdUMt4FlbQH0mVGJzGJ24qHShipxY
-3XthJ44adHdjfFHc6hzMT0k_4qDn-vwI0nvA
+6IDE2ODY2NjQ2MjN9.rTe-OGjUQon7bJPieK9RdJg2VcuMklYaIi5JXzRNjS02sX2NbF
+rGWYzM5_JA3FJW8GCx_SItWy0_LRR5zozsdw
 </pre><a href="#section-5.4.1.1-10" class="pilcrow">¶</a>
 </div>
-<p id="section-5.4.1.1-11">Whether to require Holder Binding is up to the Verifier's policy,
+<p id="section-5.4.1.1-11">Whether to require Key Binding is up to the Verifier's policy,
 based on the set of trust requirements such as trust frameworks it belongs to.<a href="#section-5.4.1.1-11" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-12">Other ways of proving Holder Binding MAY be used when supported by the Verifier,
-e.g., when the Combined Format for Presentation without a Holder Binding JWT is itself embedded in a
+<p id="section-5.4.1.1-12">Other ways of proving Key Binding MAY be used when supported by the Verifier,
+e.g., when the Combined Format for Presentation without a Key Binding JWT is itself embedded in a
 signed JWT. See <a href="#enveloping" class="auto internal xref">Section 7</a> for details.<a href="#section-5.4.1.1-12" class="pilcrow">¶</a></p>
-<p id="section-5.4.1.1-13">If no Holder Binding JWT is included, the Combined Format for Presentation ends with
+<p id="section-5.4.1.1-13">If no Key Binding JWT is included, the Combined Format for Presentation ends with
 the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1-13" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2313,8 +2315,8 @@ the <code>~</code> character after the last Disclosure.<a href="#section-5.4.1.1
           <h4 id="name-example-2">
 <a href="#section-5.4.2" class="section-number selfRef">5.4.2. </a><a href="#name-example-2" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-5.4.2-1">The following is a non-normative example of the contents of a Presentation for Example 1, disclosing
-the claims <code>given_name</code>, <code>family_name</code>, and <code>address</code>, as it would be sent from the Holder to the Verifier. The Holder Binding JWT as shown before is included as the last element.<a href="#section-5.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.4.2-1">The following is a non-normative example of the contents of a Presentation for <a href="#example-1">Example 1</a>, disclosing
+the claims <code>given_name</code>, <code>family_name</code>, and <code>address</code>, as it would be sent from the Holder to the Verifier. The Key Binding JWT as shown before is included as the last element.<a href="#section-5.4.2-1" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.4.2-2">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
 Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
@@ -2327,12 +2329,12 @@ mlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsICJpYXQiOiAxNjgzMDAwM
 DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
 iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
 TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.cs8BVUknsA
-e6yRqJLBkJs5uP1tGDh54UyTIZtQHve_z-FXnT-eYXZVSC6bNKHvAclU_Vs91QQNzr-1
-1tYgETtg~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.ruM1T0FctW
+GDCVJVvziV6_gIYJCU6M6f_ryBpj3Jo3wTnifZo5mVV-jwZEmA656DF2VIqi5sNqKP-L
+wrNGGjLQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
 IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-wgImlhdCI6IDE2ODYxODk0MjN9.c0bR6d7hV6KC9M1DwP5KPfdUMt4FlbQH0mVGJzGJ2
-4qHShipxY3XthJ44adHdjfFHc6hzMT0k_4qDn-vwI0nvA
+wgImlhdCI6IDE2ODY2NjQ2MjN9.rTe-OGjUQon7bJPieK9RdJg2VcuMklYaIi5JXzRNj
+S02sX2NbFrGWYzM5_JA3FJW8GCx_SItWy0_LRR5zozsdw
 </pre><a href="#section-5.4.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2371,9 +2373,9 @@ is invalid and the Holder MUST reject the SD-JWT.<a href="#section-6.1-2.3" clas
 <ol start="1" type="1" class="normal type-1" id="section-6.1-5">
 <li id="section-6.1-5.1">Decide which Disclosures to release to the Verifier, obtaining proper End-User consent if necessary.<a href="#section-6.1-5.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.1-5.2">If Holder Binding is required, create a Holder Binding JWT.<a href="#section-6.1-5.2" class="pilcrow">¶</a>
+          <li id="section-6.1-5.2">If Key Binding is required, create a Key Binding JWT.<a href="#section-6.1-5.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.1-5.3">Create the Combined Format for Presentation, including the selected Disclosures and, if applicable, the Holder Binding JWT.<a href="#section-6.1-5.3" class="pilcrow">¶</a>
+          <li id="section-6.1-5.3">Create the Combined Format for Presentation, including the selected Disclosures and, if applicable, the Key Binding JWT.<a href="#section-6.1-5.3" class="pilcrow">¶</a>
 </li>
           <li id="section-6.1-5.4">Send the Presentation to the Verifier.<a href="#section-6.1-5.4" class="pilcrow">¶</a>
 </li>
@@ -2391,17 +2393,17 @@ is invalid and the Holder MUST reject the SD-JWT.<a href="#section-6.1-2.3" clas
 </li>
           <li class="normal" id="section-6.2-2.2">all Disclosures are correct, i.e., their digests are referenced in the SD-JWT or in other Disclosures referenced in the SD-JWT, and<a href="#section-6.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.2-2.3">if Holder Binding is required, the Holder Binding JWT is signed by the Holder and valid.<a href="#section-6.2-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.3">if Key Binding is required, the Key Binding JWT is signed by the Holder and valid.<a href="#section-6.2-2.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-6.2-3">To this end, Verifiers MUST follow the following steps (or equivalent):<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-4">
-<li id="section-6.2-4.1">Determine if Holder Binding is to be checked according to the Verifier's policy
+<li id="section-6.2-4.1">Determine if Key Binding is to be checked according to the Verifier's policy
 for the use case at hand. This decision MUST NOT be based on whether
-a Holder Binding JWT is provided by the Holder or not. Refer to <a href="#holder_binding_security" class="auto internal xref">Section 8.6</a> for
+a Key Binding JWT is provided by the Holder or not. Refer to <a href="#key_binding_security" class="auto internal xref">Section 8.6</a> for
 details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.2-4.2">Separate the Presentation into the SD-JWT, the Disclosures (if any), and the Holder Binding JWT (if provided).<a href="#section-6.2-4.2" class="pilcrow">¶</a>
+          <li id="section-6.2-4.2">Separate the Presentation into the SD-JWT, the Disclosures (if any), and the Key Binding JWT (if provided).<a href="#section-6.2-4.2" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-4.3">
             <p id="section-6.2-4.3.1">Validate the SD-JWT:<a href="#section-6.2-4.3.1" class="pilcrow">¶</a></p>
@@ -2459,28 +2461,28 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
             </ol>
 </li>
           <li id="section-6.2-4.5">
-            <p id="section-6.2-4.5.1">If Holder Binding is required:<a href="#section-6.2-4.5.1" class="pilcrow">¶</a></p>
+            <p id="section-6.2-4.5.1">If Key Binding is required:<a href="#section-6.2-4.5.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-4.5.2">
-<li id="section-6.2-4.5.2.1">If Holder Binding is provided by means not defined in this specification, verify the Holder Binding according to the method used.<a href="#section-6.2-4.5.2.1" class="pilcrow">¶</a>
+<li id="section-6.2-4.5.2.1">If Key Binding is provided by means not defined in this specification, verify the Key Binding according to the method used.<a href="#section-6.2-4.5.2.1" class="pilcrow">¶</a>
 </li>
               <li id="section-6.2-4.5.2.2">
-                <p id="section-6.2-4.5.2.2.1">Otherwise, verify the Holder Binding JWT as follows:<a href="#section-6.2-4.5.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-6.2-4.5.2.2.1">Otherwise, verify the Key Binding JWT as follows:<a href="#section-6.2-4.5.2.2.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-4.5.2.2.2">
-<li id="section-6.2-4.5.2.2.2.1">If Holder Binding JWT is not provided, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.5.2.2.2.1" class="pilcrow">¶</a>
+<li id="section-6.2-4.5.2.2.2.1">If a Key Binding JWT is not provided, the Verifier MUST reject the Presentation.<a href="#section-6.2-4.5.2.2.2.1" class="pilcrow">¶</a>
 </li>
                   <li id="section-6.2-4.5.2.2.2.2">Determine the public key for the Holder from the SD-JWT.<a href="#section-6.2-4.5.2.2.2.2" class="pilcrow">¶</a>
 </li>
                   <li id="section-6.2-4.5.2.2.2.3">Ensure that a signing algorithm was used that was deemed secure for the application. Refer to <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>, Sections 3.1 and 3.2 for details. The <code>none</code> algorithm MUST NOT be accepted.<a href="#section-6.2-4.5.2.2.2.3" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.4">Validate the signature over the Holder Binding JWT.<a href="#section-6.2-4.5.2.2.2.4" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.4">Validate the signature over the Key Binding JWT.<a href="#section-6.2-4.5.2.2.2.4" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.5">Check that the <code>typ</code> of the Holder Binding JWT is <code>hb+jwt</code>.<a href="#section-6.2-4.5.2.2.2.5" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.5">Check that the <code>typ</code> of the Key Binding JWT is <code>kb+jwt</code>.<a href="#section-6.2-4.5.2.2.2.5" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.6">Check that the creation time of the Holder Binding JWT, as determined by the <code>iat</code> claim, is within an acceptable window.<a href="#section-6.2-4.5.2.2.2.6" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.6">Check that the creation time of the Key Binding JWT, as determined by the <code>iat</code> claim, is within an acceptable window.<a href="#section-6.2-4.5.2.2.2.6" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.7">Determine that the Holder Binding JWT is bound to the current transaction and was created for this Verifier (replay protection) by validating <code>nonce</code> and <code>aud</code> claims.<a href="#section-6.2-4.5.2.2.2.7" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.7">Determine that the Key Binding JWT is bound to the current transaction and was created for this Verifier (replay protection) by validating <code>nonce</code> and <code>aud</code> claims.<a href="#section-6.2-4.5.2.2.2.7" class="pilcrow">¶</a>
 </li>
-                  <li id="section-6.2-4.5.2.2.2.8">Check that the Holder Binding JWT is valid in all other respects, per <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> and <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-6.2-4.5.2.2.2.8" class="pilcrow">¶</a>
+                  <li id="section-6.2-4.5.2.2.2.8">Check that the Key Binding JWT is valid in all other respects, per <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> and <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-6.2-4.5.2.2.2.8" class="pilcrow">¶</a>
 </li>
                 </ol>
 </li>
@@ -2499,7 +2501,7 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-enveloping-the-combined-for" class="section-name selfRef">Enveloping the Combined Format for Issuance and Presentation</a>
       </h2>
 <p id="section-7-1">In some applications or transport protocols, it is desirable to put an SD-JWT and associated Disclosures into a JWT container. For example, an implementation may envelope all credentials and presentations, independent of their format, in a JWT to enable application-layer encryption during transport.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">For such use cases, the SD-JWT and the respective Disclosures SHOULD be transported as a single string using the Combined Formats for Issuance and Presentation, respectively. Holder Binding MAY be achieved by signing the envelope JWT instead of adding a separate Holder Binding JWT as described in <a href="#enabling_holder_binding" class="auto internal xref">Section 5.4.1</a>.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-2">For such use cases, the SD-JWT and the respective Disclosures SHOULD be transported as a single string using the Combined Formats for Issuance and Presentation, respectively. Key Binding MAY be achieved by signing the envelope JWT instead of adding a separate Key Binding JWT as described in <a href="#enabling_key_binding" class="auto internal xref">Section 5.4.1</a>.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">The claim <code>_sd_jwt</code> SHOULD be used when transporting a Combined Format unless the application or protocol defines a different claim name.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">The following non-normative example shows a Combined Format for Presentation enveloped in a JWT payload:<a href="#section-7-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7-5">
@@ -2515,8 +2517,8 @@ details.<a href="#section-6.2-4.1" class="pilcrow">¶</a>
 }
 </pre><a href="#section-7-5" class="pilcrow">¶</a>
 </div>
-<p id="section-7-6">Here, <code>eyJhbGci...emhlaUJhZzBZ</code> represents the SD-JWT and <code>eyJhb...dYALCGg</code> represents a Disclosure. The Combined Format for Presentation does not contain a Holder Binding JWT as the outer container can be signed instead.<a href="#section-7-6" class="pilcrow">¶</a></p>
-<p id="section-7-7">Other specifications or profiles of this specification may define alternative formats for transporting the Combined Format for Presentation that envelopes multiple such objects into one object, and provides Holder Binding using means other than Holder Binding JWT.<a href="#section-7-7" class="pilcrow">¶</a></p>
+<p id="section-7-6">Here, <code>eyJhbGci...emhlaUJhZzBZ</code> represents the SD-JWT and <code>eyJhb...dYALCGg</code> represents a Disclosure. The Combined Format for Presentation does not contain a Key Binding JWT as the outer container can be signed instead.<a href="#section-7-6" class="pilcrow">¶</a></p>
+<p id="section-7-7">Other specifications or profiles of this specification may define alternative formats for transporting the Combined Format for Presentation that envelopes multiple such objects into one object, and provides Key Binding using means other than the Key Binding JWT.<a href="#section-7-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security_considerations">
@@ -2530,7 +2532,7 @@ information from an SD-JWT about any claim name or claim value that was not
 explicitly disclosed by the Holder unless that information can be derived from
 other disclosed claims or sources other than the presented SD-JWT.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3"><strong>Integrity:</strong> A malicious Holder cannot modify names or values of selectively disclosable claims without detection by the Verifier.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Additionally, as described in <a href="#holder_binding_security" class="auto internal xref">Section 8.6</a>, the application of Holder Binding can ensure that the presenter of an SD-JWT credential is the legitimate Holder of the credential.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-4">Additionally, as described in <a href="#key_binding_security" class="auto internal xref">Section 8.6</a>, the application of Key Binding can ensure that the presenter of an SD-JWT credential is the legitimate Holder of the credential.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <div id="mandatory-signing-of-the-sd-jwt">
 <section id="section-8.1">
         <h3 id="name-mandatory-signing-of-the-sd">
@@ -2608,77 +2610,49 @@ applications).<a href="#section-8.5-2" class="pilcrow">¶</a></p>
 revealed fundamental weaknesses and they MUST NOT be used.<a href="#section-8.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="holder_binding_security">
+<div id="key_binding_security">
 <section id="section-8.6">
-        <h3 id="name-holder-binding">
-<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-holder-binding" class="section-name selfRef">Holder Binding</a>
+        <h3 id="name-key-binding">
+<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-key-binding" class="section-name selfRef">Key Binding</a>
         </h3>
-<p id="section-8.6-1">Holder binding aims to ensure that the presenter of a credential is
-actually the legitimate Holder of the credential. There are, in general,
-two approaches to Holder Binding: Claims-based Holder Binding and
-Crpytographic Holder Binding.<a href="#section-8.6-1" class="pilcrow">¶</a></p>
-<p id="section-8.6-2">Claims-based Holder Binding means that the Issuer includes claims in the
-SD-JWT that a Verifier can correlate with the Holder, potentially with
-the help of other credentials presented at the same time. For example,
-in a vaccination certificate, the Issuer can include a claim that
-contains the Holder's name and birthdate, and a Verifier can correlate
-this data with the Holder's passport that has to be presented together
-with the vaccination certificate - either as a digital credential or a
-physical document.<a href="#section-8.6-2" class="pilcrow">¶</a></p>
-<p id="section-8.6-3">Cryptographic Holder Binding means that the Issuer includes some
-cryptographic data, usually a public key, belonging to the Holder. The
-Holder can then sign over some data defined by the Verifier to prove
-that the Holder is in possession of the private key.<a href="#section-8.6-3" class="pilcrow">¶</a></p>
-<p id="section-8.6-4">Without Holder Binding, a Verifier only gets the proof that the
+<p id="section-8.6-1">Key Binding aims to ensure that the presenter of an SD-JWT credential is actually the legitimate Holder of the credential.
+An SD-JWT with Key Binding contains a public key, or a reference to a public key, that corresponds to a private key possessed by the Holder.
+The Verifier requires that the Holder prove possession of that private key when presenting the SD-JWT credential.<a href="#section-8.6-1" class="pilcrow">¶</a></p>
+<p id="section-8.6-2">Without Key Binding, a Verifier only gets the proof that the
 credential was issued by a particular Issuer, but the credential itself
 can be replayed by anyone who gets access to it. This means that, for
 example, after a credential was leaked to an attacker, the attacker can
-present the credential to any verifier that does not require Holder
-Binding. But also a malicious Verifier to which the Holder presented the
+present the credential to any verifier that does not require a
+binding. But also a malicious Verifier to which the Holder presented the
 credential can present the credential to another Verifier if that other
-Verifier does not require Holder Binding.<a href="#section-8.6-4" class="pilcrow">¶</a></p>
-<p id="section-8.6-5">Verifiers MUST decide whether Holder Binding is required for a
-particular use case or not before verifying a credential. This decision
+Verifier does not require Key Binding.<a href="#section-8.6-2" class="pilcrow">¶</a></p>
+<p id="section-8.6-3">Verifiers MUST decide whether Key Binding is required for a
+particular use case before verifying a credential. This decision
 can be informed by various factors including, but not limited to the following:
 business requirements, the use case, the type of
 binding between a Holder and its credential that is required for a use
 case, the sensitivity of the use case, the expected properties of a
 credential, the type and contents of other credentials expected to be
-presented at the same time, etc.<a href="#section-8.6-5" class="pilcrow">¶</a></p>
-<p id="section-8.6-6">This can be showcased based on two scenarios for a mobile driver's license use case for SD-JWT:<a href="#section-8.6-6" class="pilcrow">¶</a></p>
-<p id="section-8.6-7"><strong>Scenario A:</strong> For the verification of the driver's license when
-stopped by a police officer for exceeding a speed limit, Holder Binding may be necessary to ensure that the person
-driving the car and presenting the license is the actual Holder of the
-license. The Verifier (e.g., the software used by the police officer)
-will ensure that a Holder Binding JWT is present and signed with the Holder's private
-key. Claims-based Holder Binding may be used as well, e.g., by including a
-first name, last name and a date of birth that matches that of an insurance policy paper.<a href="#section-8.6-7" class="pilcrow">¶</a></p>
-<p id="section-8.6-8"><strong>Scenario B:</strong> A rental car agency may want to ensure, for insurance
-purposes, that all drivers named on the rental contract own a
-government-issued driver's license. The signer of the rental contract
-can present the mobile driver's license of all named drivers. In this
-case, the rental car agency does not need to check Holder Binding as the
-goal is not to verify the identity of the person presenting the license,
-but to verify that a license exists and is valid.<a href="#section-8.6-8" class="pilcrow">¶</a></p>
-<p id="section-8.6-9">It is important that a Verifier does not make its security policy
+presented at the same time, etc.<a href="#section-8.6-3" class="pilcrow">¶</a></p>
+<p id="section-8.6-4">It is important that a Verifier does not make its security policy
 decisions based on data that can be influenced by an attacker or that
-can be misinterpreted. For this reason, when deciding whether Holder
-binding is required or not, Verifiers MUST NOT take into account<a href="#section-8.6-9" class="pilcrow">¶</a></p>
+can be misinterpreted. For this reason, when deciding whether Key
+Binding is required or not, Verifiers MUST NOT take into account<a href="#section-8.6-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.6-10.1">whether an Holder Binding JWT is present or not, as an attacker can
-remove the Holder Binding JWT from any Presentation and present it to the
-Verifier, or<a href="#section-8.6-10.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.6-5.1">whether a Key Binding JWT is present or not, as an attacker can
+remove the Key Binding JWT from any Presentation and present it to the
+Verifier, or<a href="#section-8.6-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-8.6-10.2">whether Holder Binding data is present in the SD-JWT or not, as the
+          <li class="normal" id="section-8.6-5.2">whether Key Binding data is present in the SD-JWT or not, as the
 Issuer might have added the key to the SD-JWT in a format/claim that
-is not recognized by the Verifier.<a href="#section-8.6-10.2" class="pilcrow">¶</a>
+is not recognized by the Verifier.<a href="#section-8.6-5.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-8.6-11">If a Verifier has decided that Holder Binding is required for a
-particular use case and the Holder Binding is not present, does not fulfill the requirements
+<p id="section-8.6-6">If a Verifier has decided that Key Binding is required for a
+particular use case and the Key Binding is not present, does not fulfill the requirements
 (e.g., on the signing algorithm), or no recognized
-Holder Binding data is present in the SD-JWT, the Verifier will reject the
-presentation, as described in <a href="#verifier_verification" class="auto internal xref">Section 6.2</a>.<a href="#section-8.6-11" class="pilcrow">¶</a></p>
+Key Binding data is present in the SD-JWT, the Verifier will reject the
+presentation, as described in <a href="#verifier_verification" class="auto internal xref">Section 6.2</a>.<a href="#section-8.6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="blinding-claim-names">
@@ -2715,7 +2689,7 @@ key-distribution method.<a href="#section-8.8-1" class="pilcrow">¶</a></p>
         <h3 id="name-forwarding-credentials">
 <a href="#section-8.9" class="section-number selfRef">8.9. </a><a href="#name-forwarding-credentials" class="section-name selfRef">Forwarding Credentials</a>
         </h3>
-<p id="section-8.9-1">When Holder Binding is not enforced,
+<p id="section-8.9-1">When Key Binding is not enforced,
 any entity in possession of a Combined Format for Presentation can forward the contents to third parties.
 When doing so, that entity may remove Disclosures such that the receiver
 learns only a subset of the claims contained in the original Combined Format for Presentation.<a href="#section-8.9-1" class="pilcrow">¶</a></p>
@@ -2725,7 +2699,7 @@ Each supply chain party can verify only the claims that were selectively disclos
 by an upstream party, and they can choose to further reduce the disclosed claims
 when presenting to a downstream party.<a href="#section-8.9-2" class="pilcrow">¶</a></p>
 <p id="section-8.9-3">In some scenarios this behavior could be desirable,
-but if it is not, Issuers need to support and Verifiers need to enforce Holder Binding.<a href="#section-8.9-3" class="pilcrow">¶</a></p>
+but if it is not, Issuers need to support and Verifiers need to enforce Key Binding.<a href="#section-8.9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="explicit_typing">
@@ -2766,8 +2740,8 @@ and Issuers and Verifiers may decide to do so as well.<a href="#section-9.1-1" c
 <p id="section-9.1-2">Not surprisingly, a leak of such data risks revealing private data of End-Users
 to third parties. Signed End-User data, the authenticity of which
 can be easily verified by third parties, further exacerbates the risk.
-As discussed in <a href="#holder_binding_security" class="auto internal xref">Section 8.6</a>, leaked
-SD-JWTs may also allow attackers to impersonate Holders unless Holder
+As discussed in <a href="#key_binding_security" class="auto internal xref">Section 8.6</a>, leaked
+SD-JWTs may also allow attackers to impersonate Holders unless Key
 Binding is enforced and the attacker does not have access to the
 Holder's cryptographic keys. Altogether, leaked SD-JWT credentials may have
 a high monetary value on black markets.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
@@ -2777,7 +2751,7 @@ store SD-JWTs only for as long as needed, including in log files.<a href="#secti
 <p id="section-9.1-4">Issuers SHOULD NOT store SD-JWTs after issuance.<a href="#section-9.1-4" class="pilcrow">¶</a></p>
 <p id="section-9.1-5">Holders SHOULD store SD-JWTs and associated Disclosures only in
 encrypted form, and, wherever possible, use hardware-backed encryption
-in particular for the private Holder Binding key. Decentralized storage
+in particular for the private Key Binding key. Decentralized storage
 of data, e.g., on End-User devices, SHOULD be preferred for End-User
 credentials over centralized storage. Expired SD-JWTs SHOULD be deleted
 as soon as possible.<a href="#section-9.1-5" class="pilcrow">¶</a></p>
@@ -2939,17 +2913,17 @@ Macintosh file type code(s): n/a<a href="#section-11.1-3.11" class="pilcrow">¶<
           <li class="normal" id="section-11.1-3.17">Provisional registration?  No<a href="#section-11.1-3.17" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-11.1-4">To indicate that the content is a Holder Binding JWT:<a href="#section-11.1-4" class="pilcrow">¶</a></p>
+<p id="section-11.1-4">To indicate that the content is a Key Binding JWT:<a href="#section-11.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-11.1-5.1">Type name: application<a href="#section-11.1-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-11.1-5.2">Subtype name: hd+jwt<a href="#section-11.1-5.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-11.1-5.2">Subtype name: kb+jwt<a href="#section-11.1-5.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-11.1-5.3">Required parameters: n/a<a href="#section-11.1-5.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-11.1-5.4">Optional parameters: n/a<a href="#section-11.1-5.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-11.1-5.5">Encoding considerations: binary; A Holder Binding JWT is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.<a href="#section-11.1-5.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-11.1-5.5">Encoding considerations: binary; A Key Binding JWT is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.<a href="#section-11.1-5.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-11.1-5.6">Security considerations: See the Security Considerations section of [[ this specification ]], <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>, and <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-11.1-5.6" class="pilcrow">¶</a>
 </li>
@@ -3137,7 +3111,7 @@ the media type is encoded as an SD-JWT.<a href="#section-11.2-1" class="pilcrow"
 }
 </pre><a href="#appendix-A.1-2" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.1-3">In contrast to Example 1, here the Issuer decided to create a structured object for the <code>address</code> claim, allowing for separate disclosure of the individual members of the claim, and also added decoy digests to prevent the Verifier from deducing the true number of claims. The following payload is used for the SD-JWT:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">In contrast to <a href="#example-1">Example 1</a>, here the Issuer decided to create a structured object for the <code>address</code> claim, allowing for separate disclosure of the individual members of the claim, and also added decoy digests to prevent the Verifier from deducing the true number of claims. The following payload is used for the SD-JWT:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="appendix-A.1-4">
 <pre>{
   "_sd": [
@@ -3317,7 +3291,7 @@ the media type is encoded as an SD-JWT.<a href="#section-11.2-1" class="pilcrow"
 </li>
         </ul>
 <p id="appendix-A.1-28">A Presentation for the SD-JWT that discloses only <code>region</code>
-and <code>country</code> of the <code>address</code> property and without a Holder Binding JWT could look as follows:<a href="#appendix-A.1-28" class="pilcrow">¶</a></p>
+and <code>country</code> of the <code>address</code> property and without a Key Binding JWT could look as follows:<a href="#appendix-A.1-28" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.1-29">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkM5aW5wNllvUmFFWFI0Mjd6WUpQN1Fya
 zFXSF84YmR3T0FfWVVyVW5HUVUiLCAiS3VldDF5QWEwSElRdlluT1ZkNTloY1ZpTzlVZ
@@ -3336,8 +3310,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.T-8zWJJ_87ZOSKVIY2Cd-Av2UV
-e9EenApyH8dUr8etQW-u-slxMbESuh-Zm3-sZrYelagLDUGBDOjd4nLjRGfg~
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.cAb2Vf1Xh2ufpD8LSACaTXs_Wd
+2pKT9YoH-NUqDRHli-72c1GDtFai8lihK2Acctzal6aNwmBKxO_LRM2JkG1w~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3638,7 +3612,7 @@ structures defined in OIDC4IDA <span>[<a href="#OIDC.IDA" class="cite xref">OIDC
 </li>
         </ul>
 <p id="appendix-A.2-37">The following is a non-normative example of a Combined Format for Presentation
-without a Holder Binding JWT that the Verifier would receive with a selection
+without a Key Binding JWT that the Verifier would receive with a selection
 of the Disclosures:<a href="#appendix-A.2-37" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.2-38">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi0yeU9mV01lWkZRYXFmWkJoakdmLVRYL
@@ -3659,8 +3633,8 @@ jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
 3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
 244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
 0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.8YtVu83n79MgeXlErKbueT
-p8gJuh44iAe-wEetnSU3l8suXWmctGIEoefatWFlmUYIdevkDYZEtfhAxUvRcN7w~
+TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.dJqNPOKNigrPs2J3WJnytB
+tRsfL_AtooNP5OskB4HMCnK1cv2lj7pGfGu5ov_hOfiFA8Fs0Kb_vucOlsTCmvGA~
 </pre><a href="#appendix-A.2-38" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.2-39">After the verification of the data, the Verifier will
@@ -3695,8 +3669,8 @@ that is represented as a W3C Verifiable Credentials Data Model v2.0 <span>[<a hr
 and does not use JSON-LD to provide semantic definitions for claims. The example uses a content type <code>credential-claims-set+json</code> defined in <span>[<a href="#VC_JWT" class="cite xref">VC_JWT</a>]</span>, Section 3 in a <code>cty</code> JOSE Header value.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-2">SD-JWT is equivalent to an Issuer-signed W3C Verifiable Credential (W3C VC). Disclosures are sent alongside a W3C VC.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-3">A Holder-signed Verifiable Presentation as defined in <span>[<a href="#VC_DATA_v2.0" class="cite xref">VC_DATA_v2.0</a>]</span> is equivalent to
-a Combined Format for Presentation with a Holder Binding JWT.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-4">In this example, Holder Binding is applied and Verifiable Presentation can be signed using
+a Combined Format for Presentation with a Key Binding JWT.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-4">In this example, Key Binding is applied and Verifiable Presentation can be signed using
 a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-5">Below is a non-normative example of an SD-JWT represented as a W3C VC without using JSON-LD.<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-6">The following data will be used in this example:<a href="#appendix-A.3-6" class="pilcrow">¶</a></p>
@@ -3900,9 +3874,9 @@ a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="
 that is represented as a W3C Verifiable Credentials Data Model v2.0 <span>[<a href="#VC_DATA_v2.0" class="cite xref">VC_DATA_v2.0</a>]</span>
 and uses a JSON-LD object as the claims set. The example uses a content type <code>credential+ld+json</code> defined in <span>[<a href="#VC_DATA_v2.0" class="cite xref">VC_DATA_v2.0</a>]</span>, Section 6.3 in a <code>cty</code> JOSE Header value.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-2">SD-JWT is equivalent to an Issuer-signed W3C Verifiable Credential (W3C VC). Disclosures are sent alongside a VC.<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-3">A Combined Format for Presentation with a Holder Binding JWT would be equivalent to a Holder-signed
+<p id="appendix-A.4-3">A Combined Format for Presentation with a Key Binding JWT would be equivalent to a Holder-signed
 Verifiable Presentation as defined in <span>[<a href="#VC_DATA_v2.0" class="cite xref">VC_DATA_v2.0</a>]</span>.<a href="#appendix-A.4-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-4">In this example, Holder Binding is applied and a Combined Format for Presentation is signed
+<p id="appendix-A.4-4">In this example, Key Binding is applied and a Combined Format for Presentation is signed
 using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-5">Below is a non-normative example of an SD-JWT represented as a W3C VC using JSON-LD.<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-6">The following data will be used in this example:<a href="#appendix-A.4-6" class="pilcrow">¶</a></p>
@@ -4002,7 +3976,7 @@ using a Holder's public key passed in a <code>cnf</code> Claim in the SD-JWT.<a 
 </pre><a href="#appendix-A.4-9" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-10">Disclosures:<a href="#appendix-A.4-10" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-11">The following is a non-normative example of a Combined Format for Presentation for the SD-JWT with a Holder Binding JWT. It only discloses <code>type</code>, <code>medicinalProductName</code>, <code>atcCode</code> of the vaccine, <code>type</code> of the <code>recipient</code>, <code>type</code>, <code>order</code> and <code>dateOfVaccination</code>.<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-11">The following is a non-normative example of a Combined Format for Presentation for the SD-JWT with a Key Binding JWT. It only discloses <code>type</code>, <code>medicinalProductName</code>, <code>atcCode</code> of the vaccine, <code>type</code> of the <code>recipient</code>, <code>type</code>, <code>order</code> and <code>dateOfVaccination</code>.<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="appendix-A.4-12">
 <pre>eyJhbGciOiAiRVMyNTYifQ.eyJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1Z
 XIiLCAiaWF0IjogMTY4MzAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJAY29udGV4d
@@ -4028,12 +4002,12 @@ iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
 GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
 CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
 3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-GpUOUYySFpRIn19fQ.H6qdNLIbAOLl2H1CiPKoDANycMVuOIqERiKw4rizqF4mk0jZ8Q
-2-YqVirXyaih_lMx2gqxMwOs-ng5TqRsPkTQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
-gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODYxODk0MjN9.oBFjI8s2r2fbw
-toWJ_tUjNGZouOOgfXBTxFlkBfQXbP1CBDyOKSMr5NUXoW6m9vwb2fCll0axPJoy4kTg
-lib7w
+GpUOUYySFpRIn19fQ.93dkdLls08hvQfKBs9bU4d9uoc3TMW0klUpXP6nEn8YgUZodyu
+L1Ly11YDt2gj2mjjPxDadDjNIbGJ6AmHF1Kg~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+gImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
+V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2NjQ2MjN9.gJ7jP03HnldLa
+mjevRbGc7KxDRyDjo8HZpXAm-pLrfDIUc8l4k33GV8873YLDtLfWCh0tebVCHvAqdEes
+lNhcg
 </pre><a href="#appendix-A.4-12" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-13">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
@@ -4201,17 +4175,19 @@ data. The original JSON data is then used by the application. See
 <p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">-05<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-3.1">Defined the structure of the Holder Binding JWT.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-C-3.1">Use the term Key Binding rather than Holder Binding<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.2">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.2" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.2">Defined the structure of the Key Binding JWT<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.3">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.3" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.3">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.4">Added considerations around forwarding credentials<a href="#appendix-C-3.4" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.4">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.5">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.5">Added considerations around forwarding credentials<a href="#appendix-C-3.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.6">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.6">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="appendix-C-3.7">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.7" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-C-4">-04<a href="#appendix-C-4" class="pilcrow">¶</a></p>
