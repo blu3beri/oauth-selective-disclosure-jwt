@@ -119,8 +119,7 @@ Table of Contents
      A.2.  Example 3 - Complex Structured SD-JWT
      A.3.  Example 4a - Verifiable Credentials with JSON payload based
            on the SD-JWT format
-     A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0,
-           using JSON-LD
+     A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0
    Appendix B.  Disclosure Format Considerations
    Appendix C.  Document History
    Authors' Addresses
@@ -868,9 +867,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.RrZKiPegNb
-   Eycb4X342pab220llYdTlJc_MHBVkC8bfTKhiZrPLO3_uhrrGE3HOberVVYHbj5fC7Cx
-   b6lUByKw
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.evHFbUBfCI
+   3pDP8v9F2phb_eciygcO8GpJ0LQoV0liJCxWVwRrqGBDbrljhvvwVXz5ERrTBNkopvSR
+   EtBn2EVA
 
    The Issuer creates the following Disclosures:
 
@@ -986,9 +985,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.RrZKiPegNb
-   Eycb4X342pab220llYdTlJc_MHBVkC8bfTKhiZrPLO3_uhrrGE3HOberVVYHbj5fC7Cx
-   b6lUByKw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.evHFbUBfCI
+   3pDP8v9F2phb_eciygcO8GpJ0LQoV0liJCxWVwRrqGBDbrljhvvwVXz5ERrTBNkopvSR
+   EtBn2EVA~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1069,7 +1068,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686631993
+     "iat": 1686633927
    }
 
    Below is a non-normative example of a Holder Binding JWT produced by
@@ -1077,8 +1076,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY2MzE5OTN9.4PzTJcmJ7ESU2Qjk1uWHxDeabyl-fWgo9YDwVyJ5GFRL7Egm-u
-   v3fvJcVPyBmhhL8nCvJD6G3lZ9uhcW_yefQg
+   6IDE2ODY2MzM5Mjd9.hZA2N_PgUlnhSkUlkw2Vyh98oEnchVJP3eMLuXcJ4FQrhH0lDd
+   cQjaSnJ8VKfOZ63c8OvASgAstrktm0JYSKzQ
 
    Whether to require Holder Binding is up to the Verifier's policy,
    based on the set of trust requirements such as trust frameworks it
@@ -1111,12 +1110,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.RrZKiPegNb
-   Eycb4X342pab220llYdTlJc_MHBVkC8bfTKhiZrPLO3_uhrrGE3HOberVVYHbj5fC7Cx
-   b6lUByKw~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.evHFbUBfCI
+   3pDP8v9F2phb_eciygcO8GpJ0LQoV0liJCxWVwRrqGBDbrljhvvwVXz5ERrTBNkopvSR
+   EtBn2EVA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODY2MzE5OTN9.4PzTJcmJ7ESU2Qjk1uWHxDeabyl-fWgo9YDwVyJ5G
-   FRL7Egm-uv3fvJcVPyBmhhL8nCvJD6G3lZ9uhcW_yefQg
+   wgImlhdCI6IDE2ODY2MzM5Mjd9.hZA2N_PgUlnhSkUlkw2Vyh98oEnchVJP3eMLuXcJ4
+   FQrhH0lDdcQjaSnJ8VKfOZ63c8OvASgAstrktm0JYSKzQ
 
 6.  Verification and Processing
 
@@ -2112,8 +2111,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.WwsQJnEzVy8Km2y_-kMDB1o77u
-   olCoRRJBXBTUl8LAbI7zTwz60V9OMHjoTdRfrr6EYoJnsSaVt8U1eDxiK3yg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.dM5_IO0mRXRL0G9l3Jixf6PlAQ
+   s42ntk-OZ2AveeyNVSp1BcG03mENXI6BeOJDdqxtXxUQIHFi90429ABehakw~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2403,8 +2402,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.lz_kjXSk5hVMRxI53PbrDq
-   HtD60B1yzeOHguMmtrxsa6t-t4NGYz3JswDfK1MeFLry6mDn75YxNNHICdTGXJ4A~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.vylZ_e0Su8DHpkjlVP5it0
+   mPH1pbgCiFXB9SiW4bPPNJwMQrcOIK1HV9zERm7_NfqgQ9Y0JOJlvAvaDd2ex2uw~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2459,27 +2458,36 @@ A.3.  Example 4a - Verifiable Credentials with JSON payload based on the
        }
      },
      "type": "IdentityCredential",
-     "credentialSubject": {
-       "given_name": "John",
-       "family_name": "Doe",
-       "email": "johndoe@example.com",
-       "phone_number": "+1-202-555-0101",
-       "address": {
-         "street_address": "123 Main St",
-         "locality": "Anytown",
-         "region": "Anystate",
-         "country": "US"
-       },
-       "birthdate": "1940-01-01",
-       "is_over_18": true,
-       "is_over_21": true,
-       "is_over_65": true
-     }
+     "given_name": "John",
+     "family_name": "Doe",
+     "email": "johndoe@example.com",
+     "phone_number": "+1-202-555-0101",
+     "address": {
+       "street_address": "123 Main St",
+       "locality": "Anytown",
+       "region": "Anystate",
+       "country": "US"
+     },
+     "birthdate": "1940-01-01",
+     "is_over_18": true,
+     "is_over_21": true,
+     "is_over_65": true
    }
 
    The payload of a corresponding SD-JWT looks as follows:
 
    {
+     "_sd": [
+       "09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY",
+       "2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI",
+       "EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA",
+       "IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw",
+       "JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE",
+       "PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI",
+       "TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo",
+       "jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI",
+       "jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4"
+     ],
      "iss": "https://example.com",
      "iat": 1541493724,
      "exp": 1883000000,
@@ -2498,19 +2506,6 @@ A.3.  Example 4a - Verifiable Credentials with JSON payload based on the
        }
      },
      "type": "IdentityCredential",
-     "credentialSubject": {
-       "_sd": [
-         "09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY",
-         "2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI",
-         "EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA",
-         "IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw",
-         "JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE",
-         "PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI",
-         "TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo",
-         "jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI",
-         "jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4"
-       ]
-     },
      "_sd_alg": "sha-256"
    }
 
@@ -2611,22 +2606,13 @@ A.3.  Example 4a - Verifiable Credentials with JSON payload based on the
 
    *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "is_over_65", true]
 
-A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
-      JSON-LD
+A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0
 
    This example illustrates how to use the artifacts defined in this
    specification to secure a payload that is represented as a W3C
-   Verifiable Credentials Data Model v2.0 [VC_DATA_v2.0] and uses a
-   JSON-LD object as the claims set.  The example uses a content type
-   credential+ld+json defined in [VC_DATA_v2.0], Section 6.3 in a cty
-   JOSE Header value.
-
-   SD-JWT is equivalent to an Issuer-signed W3C Verifiable Credential
-   (W3C VC).  Disclosures are sent alongside a VC.
-
-   A Combined Format for Presentation with a Holder Binding JWT would be
-   equivalent to a Holder-signed Verifiable Presentation as defined in
-   [VC_DATA_v2.0].
+   Verifiable Credentials Data Model v2.0 [VC_DATA_v2.0].  The example
+   uses a media type vc+ld+json defined in [VC_DATA_v2.0], Section 6.1
+   in a typ JOSE Header value.
 
    In this example, Holder Binding is applied and a Combined Format for
    Presentation is signed using a Holder's public key passed in a cnf
@@ -2696,27 +2682,33 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
      "name": "COVID-19 Vaccination Certificate",
      "description": "COVID-19 Vaccination Certificate",
      "credentialSubject": {
+       "_sd": [
+         "1V_K-8lDQ8iFXBFXbZY9ehqR4HabWCi5T0ybIzZPeww",
+         "JzjLgtP29dP-B3td12P674gFmK2zy81HMtBgf6CJNWg",
+         "R2fGbfA07Z_YlkqmNZyma1xyyx1XstIiS6B1Ybl2JZ4",
+         "TCmzrl7K2gev_du7pcMIyzRLHp-Yeg-Fl_cxtrUvPxg",
+         "V7kJBLK78TmVDOmrfJ7ZuUPHuK_2cc7yZRa4qV1txwM",
+         "b0eUsvGP-ODDdFoY4NlzlXc3tDslWJtCJF75Nw8Oj_g",
+         "zJK_eSMXjwM8dXmMZLnI8FGM08zJ3_ubGeEMJ-5TBy0"
+       ],
        "vaccine": {
-         "type": "Vaccine",
-         "atcCode": "J07BX03",
-         "medicinalProductName": "COVID-19 Vaccine Moderna",
-         "marketingAuthorizationHolder": "Moderna Biotech"
+         "_sd": [
+           "1cF5hLwkhMNIaqfWJrXI7NMWedL-9f6Y2PA52yPjSZI",
+           "Hiy6WWueLD5bn16298tPv7GXhmldMDOTnBi-CZbphNo",
+           "Lb027q691jXXl-jC73vi8ebOj9smx3C-_og7gA4TBQE"
+         ],
+         "type": "Vaccine"
        },
-       "nextVaccinationDate": "2021-08-16T13:40:12Z",
-       "countryOfVaccination": "GE",
-       "dateOfVaccination": "2021-06-23T13:40:12Z",
-       "order": "3/3",
        "recipient": {
-         "type": "VaccineRecipient",
-         "gender": "Female",
-         "birthDate": "1961-08-17",
-         "givenName": "Marion",
-         "familyName": "Mustermann"
+         "_sd": [
+           "1lSQBNY24q0Th6OGzthq-7-4l6cAaxrYXOGZpeW_lnA",
+           "3nzLq81M2oN06wdv1shHvOEJVxZ5KLmdDkHEDJABWEI",
+           "Pn1sWi06G4LJrnn-_RT0RbM_HTdxnPJQuX2fzWv_JOU",
+           "lF9uzdsw7HplGLc714Tr4WO7MGJza7tt7QFleCX4Itw"
+         ],
+         "type": "VaccineRecipient"
        },
-       "type": "VaccinationEvent",
-       "administeringCentre": "Praxis Sommergarten",
-       "batchNumber": "1626382736",
-       "healthProfessional": "883110000015376"
+       "type": "VaccinationEvent"
      },
      "_sd_alg": "sha-256",
      "cnf": {
@@ -2730,6 +2722,154 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    }
 
    Disclosures:
+
+   *Claim atcCode*:
+
+   *  SHA-256 Hash: 1cF5hLwkhMNIaqfWJrXI7NMWedL-9f6Y2PA52yPjSZI
+
+   *  Disclosure:
+      WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3Qlgw
+      MyJd
+
+   *  Contents: ["2GLC42sKQveCfGfryNRN9w", "atcCode", "J07BX03"]
+
+   *Claim medicinalProductName*:
+
+   *  SHA-256 Hash: Hiy6WWueLD5bn16298tPv7GXhmldMDOTnBi-CZbphNo
+
+   *  Disclosure:
+      WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3RO
+      YW1lIiwgIkNPVklELTE5IFZhY2NpbmUgTW9kZXJuYSJd
+
+   *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "medicinalProductName",
+      "COVID-19
+      Vaccine Moderna"]
+
+   *Claim marketingAuthorizationHolder*:
+
+   *  SHA-256 Hash: Lb027q691jXXl-jC73vi8ebOj9smx3C-_og7gA4TBQE
+
+   *  Disclosure:
+      WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgIm1hcmtldGluZ0F1dGhvcml6
+      YXRpb25Ib2xkZXIiLCAiTW9kZXJuYSBCaW90ZWNoIl0
+
+   *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA",
+      "marketingAuthorizationHolder",
+      "Moderna Biotech"]
+
+   *Claim nextVaccinationDate*:
+
+   *  SHA-256 Hash: R2fGbfA07Z_YlkqmNZyma1xyyx1XstIiS6B1Ybl2JZ4
+
+   *  Disclosure:
+      WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm5leHRWYWNjaW5hdGlvbkRh
+      dGUiLCAiMjAyMS0wOC0xNlQxMzo0MDoxMloiXQ
+
+   *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "nextVaccinationDate",
+      "2021-08-16T13:40:12Z"]
+
+   *Claim countryOfVaccination*:
+
+   *  SHA-256 Hash: JzjLgtP29dP-B3td12P674gFmK2zy81HMtBgf6CJNWg
+
+   *  Disclosure:
+      WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImNvdW50cnlPZlZhY2NpbmF0
+      aW9uIiwgIkdFIl0
+
+   *  Contents: ["Qg_O64zqAxe412a108iroA", "countryOfVaccination", "GE"]
+
+   *Claim dateOfVaccination*:
+
+   *  SHA-256 Hash: zJK_eSMXjwM8dXmMZLnI8FGM08zJ3_ubGeEMJ-5TBy0
+
+   *  Disclosure:
+      WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImRhdGVPZlZhY2NpbmF0aW9u
+      IiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0
+
+   *  Contents: ["AJx-095VPrpTtN4QMOqROA", "dateOfVaccination",
+      "2021-06-23T13:40:12Z"]
+
+   *Claim order*:
+
+   *  SHA-256 Hash: b0eUsvGP-ODDdFoY4NlzlXc3tDslWJtCJF75Nw8Oj_g
+
+   *  Disclosure:
+      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd
+
+   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "order", "3/3"]
+
+   *Claim gender*:
+
+   *  SHA-256 Hash: 3nzLq81M2oN06wdv1shHvOEJVxZ5KLmdDkHEDJABWEI
+
+   *  Disclosure:
+      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImdlbmRlciIsICJGZW1hbGUi
+      XQ
+
+   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "gender", "Female"]
+
+   *Claim birthDate*:
+
+   *  SHA-256 Hash: Pn1sWi06G4LJrnn-_RT0RbM_HTdxnPJQuX2fzWv_JOU
+
+   *  Disclosure:
+      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImJpcnRoRGF0ZSIsICIxOTYx
+      LTA4LTE3Il0
+
+   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "birthDate", "1961-08-17"]
+
+   *Claim givenName*:
+
+   *  SHA-256 Hash: lF9uzdsw7HplGLc714Tr4WO7MGJza7tt7QFleCX4Itw
+
+   *  Disclosure:
+      WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgImdpdmVuTmFtZSIsICJNYXJp
+      b24iXQ
+
+   *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "givenName", "Marion"]
+
+   *Claim familyName*:
+
+   *  SHA-256 Hash: 1lSQBNY24q0Th6OGzthq-7-4l6cAaxrYXOGZpeW_lnA
+
+   *  Disclosure:
+      WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgImZhbWlseU5hbWUiLCAiTXVz
+      dGVybWFubiJd
+
+   *  Contents: ["5bPs1IquZNa0hkaFzzzZNw", "familyName", "Mustermann"]
+
+   *Claim administeringCentre*:
+
+   *  SHA-256 Hash: TCmzrl7K2gev_du7pcMIyzRLHp-Yeg-Fl_cxtrUvPxg
+
+   *  Disclosure:
+      WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkbWluaXN0ZXJpbmdDZW50
+      cmUiLCAiUHJheGlzIFNvbW1lcmdhcnRlbiJd
+
+   *  Contents: ["5a2W0_NrlEZzfqmk_7Pq-w", "administeringCentre",
+      "Praxis
+      Sommergarten"]
+
+   *Claim batchNumber*:
+
+   *  SHA-256 Hash: V7kJBLK78TmVDOmrfJ7ZuUPHuK_2cc7yZRa4qV1txwM
+
+   *  Disclosure:
+      WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgImJhdGNoTnVtYmVyIiwgIjE2
+      MjYzODI3MzYiXQ
+
+   *  Contents: ["y1sVU5wdfJahVdgwPgS7RQ", "batchNumber", "1626382736"]
+
+   *Claim healthProfessional*:
+
+   *  SHA-256 Hash: 1V_K-8lDQ8iFXBFXbZY9ehqR4HabWCi5T0ybIzZPeww
+
+   *  Disclosure:
+      WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgImhlYWx0aFByb2Zlc3Npb25h
+      bCIsICI4ODMxMTAwMDAwMTUzNzYiXQ
+
+   *  Contents: ["HbQ4X8srVW3QDxnIJdqyOA", "healthProfessional",
+      "883110000015376"]
 
    The following is a non-normative example of a Combined Format for
    Presentation for the SD-JWT with a Holder Binding JWT.  It only
@@ -2745,27 +2885,35 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    TAyLTA5VDExOjAxOjU5WiIsICJleHBpcmF0aW9uRGF0ZSI6ICIyMDI4LTAyLTA4VDExO
    jAxOjU5WiIsICJuYW1lIjogIkNPVklELTE5IFZhY2NpbmF0aW9uIENlcnRpZmljYXRlI
    iwgImRlc2NyaXB0aW9uIjogIkNPVklELTE5IFZhY2NpbmF0aW9uIENlcnRpZmljYXRlI
-   iwgImNyZWRlbnRpYWxTdWJqZWN0IjogeyJ2YWNjaW5lIjogeyJ0eXBlIjogIlZhY2Npb
-   mUiLCAiYXRjQ29kZSI6ICJKMDdCWDAzIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIjogI
-   kNPVklELTE5IFZhY2NpbmUgTW9kZXJuYSIsICJtYXJrZXRpbmdBdXRob3JpemF0aW9uS
-   G9sZGVyIjogIk1vZGVybmEgQmlvdGVjaCJ9LCAibmV4dFZhY2NpbmF0aW9uRGF0ZSI6I
-   CIyMDIxLTA4LTE2VDEzOjQwOjEyWiIsICJjb3VudHJ5T2ZWYWNjaW5hdGlvbiI6ICJHR
-   SIsICJkYXRlT2ZWYWNjaW5hdGlvbiI6ICIyMDIxLTA2LTIzVDEzOjQwOjEyWiIsICJvc
-   mRlciI6ICIzLzMiLCAicmVjaXBpZW50IjogeyJ0eXBlIjogIlZhY2NpbmVSZWNpcGllb
-   nQiLCAiZ2VuZGVyIjogIkZlbWFsZSIsICJiaXJ0aERhdGUiOiAiMTk2MS0wOC0xNyIsI
-   CJnaXZlbk5hbWUiOiAiTWFyaW9uIiwgImZhbWlseU5hbWUiOiAiTXVzdGVybWFubiJ9L
-   CAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50IiwgImFkbWluaXN0ZXJpbmdDZW50cmUiO
-   iAiUHJheGlzIFNvbW1lcmdhcnRlbiIsICJiYXRjaE51bWJlciI6ICIxNjI2MzgyNzM2I
-   iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
-   GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
-   CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
-   3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.g3JdICyoPcI0glVANA_7KcxFt5lWzauo8bHYNhETtqkXKhkXIK
-   y9nEczwJPTP1xPWwD6LuRdw4_upmUA9_UrUw~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
-   gImhiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2MzE5OTN9.VDOC3SQnSF6lg
-   49HTyjSfk4WW2w0ycUHv2WCepVmT6oRGmIagkg1sia2IjxNXp5vJtaNjIr5LdSLPNNc8
-   yOx1A
+   iwgImNyZWRlbnRpYWxTdWJqZWN0IjogeyJfc2QiOiBbIjFWX0stOGxEUThpRlhCRlhiW
+   lk5ZWhxUjRIYWJXQ2k1VDB5Ykl6WlBld3ciLCAiSnpqTGd0UDI5ZFAtQjN0ZDEyUDY3N
+   GdGbUsyenk4MUhNdEJnZjZDSk5XZyIsICJSMmZHYmZBMDdaX1lsa3FtTlp5bWExeHl5e
+   DFYc3RJaVM2QjFZYmwySlo0IiwgIlRDbXpybDdLMmdldl9kdTdwY01JeXpSTEhwLVllZ
+   y1GbF9jeHRyVXZQeGciLCAiVjdrSkJMSzc4VG1WRE9tcmZKN1p1VVBIdUtfMmNjN3laU
+   mE0cVYxdHh3TSIsICJiMGVVc3ZHUC1PRERkRm9ZNE5semxYYzN0RHNsV0p0Q0pGNzVOd
+   zhPal9nIiwgInpKS19lU01YandNOGRYbU1aTG5JOEZHTTA4ekozX3ViR2VFTUotNVRCe
+   TAiXSwgInZhY2NpbmUiOiB7Il9zZCI6IFsiMWNGNWhMd2toTU5JYXFmV0pyWEk3Tk1XZ
+   WRMLTlmNlkyUEE1MnlQalNaSSIsICJIaXk2V1d1ZUxENWJuMTYyOTh0UHY3R1hobWxkT
+   URPVG5CaS1DWmJwaE5vIiwgIkxiMDI3cTY5MWpYWGwtakM3M3ZpOGViT2o5c214M0MtX
+   29nN2dBNFRCUUUiXSwgInR5cGUiOiAiVmFjY2luZSJ9LCAicmVjaXBpZW50IjogeyJfc
+   2QiOiBbIjFsU1FCTlkyNHEwVGg2T0d6dGhxLTctNGw2Y0FheHJZWE9HWnBlV19sbkEiL
+   CAiM256THE4MU0yb04wNndkdjFzaEh2T0VKVnhaNUtMbWREa0hFREpBQldFSSIsICJQb
+   jFzV2kwNkc0TEpybm4tX1JUMFJiTV9IVGR4blBKUXVYMmZ6V3ZfSk9VIiwgImxGOXV6Z
+   HN3N0hwbEdMYzcxNFRyNFdPN01HSnphN3R0N1FGbGVDWDRJdHciXSwgInR5cGUiOiAiV
+   mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
+   2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
+   nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
+   ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
+   0U2dDRqVDlGMkhaUSJ9fX0._6XAnAjfixEyX-XfUQt-0jgxNclvctNhEorlL83DlPic8
+   z_27LQpDHpaIoWgn_Y21B4DIhmCLEyTbTqU9VUWkw~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
+   mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
+   DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
+   M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
+   IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImhiK2p3dCJ
+   9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2MzM5Mjd9.GNYS1sKg2QDHWfZvMW5wZ8O0F
+   SWG4IiH2qVhqEuVt0QO1wMH5W6YReJOe5p27A6K2jvmWtAyPp_g1tHalsDwRQ
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2791,24 +2939,14 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
        "vaccine": {
          "type": "Vaccine",
          "atcCode": "J07BX03",
-         "medicinalProductName": "COVID-19 Vaccine Moderna",
-         "marketingAuthorizationHolder": "Moderna Biotech"
+         "medicinalProductName": "COVID-19 Vaccine Moderna"
        },
-       "nextVaccinationDate": "2021-08-16T13:40:12Z",
-       "countryOfVaccination": "GE",
-       "dateOfVaccination": "2021-06-23T13:40:12Z",
-       "order": "3/3",
        "recipient": {
-         "type": "VaccineRecipient",
-         "gender": "Female",
-         "birthDate": "1961-08-17",
-         "givenName": "Marion",
-         "familyName": "Mustermann"
+         "type": "VaccineRecipient"
        },
        "type": "VaccinationEvent",
-       "administeringCentre": "Praxis Sommergarten",
-       "batchNumber": "1626382736",
-       "healthProfessional": "883110000015376"
+       "order": "3/3",
+       "dateOfVaccination": "2021-06-23T13:40:12Z"
      },
      "_sd_alg": "sha-256",
      "cnf": {
