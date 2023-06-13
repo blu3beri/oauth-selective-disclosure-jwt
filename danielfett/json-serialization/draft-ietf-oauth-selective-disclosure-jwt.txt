@@ -91,7 +91,7 @@ Table of Contents
      6.1.  Processing by the Holder
      6.2.  Verification by the Verifier
    7.  Enveloping the Combined Format for Issuance and Presentation
-   8.  JSON Serialization
+   8.  JWS JSON Serialization
    9.  Security Considerations
      9.1.  Mandatory signing of the SD-JWT
      9.2.  Manipulation of Disclosures
@@ -868,9 +868,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.YJ_YWBKHUm
-   HGMhMmcEi6OEl3xSCIWcFtLOw2an0HfCyCrrYFGQj2vSoQ_CQIVWuDu_FbGq50s3NYx_
-   711FuXQQ
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.HGoTXnu5-v
+   scTIl_5TNFYX5FGJgYotQgO8_SsvxrL32GCo-aorVkSqkUa4KYf_2r-4rZ4g2YXJC0hF
+   FTsjojhQ
 
    The Issuer creates the following Disclosures:
 
@@ -987,9 +987,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.YJ_YWBKHUm
-   HGMhMmcEi6OEl3xSCIWcFtLOw2an0HfCyCrrYFGQj2vSoQ_CQIVWuDu_FbGq50s3NYx_
-   711FuXQQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.HGoTXnu5-v
+   scTIl_5TNFYX5FGJgYotQgO8_SsvxrL32GCo-aorVkSqkUa4KYf_2r-4rZ4g2YXJC0hF
+   FTsjojhQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1082,7 +1082,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686671918
+     "iat": 1686691506
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1090,8 +1090,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY2NzE5MTh9.ZYoQZ1kPfzzmbmDHH1Xl2_uRdkO606YN4u6PVuxyV_i_UiUAXQ
-   CnWXus-6dn88Mknxfim2K-sNJAqcZKwqHTOw
+   6IDE2ODY2OTE1MDZ9.u1DYAvWFWg1A9_J9kf3dsO9fmrajn1CCd1zWNMsl9nqsxK2Yu4
+   TrfkyV52-5gHk9kxoiQysLvyjquPC-U_L9-A
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1124,12 +1124,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.YJ_YWBKHUm
-   HGMhMmcEi6OEl3xSCIWcFtLOw2an0HfCyCrrYFGQj2vSoQ_CQIVWuDu_FbGq50s3NYx_
-   711FuXQQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.HGoTXnu5-v
+   scTIl_5TNFYX5FGJgYotQgO8_SsvxrL32GCo-aorVkSqkUa4KYf_2r-4rZ4g2YXJC0hF
+   FTsjojhQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODY2NzE5MTh9.ZYoQZ1kPfzzmbmDHH1Xl2_uRdkO606YN4u6PVuxyV
-   _i_UiUAXQCnWXus-6dn88Mknxfim2K-sNJAqcZKwqHTOw
+   wgImlhdCI6IDE2ODY2OTE1MDZ9.u1DYAvWFWg1A9_J9kf3dsO9fmrajn1CCd1zWNMsl9
+   nqsxK2Yu4TrfkyV52-5gHk9kxoiQysLvyjquPC-U_L9-A
 
 6.  Verification and Processing
 
@@ -1335,19 +1335,30 @@ Table of Contents
    Presentation that envelopes multiple such objects into one object,
    and provides Key Binding using means other than the Key Binding JWT.
 
-8.  JSON Serialization
+8.  JWS JSON Serialization
 
-   (Work in progress.)
+   (Work in progress...)
 
-   For JWS JSON Serialization, the SD-JWT is represented as a JSON
-   object according to [RFC7515].  The disclosures and are added to the
-   serialized JWS using the key disclosures (both for issuance and
-   presentation).  For presentation, a serialized key binding JWT MAY be
-   added to the key kb_jwt.
+   This section describes an optional alternate format for SD-JWT using
+   the JWS JSON Serialization from [RFC7515].
 
-   Using the same payload as in Example 1 (Section 5.2):
+   For both the General and Flattened JSON Serialization, the SD-JWT is
+   represented as a JSON object according to Section 7.2 of [RFC7515].
+   The disclosures (both for issuance and presentation) are included in
+   the serialized JWS using the key disclosures at the top-level of the
+   JSON object (the same level as the payload member).  The value of the
+   disclosures member is array of strings where each element is an
+   individual Disclosure as described in Section 5.1.1.1.  The Issuer
+   includes a Disclosure for each selectively disclosable claim of the
+   SD-JWT payload.  Whereas the Holder includes only the Disclosures
+   selected for the given presentation.  Additionally, for presentation
+   with a Key Binding, the Holder adds the key kb_jwt at the top-level
+   of the serialized JWS with a string value containing the Key Binding
+   JWT as described in Section 5.4.1.1.
 
-   Issuance:
+   Using a payload similar to that from Example 1 (#example-1), the
+   following is a non-normative example of a JWS JSON serialized SD-JWT
+   from an Issuer with all the respective Disclosures.
 
    {
      "payload": "eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZGs2V0JwWn
@@ -1364,8 +1375,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "NnBKFFPyiiNX5xzhtdlBaxnpd0cLt2em2ug_4LdYppCpyiQFTI6n
-       p3M2cXUcXLKUtr6AX5qV42C1YwW4BTkvog",
+     "signature": "DkI2qYehzi9UOJQnzGb8AES0Qlv8VIimsYEqfgvAmcTLBpmHVlV3
+       5m5VhMo9ALp9m8SUyG8_c0xTQ1Ir5jYQhQ",
      "disclosures": [
        "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
          d",
@@ -1385,7 +1396,9 @@ Table of Contents
      ]
    }
 
-   Presentation:
+   Below is a non-normative example of a presentation of the JWS JSON
+   serialized SD-JWT, where the Holder includes a Key Binding JWT and
+   has selected to disclose given_name, family_name, and address.
 
    {
      "payload": "eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZGs2V0JwWn
@@ -1402,8 +1415,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "NnBKFFPyiiNX5xzhtdlBaxnpd0cLt2em2ug_4LdYppCpyiQFTI6n
-       p3M2cXUcXLKUtr6AX5qV42C1YwW4BTkvog",
+     "signature": "DkI2qYehzi9UOJQnzGb8AES0Qlv8VIimsYEqfgvAmcTLBpmHVlV3
+       5m5VhMo9ALp9m8SUyG8_c0xTQ1Ir5jYQhQ",
      "disclosures": [
        "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
          d",
@@ -1415,8 +1428,8 @@ Table of Contents
      ],
      "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
        I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-       lmaWVyIiwgImlhdCI6IDE2ODY2NzE5MTh9.pr6Hd8zmO4Pal6g3sGZD1iRUQQ8OU
-       SjozffhrjiPLyU8ed7TnmmMJRIs2ffEIVnRQYVbAG1xyAAx0MuLnrtuJg"
+       lmaWVyIiwgImlhdCI6IDE2ODY2OTE1MDZ9.DNyxMnb817Vsyau5z_qF1H4V8eQDm
+       6NrWnIRUmEo00HCM2KjoptuKhdcBvnGEjO6q400vlXkZizInQ_ggGQ9SQ"
    }
 
 9.  Security Considerations
@@ -2171,8 +2184,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.y7Qqu6Nywu06Fa6EEc48GIsuGm
-   N1RyHIoEiSkwpuoRzGwFA0nb2DozBEONMde6xDWCcfzlrpiDTbHIWXrJ65Dg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.eySBmN8Jm1Jh9OzuJCUI7bXWrR
+   Jc1YKTe0wyXSIB0qapN8KKfUK4EmnG4s7F3zRf560ASbGIO9vc6OUQ6ojdOQ~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2462,8 +2475,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.yGSgPmHdBrhvbMtMGW5ZKN
-   y7XfFhqTfDUCZFRsZwW0SjH5RT6mk_y7-caQw9WBrdnFw7OZDpm2nH5i9yw3Rk3w~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.UXdklq6d1_pZdMKVt_d_YL
+   -FR2iZFkERFZVJAdEXLsE_a-6f_AhcK1jvf39z7PAYWdvToQqUnrDLdCGMBFuLAA~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2829,12 +2842,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.KyCOUvoHtQaXOxB2mQ7zHGVY127vz5QYlqufkY7Aq50qdJCJT4
-   ozR81_Y-EzkFuwT4PbNFDakFtYspVmYbsowQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.3COtJJGGYzk82SUqSEuYvA92A_To1YH4HD1spE38cKBXtHav58
+   5GUyktUc-nLuO6Mm7h2z24bfW7DmXffIiS4g~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2NzE5MTh9.qdPZI3zPaO_hK
-   1lcdsCC0bNdmIhc2yf6mLslAiCMTOrXwb-quAbdYZqknyUsQG_QvrqV0Ke7z-KhMsi56
-   wPwOg
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2OTE1MDZ9.JeJumvu1g5CHU
+   eoP06Cc86RRxz3e7FMl9Ve1QnD6YYhNhYcEOMqEhPfK3yadrrDctXJ0G7XY7jlhQywuV
+   NMMEQ
 
    After the validation, the Verifier will have the following data for
    further processing:
