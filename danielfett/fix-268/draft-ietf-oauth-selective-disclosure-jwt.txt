@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 15 December 2023                                      Microsoft
+Expires: 16 December 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                            13 June 2023
+                                                            14 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 December 2023.
+   This Internet-Draft will expire on 16 December 2023.
 
 Copyright Notice
 
@@ -78,42 +78,54 @@ Table of Contents
      4.4.  Verification
    5.  Data Formats
      5.1.  Format of an SD-JWT
-       5.1.1.  Selectively Disclosable Claims
-       5.1.2.  Hash Function Claim
-       5.1.3.  Holder Public Key Claim
-     5.2.  Example 1: SD-JWT
-     5.3.  Combined Format for Issuance
-       5.3.1.  Example
-     5.4.  Combined Format for Presentation
-       5.4.1.  Enabling Key Binding
-       5.4.2.  Example
+     5.2.  Creating Disclosures
+       5.2.1.  Disclosures for Object Properties
+       5.2.2.  Disclosures for Array Elements
+     5.3.  Hashing Disclosures
+     5.4.  Embedding Disclosure Digests in SD-JWTs
+       5.4.1.  Object Properties
+       5.4.2.  Array Elements
+     5.5.  Example 1: SD-JWT
+     5.6.  Decoy Digests
+     5.7.  Nested Data in SD-JWTs
+       5.7.1.  Option 1: Flat SD-JWT
+       5.7.2.  Option 2: Structured SD-JWT
+       5.7.3.  Option 3: SD-JWT with Recursive Disclosures
+     5.8.  Hash Function Claim
+     5.9.  Holder Public Key Claim
+     5.10. Combined Format for Issuance
+       5.10.1.  Example
+     5.11. Combined Format for Presentation
+       5.11.1.  Enabling Key Binding
+       5.11.2.  Example
    6.  Verification and Processing
      6.1.  Processing by the Holder
      6.2.  Verification by the Verifier
    7.  Enveloping the Combined Format for Issuance and Presentation
-   8.  Security Considerations
-     8.1.  Mandatory signing of the SD-JWT
-     8.2.  Manipulation of Disclosures
-     8.3.  Entropy of the salt
-     8.4.  Minimum length of the salt
-     8.5.  Choice of a Hash Algorithm
-     8.6.  Key Binding
-     8.7.  Blinding Claim Names
-     8.8.  Issuer Signature Key Distribution and Rotation
-     8.9.  Forwarding Credentials
-     8.10. Explicit Typing
-   9.  Privacy Considerations
-     9.1.  Storage of Signed User Data
-     9.2.  Confidentiality during Transport
-     9.3.  Decoy Digests
-     9.4.  Unlinkability
-     9.5.  Issuer Identifier
-   10. Acknowledgements
-   11. IANA Considerations
-     11.1.  Media Type Registration
-     11.2.  Structured Syntax Suffix Registration
-   12. Normative References
-   13. Informative References
+   8.  JWS JSON Serialization
+   9.  Security Considerations
+     9.1.  Mandatory signing of the SD-JWT
+     9.2.  Manipulation of Disclosures
+     9.3.  Entropy of the salt
+     9.4.  Minimum length of the salt
+     9.5.  Choice of a Hash Algorithm
+     9.6.  Key Binding
+     9.7.  Blinding Claim Names
+     9.8.  Issuer Signature Key Distribution and Rotation
+     9.9.  Forwarding Credentials
+     9.10. Explicit Typing
+   10. Privacy Considerations
+     10.1.  Storage of Signed User Data
+     10.2.  Confidentiality during Transport
+     10.3.  Decoy Digests
+     10.4.  Unlinkability
+     10.5.  Issuer Identifier
+   11. Acknowledgements
+   12. IANA Considerations
+     12.1.  Media Type Registration
+     12.2.  Structured Syntax Suffix Registration
+   13. Normative References
+   14. Informative References
    Appendix A.  Additional Examples
      A.1.  Example 2: Handling Structured Claims
      A.2.  Example 3 - Complex Structured SD-JWT
@@ -171,15 +183,16 @@ Table of Contents
    applications.  SD-JWT is a selective disclosure mechanism for JWT and
    is similarly intended to be general-purpose specification.
 
-   While JWTs for claims describing natural persons are a common use
+   While JWTs with claims describing natural persons are a common use
    case, the mechanisms defined in this document can be used for other
    use cases as well.
 
    In an Issuer-signed SD-JWT, claims can be hidden, but
-   cryptographically protected against undetected modification.  When
-   issuing the SD-JWT to the Holder, the Issuer also sends the cleartext
-   counterparts of all hidden claims, the so-called Disclosures,
-   separate from the SD-JWT itself.
+   cryptographically protected against undetected modification.
+   "Claims" here refers to both object properties (key-value pairs) as
+   well as array elements.  When issuing the SD-JWT to the Holder, the
+   Issuer also sends the cleartext counterparts of all hidden claims,
+   the so-called Disclosures, separate from the SD-JWT itself.
 
    The Holder decides which claims to disclose to a Verifier and
    forwards the respective Disclosures together with the SD-JWT to the
@@ -207,7 +220,9 @@ Table of Contents
    *  This specification defines
 
       -  a format for an Issuer-signed JWT containing selectively
-         disclosable claims,
+         disclosable claims that include object properties (key-value
+         pairs), array elements, and nested data structures built from
+         these,
 
       -  a format for data associated with an Issuer-signed JWT that
          enables selectively disclosing claims, and
@@ -215,14 +230,11 @@ Table of Contents
       -  formats for the combined transport of an Issuer-signed JWT and
          the associated data during issuance and presentation.
 
-   *  The specification supports selectively disclosable claims in flat
-      data structures as well as more complex, nested data structures.
-
    *  This specification enables combining selectively disclosable
       claims with clear-text claims that are always disclosed.
 
-   *  For selectively disclosable claims, claim names are always
-      blinded.
+   *  For selectively disclosable claims that are object properties,
+      both the key and value are always blinded.
 
 1.2.  Conventions and Terminology
 
@@ -245,9 +257,10 @@ Table of Contents
       document and can contain both regular claims and digests of
       selectively-disclosable claims.
 
-   Disclosure:  A combination of a salt, a cleartext claim name, and a
-      cleartext claim value, all of which are used to calculate a digest
-      for the respective claim.
+   Disclosure:  A combination of a salt, a cleartext claim name (present
+      when the claim is a key-value pair and absent when the claim is an
+      array element), and a cleartext claim value, all of which are used
+      to calculate a digest for the respective claim.
 
    Key Binding:  Ability of the Holder to prove legitimate possession of
       an SD-JWT by proving control over the same private key during the
@@ -308,14 +321,16 @@ Table of Contents
 
    An SD-JWT, at its core, is a digitally signed JSON document
    containing digests over the selectively disclosable claims with the
-   Disclosures outside the document.
+   Disclosures outside the document.  Selectively disclosable claims can
+   be individual object properties (key-value pairs) or array elements.
 
    Each digest value ensures the integrity of, and maps to, the
    respective Disclosure.  Digest values are calculated using a hash
-   function over the Disclosures, each of which contains the claim name,
-   the claim value, and a random salt.  The Disclosures are sent to the
-   Holder together with the SD-JWT in the Combined Format for Issuance
-   defined in Section 5.3.
+   function over the Disclosures, each of which contains a random salt,
+   the claim name (only when the claim is an object property), and the
+   claim value.  The Disclosures are sent to the Holder together with
+   the SD-JWT in the Combined Format for Issuance defined in
+   Section 5.10.
 
    An SD-JWT MAY also contain clear-text claims that are always
    disclosed to the Verifier.
@@ -325,7 +340,7 @@ Table of Contents
    To disclose to a Verifier a subset of the SD-JWT claim values, a
    Holder sends only the Disclosures of those selectively released
    claims to the Verifier along with the SD-JWT in the Combined Format
-   for Presentation defined in Section 5.4.
+   for Presentation defined in Section 5.11.
 
 4.3.  Optional Key Binding
 
@@ -337,7 +352,7 @@ Table of Contents
    this document.  It can be passed by value or by reference.
 
    The Holder can then create a signed document, the Key Binding JWT as
-   defined in Section 5.4.1.1, using its private key.  This document
+   defined in Section 5.11.1.1, using its private key.  This document
    contains some data provided by the Verifier such as a nonce to ensure
    the freshness of the signature, and audience to indicate the intended
    audience for the document.
@@ -375,32 +390,69 @@ Table of Contents
 5.1.  Format of an SD-JWT
 
    An SD-JWT is a JWT that MUST be signed using the Issuer's private
-   key.  The payload of an SD-JWT MUST contain the _sd_alg claim
-   described in Section 5.1.2.  The SD-JWT payload MAY contain one or
-   more selectively disclosable claims.  It MAY also contain a Holder's
-   public key or a reference thereto, as well as further claims such as
-   iss, iat, etc. as defined or required by the application using SD-
-   JWTs.
+   key.  It MUST use a JWS asymmetric digital signature algorithm.  It
+   MUST NOT use none or an identifier for a symmetric algorithm (MAC).
+
+   The payload of an SD-JWT is a JSON object according to the following
+   rules:
+
+   1.  The payload MAY contain the _sd_alg key described in Section 5.8.
+
+   2.  The payload MAY contain one or more digests of Disclosures to
+       enable selective disclosure of the respective claims, created and
+       formatted as described below.
+
+   3.  The payload MAY contain one or more decoy digests to hide the
+       number of claims in the SD-JWT, created and formatted as
+       described in Section 5.6.
+
+   4.  The payload MAY contain one or more non-selectively disclosable
+       claims.
+
+   5.  The payload MAY also contain a Holder's public key or a reference
+       thereto, as well as further claims such as iss, iat, etc. as
+       defined or required by the application using SD-JWTs.
+
+   6.  The payload MUST NOT contain the reserved claims _sd or ...
+       except for the purpose of transporting digests as described
+       below.
+
+   7.  The same digest MUST NOT appear more than once in the SD-JWT.
 
    Applications of SD-JWT SHOULD be explicitly typed using the typ
-   header parameter.  See Section 8.10 for more details.
+   header parameter.  See Section 9.10 for more details.
 
-5.1.1.  Selectively Disclosable Claims
+   It is the Issuer who decides which claims are selectively disclosable
+   and which are not.  However, claims controlling the validity of the
+   SD-JWT, such as iss, exp, or nbf are usually included in plaintext.
+   End-User claims MAY be included as plaintext as well, e.g., if hiding
+   the particular claims from the Verifier is not required in the
+   intended use case.
 
-   For each claim that is to be selectively disclosed, the Issuer
-   creates a Disclosure, hashes it, and includes the hash instead of the
-   original claim in the SD-JWT, as described next.  The Disclosures are
-   then sent to the Holder.
+   Claims that are not selectively disclosable are included in the SD-
+   JWT in plaintext just as they would be in any other JSON structure.
 
-5.1.1.1.  Creating Disclosures
+5.2.  Creating Disclosures
 
-   The Issuer MUST create a Disclosure for each selectively disclosable
-   claim as follows:
+   Disclosures are created differently depending on whether a claim is
+   an object property (key-value pair) or an array element.
+
+   *  For a claim that is an object property, the Issuer creates a
+      Disclosure as described in Section 5.2.1.
+
+   *  For a claim that is an array element, the Issuer creates a
+      Disclosure as described in Section 5.2.2.
+
+5.2.1.  Disclosures for Object Properties
+
+   For each claim that is an object property and that is to be made
+   selectively disclosable, the Issuer MUST create a Disclosure as
+   follows:
 
    *  Create an array of three elements in this order:
 
-      1.  A salt value MUST be a string.  See Section 8.3 and
-          Section 8.4 for security considerations.  It is RECOMMENDED to
+      1.  A salt value.  MUST be a string.  See Section 9.3 and
+          Section 9.4 for security considerations.  It is RECOMMENDED to
           base64url-encode minimum 128 bits of cryptographically secure
           pseudorandom data, producing a string.  The salt value MUST be
           unique for each claim that is to be selectively disclosed.
@@ -437,7 +489,8 @@ Table of Contents
    Note that the JSON encoding of the object is not canonicalized, so
    variations in white space, encoding of Unicode characters, and
    ordering of object properties are allowed.  For example, the
-   following strings are all valid and encode the same claim value:
+   following strings are all valid and encode the same claim value
+   "Möbius":
 
    *  A different way to encode the umlaut (two dots &#168; placed over
       the letter): WyJfMjZiYzRMVC1hYzZxMktJNmNCVzVlcyIsICJmYW1pbHlfbmFtZ
@@ -452,11 +505,44 @@ Table of Contents
    See Appendix B for some further considerations on the Disclosure
    format approach.
 
-5.1.1.2.  Hashing Disclosures
+5.2.2.  Disclosures for Array Elements
+
+   For each claim that is an array element and that is to be made
+   selectively disclosable, the Issuer MUST create a Disclosure as
+   follows:
+
+   *  The array MUST contain two elements in this order:
+
+      1.  The salt value as described in Section 5.2.1.
+
+      2.  The array element that is to be hidden.  This value MAY be of
+          any type that is allowed in JSON, including numbers, strings,
+          booleans, arrays, and objects.
+
+   The Disclosure string is created by JSON-encoding this array and
+   base64url-encoding the byte representation of the resulting string as
+   described in Section 5.2.1.  The same considerations regarding
+   variations in the result of the JSON encoding apply.
+
+   For example, a Disclosure for the second element of the nationalities
+   array in the following claim set:
+
+   {
+     "nationalities": ["DE", "FR"]
+   }
+
+   could be created by first creating the following array:
+
+   ["lklxF5jMYlGTPUovMNIvCA", "FR"]
+
+   The resulting Disclosure would be:
+   WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIkZSIl0
+
+5.3.  Hashing Disclosures
 
    For embedding the Disclosures in the SD-JWT, the Disclosures are
    hashed using the hash algorithm specified in the _sd_alg claim
-   described in Section 5.1.2.  The resulting digest is then included in
+   described in Section 5.8.  The resulting digest is then included in
    the SD-JWT instead of the original claim value, as described next.
 
    The digest MUST be taken over the US-ASCII bytes of the base64url-
@@ -466,10 +552,10 @@ Table of Contents
 
    It is important to note that:
 
-   *  The input to the hash function is the base64url-encoded
+   *  The input to the hash function MUST be the base64url-encoded
       Disclosure, not the bytes encoded by the base64url string.
 
-   *  The bytes of the output of the hash function are base64url-
+   *  The bytes of the output of the hash function MUST be base64url-
       encoded, and are not the bytes making up the (often used) hex
       representation of the bytes of the digest.
 
@@ -477,50 +563,29 @@ Table of Contents
    WyI2cU1RdlJMNWhhaiIsICJmYW1pbHlfbmFtZSIsICJNw7ZiaXVzIl0 would be
    uutlBuYeMDyjLLTpf6Jxi7yNkEF35jdyWMn9U7b_RYY.
 
-5.1.1.3.  Decoy Digests
+   The SHA-256 digest of the Disclosure
+   WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIkZSIl0 would be
+   w0I8EKcdCtUPkGCNUrfwVp2xEgNjtoIDlOxc9-PlOhs.
 
-   An Issuer MAY add additional digests to the SD-JWT that are not
-   associated with any claim.  The purpose of such "decoy" digests is to
-   make it more difficult for an attacker to see the original number of
-   claims contained in the SD-JWT.  It is RECOMMENDED to create the
-   decoy digests by hashing over a cryptographically secure random
-   number.  The bytes of the digest MUST then be base64url-encoded as
-   above.  The same digest function as for the Disclosures MUST be used.
+5.4.  Embedding Disclosure Digests in SD-JWTs
 
-   For decoy digests, no Disclosure is sent to the Holder, i.e., the
-   Holder will see digests that do not correspond to any Disclosure.
-   See Section 9.3 for additional privacy considerations.
+   For selectively disclosable claims, the digests of the Disclosures
+   are embedded into the SD-JWT instead of the claims themselves.  The
+   precise way of embedding depends on whether a claim is an object
+   property (key-value pair) or an array element.
 
-   To ensure readability and replicability, the examples in this
-   specification do not contain decoy digests unless explicitly stated.
+   *  For a claim that is an object property, the Issuer embeds a
+      Disclosure as described in Section 5.4.1.
 
-5.1.1.4.  Creating an SD-JWT
+   *  For a claim that is an array element, the Issuer creates a
+      Disclosure as described in Section 5.4.2.
 
-   An SD-JWT is a JWT that MUST be signed using the Issuer's private
-   key.  It MUST use a JWS asymmetric digital signature algorithm.  It
-   MUST NOT use none or an identifier for a symmetric algorithm (MAC).
+5.4.1.  Object Properties
 
-   An SD-JWT MAY contain both selectively disclosable claims and non-
-   selectively disclosable claims, i.e., claims that are always
-   contained in the SD-JWT in plaintext and are always visible to a
-   Verifier.
-
-   It is the Issuer who decides which claims are selectively disclosable
-   and which are not.  However, claims controlling the validity of the
-   SD-JWT, such as iss, exp, or nbf are usually included in plaintext.
-   End-User claims MAY be included as plaintext as well, e.g., if hiding
-   the particular claims from the Verifier does not make sense in the
-   intended use case.
-
-   Claims that are not selectively disclosable are included in the SD-
-   JWT in plaintext just as they would be in any other JWT.
-
-   Selectively disclosable claims are omitted from the SD-JWT.  Instead,
-   the digests of the respective Disclosures and potentially decoy
-   digests are contained as an array in a new JWT claim, _sd.
-
-   The _sd key MUST refer to an array of strings, each string being a
-   digest of a Disclosure or a decoy digest as described above.
+   Digests of Disclosures for object properties are added to an array
+   under the new key _sd in the object.  The _sd key MUST refer to an
+   array of strings, each string being a digest of a Disclosure or a
+   decoy digest as described in Section 5.6.
 
    The array MAY be empty in case the Issuer decided not to selectively
    disclose any of the claims at that level.  However, it is RECOMMENDED
@@ -528,36 +593,291 @@ Table of Contents
 
    The Issuer MUST hide the original order of the claims in the array.
    To ensure this, it is RECOMMENDED to shuffle the array of hashes,
-   e.g., by sorting it alphanumerically or randomly.  The precise method
+   e.g., by sorting it alphanumerically or randomly, after potentially
+   adding decoy digests as described in Section 5.6.  The precise method
    does not matter as long as it does not depend on the original order
    of elements.
 
-   Issuers MUST NOT issue SD-JWTs where
+   For example, using the digest of the object property Disclosure
+   created above, the Issuer could create the following SD-JWT payload
+   to make family_name selectively disclosable:
 
-   *  the key _sd is already used for the purpose other than to contain
-      the array of digests, or
+   {
+     "given_name": "Alice",
+     "_sd": ["uutlBuYeMDyjLLTpf6Jxi7yNkEF35jdyWMn9U7b_RYY"]
+   }
 
-   *  the same Disclosure value appears more than once (in the same
-      array or in different arrays).
+5.4.2.  Array Elements
 
-5.1.1.5.  Nested Data in SD-JWTs
+   Digests of Disclosures for array elements are added to the array in
+   the same position as the original claim value in the array.  For each
+   digest, an object of the form {"...": "<digest>"} is added to the
+   array.  The key MUST always be the string ... (three dots).  The
+   value MUST be the digest of the Disclosure created as described in
+   Section 5.3.  There MUST NOT be any other keys in the object.
+
+   For example, using the digest of the array element Disclosure created
+   above, the Issuer could create the following SD-JWT payload to make
+   the second element of the nationalities array selectively
+   disclosable:
+
+   {
+     "nationalities":
+       ["DE", {"...": "w0I8EKcdCtUPkGCNUrfwVp2xEgNjtoIDlOxc9-PlOhs"}]
+   }
+
+   As described in Section 6.2, Verifiers ignore all selectively
+   disclosable array elements for which they did not receive a
+   Disclosure.  In the example above, the verification process would
+   output an array with only one element unless a matching Disclosure
+   for the second element is received.
+
+5.5.  Example 1: SD-JWT
+
+   This example uses the following object as the set of claims that the
+   Issuer is issuing:
+
+   {
+     "sub": "user_42",
+     "given_name": "John",
+     "family_name": "Doe",
+     "email": "johndoe@example.com",
+     "phone_number": "+1-202-555-0101",
+     "phone_number_verified": true,
+     "address": {
+       "street_address": "123 Main St",
+       "locality": "Anytown",
+       "region": "Anystate",
+       "country": "US"
+     },
+     "birthdate": "1940-01-01",
+     "updated_at": 1570000000,
+     "nationalities": [
+       "US",
+       "DE"
+     ]
+   }
+
+   The following non-normative example shows a payload of an SD-JWT for
+   this End-User data:
+
+   {
+     "_sd": [
+       "CrQe7S5kqBAHt-nMYXgc6bdt2SH5aTY1sU_M-PgkjPI",
+       "JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE",
+       "PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI",
+       "TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo",
+       "XQ_3kPKt1XyX7KANkqVR6yZ2Va5NrPIvPYbyMvRKBMM",
+       "XzFrzwscM6Gn6CJDc6vVK8BkMnfG8vOSKfpPIZdAfdE",
+       "gbOsI4Edq2x2Kw-w5wPEzakob9hV1cRD0ATN3oQL9JM",
+       "jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4"
+     ],
+     "iss": "https://example.com/issuer",
+     "iat": 1683000000,
+     "exp": 1883000000,
+     "sub": "user_42",
+     "nationalities": [
+       {
+         "...": "pFndjkZ_VCzmyTa6UjlZo3dh-ko8aIKQc9DlGzhaVYo"
+       },
+       {
+         "...": "7Cf6JkPudry3lcbwHgeZ8khAv1U1OSlerP0VkBJrWZ0"
+       }
+     ],
+     "_sd_alg": "sha-256",
+     "cnf": {
+       "jwk": {
+         "kty": "EC",
+         "crv": "P-256",
+         "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+         "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+       }
+     }
+   }
+
+   The Issuer in this case made the following decisions:
+
+   *  The nationalities array is always visible, but its contents are
+      selectively disclosable.
+
+   *  The sub element and essential verification data (iss, iat, cnf,
+      etc.) are always visible.
+
+   *  All other End-User claims are selectively disclosable.
+
+   *  For address, the Issuer is using a flat structure, i.e., all of
+      the claims in the address claim can only be disclosed in full.
+      Other options are discussed in Section 5.7.
+
+   The Issuer creates the following Disclosures:
+
+   *Claim given_name*:
+
+   *  SHA-256 Hash: jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4
+
+   *  Disclosure:
+      WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9o
+      biJd
+
+   *  Contents: ["2GLC42sKQveCfGfryNRN9w", "given_name", "John"]
+
+   *Claim family_name*:
+
+   *  SHA-256 Hash: TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo
+
+   *  Disclosure:
+      WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRv
+      ZSJd
+
+   *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "family_name", "Doe"]
+
+   *Claim email*:
+
+   *  SHA-256 Hash: JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE
+
+   *  Disclosure:
+      WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VA
+      ZXhhbXBsZS5jb20iXQ
+
+   *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "email",
+      "johndoe@example.com"]
+
+   *Claim phone_number*:
+
+   *  SHA-256 Hash: PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI
+
+   *  Disclosure:
+      WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlciIsICIr
+      MS0yMDItNTU1LTAxMDEiXQ
+
+   *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "phone_number",
+      "+1-202-555-0101"]
+
+   *Claim phone_number_verified*:
+
+   *  SHA-256 Hash: XQ_3kPKt1XyX7KANkqVR6yZ2Va5NrPIvPYbyMvRKBMM
+
+   *  Disclosure:
+      WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlcl92ZXJp
+      ZmllZCIsIHRydWVd
+
+   *  Contents: ["Qg_O64zqAxe412a108iroA", "phone_number_verified",
+      true]
+
+   *Claim address*:
+
+   *  SHA-256 Hash: XzFrzwscM6Gn6CJDc6vVK8BkMnfG8vOSKfpPIZdAfdE
+
+   *  Disclosure:
+      WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVl
+      dF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRv
+      d24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0
+
+   *  Contents: ["AJx-095VPrpTtN4QMOqROA", "address", {"street_address":
+      "123 Main St", "locality": "Anytown", "region": "Anystate",
+      "country": "US"}]
+
+   *Claim birthdate*:
+
+   *  SHA-256 Hash: gbOsI4Edq2x2Kw-w5wPEzakob9hV1cRD0ATN3oQL9JM
+
+   *  Disclosure:
+      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQw
+      LTAxLTAxIl0
+
+   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "birthdate", "1940-01-01"]
+
+   *Claim updated_at*:
+
+   *  SHA-256 Hash: CrQe7S5kqBAHt-nMYXgc6bdt2SH5aTY1sU_M-PgkjPI
+
+   *  Disclosure:
+      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgInVwZGF0ZWRfYXQiLCAxNTcw
+      MDAwMDAwXQ
+
+   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "updated_at", 1570000000]
+
+   *Array Entry*:
+
+   *  SHA-256 Hash: pFndjkZ_VCzmyTa6UjlZo3dh-ko8aIKQc9DlGzhaVYo
+
+   *  Disclosure:
+      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIlVTIl0
+
+   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "US"]
+
+   *Array Entry*:
+
+   *  SHA-256 Hash: 7Cf6JkPudry3lcbwHgeZ8khAv1U1OSlerP0VkBJrWZ0
+
+   *  Disclosure:
+      WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgIkRFIl0
+
+   *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "DE"]
+
+   The SD-JWT is then signed by the Issuer to create a JWT like the
+   following:
+
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkNyUWU3UzVrcUJBSHQtbk1ZWGdjNmJkd
+   DJTSDVhVFkxc1VfTS1QZ2tqUEkiLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
+   TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
+   EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
+   mZVYW9tTG8iLCAiWFFfM2tQS3QxWHlYN0tBTmtxVlI2eVoyVmE1TnJQSXZQWWJ5TXZSS
+   0JNTSIsICJYekZyendzY002R242Q0pEYzZ2Vks4QmtNbmZHOHZPU0tmcFBJWmRBZmRFI
+   iwgImdiT3NJNEVkcTJ4Mkt3LXc1d1BFemFrb2I5aFYxY1JEMEFUTjNvUUw5Sk0iLCAia
+   nN1OXlWdWx3UVFsaEZsTV8zSmx6TWFTRnpnbGhRRzBEcGZheVF3TFVLNCJdLCAiaXNzI
+   jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsI
+   CJleHAiOiAxODgzMDAwMDAwLCAic3ViIjogInVzZXJfNDIiLCAibmF0aW9uYWxpdGllc
+   yI6IFt7Ii4uLiI6ICJwRm5kamtaX1ZDem15VGE2VWpsWm8zZGgta284YUlLUWM5RGxHe
+   mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
+   lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
+   iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
+   jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.QfmvyfB6iewky1h5M-_u4
+   MhDuE2xNK7Nm_P8A-PC4n3dCSNMwD2-alua2SQue1m8RGgoZWkGWrqVdqfj9E7NzQ
+
+5.6.  Decoy Digests
+
+   An Issuer MAY add additional digests to the SD-JWT that are not
+   associated with any claim.  The purpose of such "decoy" digests is to
+   make it more difficult for an attacker to see the original number of
+   claims contained in the SD-JWT.  Decoy digests MAY be added both to
+   the _sd array for objects as well as in arrays.
+
+   It is RECOMMENDED to create the decoy digests by hashing over a
+   cryptographically secure random number.  The bytes of the digest MUST
+   then be base64url-encoded as above.  The same digest function as for
+   the Disclosures MUST be used.
+
+   For decoy digests, no Disclosure is sent to the Holder, i.e., the
+   Holder will see digests that do not correspond to any Disclosure.
+   See Section 10.3 for additional privacy considerations.
+
+   To ensure readability and replicability, the examples in this
+   specification do not contain decoy digests unless explicitly stated.
+   For an example with decoy digests, see Appendix A.1.
+
+5.7.  Nested Data in SD-JWTs
 
    Being JSON, an object in an SD-JWT payload MAY contain key-value
-   pairs where the value is another object.  In SD-JWT, the Issuer
-   decides for each key individually, on each level of the JSON, whether
-   the key should be selectively disclosable or not.  This choice can be
-   made on each level independent from whether keys higher in the
-   hierarchy are selectively disclosable.
+   pairs where the value is another object or objects MAY be elements in
+   arrays.  In SD-JWT, the Issuer decides for each claim individually,
+   on each level of the JSON, whether the claim should be selectively
+   disclosable or not.  This choice can be made on each level
+   independent from whether keys higher in the hierarchy are selectively
+   disclosable.
 
-   For any selectively disclosable claim, the _sd key containing the
-   digest value MUST be included in the SD-JWT at the same level as the
-   original claim.  It follows that the _sd key MAY appear multiple
-   times in an SD-JWT.  It MAY even appear within Disclosures.
+   From this it follows that the _sd key containing digests MAY appear
+   multiple times in an SD-JWT, and likewise, there MAY be multiple
+   arrays within the hierarchy with each having selectively disclosable
+   elements.  Digests of selectively disclosable claims MAY even appear
+   within other Disclosures.
 
    The following examples illustrate some of the options an Issuer has.
    It is up to the Issuer to decide which option to use, depending on,
    for example, the expected use cases for the SD-JWT, requirements for
-   privacy, size considerations, or ecosystem requirements.
+   privacy, size considerations, or ecosystem requirements.  For more
+   examples with nested structures, see Appendix A.1 and Appendix A.2.
 
    The following claim set is used as an example throughout this
    section:
@@ -578,7 +898,7 @@ Table of Contents
    RFCs and for readability.  JSON does not allow line breaks in
    strings.
 
-5.1.1.5.1.  Option 1: Flat SD-JWT
+5.7.1.  Option 1: Flat SD-JWT
 
    The Issuer can decide to treat the address claim as a block that can
    either be disclosed completely or not at all.  The following example
@@ -612,7 +932,7 @@ Table of Contents
       "Schulstr. 12", "locality": "Schulpforta", "region":
       "Sachsen-Anhalt", "country": "DE"}]
 
-5.1.1.5.2.  Option 2: Structured SD-JWT
+5.7.2.  Option 2: Structured SD-JWT
 
    The Issuer may instead decide to make the address claim contents
    selectively disclosable individually:
@@ -697,7 +1017,7 @@ Table of Contents
 
    There would be no Disclosure for country in this case.
 
-5.1.1.6.  Option 3: SD-JWT with Recursive Disclosures
+5.7.3.  Option 3: SD-JWT with Recursive Disclosures
 
    The Issuer may also decide to make the address claim contents
    selectively disclosable recursively, i.e., the address claim is made
@@ -775,11 +1095,14 @@ Table of Contents
       "KURDPh4ZC19-3tiz-Df39V8eidy1oV3a3H1Da2N0g88",
       "WN9r9dCBJ8HTCsS2jKASxTjEyW5m5x65_Z_2ro2jfXM"]}]
 
-5.1.2.  Hash Function Claim
+5.8.  Hash Function Claim
 
    The claim _sd_alg indicates the hash algorithm used by the Issuer to
-   generate the digests over the salts and the claim values.  If the
-   _sd_alg claim is not present, a default value of sha-256 is used.
+   generate the digests as described in Section 5.2.  When used, this
+   claim MUST appear at the top level of the SD-JWT payload.  It MUST
+   NOT be used in any object nested within the payload.  If the _sd_alg
+   claim is not present at the top level, a default value of sha-256
+   MUST be used.
 
    The hash algorithm identifier MUST be a hash algorithm value from the
    "Hash Name String" column in the IANA "Named Information Hash
@@ -789,10 +1112,10 @@ Table of Contents
    To promote interoperability, implementations MUST support the sha-256
    hash algorithm.
 
-   See Section 8 for requirements regarding entropy of the salt, minimum
+   See Section 9 for requirements regarding entropy of the salt, minimum
    length of the salt, and choice of a hash algorithm.
 
-5.1.3.  Holder Public Key Claim
+5.9.  Holder Public Key Claim
 
    If the Issuer wants to enable Key Binding, it includes a public key
    associated with the Holder, or a reference thereto.
@@ -802,185 +1125,16 @@ Table of Contents
    pair to the Issuer, the Issuer MAY create the key pair for the
    Holder, or Holder and Issuer MAY use pre-established key material.
 
-   Note: Examples in this document use cnf Claim defined in [RFC7800] to
-   include raw public key by value in SD-JWT.
+   Note: Examples in this document use the cnf Claim defined in
+   [RFC7800] to include the raw public key by value in SD-JWT.
 
-5.2.  Example 1: SD-JWT
-
-   This example uses the following object as the set of claims that the
-   Issuer is issuing:
-
-   {
-     "sub": "john_doe_42",
-     "given_name": "John",
-     "family_name": "Doe",
-     "email": "johndoe@example.com",
-     "phone_number": "+1-202-555-0101",
-     "phone_number_verified": true,
-     "address": {
-       "street_address": "123 Main St",
-       "locality": "Anytown",
-       "region": "Anystate",
-       "country": "US"
-     },
-     "birthdate": "1940-01-01",
-     "updated_at": 1570000000
-   }
-
-   The following non-normative example shows the payload of an SD-JWT.
-   The Issuer is using a flat structure in this case, i.e., all of the
-   claims in the address claim can only be disclosed in full.
-
-   {
-     "_sd": [
-       "4HBn6aIY3WtuGGWTx-qUj6cdk6WBpZygltdFavPa7LY",
-       "8sm1QCf021pNnHACI5sP4m4KZgyNOOAYcTj9HNaC1wY",
-       "NR9CocaGXp6HgbFnlkN7Y9l1ZA73REAvPFo2vHHNHnY",
-       "Noxow4l8bzfWf_SWXPbR4-iLIPfhymr-sDBuQisMxUM",
-       "SDN79NLpAnHPmkrdeYdEa89XZdsk0M8DKYSQOU2ZxQc",
-       "jMCXVz--9b8x37YcoDfXQinzw1wZcccfFRBCFGqdG2o",
-       "oKI1Gd2fwN5WwvjlFkohidGvim-31OulR3q0hrDO078",
-       "tJkqujpOfJq4aHDNxPVojHk2C8MjBsu76zJqMiFfvds",
-       "yaTfxMWcIearzxrPkICJ3t9e51n1Dmshe81RVyiZzXc"
-     ],
-     "iss": "https://example.com/issuer",
-     "iat": 1683000000,
-     "exp": 1883000000,
-     "_sd_alg": "sha-256",
-     "cnf": {
-       "jwk": {
-         "kty": "EC",
-         "crv": "P-256",
-         "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-         "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-       }
-     }
-   }
-
-   The SD-JWT is then signed by the Issuer to create a JWT like the
-   following:
-
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
-   Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
-   k9PQVljVGo5SE5hQzF3WSIsICJOUjlDb2NhR1hwNkhnYkZubGtON1k5bDFaQTczUkVBd
-   lBGbzJ2SEhOSG5ZIiwgIk5veG93NGw4YnpmV2ZfU1dYUGJSNC1pTElQZmh5bXItc0RCd
-   VFpc014VU0iLCAiU0RONzlOTHBBbkhQbWtyZGVZZEVhODlYWmRzazBNOERLWVNRT1UyW
-   nhRYyIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
-   iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiLCAid
-   EprcXVqcE9mSnE0YUhETnhQVm9qSGsyQzhNakJzdTc2ekpxTWlGZnZkcyIsICJ5YVRme
-   E1XY0llYXJ6eHJQa0lDSjN0OWU1MW4xRG1zaGU4MVJWeWlaelhjIl0sICJpc3MiOiAia
-   HR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4MzAwMDAwMCwgImV4c
-   CI6IDE4ODMwMDAwMDAsICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
-   iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
-   jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.hBCRaXb3dvkF13fL-fT8w
-   vEfLO-R928b2Ejq46lpWYygOeIT-mNECgn8qHGd1GGDpz1DPUHuLRgFsLVv3jmX1w
-
-   The Issuer creates the following Disclosures:
-
-   *Claim sub*:
-
-   *  SHA-256 Hash: 4HBn6aIY3WtuGGWTx-qUj6cdk6WBpZygltdFavPa7LY
-
-   *  Disclosure:
-      WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80
-      MiJd
-
-   *  Contents: ["2GLC42sKQveCfGfryNRN9w", "sub", "john_doe_42"]
-
-   *Claim given_name*:
-
-   *  SHA-256 Hash: jMCXVz--9b8x37YcoDfXQinzw1wZcccfFRBCFGqdG2o
-
-   *  Disclosure:
-      WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9o
-      biJd
-
-   *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "given_name", "John"]
-
-   *Claim family_name*:
-
-   *  SHA-256 Hash: 8sm1QCf021pNnHACI5sP4m4KZgyNOOAYcTj9HNaC1wY
-
-   *  Disclosure:
-      WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRv
-      ZSJd
-
-   *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA", "family_name", "Doe"]
-
-   *Claim email*:
-
-   *  SHA-256 Hash: oKI1Gd2fwN5WwvjlFkohidGvim-31OulR3q0hrDO078
-
-   *  Disclosure:
-      WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VA
-      ZXhhbXBsZS5jb20iXQ
-
-   *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "email",
-      "johndoe@example.com"]
-
-   *Claim phone_number*:
-
-   *  SHA-256 Hash: SDN79NLpAnHPmkrdeYdEa89XZdsk0M8DKYSQOU2ZxQc
-
-   *  Disclosure:
-      WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsICIr
-      MS0yMDItNTU1LTAxMDEiXQ
-
-   *  Contents: ["Qg_O64zqAxe412a108iroA", "phone_number",
-      "+1-202-555-0101"]
-
-   *Claim phone_number_verified*:
-
-   *  SHA-256 Hash: yaTfxMWcIearzxrPkICJ3t9e51n1Dmshe81RVyiZzXc
-
-   *  Disclosure:
-      WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgInBob25lX251bWJlcl92ZXJp
-      ZmllZCIsIHRydWVd
-
-   *  Contents: ["AJx-095VPrpTtN4QMOqROA", "phone_number_verified",
-      true]
-
-   *Claim address*:
-
-   *  SHA-256 Hash: tJkqujpOfJq4aHDNxPVojHk2C8MjBsu76zJqMiFfvds
-
-   *  Disclosure:
-      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImFkZHJlc3MiLCB7InN0cmVl
-      dF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRv
-      d24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0
-
-   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "address", {"street_address":
-      "123 Main St", "locality": "Anytown", "region": "Anystate",
-      "country": "US"}]
-
-   *Claim birthdate*:
-
-   *  SHA-256 Hash: NR9CocaGXp6HgbFnlkN7Y9l1ZA73REAvPFo2vHHNHnY
-
-   *  Disclosure:
-      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImJpcnRoZGF0ZSIsICIxOTQw
-      LTAxLTAxIl0
-
-   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "birthdate", "1940-01-01"]
-
-   *Claim updated_at*:
-
-   *  SHA-256 Hash: Noxow4l8bzfWf_SWXPbR4-iLIPfhymr-sDBuQisMxUM
-
-   *  Disclosure:
-      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgInVwZGF0ZWRfYXQiLCAxNTcw
-      MDAwMDAwXQ
-
-   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "updated_at", 1570000000]
-
-5.3.  Combined Format for Issuance
+5.10.  Combined Format for Issuance
 
    Besides the SD-JWT itself, the Holder needs to learn the raw claim
    values that are contained in the SD-JWT, along with the precise input
    to the digest calculation and the salts.  To this end, the Issuer
    sends the Disclosure objects that were also used for the hash
-   calculation, as described in Section 5.1.1.1, to the Holder.
+   calculation, as described in Section 5.2, to the Holder.
 
    The data format for sending the SD-JWT and the Disclosures to the
    Holder MUST be a series of base64url-encoded values, each separated
@@ -996,42 +1150,44 @@ Table of Contents
    The Disclosures and SD-JWT are implicitly linked through the digest
    values of the Disclosures included in the SD-JWT.
 
-5.3.1.  Example
+5.10.1.  Example
 
    For Example 1 (#example-1), the Combined Format for Issuance looks as
    follows:
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
-   Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
-   k9PQVljVGo5SE5hQzF3WSIsICJOUjlDb2NhR1hwNkhnYkZubGtON1k5bDFaQTczUkVBd
-   lBGbzJ2SEhOSG5ZIiwgIk5veG93NGw4YnpmV2ZfU1dYUGJSNC1pTElQZmh5bXItc0RCd
-   VFpc014VU0iLCAiU0RONzlOTHBBbkhQbWtyZGVZZEVhODlYWmRzazBNOERLWVNRT1UyW
-   nhRYyIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
-   iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiLCAid
-   EprcXVqcE9mSnE0YUhETnhQVm9qSGsyQzhNakJzdTc2ekpxTWlGZnZkcyIsICJ5YVRme
-   E1XY0llYXJ6eHJQa0lDSjN0OWU1MW4xRG1zaGU4MVJWeWlaelhjIl0sICJpc3MiOiAia
-   HR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4MzAwMDAwMCwgImV4c
-   CI6IDE4ODMwMDAwMDAsICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkNyUWU3UzVrcUJBSHQtbk1ZWGdjNmJkd
+   DJTSDVhVFkxc1VfTS1QZ2tqUEkiLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
+   TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
+   EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
+   mZVYW9tTG8iLCAiWFFfM2tQS3QxWHlYN0tBTmtxVlI2eVoyVmE1TnJQSXZQWWJ5TXZSS
+   0JNTSIsICJYekZyendzY002R242Q0pEYzZ2Vks4QmtNbmZHOHZPU0tmcFBJWmRBZmRFI
+   iwgImdiT3NJNEVkcTJ4Mkt3LXc1d1BFemFrb2I5aFYxY1JEMEFUTjNvUUw5Sk0iLCAia
+   nN1OXlWdWx3UVFsaEZsTV8zSmx6TWFTRnpnbGhRRzBEcGZheVF3TFVLNCJdLCAiaXNzI
+   jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsI
+   CJleHAiOiAxODgzMDAwMDAwLCAic3ViIjogInVzZXJfNDIiLCAibmF0aW9uYWxpdGllc
+   yI6IFt7Ii4uLiI6ICJwRm5kamtaX1ZDem15VGE2VWpsWm8zZGgta284YUlLUWM5RGxHe
+   mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
+   lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.hBCRaXb3dvkF13fL-fT8w
-   vEfLO-R928b2Ejq46lpWYygOeIT-mNECgn8qHGd1GGDpz1DPUHuLRgFsLVv3jmX1w~Wy
-   IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJd~WyJlb
-   HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyI2SWo3
-   dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJlSThaV20
-   5UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20iXQ~
-   WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsICIrMS0yMDIt
-   NTU1LTAxMDEiXQ~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgInBob25lX251bWJlc
-   l92ZXJpZmllZCIsIHRydWVd~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImFkZHJl
-   c3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5Ijog
-   IkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~
-   WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxLTAx
-   Il0~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgInVwZGF0ZWRfYXQiLCAxNTcwMDAw
-   MDAwXQ
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.QfmvyfB6iewky1h5M-_u4
+   MhDuE2xNK7Nm_P8A-PC4n3dCSNMwD2-alua2SQue1m8RGgoZWkGWrqVdqfj9E7NzQ~Wy
+   IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
+   HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
+   dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
+   XQ~WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgInBob25lX251bWJlciIsICIrMS0yM
+   DItNTU1LTAxMDEiXQ~WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bW
+   Jlcl92ZXJpZmllZCIsIHRydWVd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZ
+   HJlc3MiLCB7InN0cmVldF9hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5I
+   jogIkFueXRvd24iLCAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMif
+   V0~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTAxL
+   TAxIl0~WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgInVwZGF0ZWRfYXQiLCAxNTcwM
+   DAwMDAwXQ~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIlVTIl0~WyJuUHVvUW5rUk
+   ZxM0JJZUFtN0FuWEZBIiwgIkRFIl0
 
    (Line breaks for presentation only.)
 
-5.4.  Combined Format for Presentation
+5.11.  Combined Format for Presentation
 
    For presentation to a Verifier, the Holder sends the SD-JWT and a
    selected subset of the Disclosures to the Verifier.
@@ -1057,12 +1213,12 @@ Table of Contents
    A Holder MUST NOT send a Disclosure that was not included in the SD-
    JWT or send a Disclosure more than once.
 
-5.4.1.  Enabling Key Binding
+5.11.1.  Enabling Key Binding
 
    The Holder MAY add an optional JWT to prove the Key Binding to the
    Verifier.
 
-5.4.1.1.  Structure of the Key Binding JWT
+5.11.1.1.  Structure of the Key Binding JWT
 
    This section defines the contents of the Key Binding JWT.
 
@@ -1111,7 +1267,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686685437
+     "iat": 1686762935
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1119,8 +1275,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY2ODU0Mzd9.XofOrNgKkdc5h7rkXa6r_tPDW6ytau-PLtZVW3BpoiDY8A0wUy
-   cp0BGBV4_ciJpC6QuEDJ6uis6wNgtMOCKE9Q
+   6IDE2ODY3NjI5MzV9.MvjU8cUvJx_6F8zrgVZOBk5B-B-d9A8WCk6Tt9Mi4LJdf58veU
+   W_JAQl-ojtrAfbbkCkivbiPGqJtGMoXXQyzg
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1134,7 +1290,7 @@ Table of Contents
    If no Key Binding JWT is included, the Combined Format for
    Presentation ends with the ~ character after the last Disclosure.
 
-5.4.2.  Example
+5.11.2.  Example
 
    The following is a non-normative example of the contents of a
    Presentation for Example 1 (#example-1), disclosing the claims
@@ -1142,25 +1298,32 @@ Table of Contents
    Holder to the Verifier.  The Key Binding JWT as shown before is
    included as the last element.
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZ
-   Gs2V0JwWnlnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5T
-   k9PQVljVGo5SE5hQzF3WSIsICJOUjlDb2NhR1hwNkhnYkZubGtON1k5bDFaQTczUkVBd
-   lBGbzJ2SEhOSG5ZIiwgIk5veG93NGw4YnpmV2ZfU1dYUGJSNC1pTElQZmh5bXItc0RCd
-   VFpc014VU0iLCAiU0RONzlOTHBBbkhQbWtyZGVZZEVhODlYWmRzazBNOERLWVNRT1UyW
-   nhRYyIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQkNGR3FkRzJvI
-   iwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMGhyRE8wNzgiLCAid
-   EprcXVqcE9mSnE0YUhETnhQVm9qSGsyQzhNakJzdTc2ekpxTWlGZnZkcyIsICJ5YVRme
-   E1XY0llYXJ6eHJQa0lDSjN0OWU1MW4xRG1zaGU4MVJWeWlaelhjIl0sICJpc3MiOiAia
-   HR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiLCAiaWF0IjogMTY4MzAwMDAwMCwgImV4c
-   CI6IDE4ODMwMDAwMDAsICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIkNyUWU3UzVrcUJBSHQtbk1ZWGdjNmJkd
+   DJTSDVhVFkxc1VfTS1QZ2tqUEkiLCAiSnpZakg0c3ZsaUgwUjNQeUVNZmVadTZKdDY5d
+   TVxZWhabzdGN0VQWWxTRSIsICJQb3JGYnBLdVZ1Nnh5bUphZ3ZrRnNGWEFiUm9jMkpHb
+   EFVQTJCQTRvN2NJIiwgIlRHZjRvTGJnd2Q1SlFhSHlLVlFaVTlVZEdFMHc1cnREc3Jae
+   mZVYW9tTG8iLCAiWFFfM2tQS3QxWHlYN0tBTmtxVlI2eVoyVmE1TnJQSXZQWWJ5TXZSS
+   0JNTSIsICJYekZyendzY002R242Q0pEYzZ2Vks4QmtNbmZHOHZPU0tmcFBJWmRBZmRFI
+   iwgImdiT3NJNEVkcTJ4Mkt3LXc1d1BFemFrb2I5aFYxY1JEMEFUTjNvUUw5Sk0iLCAia
+   nN1OXlWdWx3UVFsaEZsTV8zSmx6TWFTRnpnbGhRRzBEcGZheVF3TFVLNCJdLCAiaXNzI
+   jogImh0dHBzOi8vZXhhbXBsZS5jb20vaXNzdWVyIiwgImlhdCI6IDE2ODMwMDAwMDAsI
+   CJleHAiOiAxODgzMDAwMDAwLCAic3ViIjogInVzZXJfNDIiLCAibmF0aW9uYWxpdGllc
+   yI6IFt7Ii4uLiI6ICJwRm5kamtaX1ZDem15VGE2VWpsWm8zZGgta284YUlLUWM5RGxHe
+   mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
+   lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.hBCRaXb3dvkF13fL-fT8w
-   vEfLO-R928b2Ejq46lpWYygOeIT-mNECgn8qHGd1GGDpz1DPUHuLRgFsLVv3jmX1w~ey
-   JhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3O
-   DkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6I
-   DE2ODY2ODU0Mzd9.XofOrNgKkdc5h7rkXa6r_tPDW6ytau-PLtZVW3BpoiDY8A0wUycp
-   0BGBV4_ciJpC6QuEDJ6uis6wNgtMOCKE9Q
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.QfmvyfB6iewky1h5M-_u4
+   MhDuE2xNK7Nm_P8A-PC4n3dCSNMwD2-alua2SQue1m8RGgoZWkGWrqVdqfj9E7NzQ~Wy
+   JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
+   ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
+   jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
+   kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
+   jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
+   IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
+   6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
+   yIiwgImlhdCI6IDE2ODY3NjI5MzV9.MvjU8cUvJx_6F8zrgVZOBk5B-B-d9A8WCk6Tt9
+   Mi4LJdf58veUW_JAQl-ojtrAfbbkCkivbiPGqJtGMoXXQyzg
 
 6.  Verification and Processing
 
@@ -1174,14 +1337,14 @@ Table of Contents
 
    2.  Hash all of the Disclosures separately.
 
-   3.  Find the _sd arrays in the SD-JWT where the digests of the
-       Disclosures are included and decode the respective plaintext
-       values from the Disclosures at the appropriate places.  The
-       processing MUST take into account that digests might be included
-       not only directly in the SD-JWT, but also in other Disclosures.
-       If there is a Disclosure with a digest that cannot be found in
-       any _sd array, the SD-JWT is invalid and the Holder MUST reject
-       the SD-JWT.
+   3.  Find the objects and array elements in the SD-JWT where the
+       digests of the Disclosures are included by looking for _sd and
+       ... keys.  Decode the respective plaintext values from the
+       Disclosures at the appropriate places.  The processing MUST take
+       into account that digests might be included not only directly in
+       the SD-JWT, but also in other Disclosures.  If there is a
+       Disclosure with a digest that cannot be found, the SD-JWT is
+       invalid and the Holder MUST reject the SD-JWT.
 
    It is up to the Holder how to maintain the mapping between the
    Disclosures and the plaintext claim values to be able to display them
@@ -1219,7 +1382,7 @@ Table of Contents
    1.  Determine if Key Binding is to be checked according to the
        Verifier's policy for the use case at hand.  This decision MUST
        NOT be based on whether a Key Binding JWT is provided by the
-       Holder or not.  Refer to Section 8.6 for details.
+       Holder or not.  Refer to Section 9.6 for details.
 
    2.  Separate the Presentation into the SD-JWT, the Disclosures (if
        any), and the Key Binding JWT (if provided).
@@ -1243,48 +1406,66 @@ Table of Contents
        5.  Check that the _sd_alg claim value is understood and the hash
            algorithm is deemed secure.
 
-   4.  Process the Disclosures and _sd keys in the SD-JWT as follows:
+   4.  Process the Disclosures and embedded digests in the SD-JWT as
+       follows:
 
        1.  For each Disclosure provided:
 
            1.  Calculate the digest over the base64url-encoded string as
-               described in Section 5.1.1.2.
+               described in Section 5.3.
 
-       2.  Find all _sd keys in the SD-JWT payload.  For each such key
-           perform the following steps (*):
+       2.  (*) Identify all embedded digests in the SD-JWT as follows:
 
-           1.  If the key does not refer to an array, the Verifier MUST
-               reject the Presentation.
+           1.  Find all objects having an _sd key that refers to an
+               array of strings.
 
-           2.  Otherwise, process each entry in the _sd array as
-               follows:
+           2.  Find all array elements that are objects with one key,
+               that key being ... and referring to a string.
 
-               1.  Compare the value with the digests calculated
-                   previously and find the matching Disclosure.  If no
-                   such Disclosure can be found, the digest MUST be
-                   ignored.
+       3.  (**) For each embedded digest found in the previous step:
 
-               2.  If the Disclosure is not a JSON-encoded array of
-                   three elements, the Verifier MUST reject the
+           1.  Compare the value with the digests calculated previously
+               and find the matching Disclosure.  If no such Disclosure
+               can be found, the digest MUST be ignored.
+
+           2.  If the digest was found in an object's _sd key:
+
+               1.  If the respective Disclosure is not a JSON-encoded
+                   array of three elements, the Verifier MUST reject the
                    Presentation.
 
-               3.  Insert, at the level of the _sd key, a new claim
+               2.  Insert, at the level of the _sd key, a new claim
                    using the claim name and claim value from the
                    Disclosure.
 
-               4.  If the claim name already exists at the same level,
+               3.  If the claim name already exists at the same level,
                    the Verifier MUST reject the Presentation.
 
-               5.  If the decoded value contains an _sd key in an
-                   object, recursively process the key using the steps
-                   described in (*).
+               4.  Recursively process the value using the steps
+                   described in (*) and (**).
 
-       3.  If any digests were found more than once in the previous
+           3.  If the digest was found in an array element:
+
+               1.  If the respective Disclosure is not a JSON-encoded
+                   array of two elements, the Verifier MUST reject the
+                   Presentation.
+
+               2.  Replace the array element with the claim value from
+                   the Disclosure.
+
+               3.  Recursively process the value using the steps
+                   described in (*) and (**).
+
+       4.  If any digests were found more than once in the previous
            step, the Verifier MUST reject the Presentation.
 
-       4.  Remove all _sd keys from the SD-JWT payload.
+       5.  Remove all array elements for which the digest was not found
+           in the previous step.
 
-       5.  Remove the claim _sd_alg from the SD-JWT payload.
+       6.  Remove all _sd keys and their contents from the SD-JWT
+           payload.
+
+       7.  Remove the claim _sd_alg from the SD-JWT payload.
 
    5.  If Key Binding is required:
 
@@ -1337,7 +1518,7 @@ Table of Contents
    be transported as a single string using the Combined Formats for
    Issuance and Presentation, respectively.  Key Binding MAY be achieved
    by signing the envelope JWT instead of adding a separate Key Binding
-   JWT as described in Section 5.4.1.
+   JWT as described in Section 5.11.1.
 
    The claim _sd_jwt SHOULD be used when transporting a Combined Format
    unless the application or protocol defines a different claim name.
@@ -1366,7 +1547,108 @@ Table of Contents
    Presentation that envelopes multiple such objects into one object,
    and provides Key Binding using means other than the Key Binding JWT.
 
-8.  Security Considerations
+8.  JWS JSON Serialization
+
+   This section describes an optional alternate format for SD-JWT using
+   the JWS JSON Serialization from [RFC7515].
+
+   For both the General and Flattened JSON Serialization, the SD-JWT is
+   represented as a JSON object according to Section 7.2 of [RFC7515].
+   The disclosures (both for issuance and presentation) are included in
+   the serialized JWS using the key disclosures at the top-level of the
+   JSON object (the same level as the payload member).  The value of the
+   disclosures member is an array of strings where each element is an
+   individual Disclosure as described in Section 5.2.  The Issuer
+   includes a Disclosure for each selectively disclosable claim of the
+   SD-JWT payload, whereas the Holder includes only the Disclosures
+   selected for the given presentation.  Additionally, for presentation
+   with a Key Binding, the Holder adds the key kb_jwt at the top-level
+   of the serialized JWS with a string value containing the Key Binding
+   JWT as described in Section 5.11.1.1.
+
+   Verification of the JWS JSON serialized SD-JWT follows the same rules
+   defined in Section 4.4, except that the SD-JWT does not need to be
+   split into component parts, but disclosures and (if applicable) a Key
+   Binding JWT can be found in the respective members of the JSON
+   object.
+
+   Using a payload similar to that from Example 1 (#example-1), the
+   following is a non-normative example of a JWS JSON serialized SD-JWT
+   from an Issuer with all the respective Disclosures.
+
+   {
+     "payload": "eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZGs2V0JwWn
+       lnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5Tk9PQV
+       ljVGo5SE5hQzF3WSIsICJTRE43OU5McEFuSFBta3JkZVlkRWE4OVhaZHNrME04RE
+       tZU1FPVTJaeFFjIiwgIlh6RnJ6d3NjTTZHbjZDSkRjNnZWSzhCa01uZkc4dk9TS2
+       ZwUElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQV
+       ROM29RTDlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQk
+       NGR3FkRzJvIiwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMG
+       hyRE8wNzgiXSwgImlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsIC
+       JpYXQiOiAxNjgzMDAwMDAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOi
+       Aic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6IC
+       JQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRG
+       xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
+       NDRTZ0NGpUOUYySFpRIn19fQ",
+     "protected": "eyJhbGciOiAiRVMyNTYifQ",
+     "signature": "FdfCCN41j8BHv8bxq7F9_itH4lmj5KQk0TyJBy90tzQjFgsECd-H
+       JFEGDeAAwFkIOScYSmovLsf9W38q637UzQ",
+     "disclosures": [
+       "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
+         d",
+       "WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJ
+         d",
+       "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
+         d",
+       "WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXh
+         hbXBsZS5jb20iXQ",
+       "WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgInBob25lX251bWJlciIsICIrMS0
+         yMDItNTU1LTAxMDEiXQ",
+       "WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9
+         hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iL
+         CAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0",
+       "WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImJpcnRoZGF0ZSIsICIxOTQwLTA
+         xLTAxIl0"
+     ]
+   }
+
+   Below is a non-normative example of a presentation of the JWS JSON
+   serialized SD-JWT, where the Holder includes a Key Binding JWT and
+   has selected to disclose given_name, family_name, and address.
+
+   {
+     "payload": "eyJfc2QiOiBbIjRIQm42YUlZM1d0dUdHV1R4LXFVajZjZGs2V0JwWn
+       lnbHRkRmF2UGE3TFkiLCAiOHNtMVFDZjAyMXBObkhBQ0k1c1A0bTRLWmd5Tk9PQV
+       ljVGo5SE5hQzF3WSIsICJTRE43OU5McEFuSFBta3JkZVlkRWE4OVhaZHNrME04RE
+       tZU1FPVTJaeFFjIiwgIlh6RnJ6d3NjTTZHbjZDSkRjNnZWSzhCa01uZkc4dk9TS2
+       ZwUElaZEFmZEUiLCAiZ2JPc0k0RWRxMngyS3ctdzV3UEV6YWtvYjloVjFjUkQwQV
+       ROM29RTDlKTSIsICJqTUNYVnotLTliOHgzN1ljb0RmWFFpbnp3MXdaY2NjZkZSQk
+       NGR3FkRzJvIiwgIm9LSTFHZDJmd041V3d2amxGa29oaWRHdmltLTMxT3VsUjNxMG
+       hyRE8wNzgiXSwgImlzcyI6ICJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciIsIC
+       JpYXQiOiAxNjgzMDAwMDAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOi
+       Aic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6IC
+       JQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRG
+       xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
+       NDRTZ0NGpUOUYySFpRIn19fQ",
+     "protected": "eyJhbGciOiAiRVMyNTYifQ",
+     "signature": "FdfCCN41j8BHv8bxq7F9_itH4lmj5KQk0TyJBy90tzQjFgsECd-H
+       JFEGDeAAwFkIOScYSmovLsf9W38q637UzQ",
+     "disclosures": [
+       "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
+         d",
+       "WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9
+         hZGRyZXNzIjogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iL
+         CAicmVnaW9uIjogIkFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0",
+       "WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obiJ
+         d"
+     ],
+     "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
+       I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
+       lmaWVyIiwgImlhdCI6IDE2ODY3NjI5MzV9.kga_PlQBSE8kI4Qu4TD_r3ATLL6GB
+       snR7yC11Z5O9VNkmsCeFZ1Xc_dq4kVP7uT4Qeqgwrg5YQYLHXYzoJILFw"
+   }
+
+9.  Security Considerations
 
    Security considerations in this section help achieve the following
    properties:
@@ -1380,11 +1662,11 @@ Table of Contents
    *Integrity:* A malicious Holder cannot modify names or values of
    selectively disclosable claims without detection by the Verifier.
 
-   Additionally, as described in Section 8.6, the application of Key
+   Additionally, as described in Section 9.6, the application of Key
    Binding can ensure that the presenter of an SD-JWT credential is the
    legitimate Holder of the credential.
 
-8.1.  Mandatory signing of the SD-JWT
+9.1.  Mandatory signing of the SD-JWT
 
    The SD-JWT MUST be signed by the Issuer to protect integrity of the
    issued claims.  An attacker can modify or add claims if an SD-JWT is
@@ -1397,7 +1679,7 @@ Table of Contents
    signature on the SD-JWT cannot be verified, the SD-JWT MUST be
    rejected.
 
-8.2.  Manipulation of Disclosures
+9.2.  Manipulation of Disclosures
 
    Holders can manipulate the Disclosures by changing the values of the
    claims before sending them to the Verifier.  The Verifier MUST check
@@ -1416,7 +1698,7 @@ Table of Contents
    The steps described in Section 6.2 ensure that the Verifier checks
    the Disclosures correctly.
 
-8.3.  Entropy of the salt
+9.3.  Entropy of the salt
 
    The security model that conceals the plaintext claims relies on the
    fact that salts not revealed to an attacker cannot be learned or
@@ -1427,7 +1709,7 @@ Table of Contents
    attacker to guess.  A new salt MUST be chosen for each claim
    independently from other salts.
 
-8.4.  Minimum length of the salt
+9.4.  Minimum length of the salt
 
    The RECOMMENDED minimum length of the randomly-generated portion of
    the salt is 128 bits.
@@ -1438,7 +1720,7 @@ Table of Contents
    Appendix, where multiple claims with the name type appear, but each
    of them has a different salt.
 
-8.5.  Choice of a Hash Algorithm
+9.5.  Choice of a Hash Algorithm
 
    For the security of this scheme, the hash algorithm is required to be
    preimage resistant and second-preimage resistant, i.e., it is
@@ -1457,7 +1739,7 @@ Table of Contents
    Furthermore, the hash algorithms MD2, MD4, MD5, and SHA-1 revealed
    fundamental weaknesses and they MUST NOT be used.
 
-8.6.  Key Binding
+9.6.  Key Binding
 
    Key Binding aims to ensure that the presenter of an SD-JWT credential
    is actually the legitimate Holder of the credential.  An SD-JWT with
@@ -1503,7 +1785,7 @@ Table of Contents
    recognized Key Binding data is present in the SD-JWT, the Verifier
    will reject the presentation, as described in Section 6.2.
 
-8.7.  Blinding Claim Names
+9.7.  Blinding Claim Names
 
    SD-JWT ensures that names of claims that are selectively disclosable
    are always blinded.  This prevents an attacker from learning the
@@ -1513,7 +1795,7 @@ Table of Contents
    claims.  This limitation needs to be taken into account by Issuers
    when creating the structure of the SD-JWT.
 
-8.8.  Issuer Signature Key Distribution and Rotation
+9.8.  Issuer Signature Key Distribution and Rotation
 
    This specification does not define how signature verification keys of
    Issuers are distributed to Verifiers.  However, it is RECOMMENDED
@@ -1524,7 +1806,7 @@ Table of Contents
    expired or revoked keys for signature verification using reasonable
    and appropriate means for the given key-distribution method.
 
-8.9.  Forwarding Credentials
+9.9.  Forwarding Credentials
 
    When Key Binding is not enforced, any entity in possession of a
    Combined Format for Presentation can forward the contents to third
@@ -1542,7 +1824,7 @@ Table of Contents
    In some scenarios this behavior could be desirable, but if it is not,
    Issuers need to support and Verifiers need to enforce Key Binding.
 
-8.10.  Explicit Typing
+9.10.  Explicit Typing
 
    Section 3.11 of [RFC8725] describes the use of explicit typing to
    prevent confusion attacks in which one kind of JWT is mistaken for
@@ -1558,11 +1840,11 @@ Table of Contents
    recommends that the "application/" prefix be omitted, so "example+sd-
    jwt" would be the value of the typ header parameter.
 
-9.  Privacy Considerations
+10.  Privacy Considerations
 
    The privacy principles of [ISO.29100] should be adhered to.
 
-9.1.  Storage of Signed User Data
+10.1.  Storage of Signed User Data
 
    Wherever End-User data is stored, it represents a potential target
    for an attacker.  This target can be of particularly high value when
@@ -1575,7 +1857,7 @@ Table of Contents
    Not surprisingly, a leak of such data risks revealing private data of
    End-Users to third parties.  Signed End-User data, the authenticity
    of which can be easily verified by third parties, further exacerbates
-   the risk.  As discussed in Section 8.6, leaked SD-JWTs may also allow
+   the risk.  As discussed in Section 9.6, leaked SD-JWTs may also allow
    attackers to impersonate Holders unless Key Binding is enforced and
    the attacker does not have access to the Holder's cryptographic keys.
    Altogether, leaked SD-JWT credentials may have a high monetary value
@@ -1600,13 +1882,13 @@ Table of Contents
    data that is needed for the application.
 
    If reliable and secure key rotation and revocation is ensured
-   according to Section 8.8, Issuers may opt to publish expired or
+   according to Section 9.8, Issuers may opt to publish expired or
    revoked private signing keys (after a grace period that ensures that
    the keys are not cached any longer at any Verifier).  This reduces
    the value of any leaked credentials as the signatures on them can no
    longer be trusted to originate from the Issuer.
 
-9.2.  Confidentiality during Transport
+10.2.  Confidentiality during Transport
 
    If the SD-JWT and associated Disclosures are transmitted over an
    insecure channel during issuance or presentation, an adversary may be
@@ -1629,7 +1911,7 @@ Table of Contents
    SD-JWT and associated Disclosures when transmitted over an insecure
    channel.
 
-9.3.  Decoy Digests
+10.3.  Decoy Digests
 
    The use of decoy digests is RECOMMENDED when the number of claims (or
    the existence of particular claims) can be a side-channel disclosing
@@ -1643,7 +1925,7 @@ Table of Contents
    digests (or whether to use them at all) is a trade-off between the
    size of the SD-JWT and the privacy of the End-User's data.
 
-9.4.  Unlinkability
+10.4.  Unlinkability
 
    Colluding Issuer/Verifier or Verifier/Verifier pairs could link
    issuance/presentation or two presentation sessions to the same user
@@ -1660,7 +1942,7 @@ Table of Contents
       a unique SD-JWT per Verifier.  This only helps with Verifier/
       Verifier unlinkability.
 
-9.5.  Issuer Identifier
+10.5.  Issuer Identifier
 
    An Issuer issuing only one type of SD-JWT might have privacy
    implications, because if the Holder has an SD-JWT issued by that
@@ -1682,7 +1964,7 @@ Table of Contents
    this specification may also be used, instead of an individual
    signature.
 
-10.  Acknowledgements
+11.  Acknowledgements
 
    We would like to thank Alen Horvat, Arjan Geluk, Christian Bormann,
    Christian Paquin, David Bakker, David Waite, Fabian Hauck, Filip
@@ -1696,11 +1978,11 @@ Table of Contents
    The work on this draft was started at OAuth Security Workshop 2022 in
    Trondheim, Norway.
 
-11.  IANA Considerations
+12.  IANA Considerations
 
    TBD
 
-11.1.  Media Type Registration
+12.1.  Media Type Registration
 
    This section requests registration of the "application/sd-jwt" media
    type [RFC2046] in the "Media Types" registry [IANA.MediaTypes] in the
@@ -1789,7 +2071,7 @@ Table of Contents
 
    *  Provisional registration?  No
 
-11.2.  Structured Syntax Suffix Registration
+12.2.  Structured Syntax Suffix Registration
 
    This section requests registration of the "+sd-jwt" structured syntax
    suffix in the "Structured Syntax Suffix" registry
@@ -1817,7 +2099,7 @@ Table of Contents
 
    *  Author/Change controller: IESG
 
-12.  Normative References
+13.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1841,7 +2123,7 @@ Table of Contents
               DOI 10.17487/RFC8259, December 2017,
               <https://www.rfc-editor.org/info/rfc8259>.
 
-13.  Informative References
+14.  Informative References
 
    [IANA.Hash.Algorithms]
               IANA, "Named Information Hash Algorithm",
@@ -2118,8 +2400,10 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.8_aCZGgYnTV6MN9tLWkuI0pKaR
-   0cWhBtQmkXj9liNJHN9F6XbjTqTGBoMHYkL3HVu59-YvtJiQJNHyponBg6kw~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.RUrvkunnHbrAM_wRBWzpnQB5IE
+   OzAIAfzWfkMnzRnhOyKxVUfPB5HmoawaEl2NXz1Mj12rJedBBPsG6Ea69GEQ~WyJHMDJ
+   OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
+   a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2182,9 +2466,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
 
    {
      "_sd": [
-       "-2yOfWMeZFQaqfZBhjGf-TX-qBNvkKxciFoiedsI5_8",
-       "8gJZ1CtqpoIon0v9ZI7BMGt1pbGmAsNI8c07_w1OcSY",
-       "QDh-IWNFfG-NglE5ZsBwid4ZSBjJBURZeyNJkftZgKg"
+       "-aSznId9mWM8ocuQolCllsxVggq1-vHW4OtnhUtVmWw",
+       "IKbrYNn3vA7WEFrysvbdBJjDDU_EvQIr0W18vTRpUSg",
+       "otkxuT14nBiwzNJ3MPaOitOl9pVnXOaEHal_xkyNfKI"
      ],
      "iss": "https://example.com/issuer",
      "iat": 1683000000,
@@ -2198,23 +2482,18 @@ A.2.  Example 3 - Complex Structured SD-JWT
          "trust_framework": "de_aml",
          "evidence": [
            {
-             "_sd": [
-               "9wpjVPWuD7PK0nsQDL8B06lmdgV3LVybhHydQpTNyLI",
-               "G5EnhOAOoU9X_6QMNvzFXjpEA_Rc-AEtm1bG_wcaKIk",
-               "IhwFrWUB63RcZq9yvgZ0XPc7Gowh3O2kqXeBIswg1B4",
-               "WpxQ4HSoEtcTmCCKOeDslB_emucYLz2oO8oHNr1bEVQ"
-             ]
+             "...": "tYJ0TDucyZZCRMbROG4qRO5vkPSFRxFhUELc18CSl3k"
            }
          ]
        },
        "claims": {
          "_sd": [
-           "Blf7DBmdHEzZMQHw8y11zCLA_76HesZ60cxfhCA1hNU",
-           "FnM1Y-eVqWi-h6P9zzArb35lfC43SjV-Zq9NJMAxSHc",
-           "c46n0Tz4KY0c6wNf5dQ1oUj47s16hb8NuFMqeo98_H0",
-           "hOIy3SMi_wM-SJOwmv0_skyfpihd3n8jyGZw56zicyM",
-           "m1kqaCwgKzKmb9u40bmR0Jm3HvUuijE-OCAt-goQTX8",
-           "y50czc0ISChy_bsba1dMoUuAOQ5AMmOSfGoEe81v1FU"
+           "RiOiCn6_w5ZHaadkQMrcQJf0Jte5RwurRs54231DTlo",
+           "S_498bbpKzB6Eanftss0xc7cOaoneRr3pKr7NdRmsMo",
+           "WNA-UNK7F_zhsAb9syWO6IIQ1uHlTmOU8r8CvJ0cIMk",
+           "Wxh_sV3iRH9bgrTBJi-aYHNCLt-vjhX1sd-igOf_9lk",
+           "_O-wJiH3enSB4ROHntToQT8JmLtz-mhO2f1c89XoerQ",
+           "hvDXhwmGcJQsBCA2OtjuLAcwAMpDsaU0nkovcKOqWNE"
          ]
        }
      },
@@ -2290,127 +2569,153 @@ A.2.  Example 3 - Complex Structured SD-JWT
       "number": "53554554", "date_of_issuance": "2010-03-23",
       "date_of_expiry": "2020-03-22"}]
 
-   *Claim given_name*:
+   *Array Entry*:
 
-   *  SHA-256 Hash: FnM1Y-eVqWi-h6P9zzArb35lfC43SjV-Zq9NJMAxSHc
+   *  SHA-256 Hash: tYJ0TDucyZZCRMbROG4qRO5vkPSFRxFhUELc18CSl3k
 
    *  Disclosure:
-      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgImdpdmVuX25hbWUiLCAiTWF4
+      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl3cGpWUFd1
+      RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmhP
+      QU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdG
+      cldVQjYzUmNacTl5dmdaMFhQYzdHb3doM08ya3FYZUJJc3dnMUI0IiwgIldw
+      eFE0SFNvRXRjVG1DQ0tPZURzbEJfZW11Y1lMejJvTzhvSE5yMWJFVlEiXX1d
+
+   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", {"_sd":
+      ["9wpjVPWuD7PK0nsQDL8B06lmdgV3LVybhHydQpTNyLI",
+      "G5EnhOAOoU9X_6QMNvzFXjpEA_Rc-AEtm1bG_wcaKIk",
+      "IhwFrWUB63RcZq9yvgZ0XPc7Gowh3O2kqXeBIswg1B4",
+      "WpxQ4HSoEtcTmCCKOeDslB_emucYLz2oO8oHNr1bEVQ"]}]
+
+   *Claim given_name*:
+
+   *  SHA-256 Hash: S_498bbpKzB6Eanftss0xc7cOaoneRr3pKr7NdRmsMo
+
+   *  Disclosure:
+      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImdpdmVuX25hbWUiLCAiTWF4
       Il0
 
-   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "given_name", "Max"]
+   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "given_name", "Max"]
 
    *Claim family_name*:
 
-   *  SHA-256 Hash: hOIy3SMi_wM-SJOwmv0_skyfpihd3n8jyGZw56zicyM
+   *  SHA-256 Hash: Wxh_sV3iRH9bgrTBJi-aYHNCLt-vjhX1sd-igOf_9lk
 
    *  Disclosure:
-      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImZhbWlseV9uYW1lIiwgIk1c
+      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImZhbWlseV9uYW1lIiwgIk1c
       dTAwZmNsbGVyIl0
 
-   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "family_name", "M\u00fcller"]
+   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "family_name", "M\u00fcller"]
 
    *Claim nationalities*:
 
-   *  SHA-256 Hash: y50czc0ISChy_bsba1dMoUuAOQ5AMmOSfGoEe81v1FU
+   *  SHA-256 Hash: hvDXhwmGcJQsBCA2OtjuLAcwAMpDsaU0nkovcKOqWNE
 
    *  Disclosure:
-      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgIm5hdGlvbmFsaXRpZXMiLCBb
+      WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgIm5hdGlvbmFsaXRpZXMiLCBb
       IkRFIl1d
 
-   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "nationalities", ["DE"]]
+   *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "nationalities", ["DE"]]
 
    *Claim birthdate*:
 
-   *  SHA-256 Hash: c46n0Tz4KY0c6wNf5dQ1oUj47s16hb8NuFMqeo98_H0
+   *  SHA-256 Hash: WNA-UNK7F_zhsAb9syWO6IIQ1uHlTmOU8r8CvJ0cIMk
 
    *  Disclosure:
-      WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgImJpcnRoZGF0ZSIsICIxOTU2
+      WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgImJpcnRoZGF0ZSIsICIxOTU2
       LTAxLTI4Il0
 
-   *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "birthdate", "1956-01-28"]
+   *  Contents: ["5bPs1IquZNa0hkaFzzzZNw", "birthdate", "1956-01-28"]
 
    *Claim place_of_birth*:
 
-   *  SHA-256 Hash: Blf7DBmdHEzZMQHw8y11zCLA_76HesZ60cxfhCA1hNU
+   *  SHA-256 Hash: RiOiCn6_w5ZHaadkQMrcQJf0Jte5RwurRs54231DTlo
 
    *  Disclosure:
-      WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgInBsYWNlX29mX2JpcnRoIiwg
+      WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgInBsYWNlX29mX2JpcnRoIiwg
       eyJjb3VudHJ5IjogIklTIiwgImxvY2FsaXR5IjogIlx1MDBkZXlra3ZhYlx1
       MDBlNmphcmtsYXVzdHVyIn1d
 
-   *  Contents: ["5bPs1IquZNa0hkaFzzzZNw", "place_of_birth", {"country":
+   *  Contents: ["5a2W0_NrlEZzfqmk_7Pq-w", "place_of_birth", {"country":
       "IS", "locality": "\u00deykkvab\u00e6jarklaustur"}]
 
    *Claim address*:
 
-   *  SHA-256 Hash: m1kqaCwgKzKmb9u40bmR0Jm3HvUuijE-OCAt-goQTX8
+   *  SHA-256 Hash: _O-wJiH3enSB4ROHntToQT8JmLtz-mhO2f1c89XoerQ
 
    *  Disclosure:
-      WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkZHJlc3MiLCB7ImxvY2Fs
+      WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgImFkZHJlc3MiLCB7ImxvY2Fs
       aXR5IjogIk1heHN0YWR0IiwgInBvc3RhbF9jb2RlIjogIjEyMzQ0IiwgImNv
       dW50cnkiOiAiREUiLCAic3RyZWV0X2FkZHJlc3MiOiAiV2VpZGVuc3RyYVx1
       MDBkZmUgMjIifV0
 
-   *  Contents: ["5a2W0_NrlEZzfqmk_7Pq-w", "address", {"locality":
+   *  Contents: ["y1sVU5wdfJahVdgwPgS7RQ", "address", {"locality":
       "Maxstadt", "postal_code": "12344", "country": "DE",
       "street_address": "Weidenstra\u00dfe 22"}]
 
    *Claim birth_middle_name*:
 
-   *  SHA-256 Hash: -2yOfWMeZFQaqfZBhjGf-TX-qBNvkKxciFoiedsI5_8
+   *  SHA-256 Hash: otkxuT14nBiwzNJ3MPaOitOl9pVnXOaEHal_xkyNfKI
 
    *  Disclosure:
-      WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgImJpcnRoX21pZGRsZV9uYW1l
+      WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgImJpcnRoX21pZGRsZV9uYW1l
       IiwgIlRpbW90aGV1cyJd
 
-   *  Contents: ["y1sVU5wdfJahVdgwPgS7RQ", "birth_middle_name",
+   *  Contents: ["HbQ4X8srVW3QDxnIJdqyOA", "birth_middle_name",
       "Timotheus"]
 
    *Claim salutation*:
 
-   *  SHA-256 Hash: 8gJZ1CtqpoIon0v9ZI7BMGt1pbGmAsNI8c07_w1OcSY
+   *  SHA-256 Hash: -aSznId9mWM8ocuQolCllsxVggq1-vHW4OtnhUtVmWw
 
    *  Disclosure:
-      WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgInNhbHV0YXRpb24iLCAiRHIu
+      WyJDOUdTb3VqdmlKcXVFZ1lmb2pDYjFBIiwgInNhbHV0YXRpb24iLCAiRHIu
       Il0
 
-   *  Contents: ["HbQ4X8srVW3QDxnIJdqyOA", "salutation", "Dr."]
+   *  Contents: ["C9GSoujviJquEgYfojCb1A", "salutation", "Dr."]
 
    *Claim msisdn*:
 
-   *  SHA-256 Hash: QDh-IWNFfG-NglE5ZsBwid4ZSBjJBURZeyNJkftZgKg
+   *  SHA-256 Hash: IKbrYNn3vA7WEFrysvbdBJjDDU_EvQIr0W18vTRpUSg
 
    *  Disclosure:
-      WyJDOUdTb3VqdmlKcXVFZ1lmb2pDYjFBIiwgIm1zaXNkbiIsICI0OTEyMzQ1
+      WyJreDVrRjE3Vi14MEptd1V4OXZndnR3IiwgIm1zaXNkbiIsICI0OTEyMzQ1
       Njc4OSJd
 
-   *  Contents: ["C9GSoujviJquEgYfojCb1A", "msisdn", "49123456789"]
+   *  Contents: ["kx5kF17V-x0JmwUx9vgvtw", "msisdn", "49123456789"]
 
    The following is a non-normative example of a Combined Format for
    Presentation without a Key Binding JWT that the Verifier would
    receive with a selection of the Disclosures:
 
-   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi0yeU9mV01lWkZRYXFmWkJoakdmLVRYL
-   XFCTnZrS3hjaUZvaWVkc0k1XzgiLCAiOGdKWjFDdHFwb0lvbjB2OVpJN0JNR3QxcGJHb
-   UFzTkk4YzA3X3cxT2NTWSIsICJRRGgtSVdORmZHLU5nbEU1WnNCd2lkNFpTQmpKQlVSW
-   mV5TkprZnRaZ0tnIl0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiL
+   eyJhbGciOiAiRVMyNTYifQ.eyJfc2QiOiBbIi1hU3puSWQ5bVdNOG9jdVFvbENsbHN4V
+   mdncTEtdkhXNE90bmhVdFZtV3ciLCAiSUticllObjN2QTdXRUZyeXN2YmRCSmpERFVfR
+   XZRSXIwVzE4dlRScFVTZyIsICJvdGt4dVQxNG5CaXd6TkozTVBhT2l0T2w5cFZuWE9hR
+   UhhbF94a3lOZktJIl0sICJpc3MiOiAiaHR0cHM6Ly9leGFtcGxlLmNvbS9pc3N1ZXIiL
    CAiaWF0IjogMTY4MzAwMDAwMCwgImV4cCI6IDE4ODMwMDAwMDAsICJ2ZXJpZmllZF9jb
    GFpbXMiOiB7InZlcmlmaWNhdGlvbiI6IHsiX3NkIjogWyI3aDRVRTlxU2N2REtvZFhWQ
    3VvS2ZLQkpwVkJmWE1GX1RtQUdWYVplM1NjIiwgInZUd2UzcmFISUZZZ0ZBM3hhVUQyY
    U14Rno1b0RvOGlCdTA1cUtsT2c5THciXSwgInRydXN0X2ZyYW1ld29yayI6ICJkZV9hb
-   WwiLCAiZXZpZGVuY2UiOiBbeyJfc2QiOiBbIjl3cGpWUFd1RDdQSzBuc1FETDhCMDZsb
-   WRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmhPQU9vVTlYXzZRTU52ekZYanBFQV9SY
-   y1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjYzUmNacTl5dmdaMFhQYzdHb3doM08ya
-   3FYZUJJc3dnMUI0IiwgIldweFE0SFNvRXRjVG1DQ0tPZURzbEJfZW11Y1lMejJvTzhvS
-   E5yMWJFVlEiXX1dfSwgImNsYWltcyI6IHsiX3NkIjogWyJCbGY3REJtZEhFelpNUUh3O
-   HkxMXpDTEFfNzZIZXNaNjBjeGZoQ0ExaE5VIiwgIkZuTTFZLWVWcVdpLWg2UDl6ekFyY
-   jM1bGZDNDNTalYtWnE5TkpNQXhTSGMiLCAiYzQ2bjBUejRLWTBjNndOZjVkUTFvVWo0N
-   3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
-   244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
-   0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.aI5yHLMG6huAUQnCbmB_Fd
-   LRvaujCEN34g8pCsO1MwxWJbZ7EAUcJRUSa-xccYG_CxuqrTZY39-bpdu8e3n5SA~
+   WwiLCAiZXZpZGVuY2UiOiBbeyIuLi4iOiAidFlKMFREdWN5WlpDUk1iUk9HNHFSTzV2a
+   1BTRlJ4RmhVRUxjMThDU2wzayJ9XX0sICJjbGFpbXMiOiB7Il9zZCI6IFsiUmlPaUNuN
+   l93NVpIYWFka1FNcmNRSmYwSnRlNVJ3dXJSczU0MjMxRFRsbyIsICJTXzQ5OGJicEt6Q
+   jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
+   jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
+   WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
+   EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
+   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.VoItIG8GB
+   m_5Xz50MqO6SeSe4_8rmnBleLD1C7ECl90bb9cacE3VNSzBJn4gglZom9aq9TTkOU8fR
+   gCJMUmCaQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+   0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
+   3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
+   PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
+   zUmNacTl5dmdaMFhQYzdHb3doM08ya3FYZUJJc3dnMUI0IiwgIldweFE0SFNvRXRjVG1
+   DQ0tPZURzbEJfZW11Y1lMejJvTzhvSE5yMWJFVlEiXX1d~WyJlSThaV205UW5LUHBOUG
+   VOZW5IZGhRIiwgIm1ldGhvZCIsICJwaXBwIl0~WyJHMDJOU3JRZmpGWFE3SW8wOXN5YW
+   pBIiwgImdpdmVuX25hbWUiLCAiTWF4Il0~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIi
+   wgImZhbWlseV9uYW1lIiwgIk1cdTAwZmNsbGVyIl0~WyJ5MXNWVTV3ZGZKYWhWZGd3UG
+   dTN1JRIiwgImFkZHJlc3MiLCB7ImxvY2FsaXR5IjogIk1heHN0YWR0IiwgInBvc3RhbF
+   9jb2RlIjogIjEyMzQ0IiwgImNvdW50cnkiOiAiREUiLCAic3RyZWV0X2FkZHJlc3MiOi
+   AiV2VpZGVuc3RyYVx1MDBkZmUgMjIifV0~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2423,10 +2728,22 @@ A.2.  Example 3 - Complex Structured SD-JWT
        "verification": {
          "trust_framework": "de_aml",
          "evidence": [
-           {}
-         ]
+           {
+             "method": "pipp"
+           }
+         ],
+         "time": "2012-04-23T18:25Z"
        },
-       "claims": {}
+       "claims": {
+         "given_name": "Max",
+         "family_name": "Müller",
+         "address": {
+           "locality": "Maxstadt",
+           "postal_code": "12344",
+           "country": "DE",
+           "street_address": "Weidenstraße 22"
+         }
+       }
      },
      "_sd_alg": "sha-256"
    }
@@ -2712,27 +3029,33 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
      "name": "COVID-19 Vaccination Certificate",
      "description": "COVID-19 Vaccination Certificate",
      "credentialSubject": {
+       "_sd": [
+         "1V_K-8lDQ8iFXBFXbZY9ehqR4HabWCi5T0ybIzZPeww",
+         "JzjLgtP29dP-B3td12P674gFmK2zy81HMtBgf6CJNWg",
+         "R2fGbfA07Z_YlkqmNZyma1xyyx1XstIiS6B1Ybl2JZ4",
+         "TCmzrl7K2gev_du7pcMIyzRLHp-Yeg-Fl_cxtrUvPxg",
+         "V7kJBLK78TmVDOmrfJ7ZuUPHuK_2cc7yZRa4qV1txwM",
+         "b0eUsvGP-ODDdFoY4NlzlXc3tDslWJtCJF75Nw8Oj_g",
+         "zJK_eSMXjwM8dXmMZLnI8FGM08zJ3_ubGeEMJ-5TBy0"
+       ],
        "vaccine": {
-         "type": "Vaccine",
-         "atcCode": "J07BX03",
-         "medicinalProductName": "COVID-19 Vaccine Moderna",
-         "marketingAuthorizationHolder": "Moderna Biotech"
+         "_sd": [
+           "1cF5hLwkhMNIaqfWJrXI7NMWedL-9f6Y2PA52yPjSZI",
+           "Hiy6WWueLD5bn16298tPv7GXhmldMDOTnBi-CZbphNo",
+           "Lb027q691jXXl-jC73vi8ebOj9smx3C-_og7gA4TBQE"
+         ],
+         "type": "Vaccine"
        },
-       "nextVaccinationDate": "2021-08-16T13:40:12Z",
-       "countryOfVaccination": "GE",
-       "dateOfVaccination": "2021-06-23T13:40:12Z",
-       "order": "3/3",
        "recipient": {
-         "type": "VaccineRecipient",
-         "gender": "Female",
-         "birthDate": "1961-08-17",
-         "givenName": "Marion",
-         "familyName": "Mustermann"
+         "_sd": [
+           "1lSQBNY24q0Th6OGzthq-7-4l6cAaxrYXOGZpeW_lnA",
+           "3nzLq81M2oN06wdv1shHvOEJVxZ5KLmdDkHEDJABWEI",
+           "Pn1sWi06G4LJrnn-_RT0RbM_HTdxnPJQuX2fzWv_JOU",
+           "lF9uzdsw7HplGLc714Tr4WO7MGJza7tt7QFleCX4Itw"
+         ],
+         "type": "VaccineRecipient"
        },
-       "type": "VaccinationEvent",
-       "administeringCentre": "Praxis Sommergarten",
-       "batchNumber": "1626382736",
-       "healthProfessional": "883110000015376"
+       "type": "VaccinationEvent"
      },
      "_sd_alg": "sha-256",
      "cnf": {
@@ -2746,6 +3069,154 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    }
 
    Disclosures:
+
+   *Claim atcCode*:
+
+   *  SHA-256 Hash: 1cF5hLwkhMNIaqfWJrXI7NMWedL-9f6Y2PA52yPjSZI
+
+   *  Disclosure:
+      WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3Qlgw
+      MyJd
+
+   *  Contents: ["2GLC42sKQveCfGfryNRN9w", "atcCode", "J07BX03"]
+
+   *Claim medicinalProductName*:
+
+   *  SHA-256 Hash: Hiy6WWueLD5bn16298tPv7GXhmldMDOTnBi-CZbphNo
+
+   *  Disclosure:
+      WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3RO
+      YW1lIiwgIkNPVklELTE5IFZhY2NpbmUgTW9kZXJuYSJd
+
+   *  Contents: ["eluV5Og3gSNII8EYnsxA_A", "medicinalProductName",
+      "COVID-19
+      Vaccine Moderna"]
+
+   *Claim marketingAuthorizationHolder*:
+
+   *  SHA-256 Hash: Lb027q691jXXl-jC73vi8ebOj9smx3C-_og7gA4TBQE
+
+   *  Disclosure:
+      WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgIm1hcmtldGluZ0F1dGhvcml6
+      YXRpb25Ib2xkZXIiLCAiTW9kZXJuYSBCaW90ZWNoIl0
+
+   *  Contents: ["6Ij7tM-a5iVPGboS5tmvVA",
+      "marketingAuthorizationHolder",
+      "Moderna Biotech"]
+
+   *Claim nextVaccinationDate*:
+
+   *  SHA-256 Hash: R2fGbfA07Z_YlkqmNZyma1xyyx1XstIiS6B1Ybl2JZ4
+
+   *  Disclosure:
+      WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgIm5leHRWYWNjaW5hdGlvbkRh
+      dGUiLCAiMjAyMS0wOC0xNlQxMzo0MDoxMloiXQ
+
+   *  Contents: ["eI8ZWm9QnKPpNPeNenHdhQ", "nextVaccinationDate",
+      "2021-08-16T13:40:12Z"]
+
+   *Claim countryOfVaccination*:
+
+   *  SHA-256 Hash: JzjLgtP29dP-B3td12P674gFmK2zy81HMtBgf6CJNWg
+
+   *  Disclosure:
+      WyJRZ19PNjR6cUF4ZTQxMmExMDhpcm9BIiwgImNvdW50cnlPZlZhY2NpbmF0
+      aW9uIiwgIkdFIl0
+
+   *  Contents: ["Qg_O64zqAxe412a108iroA", "countryOfVaccination", "GE"]
+
+   *Claim dateOfVaccination*:
+
+   *  SHA-256 Hash: zJK_eSMXjwM8dXmMZLnI8FGM08zJ3_ubGeEMJ-5TBy0
+
+   *  Disclosure:
+      WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImRhdGVPZlZhY2NpbmF0aW9u
+      IiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0
+
+   *  Contents: ["AJx-095VPrpTtN4QMOqROA", "dateOfVaccination",
+      "2021-06-23T13:40:12Z"]
+
+   *Claim order*:
+
+   *  SHA-256 Hash: b0eUsvGP-ODDdFoY4NlzlXc3tDslWJtCJF75Nw8Oj_g
+
+   *  Disclosure:
+      WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd
+
+   *  Contents: ["Pc33JM2LchcU_lHggv_ufQ", "order", "3/3"]
+
+   *Claim gender*:
+
+   *  SHA-256 Hash: 3nzLq81M2oN06wdv1shHvOEJVxZ5KLmdDkHEDJABWEI
+
+   *  Disclosure:
+      WyJHMDJOU3JRZmpGWFE3SW8wOXN5YWpBIiwgImdlbmRlciIsICJGZW1hbGUi
+      XQ
+
+   *  Contents: ["G02NSrQfjFXQ7Io09syajA", "gender", "Female"]
+
+   *Claim birthDate*:
+
+   *  SHA-256 Hash: Pn1sWi06G4LJrnn-_RT0RbM_HTdxnPJQuX2fzWv_JOU
+
+   *  Disclosure:
+      WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImJpcnRoRGF0ZSIsICIxOTYx
+      LTA4LTE3Il0
+
+   *  Contents: ["lklxF5jMYlGTPUovMNIvCA", "birthDate", "1961-08-17"]
+
+   *Claim givenName*:
+
+   *  SHA-256 Hash: lF9uzdsw7HplGLc714Tr4WO7MGJza7tt7QFleCX4Itw
+
+   *  Disclosure:
+      WyJuUHVvUW5rUkZxM0JJZUFtN0FuWEZBIiwgImdpdmVuTmFtZSIsICJNYXJp
+      b24iXQ
+
+   *  Contents: ["nPuoQnkRFq3BIeAm7AnXFA", "givenName", "Marion"]
+
+   *Claim familyName*:
+
+   *  SHA-256 Hash: 1lSQBNY24q0Th6OGzthq-7-4l6cAaxrYXOGZpeW_lnA
+
+   *  Disclosure:
+      WyI1YlBzMUlxdVpOYTBoa2FGenp6Wk53IiwgImZhbWlseU5hbWUiLCAiTXVz
+      dGVybWFubiJd
+
+   *  Contents: ["5bPs1IquZNa0hkaFzzzZNw", "familyName", "Mustermann"]
+
+   *Claim administeringCentre*:
+
+   *  SHA-256 Hash: TCmzrl7K2gev_du7pcMIyzRLHp-Yeg-Fl_cxtrUvPxg
+
+   *  Disclosure:
+      WyI1YTJXMF9OcmxFWnpmcW1rXzdQcS13IiwgImFkbWluaXN0ZXJpbmdDZW50
+      cmUiLCAiUHJheGlzIFNvbW1lcmdhcnRlbiJd
+
+   *  Contents: ["5a2W0_NrlEZzfqmk_7Pq-w", "administeringCentre",
+      "Praxis
+      Sommergarten"]
+
+   *Claim batchNumber*:
+
+   *  SHA-256 Hash: V7kJBLK78TmVDOmrfJ7ZuUPHuK_2cc7yZRa4qV1txwM
+
+   *  Disclosure:
+      WyJ5MXNWVTV3ZGZKYWhWZGd3UGdTN1JRIiwgImJhdGNoTnVtYmVyIiwgIjE2
+      MjYzODI3MzYiXQ
+
+   *  Contents: ["y1sVU5wdfJahVdgwPgS7RQ", "batchNumber", "1626382736"]
+
+   *Claim healthProfessional*:
+
+   *  SHA-256 Hash: 1V_K-8lDQ8iFXBFXbZY9ehqR4HabWCi5T0ybIzZPeww
+
+   *  Disclosure:
+      WyJIYlE0WDhzclZXM1FEeG5JSmRxeU9BIiwgImhlYWx0aFByb2Zlc3Npb25h
+      bCIsICI4ODMxMTAwMDAwMTUzNzYiXQ
+
+   *  Contents: ["HbQ4X8srVW3QDxnIJdqyOA", "healthProfessional",
+      "883110000015376"]
 
    The following is a non-normative example of a Combined Format for
    Presentation for the SD-JWT with a Key Binding JWT.  It only
@@ -2761,27 +3232,35 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    TAyLTA5VDExOjAxOjU5WiIsICJleHBpcmF0aW9uRGF0ZSI6ICIyMDI4LTAyLTA4VDExO
    jAxOjU5WiIsICJuYW1lIjogIkNPVklELTE5IFZhY2NpbmF0aW9uIENlcnRpZmljYXRlI
    iwgImRlc2NyaXB0aW9uIjogIkNPVklELTE5IFZhY2NpbmF0aW9uIENlcnRpZmljYXRlI
-   iwgImNyZWRlbnRpYWxTdWJqZWN0IjogeyJ2YWNjaW5lIjogeyJ0eXBlIjogIlZhY2Npb
-   mUiLCAiYXRjQ29kZSI6ICJKMDdCWDAzIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIjogI
-   kNPVklELTE5IFZhY2NpbmUgTW9kZXJuYSIsICJtYXJrZXRpbmdBdXRob3JpemF0aW9uS
-   G9sZGVyIjogIk1vZGVybmEgQmlvdGVjaCJ9LCAibmV4dFZhY2NpbmF0aW9uRGF0ZSI6I
-   CIyMDIxLTA4LTE2VDEzOjQwOjEyWiIsICJjb3VudHJ5T2ZWYWNjaW5hdGlvbiI6ICJHR
-   SIsICJkYXRlT2ZWYWNjaW5hdGlvbiI6ICIyMDIxLTA2LTIzVDEzOjQwOjEyWiIsICJvc
-   mRlciI6ICIzLzMiLCAicmVjaXBpZW50IjogeyJ0eXBlIjogIlZhY2NpbmVSZWNpcGllb
-   nQiLCAiZ2VuZGVyIjogIkZlbWFsZSIsICJiaXJ0aERhdGUiOiAiMTk2MS0wOC0xNyIsI
-   CJnaXZlbk5hbWUiOiAiTWFyaW9uIiwgImZhbWlseU5hbWUiOiAiTXVzdGVybWFubiJ9L
-   CAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50IiwgImFkbWluaXN0ZXJpbmdDZW50cmUiO
-   iAiUHJheGlzIFNvbW1lcmdhcnRlbiIsICJiYXRjaE51bWJlciI6ICIxNjI2MzgyNzM2I
-   iwgImhlYWx0aFByb2Zlc3Npb25hbCI6ICI4ODMxMTAwMDAwMTUzNzYifSwgIl9zZF9hb
-   GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
-   CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
-   3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.H2WJXywhESCUyEPP8xu-LH1Se9r76xBCF4iqEuvojYI-ScGoSd
-   oSQhtdh5HJE8rF6NCMqkrNXvu1XsxojU9sqg~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
-   gImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2ODU0Mzd9.Wj9MvHa2eZ7Oe
-   l1_iHLu1BGWXZC_TaPrVZlPw6KKJoxz-Kc5-mrahlQ4Aeh6cM4_jNkxS3Mb9XXrJbJ01
-   HWeFA
+   iwgImNyZWRlbnRpYWxTdWJqZWN0IjogeyJfc2QiOiBbIjFWX0stOGxEUThpRlhCRlhiW
+   lk5ZWhxUjRIYWJXQ2k1VDB5Ykl6WlBld3ciLCAiSnpqTGd0UDI5ZFAtQjN0ZDEyUDY3N
+   GdGbUsyenk4MUhNdEJnZjZDSk5XZyIsICJSMmZHYmZBMDdaX1lsa3FtTlp5bWExeHl5e
+   DFYc3RJaVM2QjFZYmwySlo0IiwgIlRDbXpybDdLMmdldl9kdTdwY01JeXpSTEhwLVllZ
+   y1GbF9jeHRyVXZQeGciLCAiVjdrSkJMSzc4VG1WRE9tcmZKN1p1VVBIdUtfMmNjN3laU
+   mE0cVYxdHh3TSIsICJiMGVVc3ZHUC1PRERkRm9ZNE5semxYYzN0RHNsV0p0Q0pGNzVOd
+   zhPal9nIiwgInpKS19lU01YandNOGRYbU1aTG5JOEZHTTA4ekozX3ViR2VFTUotNVRCe
+   TAiXSwgInZhY2NpbmUiOiB7Il9zZCI6IFsiMWNGNWhMd2toTU5JYXFmV0pyWEk3Tk1XZ
+   WRMLTlmNlkyUEE1MnlQalNaSSIsICJIaXk2V1d1ZUxENWJuMTYyOTh0UHY3R1hobWxkT
+   URPVG5CaS1DWmJwaE5vIiwgIkxiMDI3cTY5MWpYWGwtakM3M3ZpOGViT2o5c214M0MtX
+   29nN2dBNFRCUUUiXSwgInR5cGUiOiAiVmFjY2luZSJ9LCAicmVjaXBpZW50IjogeyJfc
+   2QiOiBbIjFsU1FCTlkyNHEwVGg2T0d6dGhxLTctNGw2Y0FheHJZWE9HWnBlV19sbkEiL
+   CAiM256THE4MU0yb04wNndkdjFzaEh2T0VKVnhaNUtMbWREa0hFREpBQldFSSIsICJQb
+   jFzV2kwNkc0TEpybm4tX1JUMFJiTV9IVGR4blBKUXVYMmZ6V3ZfSk9VIiwgImxGOXV6Z
+   HN3N0hwbEdMYzcxNFRyNFdPN01HSnphN3R0N1FGbGVDWDRJdHciXSwgInR5cGUiOiAiV
+   mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
+   2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
+   nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
+   ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
+   0U2dDRqVDlGMkhaUSJ9fX0.c40WeLyHaHxe30HHI5AogzqjxodWMBG_F1b-uInIhD6yt
+   av-ZxX5YY3CcX6xTI8yT-jZViROwTQtg--_h5fymg~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
+   mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
+   DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
+   M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
+   IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
+   9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY3NjI5MzV9.oFopMVV9TZ9LNKESspUyjlDWC
+   9Tt7tD2qXofhRTbpYqSfB2qKWVQ-c7qyI7-bHK7_pb-xdYDmG8PYKzRjOaAug
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -2807,24 +3286,14 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
        "vaccine": {
          "type": "Vaccine",
          "atcCode": "J07BX03",
-         "medicinalProductName": "COVID-19 Vaccine Moderna",
-         "marketingAuthorizationHolder": "Moderna Biotech"
+         "medicinalProductName": "COVID-19 Vaccine Moderna"
        },
-       "nextVaccinationDate": "2021-08-16T13:40:12Z",
-       "countryOfVaccination": "GE",
-       "dateOfVaccination": "2021-06-23T13:40:12Z",
-       "order": "3/3",
        "recipient": {
-         "type": "VaccineRecipient",
-         "gender": "Female",
-         "birthDate": "1961-08-17",
-         "givenName": "Marion",
-         "familyName": "Mustermann"
+         "type": "VaccineRecipient"
        },
        "type": "VaccinationEvent",
-       "administeringCentre": "Praxis Sommergarten",
-       "batchNumber": "1626382736",
-       "healthProfessional": "883110000015376"
+       "order": "3/3",
+       "dateOfVaccination": "2021-06-23T13:40:12Z"
      },
      "_sd_alg": "sha-256",
      "cnf": {
@@ -2839,7 +3308,7 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
 
 Appendix B.  Disclosure Format Considerations
 
-   As described in Section 5.1.1, the Disclosure structure is JSON
+   As described in Section 5.2, the Disclosure structure is JSON
    containing salt and the cleartext content of a claim, which is
    base64url encoded.  The encoded value is the input used to calculate
    a digest for the respective claim.  The inclusion of digest value in
@@ -2958,9 +3427,13 @@ Appendix C.  Document History
 
    -05
 
+   *  Add support for selective disclosure of array elements.
+
    *  Use the term Key Binding rather than Holder Binding
 
    *  Defined the structure of the Key Binding JWT
+
+   *  Added a JWS JSON Serialization
 
    *  Added initial IANA media type and structured suffix registration
       requests
