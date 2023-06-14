@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 15 December 2023                                      Microsoft
+Expires: 16 December 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                            13 June 2023
+                                                            14 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 December 2023.
+   This Internet-Draft will expire on 16 December 2023.
 
 Copyright Notice
 
@@ -866,9 +866,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ._ifGE38duZ
-   zua9M2p2qFNicPu3o1IdUuRl467OoT5L1eWCChT7tuqm8yV9xaBG82vgIWeX4L66Du34
-   RV1YHHBQ
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.CaQeTIvFwG
+   jlGN5IV2VX7cq0qY_BAVFbWGDw-8DDUJEh8mLzeFd78V25lF9p7HWMiJkxtyYC6rOU4l
+   uOHBGFqA
 
    The Issuer creates the following Disclosures:
 
@@ -985,9 +985,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ._ifGE38duZ
-   zua9M2p2qFNicPu3o1IdUuRl467OoT5L1eWCChT7tuqm8yV9xaBG82vgIWeX4L66Du34
-   RV1YHHBQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.CaQeTIvFwG
+   jlGN5IV2VX7cq0qY_BAVFbWGDw-8DDUJEh8mLzeFd78V25lF9p7HWMiJkxtyYC6rOU4l
+   uOHBGFqA~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1080,7 +1080,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686684483
+     "iat": 1686781336
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1088,8 +1088,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY2ODQ0ODN9.nzGV8CJk9XkS0zyOgnR8Mjx_MbrvV0zqPHVOblBbgyorSy3hbu
-   2eL8ouDJVXr_vfl-y-rYzmuJpc1lojaYxbaw
+   6IDE2ODY3ODEzMzZ9.U-y4lxKMrEX9VF640gm_TC9zrYlx7QPxLny2D6gE8lKEeBF0eX
+   is_0GtMrO7ndu7EjOFIDKy53at1sX3zgZqBA
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1122,12 +1122,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ._ifGE38duZ
-   zua9M2p2qFNicPu3o1IdUuRl467OoT5L1eWCChT7tuqm8yV9xaBG82vgIWeX4L66Du34
-   RV1YHHBQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.CaQeTIvFwG
+   jlGN5IV2VX7cq0qY_BAVFbWGDw-8DDUJEh8mLzeFd78V25lF9p7HWMiJkxtyYC6rOU4l
+   uOHBGFqA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODY2ODQ0ODN9.nzGV8CJk9XkS0zyOgnR8Mjx_MbrvV0zqPHVOblBbg
-   yorSy3hbu2eL8ouDJVXr_vfl-y-rYzmuJpc1lojaYxbaw
+   wgImlhdCI6IDE2ODY3ODEzMzZ9.U-y4lxKMrEX9VF640gm_TC9zrYlx7QPxLny2D6gE8
+   lKEeBF0eXis_0GtMrO7ndu7EjOFIDKy53at1sX3zgZqBA
 
 6.  Verification and Processing
 
@@ -2088,8 +2088,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.JZaZ1Ql1h149GdMTzyyE9DVqEo
-   q7llUoM1hBALpUl-vZehCl8BOK2uju4yJ5VjcRZvC9cnc_LlQoED3lcQ6zCg~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.kTBVqomwofZQQ3V3wcMeASr3vh
+   KOJY1R5YsWX25kbnvkefYUH7Ps55EESY9yW-vFBLSS-GADddVaGNblUSiahg~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2379,8 +2379,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.8DuO-toPxDa0ZU2o0uaIh3
-   _MfT_j-m2USfJKfmtiNGEDchZSZHmioylvo3PCiR4_TKSxWgIVnusgi31UqtzMuA~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.az-1FihKkKh8TMj2rykTz4
+   zHJncUeJ4ZEvtr63hLH9id2btZycWnCcpUAS-HHYac6hyD_EHvhDvbDNU1c9dLUQ~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2405,7 +2405,7 @@ A.3.  Example 4a - Verifiable Credentials with JSON payload based on the
       SD-JWT format
 
    This example illustrates how to use the artifacts defined in this
-   specification to secure Verifiable Credentials with JSON payload
+   specification to express Verifiable Credentials with JSON payload
    based on the SD-JWT format as defined in [I-D.terbu-sd-jwt-vc].
 
    The example uses a media type vc+sd-jwt.  In this example, Key
@@ -2881,16 +2881,16 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0
    2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
    nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
    ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-   0U2dDRqVDlGMkhaUSJ9fX0.JHpDAoygWq1JMFKMOjYNTaK0HAGmYOxC86eArQXYkUHbH
-   QWS2wkAb1nYoJmPIfb_oe_VjbfaH56p12ccNIl3sA~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   0U2dDRqVDlGMkhaUSJ9fX0.Xu-iXIc9ySu2dxnH7o6ZtFg_HrsFohwzCZ0SentVOSYyP
+   T_S8Rr0HBDgFR0WmQjRwCVeDqPPq7HvWAf1hn7yWA~WyJQYzMzSk0yTGNoY1VfbEhnZ3
    ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
    mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
    DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
    M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
    IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
    9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2ODQ0ODN9.LL9O1j-30kQuVnyvCVsGEyXP4
-   vVvKame0qfIe1_IexnHN8GidJqUfQD9M2RyIR3zXxCwCMVHyDgrNuvERg8ynQ
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY3ODEzMzZ9.7SuAieGYYnDlfzl-iZmvalfkv
+   VEPBP_pg0nO4eKJuUEtfbGSFG0_EGwO6fLoCM11Ik8tiruQwe4ev16pzrp1Pg
 
    After the validation, the Verifier will have the following data for
    further processing:
