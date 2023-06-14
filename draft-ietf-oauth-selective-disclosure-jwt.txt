@@ -5,10 +5,10 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 15 December 2023                                      Microsoft
+Expires: 16 December 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                            13 June 2023
+                                                            14 June 2023
 
 
     SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 December 2023.
+   This Internet-Draft will expire on 16 December 2023.
 
 Copyright Notice
 
@@ -778,8 +778,10 @@ Table of Contents
 5.1.2.  Hash Function Claim
 
    The claim _sd_alg indicates the hash algorithm used by the Issuer to
-   generate the digests over the salts and the claim values.  If the
-   _sd_alg claim is not present, a default value of sha-256 is used.
+   generate the digests.  When used, this claim MUST appear at the top
+   level of the SD-JWT payload.  It MUST NOT be used in any object
+   nested within the payload.  If the _sd_alg claim is not present at
+   the top level, a default value of sha-256 MUST be used.
 
    The hash algorithm identifier MUST be a hash algorithm value from the
    "Hash Name String" column in the IANA "Named Information Hash
@@ -867,9 +869,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.9hc4xgtF95
-   9-XUy4LkqPYiKiOc03KrDGOrh3JnuqLqfNpPmUHPx37un2geC62PH66raZx3nyjyfTUS
-   3q3pIs2Q
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kxtki3s03m
+   PtQQ1huyZvoTggStQWfcNrcKSOZ2Kdn5XNmT-jLK0JGYMPH8_ZF4wiSGhx-KzPNXOwqz
+   euff9kjA
 
    The Issuer creates the following Disclosures:
 
@@ -986,9 +988,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.9hc4xgtF95
-   9-XUy4LkqPYiKiOc03KrDGOrh3JnuqLqfNpPmUHPx37un2geC62PH66raZx3nyjyfTUS
-   3q3pIs2Q~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kxtki3s03m
+   PtQQ1huyZvoTggStQWfcNrcKSOZ2Kdn5XNmT-jLK0JGYMPH8_ZF4wiSGhx-KzPNXOwqz
+   euff9kjA~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1081,7 +1083,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686664700
+     "iat": 1686727759
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1089,8 +1091,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY2NjQ3MDB9.h7ULb9mrLkMI-P6_wCkQfnDpRGemfCSv9-mxntfDkxgtjU8lSR
-   2H6xCk7Wwu-LzIUZ_SRvD0qyq7mB-PXnodSA
+   6IDE2ODY3Mjc3NTl9.LweyX0X66XZY3diW1RIW55ZlZ1Giwn0FAeovH0iyHYmNbGp8w1
+   iyY_EAJ2QV6sJkYwo8yeEa01AvMhw5OLoHNQ
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1123,12 +1125,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.9hc4xgtF95
-   9-XUy4LkqPYiKiOc03KrDGOrh3JnuqLqfNpPmUHPx37un2geC62PH66raZx3nyjyfTUS
-   3q3pIs2Q~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Kxtki3s03m
+   PtQQ1huyZvoTggStQWfcNrcKSOZ2Kdn5XNmT-jLK0JGYMPH8_ZF4wiSGhx-KzPNXOwqz
+   euff9kjA~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODY2NjQ3MDB9.h7ULb9mrLkMI-P6_wCkQfnDpRGemfCSv9-mxntfDk
-   xgtjU8lSR2H6xCk7Wwu-LzIUZ_SRvD0qyq7mB-PXnodSA
+   wgImlhdCI6IDE2ODY3Mjc3NTl9.LweyX0X66XZY3diW1RIW55ZlZ1Giwn0FAeovH0iyH
+   YmNbGp8w1iyY_EAJ2QV6sJkYwo8yeEa01AvMhw5OLoHNQ
 
 6.  Verification and Processing
 
@@ -2086,8 +2088,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.dBBy2aaJxYvCVRP8GHVH4INKQo
-   SNaft2Lc5YHxT0OZCMKOM6diIZgLZF_1_GNSQKW-ClNS_87BiduHOSHRdLgA~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.s7lF5FUMOgzpZEXIGCD-kfo-Ax
+   GiNKZCSKvcJralac9sZzaoLBOdvVfO1J6WDvV1O-ElFcXzolp_AX2J-qPH7Q~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2377,8 +2379,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.m7vwHByQv2IgH8E06cvtOc
-   7CsT1gomv-vqKcw4AxogHQjDAE2lw9clxza2d27yyAwCwvsE_QTUp623V7OKcCMw~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.1DIkdhqEnybFzD-9NpkmvB
+   _SnrwiHxHzoluj8iBKWMS0cVn3F_HhgCFClXUmec3oHDr6Yyj7SLktqldW3fyNzg~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2744,12 +2746,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.MViNiKDuxBcGstTaQHhM_GrE3B-754N18MRNdbzOp5L40jcogN
-   QDXCSjXWOLGA_vQXAeDBuNoOlffQRkiRB_6w~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.dD7vWbru1zSBduJe-5wcGx70OqLGZl8sQzzVGPQBa72pnF6NpF
+   unS3G28t2Gv7dHcUbzrWbC2jPdG0HJ4sd5Kg~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY2NjQ3MDB9.-0HJeCf-KUGxs
-   2J_1i98UyQ8ytgagb1uBE8rq5BOhlQuxh-PhHpRSVtx8VqtnE9Jh8Xdo66SGBeG_FViq
-   oWMwg
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY3Mjc3NTl9.I186YwLuswhkV
+   9aItLf4MAg-4_K6F_nVHQZ_l2QIZ8HsTekIE9WTmlTA-5YeF4NzOkXmt42f_hL4aKard
+   BfntQ
 
    After the validation, the Verifier will have the following data for
    further processing:
