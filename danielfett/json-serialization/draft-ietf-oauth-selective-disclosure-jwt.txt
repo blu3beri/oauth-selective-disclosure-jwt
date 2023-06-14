@@ -868,9 +868,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Iri6xnkf8-
-   1j60cii9TYkMB1c-yu8h7rruyHjDAvKdssjkaELGL9bePI7VhrVy_YwvcC2lrMt4C3TX
-   k5e4C4yQ
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.wPYGp97pMS
+   CtxBb6Pz0bU5xOYEWGfAgIuAf-wE3w5NCcKkpFUCI3Q5VGiGoZctTiPIoZFzAnFuZxBm
+   hzaksKsw
 
    The Issuer creates the following Disclosures:
 
@@ -987,9 +987,9 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Iri6xnkf8-
-   1j60cii9TYkMB1c-yu8h7rruyHjDAvKdssjkaELGL9bePI7VhrVy_YwvcC2lrMt4C3TX
-   k5e4C4yQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.wPYGp97pMS
+   CtxBb6Pz0bU5xOYEWGfAgIuAf-wE3w5NCcKkpFUCI3Q5VGiGoZctTiPIoZFzAnFuZxBm
+   hzaksKsw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV8
    0MiJd~WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuX25hbWUiLCAiSm9obi
    Jd~WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~
    WyJlSThaV205UW5LUHBOUGVOZW5IZGhRIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBs
@@ -1082,7 +1082,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686746616
+     "iat": 1686747109
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1090,8 +1090,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY3NDY2MTZ9.3S_UywM2lp1llw8EinHNLqCA_s0ar9aplrMSSwmqxqJSCsOorT
-   aJwihAOCrVeytbB2UskfU-XTJtSpq-ISxl4Q
+   6IDE2ODY3NDcxMDl9.JTaU38ZEtrYItTbfWVHtfBMoo9-v2Lr11jd3xFlaWHkk1y70uP
+   AEzqv69GKYgiAXMBgu-_qMgzWb7hQjwYkacQ
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1124,12 +1124,12 @@ Table of Contents
    DAwLCAiZXhwIjogMTg4MzAwMDAwMCwgIl9zZF9hbGciOiAic2hhLTI1NiIsICJjbmYiO
    iB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6ICJQLTI1NiIsICJ4IjogIlRDQUVSM
    TladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN3ZDZUdlbWMiLCAieSI6ICJaeGppV
-   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.Iri6xnkf8-
-   1j60cii9TYkMB1c-yu8h7rruyHjDAvKdssjkaELGL9bePI7VhrVy_YwvcC2lrMt4C3TX
-   k5e4C4yQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
+   1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0NGpUOUYySFpRIn19fQ.wPYGp97pMS
+   CtxBb6Pz0bU5xOYEWGfAgIuAf-wE3w5NCcKkpFUCI3Q5VGiGoZctTiPIoZFzAnFuZxBm
+   hzaksKsw~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6IC
    IxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIi
-   wgImlhdCI6IDE2ODY3NDY2MTZ9.3S_UywM2lp1llw8EinHNLqCA_s0ar9aplrMSSwmqx
-   qJSCsOorTaJwihAOCrVeytbB2UskfU-XTJtSpq-ISxl4Q
+   wgImlhdCI6IDE2ODY3NDcxMDl9.JTaU38ZEtrYItTbfWVHtfBMoo9-v2Lr11jd3xFlaW
+   Hkk1y70uPAEzqv69GKYgiAXMBgu-_qMgzWb7hQjwYkacQ
 
 6.  Verification and Processing
 
@@ -1345,7 +1345,7 @@ Table of Contents
    The disclosures (both for issuance and presentation) are included in
    the serialized JWS using the key disclosures at the top-level of the
    JSON object (the same level as the payload member).  The value of the
-   disclosures member is array of strings where each element is an
+   disclosures member is an array of strings where each element is an
    individual Disclosure as described in Section 5.1.1.1.  The Issuer
    includes a Disclosure for each selectively disclosable claim of the
    SD-JWT payload.  Whereas the Holder includes only the Disclosures
@@ -1373,8 +1373,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "wEVVZfgVCST3cAtBwQ42LUY0HJOPYupqeF1-fMjRwfg41DYN-VY0
-       jSYT8LYzp0CZpVuYVu86kfyWtB7JNEmbfw",
+     "signature": "ARw_FxL9KVHsH-Of7yN69y5KowjOcItBXN_QGrvOpmKQ_KwELHG3
+       SXGv6FFQhAhADfSSwZ2mn_MvQ1ic_h-2PA",
      "disclosures": [
        "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
          d",
@@ -1413,8 +1413,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "wEVVZfgVCST3cAtBwQ42LUY0HJOPYupqeF1-fMjRwfg41DYN-VY0
-       jSYT8LYzp0CZpVuYVu86kfyWtB7JNEmbfw",
+     "signature": "ARw_FxL9KVHsH-Of7yN69y5KowjOcItBXN_QGrvOpmKQ_KwELHG3
+       SXGv6FFQhAhADfSSwZ2mn_MvQ1ic_h-2PA",
      "disclosures": [
        "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
          d",
@@ -1426,8 +1426,8 @@ Table of Contents
      ],
      "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
        I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-       lmaWVyIiwgImlhdCI6IDE2ODY3NDY2MTZ9.26NCe1TYDTSQFlhVj8ic4rr0vaK-F
-       B-4Dvn88CdkDKrCA4ESIhOXqJEtck0S5-hX-yPSV0Rk4JX2qB5ExjnbAg"
+       lmaWVyIiwgImlhdCI6IDE2ODY3NDcxMDl9.71iCqttLwi7-c473qfuqW5pBc9eB_
+       MR_c6JhhbIYdlpwL5DfSesq8XpRxp5shAlNmi-948unLxdxMygBEFOFWQ"
    }
 
 9.  Security Considerations
@@ -2182,8 +2182,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.OfqL17jJ_zbzRHALXhJa2WU6bw
-   nDcRG7jF5wWi00QgbDK21UspCwN5lFQ20gH2B3rFpxZ6VikBvoOYxpCJSy9w~
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.kW8J_NQkHFso1URGXGHrNmrhNo
+   iXrihkGTKFdAWrnqShvnhiAhcURz92YIO_rqynl_yNilLmumxN93BR9eNNog~
 
 A.2.  Example 3 - Complex Structured SD-JWT
 
@@ -2473,8 +2473,8 @@ A.2.  Example 3 - Complex Structured SD-JWT
    3MxNmhiOE51Rk1xZW85OF9IMCIsICJoT0l5M1NNaV93TS1TSk93bXYwX3NreWZwaWhkM
    244anlHWnc1NnppY3lNIiwgIm0xa3FhQ3dnS3pLbWI5dTQwYm1SMEptM0h2VXVpakUtT
    0NBdC1nb1FUWDgiLCAieTUwY3pjMElTQ2h5X2JzYmExZE1vVXVBT1E1QU1tT1NmR29FZ
-   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.1ACxXaKwgu7M8gCdGlsgF7
-   nUCEweO5MiLfflJJNTp_k2b4_Ch-BHB4YK6MkuDzO2f6i40eCXOzGtAAdhIrYmTA~
+   TgxdjFGVSJdfX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.m43W1KTnh4xlXM-TbMmSef
+   fomPWlOHWBDumhqCJRGxSe0WmGqmCQmg4h20B-X8b-uOly11sJ7pvh0uVL1I7uvg~
 
    After the verification of the data, the Verifier will pass the
    following result on to the application for further processing:
@@ -2840,12 +2840,12 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    GciOiAic2hhLTI1NiIsICJjbmYiOiB7Imp3ayI6IHsia3R5IjogIkVDIiwgImNydiI6I
    CJQLTI1NiIsICJ4IjogIlRDQUVSMTladnUzT0hGNGo0VzR2ZlNWb0hJUDFJTGlsRGxzN
    3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZWNDRTZ0N
-   GpUOUYySFpRIn19fQ.k0x5ejR2xaty2YmTWaxZ93SmGC6UsAaTwF8Ye3fzrXb5boskNI
-   3kzf6yIBFpFAnIuTgLVKFm59zicv5N-6IJBQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
+   GpUOUYySFpRIn19fQ.oHJk4g-KImMaLR3q797WzYLtR43WDolhrYDO-Evd6TmntTiINf
+   f9uUVJmOt1CO2QRHg6Zod01vCmuGbCb9JWfQ~eyJhbGciOiAiRVMyNTYiLCAidHlwIjo
    gImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2
-   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY3NDY2MTZ9.yvMER_If4IcT4
-   S7WZTrVOyqzBW3OnEg6e66KHc6qmfJrJoZIs0O4Dg76z8spTOM5_Y2uEO3eB8a0LcguS
-   hBBhw
+   V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY3NDcxMDl9.0rZfD6hvF3SeY
+   NMZ2ovj2z2tDYfX2lImHAdx4M987UAuV4r-murT9f8kloJ-IiyFTyQxCGtIpzEfi89cY
+   c8Eiw
 
    After the validation, the Verifier will have the following data for
    further processing:
