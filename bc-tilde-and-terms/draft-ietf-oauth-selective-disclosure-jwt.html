@@ -1459,11 +1459,11 @@ wherever possible.<a href="#section-1-11" class="pilcrow">¶</a></p>
 <li class="normal" id="section-1.1-1.1">
             <p id="section-1.1-1.1.1">This specification defines<a href="#section-1.1-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1.1-1.1.2.1">a format for an Issuer-signed JWT containing selectively disclosable claims that include object properties (key-value pairs), array elements, and nested data structures built from these,<a href="#section-1.1-1.1.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-1.1-1.1.2.1">a format for the payload of an Issuer-signed JWT containing selectively disclosable claims that include object properties (key-value pairs), array elements, and nested data structures built from these,<a href="#section-1.1-1.1.2.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-1.1-1.1.2.2">a format for data associated with an Issuer-signed JWT that enables selectively disclosing claims, and<a href="#section-1.1-1.1.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-1.1-1.1.2.3">formats for the combined transport of an Issuer-signed JWT and the associated data during issuance and presentation.<a href="#section-1.1-1.1.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-1.1-1.1.2.3">a format for the combined transport of an Issuer-signed JWT and associated data during issuance and presentation.<a href="#section-1.1-1.1.2.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
@@ -2073,8 +2073,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.iNod0DZMsCjGDDHr5aCFX
-MM1EywhqZYGTopZx7Agk9csBzVylnRohLj4DmzzNCNfvkPvbNAmyvbvTROcwEESOg
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.sKvpTTd_zTe0VDwYAJKdg
+MObjEI72TQCRTIe6LH-jSc92jejpCJJioiAcfUw06FNMq_vOwNE_N76sXckJoyn0g
 </pre><a href="#section-5.5-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2427,8 +2427,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.iNod0DZMsCjGDDHr5aCFX
-MM1EywhqZYGTopZx7Agk9csBzVylnRohLj4DmzzNCNfvkPvbNAmyvbvTROcwEESOg~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.sKvpTTd_zTe0VDwYAJKdg
+MObjEI72TQCRTIe6LH-jSc92jejpCJJioiAcfUw06FNMq_vOwNE_N76sXckJoyn0g~Wy
 IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
 HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
 dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -2522,7 +2522,7 @@ a Disclosure more than once.<a href="#section-5.11-6" class="pilcrow">¶</a></p>
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1686878257
+  "iat": 1686955996
 }
 </pre><a href="#section-5.11.1.1-8" class="pilcrow">¶</a>
 </div>
@@ -2530,8 +2530,8 @@ a Disclosure more than once.<a href="#section-5.11-6" class="pilcrow">¶</a></p>
 <div class="lang-txt sourcecode" id="section-5.11.1.1-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODY4NzgyNTd9.jFcgsbrqauW-o0f7YzBFNbrGkDAqrw0eP1vu0Fh1teT9ERBSVB
-19o6Z9M7Yaxrl0n__A-TFi0JAzJOp4Yyzy5g
+6IDE2ODY5NTU5OTZ9.wi3UTzfpinVLMvSlEzol4E5MUQNZ0YMC0zAIoJFvPSE22EaI4Y
+iYqK9ThBKIFOflm5vlm4EaPlbo4UhmSYR33Q
 </pre><a href="#section-5.11.1.1-10" class="pilcrow">¶</a>
 </div>
 <p id="section-5.11.1.1-11">Whether to require Key Binding is up to the Verifier's policy,
@@ -2568,8 +2568,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.iNod0DZMsCjGDDHr5aCFX
-MM1EywhqZYGTopZx7Agk9csBzVylnRohLj4DmzzNCNfvkPvbNAmyvbvTROcwEESOg~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.sKvpTTd_zTe0VDwYAJKdg
+MObjEI72TQCRTIe6LH-jSc92jejpCJJioiAcfUw06FNMq_vOwNE_N76sXckJoyn0g~Wy
 JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
 ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
 jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -2577,8 +2577,8 @@ kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
 jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
 IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
 6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-yIiwgImlhdCI6IDE2ODY4NzgyNTd9.jFcgsbrqauW-o0f7YzBFNbrGkDAqrw0eP1vu0F
-h1teT9ERBSVB19o6Z9M7Yaxrl0n__A-TFi0JAzJOp4Yyzy5g
+yIiwgImlhdCI6IDE2ODY5NTU5OTZ9.wi3UTzfpinVLMvSlEzol4E5MUQNZ0YMC0zAIoJ
+FvPSE22EaI4YiYqK9ThBKIFOflm5vlm4EaPlbo4UhmSYR33Q
 </pre><a href="#section-5.11.2-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2821,8 +2821,8 @@ a JWS JSON serialized SD-JWT from an Issuer with all the respective Disclosures.
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "-1V618SFPlwnEPqOltO7MBWX8r5rfYXhVmWpqZzCreRHwlIQ5hjB
-    T3A_OMgCxVGgKg9jkKxfECI3vncSmzmKYA",
+  "signature": "uiek-jsa4pekkPmzVmBmy5gBw1JKZ2BM4YL1raNmooglv-rJcWLG
+    KVCaSDKH-lW5TDRxMfek5C1tXQnaAtNYpw",
   "disclosures": [
     "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
       d",
@@ -2861,8 +2861,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "-1V618SFPlwnEPqOltO7MBWX8r5rfYXhVmWpqZzCreRHwlIQ5hjB
-    T3A_OMgCxVGgKg9jkKxfECI3vncSmzmKYA",
+  "signature": "uiek-jsa4pekkPmzVmBmy5gBw1JKZ2BM4YL1raNmooglv-rJcWLG
+    KVCaSDKH-lW5TDRxMfek5C1tXQnaAtNYpw",
   "disclosures": [
     "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
       d",
@@ -2874,8 +2874,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
   ],
   "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
     I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-    lmaWVyIiwgImlhdCI6IDE2ODY4NzgyNTd9.yVyH3sIwMnmcd7hGqsEM_wHXJD7XU
-    hdTs4R_CWj6_6g-gwS1fdxFS0WURF__V0esWlNY9UlZCm7RUsB6FApqkg"
+    lmaWVyIiwgImlhdCI6IDE2ODY5NTU5OTZ9.k3tGX6KgmV7hfdzF7ZldbqSlGMond
+    p_OrbPZCC5pQ6PqEUOeGdVLpmsOB_VlQfy377EuxYZdKG54OvGTYVimew"
 }
 </pre><a href="#section-8-7" class="pilcrow">¶</a>
 </div>
@@ -3671,8 +3671,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.ZOt1RLVewlQ-YbMO4EIDV58I90
-R6Goky-0zfvPUnBkcQ4ysIBWeM8ZB2IjzLHNCa-cixlP4dQgGoNU2GBi_YNA~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.1lcmj50kc7sj8kiV_4mG_jp35Y
+54vK2KrJLKorpJdAai7qPHGmtFtuVUubhHErngeNibhS5e5fCLfF7PbDsdKQ~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -4007,9 +4007,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.uWRY0rFD-
-mzmq3jOaxpbTQHUAieXfPUzuKLHHERW5x0h3UQKv_QaeNfAWKKGaoLahPntLlbqe8Ond
-fGRrRcaLQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.6EBbWacIt
+_fajG7FiOclF-xvKzCzR0Y5A4cpdStHAFEj-OCiRV0LI2aJOpS650A5rMX_ZxxSB7_1y
+hSSw4uvZg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4583,16 +4583,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.qTDMGExmOzQFam3VudEEsn9EmEAuYVc6TKnIlCf_6zNmT
-x8K5S2b7H10PZ4yxZ2VIErbJLao1UYBIe7XMSi5rQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.uL5g379iF37iwEKt4kROw5t9ZTlQ4GQisYz6KlmDGdNNS
+7E1ZqfskTc9zYHrf8h1msiYvw9JPFqR8dJVvGZD4g~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY4NzgyNTd9.eK14vnpA-2wkfRcQWG0Y4gbXE
-VYvSA6PtNwdU2sdnKX38E6Z_OljwX84stsWB0Ekxld1n6FgoOMl6GYeq2vPLA
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY5NTU5OTZ9.reYuWOc-ejSL2n6f5y5XeOVqt
+Lty6BNJnQyhR1AYZ9KB4wSNFW0wPKgHqlUSdGvANTNnXFjl4JKuyiQsNljmdw
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
@@ -4752,21 +4752,23 @@ data. The original JSON data is then used by the application. See
 <ul class="normal">
 <li class="normal" id="appendix-C-3.1">Add support for selective disclosure of array elements.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.2">Use the term Key Binding rather than Holder Binding<a href="#appendix-C-3.2" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.2">Consolidate SD-JWT terminology and format<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.3">Defined the structure of the Key Binding JWT<a href="#appendix-C-3.3" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.3">Use the term Key Binding rather than Holder Binding<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.4">Added a JWS JSON Serialization<a href="#appendix-C-3.4" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.4">Defined the structure of the Key Binding JWT<a href="#appendix-C-3.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.5">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.5">Added a JWS JSON Serialization<a href="#appendix-C-3.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.6">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.6">Added initial IANA media type and structured suffix registration requests<a href="#appendix-C-3.6" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.7">Added considerations around forwarding credentials<a href="#appendix-C-3.7" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.7">Added recommendation for explicit typing of SD-JWTs<a href="#appendix-C-3.7" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.8">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.8" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.8">Added considerations around forwarding credentials<a href="#appendix-C-3.8" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.9">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.9" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.9">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.9" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="appendix-C-3.10">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.10" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-C-4">-04<a href="#appendix-C-4" class="pilcrow">¶</a></p>
