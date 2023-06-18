@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-15T01:05:18.489163+00:00",
+  "timestamp": "2023-06-18T01:14:06.479412+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -6269,12 +6269,15 @@
       "author": "christianpaquin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "danielfett"
+        "danielfett",
+        "Sakurann"
       ],
-      "labels": [],
+      "labels": [
+        "has-PR"
+      ],
       "body": "It would be useful to publish the issuer's public key used to generate the examples. This would allow implementations for validate the JWS from the spec. ",
       "createdAt": "2023-03-27T20:25:22Z",
-      "updatedAt": "2023-06-14T17:26:03Z",
+      "updatedAt": "2023-06-15T06:18:17Z",
       "closedAt": null,
       "comments": [
         {
@@ -6632,7 +6635,7 @@
       ],
       "body": "I find myself using `combined format for presentation/issuance` to refer to the entire `series of base64url-encoded values`, which is not exactly accurate..? would it make sense to rename to something like `combined issuance/presentation values\"?",
       "createdAt": "2023-04-16T09:33:11Z",
-      "updatedAt": "2023-06-14T17:27:46Z",
+      "updatedAt": "2023-06-15T23:27:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -6725,6 +6728,13 @@
           "body": "\"Issuer issues SD-JWT and verifier presents sd-jwt\"\r\nie no explicit term for the issuer-signed JWS\r\nneeds to PRs, adding `~` to issued SD-JWT and changing terminology.",
           "createdAt": "2023-06-02T00:58:16Z",
           "updatedAt": "2023-06-02T00:58:16Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The terms \"Combined Format for Issuance\" and \"Combined Format for Presentation'' go away and the whole structure, issued or presented, can be called an SD-JWT. To align the two formats, the last Disclosure will always be followed by a ~ (tilde) character (currently the Combined Format for Issuance does not have the trailing tilde). When key binding is required for presentation, a key binding JWT will be appended to the end of the whole thing after the trailing tilde.",
+          "createdAt": "2023-06-15T23:27:40Z",
+          "updatedAt": "2023-06-15T23:27:40Z"
         }
       ]
     },
@@ -7589,9 +7599,17 @@
       ],
       "body": "_Originally posted by @Sakurann in https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/283#discussion_r1227387227_\r\n\r\n>               I don't disagree this section probably belongs here in terms of the order, but the level of this section feels off (looked at [the rendered ver of this branch](https://drafts.oauth.net/oauth-selective-disclosure-jwt/danielfett/arrays/draft-ietf-oauth-selective-disclosure-jwt.html#name-format-of-an-sd-jwt)).\r\n> \r\n> I think there is a logical separations between sections from 5.1 to 5.5 (basic operations) and from sections 5.6 to 5.7 (advanced concepts) from 5.8 to 5.9 (content of the SD-JWT) and 5.10 to 5.11 (combined formats). and having them all at the same level makes it hard to read..\r\n\r\nI agree. There will be other changes coming to the presentation/issuance format sections and a new section for the JWS JSON Serialization. After these changes, we should revisit the current structure and modify as needed.\r\n            ",
       "createdAt": "2023-06-13T09:38:35Z",
-      "updatedAt": "2023-06-14T17:44:53Z",
+      "updatedAt": "2023-06-15T12:12:00Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "We should also consider moving the \"enveloping\" section into an appendix or downgrading it otherwise. Let's discuss.",
+          "createdAt": "2023-06-15T12:12:00Z",
+          "updatedAt": "2023-06-15T12:12:00Z"
+        }
+      ]
     },
     {
       "number": 291,
@@ -7605,7 +7623,7 @@
       "labels": [],
       "body": "https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.3-2\r\n> The data format for sending the SD-JWT and the Disclosures to the Holder MUST be a series of base64url-encoded values, each separated from the next by a single tilde ('~') character as follows\r\n\r\nThe tilde is definitely very innovative, but it still introduces interesting mapping challenge. Is there a reason why the Disclosures cannot be signed? If there is no reason to NOT sign the Disclosures, then I do propose an alternative design.\r\n\r\nThere could be a `Holder Disclosed VC` or so to **aggregate** the `Issuer-Issued Disclosure` AND `SD-JWT`. This will fit into the normal way of treating VCs, stored as is and queried through VP exchange.\r\n\r\nIssuer-Issued Disclosures in could be a list.\r\nSD-JWT would be embedded JWT, aka \"raw\" JWT inside JWT.\r\n\r\nJWT in JWT will incur size penalty. If the size of the SD-JWT is an issue, it could be issued in binary presentation. I still would propose to take the size impact.\r\n\r\n---\r\nEdit: removed parsing parts as it will just be interesting mapping challenge",
       "createdAt": "2023-06-13T13:22:23Z",
-      "updatedAt": "2023-06-14T17:58:11Z",
+      "updatedAt": "2023-06-16T05:34:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -7691,6 +7709,51 @@
           "body": "If the attacker can modify the Disclosures, there is a bigger problem going on, and the attack would probably be more effective by inserting an attacker-signed SD-JWT with intercepted valid `nonce` and `aud` values for example. So I still do not see a strong argument to modify the issuance/presentation structure.",
           "createdAt": "2023-06-14T17:58:11Z",
           "updatedAt": "2023-06-14T17:58:11Z"
+        },
+        {
+          "author": "alenhorvat",
+          "authorAssociation": "NONE",
+          "body": "> https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-confidentiality-during-tran\r\n\r\nHi, Kristina. I admire all the magnificent work this team is doing.\r\n\r\nThe current proposal appends information to the JWS. And the appended information can be of two types: issuer issued disclosure, and holder binding. Hence, this document is defining a new signature format for compact serialised JWS. This is also reflected in the newly registered IANA media types specified in the document.\r\n\r\nThis comment is addressing Compact Serialised JWS\r\n\r\nJWS defines media types: JOSE and JOSE+JSON\r\nIf my understanding is correct, media types could also be just: JOSE+sd+jwt (and the one with holder binding JWT)\r\nJWS libraries don't recognise the new typ, hence the comment about breaking the JWS implementation.\r\n\r\nBy inspecting https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.01.01_60/ts_11918201v010101p.pdf and https://www.rfc-editor.org/rfc/rfc7797, there appeared to be a solution that is compatible with the existing JWS, however, it turns out that one cannot combine two JWS signatures without additional serialisation. Namely, in some cases issuer would like to sign the sd-jwt, but also the issuer issued disclosures to have a proof that it shared everything with the holder.\r\n\r\nThe only case where we benefit from smaller size is when issuer-issued disclosures are unsigned and when holder selected disclosures are unsigned. Key binding is not securing the payload (it could solve part of the problem)\r\n\r\nIf holder needs to sign the whole payload (for integrity/nonrepudiation/...), I believe section 7 is the one that's useful, and is applicable to JWT, VCs, ..., any other JSON.\r\n\r\nQuestions are:\r\n- should the structure presented in section 7 be the default one - there's a claim disclosures. (this also solves the issue with JWS mentioned above)\r\n- should the structure in sec. 7 adopt syntax from JSON serialised JWS - introducing the disclosures claim in the payload \r\n- render the current JWS compact serialisation as a way to do SD when disclosures are unsigned and when size is an issue\r\n\r\nWith this we cover all cases in an unambiguous way\r\n- JSON serialised JWS works as described. If disclosures need to be signed over, they can also be moved to the protected header\r\n- JWS libs as they are can be used to sign and verify signatures of SD\r\n- issuer can sign the disclosures (if required)\r\n- holder can sign the disclosures (if required)\r\n- if size limit is a constraint, there's an optimisation as presented in the document. Limitation: disclosures are unsigned",
+          "createdAt": "2023-06-15T04:53:04Z",
+          "updatedAt": "2023-06-15T04:53:04Z"
+        },
+        {
+          "author": "mtaimela",
+          "authorAssociation": "NONE",
+          "body": "Hi all,\r\n\r\nI'm happy to see such a vibrant community, with multiple angles, thank you all for contributing into brainstorming. The SD-JWT design is great, and would definitely work, but the issue is open because I do think that it could be even better.\r\n\r\nThe section 7 also introduces the original issue of double encoding, which is why the tilde exists in first place. Luckily the JWS Compacted serialization is not the only option so I crafted the small examples for the [JWS Unencoded Payload](https://www.rfc-editor.org/rfc/rfc7797) WITH JWS Flattened serialization.\r\n\r\nThe actual structure for the wrapper can be anything, it contains SD-JWT as is (no double encoding), the Disclosures are signed, and the thing do not need new a content-type. The JWS Flattened expects \"string\" output and byte input, thus the JSON object we are carrying must be encoded to be compatible. I have chosen JSON serialisation, aka stringifying the JSON object in this case. Feel free to propose amendments, alternatives or deeper data structures. The data structures can also be used to solve the disclosures mapping, as with this we have real data structure to express information. If there is a need to transfer this information over URI, it can be made URI compatible through normal encoding practises (which skips base64url, thus there is no double encoding for sd-jwt).\r\n\r\nThe Issuance \"wrapper\": replacing tilde and preserving everything else.\r\n```javascript\r\n{\r\n  signature: 'u0OKqXBRq_hXhcKkmnZ5XGi3Lm9t2-2RpcjdGkocwo2u7bpCE0nJZ92DsBmCay-ZZij5lO5e6Ebk9WoG1zJsPg',\r\n  payload: '{\"sd\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwiaWQiOiI5YmNjOWFhYS0zYmRjLTQ0MTQtOTQ1MC03MzljMjk1Yzc1MmMiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiU3R1ZGVudElEIl0sImlzc3VlciI6ImRpZDplYnNpOnp2SFdYMzU5QTNDdmZKbkNZYUFpQWRlIiwidmFsaWRGcm9tIjoiMjAyMy0wMS0wMVQwMDowMDowMFoiLCJ2YWxpZFVudGlsIjoiMjAzMy0wMS0wMVQwMDowMDowMFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6Li4uIiwiX3NkIjpbInpTbUltV0hQSnpRN1J4OFpHMElZaFVGMU96ajhmMTd3REtKR2h4VWtyZFUiLCJUNFJuRG0xY2xWTENhdjJNcnNlbDZzTk16OHBxR0NlTXJycF9fWXJWXy13IiwiU0ZRVGpyOTFJa1BpNmJldFEwRVlzNXJkSjJUYk1lc0pHZnRGNmg3aGpUQSJdLCJzdHVkZW50Ijp0cnVlfX0.qbKCK100Pqg1fJPKS1QXmI4u1bwPQSMewMQxzD19sf4qgk_hIWQRBy4BTbADYrQa30ct8no0dhV--PZREkjf5A\",\"disclosures\":[\"WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImZhbWlseU5hbWUiLCAiQ2Fycm9sbCJd\",\"WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuTmFtZSIsICJMZXdpcyJd\",\"WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImJpcnRoRGF0ZSIsICIxODMyLTAxLTI3Il0\"]}',\r\n  protected: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19'\r\n}\r\n```\r\n\r\nJWK keys for validation\r\n```javascript\r\n{\r\n  kty: \"EC\",\r\n  d: \"z617Hhdusxqt3KN98NHvFtWTpSW_sq2cCZpNSzu8m88\",\r\n  crv: \"P-256\",\r\n  x: \"ZYE6uX3XvQ9rLc6s0eeo2YiOM2VfwrEZOZXzTOthcHE\",\r\n  y: \"k-t1bfe-MmmXWQ0QaxK3uJMYlMNkJHYGUSLpxP9RQak\"\r\n}\r\n```\r\n\r\nIt is also good to refresh the memory that URI/URL components do not use content-type at all in HTTP, the media-type is meant for the HTTP body only. The SD-JWT + Disclosures with tilde will break all existing JWT parsers when transported outside of HTTP body, or the processing must be forced into application logic and the tilde pre-processing must be handled there beforehand.\r\n\r\n----\r\nEdit: re-order and add json stringify clarification.",
+          "createdAt": "2023-06-15T20:31:08Z",
+          "updatedAt": "2023-06-16T05:34:18Z"
+        }
+      ]
+    },
+    {
+      "number": 295,
+      "id": "I_kwDOHTmVzM5oyYTf",
+      "title": "Essentially, the issuer issued disclosures are fully exposed when exchanged via front-channel. Should in those cases encryption be recommended?",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/295",
+      "state": "OPEN",
+      "author": "alenhorvat",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "              > Essentially, the issuer issued disclosures are fully exposed when exchanged via front-channel. Should in those cases encryption be recommended?\r\n\r\nthere is already a section on that https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-confidentiality-during-tran\r\n\r\nand this is a separate topic than the original question raised. signing over Disclosures will not solve this.\r\n\r\n_Originally posted by @Sakurann in https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/291#issuecomment-1591739581_\r\n            ",
+      "createdAt": "2023-06-15T04:59:55Z",
+      "updatedAt": "2023-06-16T05:51:12Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "alenhorvat",
+          "authorAssociation": "NONE",
+          "body": "@Sakurann moving this to a separate, but related issue (when it comes to size of the payload).\r\n\r\nI fully agree that the signing of disclosures is not solving the problem. \r\n\r\nTLS protects confidentiality, but when the payload is exchanged via the URL, TLS won't help since information remains in the browser history. Here the security model relies on the security of the browser. In this case, the payload should be (always) encrypted since we're dealing with personal data.\r\n\r\nIf the SD-JWT with disclosures are encrypted, is the size optimisation for compact serialised JWS justifiable? (when content is sent directly to the server or fetched from it, size optimisation can be dropped) - for other protocols like NFC/BLE more efficient encodings exist",
+          "createdAt": "2023-06-15T05:06:41Z",
+          "updatedAt": "2023-06-15T05:06:41Z"
+        },
+        {
+          "author": "mtaimela",
+          "authorAssociation": "NONE",
+          "body": "Good points @alenhorvat,\r\n\r\nI would like to add that on top of the browser history, there's also browser cache, shoulder surfing and web logs issues. Web logs brings other dimension to the adopters of the technology, as the web logs can possibly be populated with GDPR related data and cause issues for the current operational practices.",
+          "createdAt": "2023-06-16T05:51:12Z",
+          "updatedAt": "2023-06-16T05:51:12Z"
         }
       ]
     }
@@ -29489,15 +29552,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": " for #254 \r\n\r\nEditor's copy: https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc-tilde-and-terms/draft-ietf-oauth-selective-disclosure-jwt.html\r\n",
+      "body": " for #254 \r\n\r\nThe terms \"Combined Format for Issuance\" and \"Combined Format for Presentation'' go away and the whole structure, issued or presented, can be called an SD-JWT. To align the two formats, the last Disclosure will always be followed by a `~` (tilde) character (currently the Combined Format for Issuance does not have the trailing tilde). When key binding is required for presentation, a key binding JWT will be appended to the end of the whole thing after the trailing tilde. \r\n\r\nNo changes being made to [Sec 6. Verification and Processing](https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc-tilde-and-terms/draft-ietf-oauth-selective-disclosure-jwt.html#name-verification-and-processing) in this PR due to expected changes coming from PR #294. \r\n\r\n\r\nEditor's copy: https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc-tilde-and-terms/draft-ietf-oauth-selective-disclosure-jwt.html\r\n",
       "createdAt": "2023-06-14T21:37:40Z",
-      "updatedAt": "2023-06-14T21:40:24Z",
+      "updatedAt": "2023-06-16T22:54:58Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "bc-tilde-and-terms",
-      "headRefOid": "9819b5d29b2dd761a13bd81dc3fc0b28ea42398e",
+      "headRefOid": "051d0f5316baf2a13a09464860fb4837ea79fe87",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -29508,7 +29571,7 @@
     {
       "number": 294,
       "id": "PR_kwDOHTmVzM5TChvG",
-      "title": "merge processing rules",
+      "title": "merge processing rules for the wallet and the verifier",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/294",
       "state": "OPEN",
       "author": "Sakurann",
@@ -29517,18 +29580,33 @@
       "labels": [],
       "body": "changes.\r\n- created a common sd-jwt verification section\r\n- wallet processing section talks only about presentation creation\r\n- verifier processing section talks only about key binding JWT processing and refers to a common sd-jwt verification section\r\n\r\nNote that the terminology is new - based on the PR that @bc-pi is doing for issue #254 (probably not touching these sections in your PR might be the best to minimize conflict, Brian, or I can push later to your branch - wanted to do this PR while I had the idea fresh in my head). I used `issuer-signed JWT` as a placeholder. ",
       "createdAt": "2023-06-14T22:35:31Z",
-      "updatedAt": "2023-06-14T22:36:21Z",
+      "updatedAt": "2023-06-15T19:35:20Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "consolidating-verification",
-      "headRefOid": "fe8695fe0563c1e19b58e50c209f812d76b894b2",
+      "headRefOid": "30445c307241a7154e73987e4fef15749cdfc869",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The direction of this looks good. Thanks for putting together the PR! I made just a few cleanup type comments/suggestions.  Some do touch on the terminology, but otherwise think I can avoid this section in the in-progress PR #293",
+          "createdAt": "2023-06-15T17:36:13Z",
+          "updatedAt": "2023-06-15T17:36:13Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I do think a document history bullet should be added - \"Consolidate processing rules for Holder and Verifier\"",
+          "createdAt": "2023-06-15T19:35:19Z",
+          "updatedAt": "2023-06-15T19:35:19Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOHTmVzM5YPTQQ",
@@ -29547,6 +29625,186 @@
               "body": "this line now applies to the wallets too and thereby addresses issue #280 ",
               "createdAt": "2023-06-14T22:36:20Z",
               "updatedAt": "2023-06-14T22:36:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YTfcS",
+          "commit": {
+            "abbreviatedOid": "fe8695f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-15T12:55:43Z",
+          "updatedAt": "2023-06-15T12:55:44Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "This draft doesn't use the term Wallet anywhere else. Change to Holder for consistency. \r\n```suggestion\r\nUpon receiving an SD-JWT, the Holders and the Verifiers MUST ensure that\r\n```",
+              "createdAt": "2023-06-15T12:55:44Z",
+              "updatedAt": "2023-06-15T12:58:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YTxzC",
+          "commit": {
+            "abbreviatedOid": "fe8695f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-15T13:28:38Z",
+          "updatedAt": "2023-06-15T13:28:38Z",
+          "comments": [
+            {
+              "originalPosition": 87,
+              "body": "Try and align with the coming terminology consolidation.  \r\n```suggestion\r\n 3. Assemble the SD-JWT for Presentation, including the selected Disclosures and, if applicable, the Key Binding JWT.\r\n```",
+              "createdAt": "2023-06-15T13:28:38Z",
+              "updatedAt": "2023-06-15T13:28:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YT6Bd",
+          "commit": {
+            "abbreviatedOid": "fe8695f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-15T13:42:09Z",
+          "updatedAt": "2023-06-15T13:42:09Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "There are four instances of \"the Verifier MUST reject the Presentation\" that are now in the common verification steps and need to be generalized to not refer to the Verifier.  I think \"the Presentation MUST be rejected\" can work as a replacement. ",
+              "createdAt": "2023-06-15T13:42:09Z",
+              "updatedAt": "2023-06-15T13:42:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YV3Mt",
+          "commit": {
+            "abbreviatedOid": "20193b1"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-15T17:54:42Z",
+          "updatedAt": "2023-06-15T18:01:19Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "good call. thanks",
+              "createdAt": "2023-06-15T17:54:42Z",
+              "updatedAt": "2023-06-15T18:01:20Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "good point - will apply.",
+              "createdAt": "2023-06-15T17:55:08Z",
+              "updatedAt": "2023-06-15T18:01:20Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "changed to `sd-jwt must be rejected` because this section is not only about presentation..",
+              "createdAt": "2023-06-15T18:01:16Z",
+              "updatedAt": "2023-06-15T18:01:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YWDCm",
+          "commit": {
+            "abbreviatedOid": "fe8695f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-15T18:29:13Z",
+          "updatedAt": "2023-06-15T18:29:13Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "> not only about presentation\r\n\r\nRight! Good point. ",
+              "createdAt": "2023-06-15T18:29:13Z",
+              "updatedAt": "2023-06-15T18:29:13Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 296,
+      "id": "PR_kwDOHTmVzM5TDxnf",
+      "title": "add a section with public keys for validation",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/296",
+      "state": "OPEN",
+      "author": "Sakurann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "addresses Issue #241.",
+      "createdAt": "2023-06-15T06:17:48Z",
+      "updatedAt": "2023-06-15T12:44:24Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "add-pub-keys",
+      "headRefOid": "78880fbd6a5fb3005f26a3b6a47ec446f5458cb3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "The `w3c-vc` example currently uses a different key. We should call that out or change the example to the default key. I think that having one example with a different key (type) doesn't hurt, so we should call out that this example uses a different key.",
+          "createdAt": "2023-06-15T06:47:50Z",
+          "updatedAt": "2023-06-15T06:47:50Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> The `w3c-vc` example currently uses a different key. We should call that out or change the example to the default key. I think that having one example with a different key (type) doesn't hurt, so we should call out that this example uses a different key.\r\n\r\nEither way, the holder's public key is already available in the payload of the example SD-JWTs. So it doesn't need to be and shouldn't be included here. ",
+          "createdAt": "2023-06-15T12:44:23Z",
+          "updatedAt": "2023-06-15T12:44:23Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5YTUAq",
+          "commit": {
+            "abbreviatedOid": "78880fb"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-06-15T12:32:11Z",
+          "updatedAt": "2023-06-15T12:37:26Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "This key doesn't have line wraps within values.\r\n\r\n```suggestion\r\nThe following Elliptic Curve public key, represented in JWK format, can be used to validate the Issuer signatures in the above examples:\r\n```",
+              "createdAt": "2023-06-15T12:32:11Z",
+              "updatedAt": "2023-06-15T12:37:26Z"
+            },
+            {
+              "originalPosition": 27,
+              "body": "The holder public keys can already be found in the example content in the `cnf` claim so don't need to be here.\r\n```suggestion\r\n\r\n```",
+              "createdAt": "2023-06-15T12:34:11Z",
+              "updatedAt": "2023-06-15T12:37:26Z"
             }
           ]
         }
