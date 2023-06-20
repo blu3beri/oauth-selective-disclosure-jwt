@@ -171,7 +171,7 @@ Table of Contents
    the transaction at hand.  SD-JWTs defined in this document enable
    such selective disclosure of JWT claims.
 
-   One example of a multi-use JWT is a verifiable credential, an issuer-
+   One example of a multi-use JWT is a verifiable credential, an Issuer-
    signed credential that contains the claims about a subject, and whose
    authenticity can be cryptographically verified.
 
@@ -834,8 +834,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.xYVnvh3iEgn2SVWHktcZn
-   WyXdpsLt8z5xVpfAJDz9HnDrsYhNkCdU_jV5K8SeTEe0oR9KIYrZvLXlhB1Bmr7zw
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.27-4M8cwkhm2oomWNYU5I
+   RvxKG2pdk0Yx612Siby3ihgcZG7SfJnzT1TgfH1uRJbSsQtwJJY9F0rYyiqO1epwQ
 
 5.6.  Decoy Digests
 
@@ -1171,8 +1171,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.xYVnvh3iEgn2SVWHktcZn
-   WyXdpsLt8z5xVpfAJDz9HnDrsYhNkCdU_jV5K8SeTEe0oR9KIYrZvLXlhB1Bmr7zw~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.27-4M8cwkhm2oomWNYU5I
+   RvxKG2pdk0Yx612Siby3ihgcZG7SfJnzT1TgfH1uRJbSsQtwJJY9F0rYyiqO1epwQ~Wy
    IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
    HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
    dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -1268,7 +1268,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1687226377
+     "iat": 1687232840
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1276,8 +1276,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODcyMjYzNzd9.Axg-eMUc5ItrKmA2MYloilOvBY0qL_jTNMhtQgN-l3_KRjHazX
-   bpbeku5HQVNpboz_ZLfCQ-k-NdNKqVZ9jKiw
+   6IDE2ODcyMzI4NDB9.9yu39p4zVS8oGrAgxV3w2VBbpTZRTz0N2ez-S7HWlfRlhsaBYf
+   MP46p4CvpVH3ocGqkI2NUCoq_f2gkN-0uNbQ
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1314,8 +1314,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.xYVnvh3iEgn2SVWHktcZn
-   WyXdpsLt8z5xVpfAJDz9HnDrsYhNkCdU_jV5K8SeTEe0oR9KIYrZvLXlhB1Bmr7zw~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.27-4M8cwkhm2oomWNYU5I
+   RvxKG2pdk0Yx612Siby3ihgcZG7SfJnzT1TgfH1uRJbSsQtwJJY9F0rYyiqO1epwQ~Wy
    JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
    ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
    jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -1323,8 +1323,8 @@ Table of Contents
    jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
    IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
    6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-   yIiwgImlhdCI6IDE2ODcyMjYzNzd9.Axg-eMUc5ItrKmA2MYloilOvBY0qL_jTNMhtQg
-   N-l3_KRjHazXbpbeku5HQVNpboz_ZLfCQ-k-NdNKqVZ9jKiw
+   yIiwgImlhdCI6IDE2ODcyMzI4NDB9.9yu39p4zVS8oGrAgxV3w2VBbpTZRTz0N2ez-S7
+   HWlfRlhsaBYfMP46p4CvpVH3ocGqkI2NUCoq_f2gkN-0uNbQ
 
 6.  Verification and Processing
 
@@ -1332,31 +1332,31 @@ Table of Contents
 
    Upon receiving an SD-JWT, a Holder or a Verifier MUST ensure that
 
-   *  the issuer-signed JWT is valid, i.e., it is signed by the Issuer
+   *  the Issuer-signed JWT is valid, i.e., it is signed by the Issuer
       and the signature is valid, and
 
    *  all Disclosures are correct, i.e., their digests are referenced in
-      the issuer-signed JWT.
+      the Issuer-signed JWT.
 
    The Holder or the Verifier MUST perform the following (or equivalent)
    steps when receiving an SD-JWT:
 
-   1.  Separate the SD-JWT into the issuer-signed JWT and the
+   1.  Separate the SD-JWT into the Issuer-signed JWT and the
        Disclosures (if any).
 
-   2.  Validate the issuer-signed JWT:
+   2.  Validate the Issuer-signed JWT:
 
        1.  Ensure that a signing algorithm was used that was deemed
            secure for the application.  Refer to [RFC8725], Sections 3.1
            and 3.2 for details.  The none algorithm MUST NOT be
            accepted.
 
-       2.  Validate the signature over the issuer-signed JWT.
+       2.  Validate the signature over the Issuer-signed JWT.
 
        3.  Validate the Issuer and that the signing key belongs to this
            Issuer.
 
-       4.  Check that the issuer-signed JWT is valid using nbf, iat, and
+       4.  Check that the Issuer-signed JWT is valid using nbf, iat, and
            exp claims, if provided in the SD-JWT, and not selectively
            disclosed.
 
@@ -1371,7 +1371,7 @@ Table of Contents
            1.  Calculate the digest over the base64url-encoded string as
                described in Section 5.3.
 
-       2.  (*) Identify all embedded digests in the issuer-signed JWT as
+       2.  (*) Identify all embedded digests in the Issuer-signed JWT as
            follows:
 
            1.  Find all objects having an _sd key that refers to an
@@ -1418,7 +1418,7 @@ Table of Contents
        5.  Remove all array elements for which the digest was not found
            in the previous step.
 
-       6.  Remove all _sd keys and their contents from the issuer-signed
+       6.  Remove all _sd keys and their contents from the Issuer-signed
            JWT payload.
 
        7.  Remove the claim _sd_alg from the SD-JWT payload.
@@ -1590,8 +1590,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "EI8-pc5F272AOlVFB8rEwFp2HEo-zPfyOrRGae9wOY3YYU_l5xBu
-       656OczU19k5UKIN2WJY4fm-aJVFSaUEKQQ",
+     "signature": "5hJLP9tuds7A3vwryPgf487CmSHmY-0dHY-QqkR-T_ErBwNgYJno
+       8CO4M4AAqtBG1NSCXM9REGEBgharpQdJ3A",
      "disclosures": [
        "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
          d",
@@ -1630,8 +1630,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "EI8-pc5F272AOlVFB8rEwFp2HEo-zPfyOrRGae9wOY3YYU_l5xBu
-       656OczU19k5UKIN2WJY4fm-aJVFSaUEKQQ",
+     "signature": "5hJLP9tuds7A3vwryPgf487CmSHmY-0dHY-QqkR-T_ErBwNgYJno
+       8CO4M4AAqtBG1NSCXM9REGEBgharpQdJ3A",
      "disclosures": [
        "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
          d",
@@ -1643,8 +1643,8 @@ Table of Contents
      ],
      "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
        I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-       lmaWVyIiwgImlhdCI6IDE2ODcyMjYzNzd9.JlTGMXRkqij3fHtSl33FrLq1_0ky3
-       4OijvXWwejas2TdPTM6B8lL-zGm74GH4_ksj69M-7Ad7tkpv-rjpgMxUQ"
+       lmaWVyIiwgImlhdCI6IDE2ODcyMzI4NDB9.EciAuCU0aqEaIi6JYsTCkrm_5QGxL
+       CB-ZhmU63KxHr0P6u0JbrmcXpT4GlF-vPl7Uw6kiAYCkYpKX_YZw7Vn2A"
    }
 
 9.  Security Considerations
@@ -2399,8 +2399,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.q7vwOa1F_HHLwixwbKHkDrZPo2
-   tf75EgMD9b9OVEjNPIHM6ify1AV_6XuccZqexSRSVL-4UIGeKCdvYQE8XVog~WyJHMDJ
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.YpgKwS6xMDXqnesRWqYP_WFGcA
+   TfAD4lq1_9s_OZgwT9y9Icuhj5pbJgky9JhWwrW-ZFUL9s9jQegQWacv7bFA~WyJHMDJ
    OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
    a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 
@@ -2701,9 +2701,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
    jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
    WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
    EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.FxGHwiHjO
-   Ry17viaMoTY6VYfPJH_ityG8zK-aPvL--8RQmvn8KasNo4k1bi83Hjot78eiPUUSJyDG
-   tzTXiMJCw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.0Qh9AEuuC
+   qnbNAJUD-42T2JVyG-JCDzISZ8Zmw6-YJJUaiaiHj_e7Okvt4NO8O8IZ9fQEf_9WKyq5
+   B_bxJphqg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
    0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
    3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
    PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -3250,16 +3250,16 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
    nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
    ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-   0U2dDRqVDlGMkhaUSJ9fX0.mjynIS17_RUU_oUDnpkNC0LP2hJzhuz9PqygrADKlLafB
-   saIrd164EZL-h4rX-KCxXHuoBFX6vvIjpPBk2XZjg~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   0U2dDRqVDlGMkhaUSJ9fX0.hbMakG_vt7FPslS-bM5CM5ptO8lvEDU-Z0c4SZb4Eq3cA
+   wFj3OasnkczoJlw593UoZHT6SlwOGLJpJ019eXUPQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
    ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
    mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
    DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
    M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
    IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
    9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyMjYzNzd9.pc4Zf2q3Uok6_7i5HJ75uNn8G
-   9xiyfahx0SgVHgkdL4QFonxQmS8GEK8Dzgn0i6HH-DexOEEII6pn9L4pvBaPA
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyMzI4NDB9.LBu9TEGPJuYz7VtF3FuV5nD9T
+   kpre5AsDYt_tgjOMzMPMHsCuvHMEL9zgRRksTd_U4_CVuS4NjrC5foAkL6mEw
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -3424,16 +3424,30 @@ Appendix C.  Document History
 
    [[ To be removed from the final specification ]]
 
-   -05 * Consolidate processing rules for Holder and Verifier * Add
-   support for selective disclosure of array elements.  * Use the term
-   Key Binding rather than Holder Binding * Defined the structure of the
-   Key Binding JWT * Added a JWS JSON Serialization * Added initial IANA
-   media type and structured suffix registration requests * Added
-   recommendation for explicit typing of SD-JWTs * Added considerations
-   around forwarding credentials * Removed Example 2b and merged the
-   demo of decoy digests into Example 2a * Updated title to be more
-   inclusive of JWS with JSON and added some corresponding text to the
-   Abstract and Intro
+   -05
+
+   *  Consolidate processing rules for Holder and Verifier
+
+   *  Add support for selective disclosure of array elements.
+
+   *  Use the term Key Binding rather than Holder Binding
+
+   *  Defined the structure of the Key Binding JWT
+
+   *  Added a JWS JSON Serialization
+
+   *  Added initial IANA media type and structured suffix registration
+      requests
+
+   *  Added recommendation for explicit typing of SD-JWTs
+
+   *  Added considerations around forwarding credentials
+
+   *  Removed Example 2b and merged the demo of decoy digests into
+      Example 2a
+
+   *  Updated title to be more inclusive of JWS with JSON and added some
+      corresponding text to the Abstract and Intro
 
    -04
 
