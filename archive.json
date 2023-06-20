@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-18T01:14:06.479412+00:00",
+  "timestamp": "2023-06-20T01:03:21.244222+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -7623,7 +7623,7 @@
       "labels": [],
       "body": "https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.3-2\r\n> The data format for sending the SD-JWT and the Disclosures to the Holder MUST be a series of base64url-encoded values, each separated from the next by a single tilde ('~') character as follows\r\n\r\nThe tilde is definitely very innovative, but it still introduces interesting mapping challenge. Is there a reason why the Disclosures cannot be signed? If there is no reason to NOT sign the Disclosures, then I do propose an alternative design.\r\n\r\nThere could be a `Holder Disclosed VC` or so to **aggregate** the `Issuer-Issued Disclosure` AND `SD-JWT`. This will fit into the normal way of treating VCs, stored as is and queried through VP exchange.\r\n\r\nIssuer-Issued Disclosures in could be a list.\r\nSD-JWT would be embedded JWT, aka \"raw\" JWT inside JWT.\r\n\r\nJWT in JWT will incur size penalty. If the size of the SD-JWT is an issue, it could be issued in binary presentation. I still would propose to take the size impact.\r\n\r\n---\r\nEdit: removed parsing parts as it will just be interesting mapping challenge",
       "createdAt": "2023-06-13T13:22:23Z",
-      "updatedAt": "2023-06-16T05:34:18Z",
+      "updatedAt": "2023-06-19T17:39:47Z",
       "closedAt": null,
       "comments": [
         {
@@ -7723,6 +7723,27 @@
           "body": "Hi all,\r\n\r\nI'm happy to see such a vibrant community, with multiple angles, thank you all for contributing into brainstorming. The SD-JWT design is great, and would definitely work, but the issue is open because I do think that it could be even better.\r\n\r\nThe section 7 also introduces the original issue of double encoding, which is why the tilde exists in first place. Luckily the JWS Compacted serialization is not the only option so I crafted the small examples for the [JWS Unencoded Payload](https://www.rfc-editor.org/rfc/rfc7797) WITH JWS Flattened serialization.\r\n\r\nThe actual structure for the wrapper can be anything, it contains SD-JWT as is (no double encoding), the Disclosures are signed, and the thing do not need new a content-type. The JWS Flattened expects \"string\" output and byte input, thus the JSON object we are carrying must be encoded to be compatible. I have chosen JSON serialisation, aka stringifying the JSON object in this case. Feel free to propose amendments, alternatives or deeper data structures. The data structures can also be used to solve the disclosures mapping, as with this we have real data structure to express information. If there is a need to transfer this information over URI, it can be made URI compatible through normal encoding practises (which skips base64url, thus there is no double encoding for sd-jwt).\r\n\r\nThe Issuance \"wrapper\": replacing tilde and preserving everything else.\r\n```javascript\r\n{\r\n  signature: 'u0OKqXBRq_hXhcKkmnZ5XGi3Lm9t2-2RpcjdGkocwo2u7bpCE0nJZ92DsBmCay-ZZij5lO5e6Ebk9WoG1zJsPg',\r\n  payload: '{\"sd\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwiaWQiOiI5YmNjOWFhYS0zYmRjLTQ0MTQtOTQ1MC03MzljMjk1Yzc1MmMiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiU3R1ZGVudElEIl0sImlzc3VlciI6ImRpZDplYnNpOnp2SFdYMzU5QTNDdmZKbkNZYUFpQWRlIiwidmFsaWRGcm9tIjoiMjAyMy0wMS0wMVQwMDowMDowMFoiLCJ2YWxpZFVudGlsIjoiMjAzMy0wMS0wMVQwMDowMDowMFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6Li4uIiwiX3NkIjpbInpTbUltV0hQSnpRN1J4OFpHMElZaFVGMU96ajhmMTd3REtKR2h4VWtyZFUiLCJUNFJuRG0xY2xWTENhdjJNcnNlbDZzTk16OHBxR0NlTXJycF9fWXJWXy13IiwiU0ZRVGpyOTFJa1BpNmJldFEwRVlzNXJkSjJUYk1lc0pHZnRGNmg3aGpUQSJdLCJzdHVkZW50Ijp0cnVlfX0.qbKCK100Pqg1fJPKS1QXmI4u1bwPQSMewMQxzD19sf4qgk_hIWQRBy4BTbADYrQa30ct8no0dhV--PZREkjf5A\",\"disclosures\":[\"WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImZhbWlseU5hbWUiLCAiQ2Fycm9sbCJd\",\"WyJlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImdpdmVuTmFtZSIsICJMZXdpcyJd\",\"WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImJpcnRoRGF0ZSIsICIxODMyLTAxLTI3Il0\"]}',\r\n  protected: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19'\r\n}\r\n```\r\n\r\nJWK keys for validation\r\n```javascript\r\n{\r\n  kty: \"EC\",\r\n  d: \"z617Hhdusxqt3KN98NHvFtWTpSW_sq2cCZpNSzu8m88\",\r\n  crv: \"P-256\",\r\n  x: \"ZYE6uX3XvQ9rLc6s0eeo2YiOM2VfwrEZOZXzTOthcHE\",\r\n  y: \"k-t1bfe-MmmXWQ0QaxK3uJMYlMNkJHYGUSLpxP9RQak\"\r\n}\r\n```\r\n\r\nIt is also good to refresh the memory that URI/URL components do not use content-type at all in HTTP, the media-type is meant for the HTTP body only. The SD-JWT + Disclosures with tilde will break all existing JWT parsers when transported outside of HTTP body, or the processing must be forced into application logic and the tilde pre-processing must be handled there beforehand.\r\n\r\n----\r\nEdit: re-order and add json stringify clarification.",
           "createdAt": "2023-06-15T20:31:08Z",
           "updatedAt": "2023-06-16T05:34:18Z"
+        },
+        {
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "body": "@alenhorvat I'm not sure I fully understand your proposal. You say:\r\n\r\n> JSON serialised JWS works as described. If disclosures need to be signed over, they can also be moved to the protected header\r\n\r\nThen the signature would break once the Holder removes any Disclosures.\r\n\r\n@mtaimela As I said above, we are not concerned about the transfer of SD-JWTs over actual URLs. We are concerned about places where the character set is limited to URL-safe characters like an OAuth bearer token. That would require another round of base64url-encoding the proposed format.\r\n\r\nAnd while I do appreciate the input of both of you and your thoughts about these alternative formats, let me address two important points:\r\n\r\n - We're not breaking the JWS parser in any way. The current format is just not meant to be fed into an JWS parser directly, and that is perfectly fine. The JWS parser in the current format is meant to run after extracting the various parts.\r\n - SD-JWT has gained a lot of momentum in the past months and there is a lot of \"running code\" already. We are not willing to break existing implementations in a substantial way, and any breaking change must provide tangible advantages. In its current form, SD-JWT provides an extremely simple-to-understand, compact format that serves many use cases really well. Yes, the disclosures are not signed over, but I do not think that this is a good enough reason to completely change the format. I'm happy to discuss what is defined in Section 7 and 8 (as the less-used alternatives to the current default format), and I'm happy to discuss a hash over the disclosures (although I'm still not convinced), but I honestly do not see the default format changing substantially in the future unless there is a working group consensus to do so.",
+          "createdAt": "2023-06-19T16:57:39Z",
+          "updatedAt": "2023-06-19T16:57:39Z"
+        },
+        {
+          "author": "alenhorvat",
+          "authorAssociation": "NONE",
+          "body": "> @alenhorvat I'm not sure I fully understand your proposal. You say:\r\n> \r\n> > JSON serialised JWS works as described. If disclosures need to be signed over, they can also be moved to the protected header\r\n> \r\n> Then the signature would break once the Holder removes any Disclosures.\r\n> \r\n> @mtaimela As I said above, we are not concerned about the transfer of SD-JWTs over actual URLs. We are concerned about places where the character set is limited to URL-safe characters like an OAuth bearer token. That would require another round of base64url-encoding the proposed format.\r\n> \r\n> And while I do appreciate the input of both of you and your thoughts about these alternative formats, let me address two important points:\r\n> \r\n> * We're not breaking the JWS parser in any way. The current format is just not meant to be fed into an JWS parser directly, and that is perfectly fine. The JWS parser in the current format is meant to run after extracting the various parts.\r\n> * SD-JWT has gained a lot of momentum in the past months and there is a lot of \"running code\" already. We are not willing to break existing implementations in a substantial way, and any breaking change must provide tangible advantages. In its current form, SD-JWT provides an extremely simple-to-understand, compact format that serves many use cases really well. Yes, the disclosures are not signed over, but I do not think that this is a good enough reason to completely change the format. I'm happy to discuss what is defined in Section 7 and 8 (as the less-used alternatives to the current default format), and I'm happy to discuss a hash over the disclosures (although I'm still not convinced), but I honestly do not see the default format changing substantially in the future unless there is a working group consensus to do so.\r\n\r\nHi, @danielfett. Thank you for the swift reply. JSON serialisation supports multiple signatures. First protects the SD-JWT, as today, second one protects the whole payload.\r\n\r\n> We are concerned about places where the character set is limited to URL-safe characters like an OAuth bearer token. That would require another round of base64url-encoding the proposed format.\r\n\r\nThis sounds like an interesting use case. Can you elaborate in which scenarios SD-JWTs would be transferred as bearer tokens?\r\n\r\n> We're not breaking the JWS parser in any way. The current format is just not meant to be fed into an JWS parser directly, and that is perfectly fine. The JWS parser in the current format is meant to run after extracting the various parts.\r\n\r\nMy concern is that in the limit, where noting is hidden, extra 'tilde' is still required and with it another serialisation - even though that doesn't have to be the case. We can (at least in our use cases) always go with JSON serialisation and leave the compact for the cases where there's no other option.",
+          "createdAt": "2023-06-19T17:19:48Z",
+          "updatedAt": "2023-06-19T17:19:48Z"
+        },
+        {
+          "author": "mtaimela",
+          "authorAssociation": "NONE",
+          "body": "Thank you @danielfett for the reply. \r\n\r\n> We're not breaking the JWS parser in any way\r\n\r\nRequiring a new Media-Type for the parsing makes it very explicit that it is not compliant with existing ones. URL components cannot carry Media-Types, thus it is a burden for the implementors to do this kind of check for one specific data structure. This data structure requires new types in OID4 standards, as it is not jwt_vc_json or jwt_vc_ld, but \"jwt_sd_tilde\"?. A pattern where each data structure defines own media-types, external types, etc is not sustainable and ask you again to reconsider this from the implementors point of view.\r\n\r\n> * SD-JWT has gained a lot of momentum in the past months and there is a lot of \"running code\" already. We are not willing to break existing implementations in a substantial way, and any breaking change must provide tangible advantages\r\n\r\nI'm actually not looking to break things, just to make them more aligned with existing patterns and target implementors native tooling. One of the recent amendments, while this conversation has been carried, is extension of \"JWS Serialisation\". It doesn't break anything and also touches the SD-JWT.\r\n\r\n",
+          "createdAt": "2023-06-19T17:39:31Z",
+          "updatedAt": "2023-06-19T17:39:47Z"
         }
       ]
     },
@@ -29554,19 +29575,136 @@
       "labels": [],
       "body": " for #254 \r\n\r\nThe terms \"Combined Format for Issuance\" and \"Combined Format for Presentation'' go away and the whole structure, issued or presented, can be called an SD-JWT. To align the two formats, the last Disclosure will always be followed by a `~` (tilde) character (currently the Combined Format for Issuance does not have the trailing tilde). When key binding is required for presentation, a key binding JWT will be appended to the end of the whole thing after the trailing tilde. \r\n\r\nNo changes being made to [Sec 6. Verification and Processing](https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc-tilde-and-terms/draft-ietf-oauth-selective-disclosure-jwt.html#name-verification-and-processing) in this PR due to expected changes coming from PR #294. \r\n\r\n\r\nEditor's copy: https://drafts.oauth.net/oauth-selective-disclosure-jwt/bc-tilde-and-terms/draft-ietf-oauth-selective-disclosure-jwt.html\r\n",
       "createdAt": "2023-06-14T21:37:40Z",
-      "updatedAt": "2023-06-16T22:54:58Z",
+      "updatedAt": "2023-06-19T19:09:45Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "bc-tilde-and-terms",
-      "headRefOid": "051d0f5316baf2a13a09464860fb4837ea79fe87",
+      "headRefOid": "7ec2dba3b84418d55ecb12aabd18de6d7cdf6394",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5YmsZS",
+          "commit": {
+            "abbreviatedOid": "869e169"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks for preparing this! I left a few remarks.",
+          "createdAt": "2023-06-19T16:15:12Z",
+          "updatedAt": "2023-06-19T16:25:10Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "```suggestion\r\nIn an SD-JWT, claims can be hidden, but cryptographically\r\n```\r\nIn preparation for potentially calling the first part Issuer-Signed JWT or something similar.",
+              "createdAt": "2023-06-19T16:15:12Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nthe Holder, the Issuer includes the cleartext counterparts of all hidden\r\nclaims, the so-called Disclosures, outside the signed part of the SD-JWT.\r\n```",
+              "createdAt": "2023-06-19T16:16:35Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n - a format for data associated with the JWT that enables selectively disclosing those claims,\r\n```",
+              "createdAt": "2023-06-19T16:17:01Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\n:  A composite structure, consisting of an Issuer-signed JWT (JWS, [@!RFC7515]) and Disclosures,\r\n  that supports selective disclosure as defined in this document and can contain both regular claims and digests of selectively-disclosable claims.\r\n```",
+              "createdAt": "2023-06-19T16:18:06Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "```suggestion\r\n:  An entity that requests, checks, and extracts the claims from an SD-JWT with its respective Disclosures.\r\n```",
+              "createdAt": "2023-06-19T16:18:36Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 159,
+              "body": "I propose to call this section something like simply \"SD-JWT\" or \"SD-JWT Structure\" and the to describe in one section both issuance and presentation. I would hope that the following structure works:\r\n\r\n- An SD-JWT is structured like this: `<Issuer-signed JWT>~<Disclosure 1>~<Disclosure 2>~...~<Disclosure M>~<optional Key Binding JWT>`\r\n- In issuance, no KB JWT, but all disclosures\r\n- Here is an example for issuance:\r\n- In presentation, maybe KB JWT, but only selected disclosures.\r\n- Here is an example for presentation:\r\n\r\nWDYT?",
+              "createdAt": "2023-06-19T16:22:55Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            },
+            {
+              "originalPosition": 159,
+              "body": "(Maybe both examples pushed towards the end of that section.)",
+              "createdAt": "2023-06-19T16:23:32Z",
+              "updatedAt": "2023-06-19T16:25:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5Ym0D6",
+          "commit": {
+            "abbreviatedOid": "fe13837"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-19T16:45:24Z",
+          "updatedAt": "2023-06-19T16:45:24Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nclaims, the so-called Disclosures, outside the signed part of the SD-JWT.\r\n```",
+              "createdAt": "2023-06-19T16:45:24Z",
+              "updatedAt": "2023-06-19T16:45:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5Ym1hG",
+          "commit": {
+            "abbreviatedOid": "869e169"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-19T16:51:05Z",
+          "updatedAt": "2023-06-19T16:51:05Z",
+          "comments": [
+            {
+              "originalPosition": 159,
+              "body": "> WDYT?\r\n\r\nThat was kinda what I was envisioning going into the editing but I got a little hesitant on making the bigger change of combing sections.  But I think what you're proposing is probably better so I'll take a pass at it. \r\n\r\n",
+              "createdAt": "2023-06-19T16:51:05Z",
+              "updatedAt": "2023-06-19T16:51:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YnffQ",
+          "commit": {
+            "abbreviatedOid": "869e169"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-19T19:09:01Z",
+          "updatedAt": "2023-06-19T19:09:01Z",
+          "comments": [
+            {
+              "originalPosition": 159,
+              "body": "Tried to do that in 7ec2dba3b84418d55ecb12aabd18de6d7cdf6394 ",
+              "createdAt": "2023-06-19T19:09:01Z",
+              "updatedAt": "2023-06-19T19:09:01Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 294,
@@ -29580,7 +29718,7 @@
       "labels": [],
       "body": "changes.\r\n- created a common sd-jwt verification section\r\n- wallet processing section talks only about presentation creation\r\n- verifier processing section talks only about key binding JWT processing and refers to a common sd-jwt verification section\r\n\r\nNote that the terminology is new - based on the PR that @bc-pi is doing for issue #254 (probably not touching these sections in your PR might be the best to minimize conflict, Brian, or I can push later to your branch - wanted to do this PR while I had the idea fresh in my head). I used `issuer-signed JWT` as a placeholder. ",
       "createdAt": "2023-06-14T22:35:31Z",
-      "updatedAt": "2023-06-15T19:35:20Z",
+      "updatedAt": "2023-06-19T22:20:40Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
@@ -29739,6 +29877,70 @@
               "updatedAt": "2023-06-15T18:29:13Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YmvON",
+          "commit": {
+            "abbreviatedOid": "30445c3"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks you for creating the PR! I left a few minor comments.",
+          "createdAt": "2023-06-19T16:25:54Z",
+          "updatedAt": "2023-06-19T16:31:45Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nUpon receiving an SD-JWT, a Holder or a Verifier MUST ensure that\r\n```",
+              "createdAt": "2023-06-19T16:25:55Z",
+              "updatedAt": "2023-06-19T16:31:45Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThe Holder or the Verifier MUST perform the following (or equivalent) steps when receiving\r\n```",
+              "createdAt": "2023-06-19T16:26:18Z",
+              "updatedAt": "2023-06-19T16:31:45Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\n 1. Separate the SD-JWT into the issuer-signed JWT, the Disclosures (if any), and the Key Binding JWT (if present). If a Key Binding JWT is received by a Holder, it MUST be ignored.\r\n```\r\nNot sure if this is the right rule, but we should probably say *something* on this.",
+              "createdAt": "2023-06-19T16:27:58Z",
+              "updatedAt": "2023-06-19T16:31:46Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "These should be applicable only to the Verifier. If we leave these here it sounds as if the Holder is supposed to modify the signed SD-JWT before passing it on to the Verifier.",
+              "createdAt": "2023-06-19T16:30:04Z",
+              "updatedAt": "2023-06-19T16:31:46Z"
+            },
+            {
+              "originalPosition": 112,
+              "body": "I think a reference to the steps above instead of these two would be sufficient.",
+              "createdAt": "2023-06-19T16:31:16Z",
+              "updatedAt": "2023-06-19T16:31:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YoYzl",
+          "commit": {
+            "abbreviatedOid": "30445c3"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-19T22:20:39Z",
+          "updatedAt": "2023-06-19T22:20:39Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "We definitely don't want to suggest that the Holder is supposed to modify the signed SD-JWT before passing it on to the Verifier. But these steps are conceptually applicable to the Holder too so it can access the \"processed SD-JWT payload.\" \r\n\r\nThere are also a few steps intertwined above that have \"Insert [... ] a new claim\" or \"Replace the array element\" or \"Remove all\" that would be awkward to pull out into the Verifier only part.   Can we instead somewhere/somehow say that the steps that suggest changing the payload aren't actually touching the SD-JWT payload itself but rather processing the payload content that will be provided to the application? \r\n\r\n",
+              "createdAt": "2023-06-19T22:20:39Z",
+              "updatedAt": "2023-06-19T22:20:39Z"
+            }
+          ]
         }
       ]
     },
@@ -29754,7 +29956,7 @@
       "labels": [],
       "body": "addresses Issue #241.",
       "createdAt": "2023-06-15T06:17:48Z",
-      "updatedAt": "2023-06-15T12:44:24Z",
+      "updatedAt": "2023-06-19T16:32:56Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
@@ -29807,6 +30009,61 @@
               "updatedAt": "2023-06-15T12:37:26Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5YmxD7",
+          "commit": {
+            "abbreviatedOid": "78880fb"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "LGTM with Brian's proposed changes.",
+          "createdAt": "2023-06-19T16:32:56Z",
+          "updatedAt": "2023-06-19T16:32:56Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 297,
+      "id": "PR_kwDOHTmVzM5TYFX_",
+      "title": "Capitalize \"Payloads\" in the title",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/297",
+      "state": "MERGED",
+      "author": "bc-pi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-06-19T20:45:42Z",
+      "updatedAt": "2023-06-19T21:23:36Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "f0bc7d5d338eee34d7684bfaac6aecdfc7d8efac",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "bc-title-no-cap",
+      "headRefOid": "8b2ca045e1c68e535f1fc3f442a8d4907a3f72cf",
+      "closedAt": "2023-06-19T21:23:35Z",
+      "mergedAt": "2023-06-19T21:23:35Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "5fc50cde9b3dd8510d56822eccfa76e38e2fa4e3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5YoKaQ",
+          "commit": {
+            "abbreviatedOid": "8b2ca04"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-19T21:06:12Z",
+          "updatedAt": "2023-06-19T21:06:12Z",
+          "comments": []
         }
       ]
     }
