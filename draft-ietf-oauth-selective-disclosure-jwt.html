@@ -1367,6 +1367,9 @@ It encompasses various applications, including but not limited to the selective 
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.4">
                 <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-example-4b-w3c-verifiable-c" class="internal xref">Example 4b - W3C Verifiable Credentials Data Model v2.0, using JSON-LD</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.5">
+                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-elliptic-curve-key-used-in-" class="internal xref">Elliptic Curve Key Used in the Examples</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
@@ -2073,8 +2076,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.XZ1Zta-GEMoG-Cdu3HSFe
-XTmNnHTsMzw5BtxE-ztIN46852HpkmFVGtW9LGivAg_S5iufCmNJPhsaZ5q4moMig
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.ZbnthfqGtAaLLe3VYjIfp
+DflBQz7m0roflkh6ZTArN8xH-FW4mIMUD2RfU7sLBkIFLT9pNEYAe8lVHveIy5oqg
 </pre><a href="#section-5.5-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2435,7 +2438,7 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1687276097
+  "iat": 1687277809
 }
 </pre><a href="#section-5.10-8" class="pilcrow">¶</a>
 </div>
@@ -2443,8 +2446,8 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <div class="lang-txt sourcecode" id="section-5.10-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODcyNzYwOTd9.BRebW0r8qlJ6piqqeJAn4I7gu4a2rNBuvWXyYR8U2fuxPy730b
-kTot5XF5rL-Gg3U6V6pyCNaSRlLew0a6j1Bg
+6IDE2ODcyNzc4MDl9.6MB6RcPCVkOatEFZ12oBFOF_2xRU1ux7eQJw_mVPdejm_z2dkb
+MwG71cDukMlP1Bs0wJaYZj7b0fZSijuuuVvA
 </pre><a href="#section-5.10-10" class="pilcrow">¶</a>
 </div>
 <p id="section-5.10-11">Whether to require Key Binding is up to the Verifier's policy,
@@ -2503,8 +2506,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.XZ1Zta-GEMoG-Cdu3HSFe
-XTmNnHTsMzw5BtxE-ztIN46852HpkmFVGtW9LGivAg_S5iufCmNJPhsaZ5q4moMig~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.ZbnthfqGtAaLLe3VYjIfp
+DflBQz7m0roflkh6ZTArN8xH-FW4mIMUD2RfU7sLBkIFLT9pNEYAe8lVHveIy5oqg~Wy
 IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
 HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
 dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -2537,8 +2540,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.XZ1Zta-GEMoG-Cdu3HSFe
-XTmNnHTsMzw5BtxE-ztIN46852HpkmFVGtW9LGivAg_S5iufCmNJPhsaZ5q4moMig~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.ZbnthfqGtAaLLe3VYjIfp
+DflBQz7m0roflkh6ZTArN8xH-FW4mIMUD2RfU7sLBkIFLT9pNEYAe8lVHveIy5oqg~Wy
 JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
 ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
 jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -2546,8 +2549,8 @@ kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
 jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
 IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
 6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-yIiwgImlhdCI6IDE2ODcyNzYwOTd9.BRebW0r8qlJ6piqqeJAn4I7gu4a2rNBuvWXyYR
-8U2fuxPy730bkTot5XF5rL-Gg3U6V6pyCNaSRlLew0a6j1Bg
+yIiwgImlhdCI6IDE2ODcyNzc4MDl9.6MB6RcPCVkOatEFZ12oBFOF_2xRU1ux7eQJw_m
+VPdejm_z2dkbMwG71cDukMlP1Bs0wJaYZj7b0fZSijuuuVvA
 </pre><a href="#section-5.11-14" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2791,8 +2794,8 @@ a JWS JSON serialized SD-JWT from an Issuer with all the respective Disclosures.
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "qknjLyJ4xQTeSQna02Exv65OtxFbzUI0ZWuERvUxg3M1Lwg2j-p4
-    kGfSruM_g8yX8b0-ktoax20qOGOJDb9V3A",
+  "signature": "8iEVgzja6REA5tNDXB38d6As-WIBewD55AY1Sraxz8eFnuFeiInh
+    PqZ2qzuEjqQyfdtCcPm3OyXX8KpIFNIE3w",
   "disclosures": [
     "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
       d",
@@ -2831,8 +2834,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "qknjLyJ4xQTeSQna02Exv65OtxFbzUI0ZWuERvUxg3M1Lwg2j-p4
-    kGfSruM_g8yX8b0-ktoax20qOGOJDb9V3A",
+  "signature": "8iEVgzja6REA5tNDXB38d6As-WIBewD55AY1Sraxz8eFnuFeiInh
+    PqZ2qzuEjqQyfdtCcPm3OyXX8KpIFNIE3w",
   "disclosures": [
     "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
       d",
@@ -2844,8 +2847,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
   ],
   "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
     I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-    lmaWVyIiwgImlhdCI6IDE2ODcyNzYwOTd9._cxKQpPKkvQEPESwoBrUtttYUWUHG
-    yTwfulu-Qc5Vwp7rwOkgGVitbkeBFrHaX5AwTRDKnc0ZlHYltiry7qhXg"
+    lmaWVyIiwgImlhdCI6IDE2ODcyNzc4MDl9.tdNfT8OQ2LwhBEOlMrl_gPs4CrT92
+    P2iJHunR_2M69PcVWDqBybW-68JGyGEQSgcCo4-OwvHkZEO-aj9C5gEKg"
 }
 </pre><a href="#section-8-7" class="pilcrow">¶</a>
 </div>
@@ -3649,8 +3652,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.NaaPKNefiboNPG1dSFxWJtgWjR
-Uo2MslY5sHmhap2vUSh0MAGXOV4qeejmzWCATrJhekf2TaeZlzu6MabTYXFA~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.-ILi1xYrvTsMAkXiyRux0gjPpq
+kMKJ5qTyVvV0ujDJCgHA0-FHXr-UwtJefRRO2eZzrMFHwOCiTS7iM2OCc1cw~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -3985,9 +3988,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.8jXyBksLi
-Vttkefo-DjDzgbity3umsZ671G1zu3uNCy1ZT7fEkqzVdWVZjBM6sac3ethzNrwP-jYy
-IDfSxjxMQ~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.zau3nBhhN
+pgeCHsOuZmMtdGBGLxGenpdaQ1GLcnPWS0HK8GvEqMR0HHFrRPlz_50lDHTZQ9WAy_0y
+KRFhTV9Yg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4561,16 +4564,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.Vd6QmFpnEdNPD1hVfxiDZnEGMRMDCFsn_YRO0ADpfIlw9
--dz0Dp9HVFgApV3E_EvKMfL_z8IKaW4ojNvyQW31A~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.JhNPugcgVjRq7-fbmE_0AzBLBWicFuz5bB52xdPfFp0fD
+T_T9gMRFLABCLiGhOPaXxohSd_SDMUs0vNZ9aodPA~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyNzYwOTd9.ocxfqofWZ9I3pxGvwnKFNj1O1
-aEXRG_uH2xqG60fzchYjuoXdYRoVU4rKCDHhJjAurCc2hAJGz2-bw4WNfEvQQ
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyNzc4MDh9.c_ZFTX0bLjhdaZQqg3dfu0Hdp
+TiRtko_2Gl-F95nzrB1ICauwVj1zWiYJWelYRIsov2BSgDjNuEYuzKrfzF-OA
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
@@ -4617,6 +4620,24 @@ aEXRG_uH2xqG60fzchYjuoXdYRoVU4rKCDHhJjAurCc2hAJGz2-bw4WNfEvQQ
 }
 </pre><a href="#appendix-A.4-42" class="pilcrow">¶</a>
 </div>
+</section>
+</div>
+<div id="elliptic-curve-key-used-in-the-examples">
+<section id="appendix-A.5">
+        <h3 id="name-elliptic-curve-key-used-in-">
+<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-elliptic-curve-key-used-in-" class="section-name selfRef">Elliptic Curve Key Used in the Examples</a>
+        </h3>
+<p id="appendix-A.5-1">The following Elliptic Curve public key, represented in JWK format, can be used to validate the Issuer signatures in the above examples:<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.5-2">
+<pre>{
+  "kty": "EC",
+  "crv": "P-256",
+  "x": "b28d4MwZMjw8-00CG4xfnn9SLMVMM19SlqZpVb_uNtQ",
+  "y": "Xv5zWwuoaTgdS6hV43yI6gBwTnjukmFQQnJ_kCxzqk8"
+}
+</pre><a href="#appendix-A.5-2" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A.5-3">The public key used to validate a Key Binding JWT can be found in the examples as the content of the <code>cnf</code> claim.<a href="#appendix-A.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
