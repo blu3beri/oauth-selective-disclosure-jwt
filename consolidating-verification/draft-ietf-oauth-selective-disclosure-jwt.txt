@@ -5,13 +5,13 @@
 Web Authorization Protocol                                       D. Fett
 Internet-Draft                                                   yes.com
 Intended status: Standards Track                               K. Yasuda
-Expires: 17 December 2023                                      Microsoft
+Expires: 22 December 2023                                      Microsoft
                                                              B. Campbell
                                                            Ping Identity
-                                                            15 June 2023
+                                                            20 June 2023
 
 
-    SD-JWT: Selective Disclosure for JWT and JWS with JSON payloads
+    SD-JWT: Selective Disclosure for JWT and JWS with JSON Payloads
             draft-ietf-oauth-selective-disclosure-jwt-latest
 
 Abstract
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 December 2023.
+   This Internet-Draft will expire on 22 December 2023.
 
 Copyright Notice
 
@@ -834,8 +834,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.kuRd7U7UrkvChJmbpN6Ms
-   drbRyWTt16G4k00dwaR_9R9PMxr4BXv_d3ysSFBEEwCbp2LHU_7WjdPc6CHZ3pu9w
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.dmKS96-W413mzBu9yldLS
+   U3JJX5vVPnH3EWcL61K1DS7cwL3J_Rddp9l8vEvB7znxdIC1dP3diyss7afC8gO6Q
 
 5.6.  Decoy Digests
 
@@ -1171,8 +1171,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.kuRd7U7UrkvChJmbpN6Ms
-   drbRyWTt16G4k00dwaR_9R9PMxr4BXv_d3ysSFBEEwCbp2LHU_7WjdPc6CHZ3pu9w~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.dmKS96-W413mzBu9yldLS
+   U3JJX5vVPnH3EWcL61K1DS7cwL3J_Rddp9l8vEvB7znxdIC1dP3diyss7afC8gO6Q~Wy
    IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
    HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
    dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -1268,7 +1268,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1686852087
+     "iat": 1687225992
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1276,8 +1276,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODY4NTIwODd9.iueIcBHQ-b7KODCSZ-qcOyYipAGZiYNt4IDSxiD8ZcdvtrbnCS
-   A4a-fI4_gfuSdoMWrcZwbmKSadTCyUXV09tA
+   6IDE2ODcyMjU5OTJ9.6wIbL58ADZlHIpZlW2dhx15S9VvyhHV_ZTK36_2TyeIjbmilBi
+   zXedUgQoo0a5IWPLdGTnaG-ZqwaBujuhXIFQ
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1314,8 +1314,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.kuRd7U7UrkvChJmbpN6Ms
-   drbRyWTt16G4k00dwaR_9R9PMxr4BXv_d3ysSFBEEwCbp2LHU_7WjdPc6CHZ3pu9w~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.dmKS96-W413mzBu9yldLS
+   U3JJX5vVPnH3EWcL61K1DS7cwL3J_Rddp9l8vEvB7znxdIC1dP3diyss7afC8gO6Q~Wy
    JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
    ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
    jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -1323,8 +1323,8 @@ Table of Contents
    jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
    IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
    6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-   yIiwgImlhdCI6IDE2ODY4NTIwODd9.iueIcBHQ-b7KODCSZ-qcOyYipAGZiYNt4IDSxi
-   D8ZcdvtrbnCSA4a-fI4_gfuSdoMWrcZwbmKSadTCyUXV09tA
+   yIiwgImlhdCI6IDE2ODcyMjU5OTJ9.6wIbL58ADZlHIpZlW2dhx15S9VvyhHV_ZTK36_
+   2TyeIjbmilBizXedUgQoo0a5IWPLdGTnaG-ZqwaBujuhXIFQ
 
 6.  Verification and Processing
 
@@ -1591,8 +1591,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "_n2-qVovhz5dZxsz7WnTs8HTiFw_OLMLHeESAE_8QdgEBASIvgUi
-       SwTOh0NBtNbOnA6LjMTUYUouPUoDu4-K3g",
+     "signature": "BmT_DlF4faRZj8lrLFQh4CRRtcQ6sNCYLZu8kCgjIefeOaCtCCMJ
+       P4hijXp5ni6QV5-LEKkoVA5B8UlJorDq6Q",
      "disclosures": [
        "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
          d",
@@ -1631,8 +1631,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "_n2-qVovhz5dZxsz7WnTs8HTiFw_OLMLHeESAE_8QdgEBASIvgUi
-       SwTOh0NBtNbOnA6LjMTUYUouPUoDu4-K3g",
+     "signature": "BmT_DlF4faRZj8lrLFQh4CRRtcQ6sNCYLZu8kCgjIefeOaCtCCMJ
+       P4hijXp5ni6QV5-LEKkoVA5B8UlJorDq6Q",
      "disclosures": [
        "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
          d",
@@ -1644,8 +1644,8 @@ Table of Contents
      ],
      "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
        I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-       lmaWVyIiwgImlhdCI6IDE2ODY4NTIwODd9.X7SEI3B5eUWrP36pkp4boPr1Zkmb7
-       ZlZVSF6CSpbHtlLwmjGGZDt8c5Tp5y5LHQ2W3kvgmOPcMsw5vVv2BJQ9g"
+       lmaWVyIiwgImlhdCI6IDE2ODcyMjU5OTJ9.mwY6H5C7nKKhQ3t9poLQrBoFZn1_a
+       2a3sI_DDCGJIUvQpqW-wXa9EpObypWkfCGrALezlk78p3Kn27kRDGE8AQ"
    }
 
 9.  Security Considerations
@@ -2400,8 +2400,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.RcDeyBG_0NDvCXwwcY6JjkbZYY
-   BSQ6MrryH5T8K8EtJsN7WBmzWO4i1cV2Cn_pKSVr5qfZ_pAQSHGLTKuHXnsQ~WyJHMDJ
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.2CfVf_bea5OWqyKxRjrADznJd4
+   Ar9kfCpEi8JBvY7ZexoD_ayrHc4PsOqvTRd47rPiXwLXIJJ3d7KuL4aUOA6w~WyJHMDJ
    OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
    a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 
@@ -2702,9 +2702,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
    jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
    WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
    EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.alAPamb3_
-   4F7qhVwoxfT_6lzhaBmF4FroYHKgD19sW1EaZzMVASKFfSth9BY1kFyilgmUkLGNTlBX
-   ITRd1xRzw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.aXX9bouJJ
+   OrDUvTIr2SjPbpAZIbHDWJ4w8QdlCkhptLTa3YRonX25tNwHMSoBqQtUrc_ey2Rb-UX0
+   K1WT_6nEg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
    0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
    3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
    PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -3251,16 +3251,16 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
    nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
    ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-   0U2dDRqVDlGMkhaUSJ9fX0.gjA5JV47rNmsFk4f3lI4QSNie9jKt1d8Ig4mujjwLD-Na
-   fdILDDJ1qR4omMcZ85JKtAopK6MolQ2W3dCgKJ-hQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   0U2dDRqVDlGMkhaUSJ9fX0.TzeuUz_9k0gWF3FC7RoQOPP_zTS1gJSh88wac2RvwIELG
+   J8X60ipd8HZnqhTeS-znNNjXLxrHKsq9LH4dt_GZQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
    ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
    mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
    DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
    M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
    IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
    9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODY4NTIwODd9.TOBYzso7rFZcH-ZPXLXyJMik3
-   2Va2traPCQt_Ktx-MgbtK7AC-GU4pPKxJq5qjMhBO98YH2eoUxJma6ev-YPvA
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyMjU5OTJ9.EiCjCoRCistnOImkeQUI_3vbA
+   1FUmE7kUn7Ewxy3rPkTvYN9f5a_0KM9H3DkU9dNKTR_IHwOLwyb9DoR7aR8Eg
 
    After the validation, the Verifier will have the following data for
    further processing:
@@ -3425,28 +3425,16 @@ Appendix C.  Document History
 
    [[ To be removed from the final specification ]]
 
-   -05
-
-   *  Add support for selective disclosure of array elements.
-
-   *  Use the term Key Binding rather than Holder Binding
-
-   *  Defined the structure of the Key Binding JWT
-
-   *  Added a JWS JSON Serialization
-
-   *  Added initial IANA media type and structured suffix registration
-      requests
-
-   *  Added recommendation for explicit typing of SD-JWTs
-
-   *  Added considerations around forwarding credentials
-
-   *  Removed Example 2b and merged the demo of decoy digests into
-      Example 2a
-
-   *  Updated title to be more inclusive of JWS with JSON and added some
-      corresponding text to the Abstract and Intro
+   -05 * Consolidate processing rules for Holder and Verifier * Add
+   support for selective disclosure of array elements.  * Use the term
+   Key Binding rather than Holder Binding * Defined the structure of the
+   Key Binding JWT * Added a JWS JSON Serialization * Added initial IANA
+   media type and structured suffix registration requests * Added
+   recommendation for explicit typing of SD-JWTs * Added considerations
+   around forwarding credentials * Removed Example 2b and merged the
+   demo of decoy digests into Example 2a * Updated title to be more
+   inclusive of JWS with JSON and added some corresponding text to the
+   Abstract and Intro
 
    -04
 
