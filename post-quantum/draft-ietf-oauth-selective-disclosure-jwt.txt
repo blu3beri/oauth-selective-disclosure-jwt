@@ -104,7 +104,7 @@ Table of Contents
    7.  Enveloping the Combined Format for Issuance and Presentation
    8.  JWS JSON Serialization
    9.  Security Considerations
-     9.1.  Mandatory signing of the Issuer-signed JWT
+     9.1.  Mandatory Signing of the Issuer-signed JWT
      9.2.  Manipulation of Disclosures
      9.3.  Entropy of the salt
      9.4.  Minimum length of the salt
@@ -833,8 +833,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.uRzvIua3C7ud_fBW6JBCU
-   VZvyrEzbUnRxPKimwUanyZ0Nj4F_9WuKfmO2xSeRnMC-PiN52GHGkhN9nZt-dqz9g
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.shUQk6Pb8wh2QIDutrhy7
+   -kYfqEoxr2F0y97BNv_J0R6iKU7Kb1-UkJpARSXv_A-gW_bkefUf_fFY_4z1Peljw
 
 5.6.  Decoy Digests
 
@@ -1170,8 +1170,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.uRzvIua3C7ud_fBW6JBCU
-   VZvyrEzbUnRxPKimwUanyZ0Nj4F_9WuKfmO2xSeRnMC-PiN52GHGkhN9nZt-dqz9g~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.shUQk6Pb8wh2QIDutrhy7
+   -kYfqEoxr2F0y97BNv_J0R6iKU7Kb1-UkJpARSXv_A-gW_bkefUf_fFY_4z1Peljw~Wy
    IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
    HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
    dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -1267,7 +1267,7 @@ Table of Contents
    {
      "nonce": "1234567890",
      "aud": "https://example.com/verifier",
-     "iat": 1687233322
+     "iat": 1687271744
    }
 
    Below is a non-normative example of a Key Binding JWT produced by
@@ -1275,8 +1275,8 @@ Table of Contents
 
    eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
    3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-   6IDE2ODcyMzMzMjJ9.TzDH1ELJVML5gCDFuSRA0e-DVeWFeru1sSN02AtJcA9lif_1np
-   HdzM5hDrz3VhazSL-EVy5x_WpGaV7ILuqEqQ
+   6IDE2ODcyNzE3NDR9.7m_wY5HaO3joTDWEZJ38xtbd64lojqpME648jprPrr1X22KESA
+   RbhxpFLP4f4XwVCpktakHg_nsH6z2sqK340A
 
    Whether to require Key Binding is up to the Verifier's policy, based
    on the set of trust requirements such as trust frameworks it belongs
@@ -1313,8 +1313,8 @@ Table of Contents
    lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
    iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
    jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.uRzvIua3C7ud_fBW6JBCU
-   VZvyrEzbUnRxPKimwUanyZ0Nj4F_9WuKfmO2xSeRnMC-PiN52GHGkhN9nZt-dqz9g~Wy
+   ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.shUQk6Pb8wh2QIDutrhy7
+   -kYfqEoxr2F0y97BNv_J0R6iKU7Kb1-UkJpARSXv_A-gW_bkefUf_fFY_4z1Peljw~Wy
    JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
    ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
    jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -1322,8 +1322,8 @@ Table of Contents
    jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
    IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
    6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-   yIiwgImlhdCI6IDE2ODcyMzMzMjJ9.TzDH1ELJVML5gCDFuSRA0e-DVeWFeru1sSN02A
-   tJcA9lif_1npHdzM5hDrz3VhazSL-EVy5x_WpGaV7ILuqEqQ
+   yIiwgImlhdCI6IDE2ODcyNzE3NDR9.7m_wY5HaO3joTDWEZJ38xtbd64lojqpME648jp
+   rPrr1X22KESARbhxpFLP4f4XwVCpktakHg_nsH6z2sqK340A
 
 6.  Verification and Processing
 
@@ -1591,8 +1591,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "_3U5rnUSqbfafwcskbbH0BQnfknmIZIM_xZCMDgxI_gP3yD3vRsK
-       9MJ_22NtnrMQHrb-FvChQncDVmgRDUURaQ",
+     "signature": "vGPXI-AX7trdb2yGucwFMrsUIAIXe95UDdiGDLZt9EkxycZ8toAG
+       jgdhf7B0yafLBAdV-5qqItQrhdH6UcXNzg",
      "disclosures": [
        "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
          d",
@@ -1631,8 +1631,8 @@ Table of Contents
        xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
        NDRTZ0NGpUOUYySFpRIn19fQ",
      "protected": "eyJhbGciOiAiRVMyNTYifQ",
-     "signature": "_3U5rnUSqbfafwcskbbH0BQnfknmIZIM_xZCMDgxI_gP3yD3vRsK
-       9MJ_22NtnrMQHrb-FvChQncDVmgRDUURaQ",
+     "signature": "vGPXI-AX7trdb2yGucwFMrsUIAIXe95UDdiGDLZt9EkxycZ8toAG
+       jgdhf7B0yafLBAdV-5qqItQrhdH6UcXNzg",
      "disclosures": [
        "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
          d",
@@ -1644,8 +1644,8 @@ Table of Contents
      ],
      "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
        I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-       lmaWVyIiwgImlhdCI6IDE2ODcyMzMzMjJ9.D7_5rHPkkxuqBOMcFM-dJyXPiJDKE
-       XyYS_eDGssp-Z-4yWJ2u-GBVjhIZ4Ur955AfVsS7AUrMbnbUBjujJ5KiQ"
+       lmaWVyIiwgImlhdCI6IDE2ODcyNzE3NDR9.3OhaTJQLH7pNKwpG9oY8UxTR1yuE1
+       XL7euIbsg9wNcWxNBIJijRKS-Vpbo4maUDIwh4rRfg9HdTpW4DcNoOGLw"
    }
 
 9.  Security Considerations
@@ -1666,7 +1666,7 @@ Table of Contents
    Binding can ensure that the presenter of an SD-JWT credential is the
    legitimate Holder of the credential.
 
-9.1.  Mandatory signing of the Issuer-signed JWT
+9.1.  Mandatory Signing of the Issuer-signed JWT
 
    The Issuer-signed JWT MUST be signed by the Issuer to protect
    integrity of the issued claims.  An attacker can modify or add claims
@@ -1674,10 +1674,10 @@ Table of Contents
    over the victim's account or add an attribute indicating a fake
    academic qualification).
 
-   The Verifier MUST always check the Issuer-signed JWT signature to
-   ensure that it has not been tampered with since the issuance.  If the
-   signature on the Issuer-signed JWT cannot be verified, it MUST be
-   rejected.
+   The Verifier MUST always check the signature of the Issuer-signed JWT
+   to ensure that it has not been tampered with since the issuance.  The
+   Issuer-signed JWT MUST be rejected if the signature cannot be
+   verified.
 
    The security of the Issuer-signed JWT depends on the security of the
    signature algorithm.  Any of the JSON Web Signature and Encryption
@@ -2410,8 +2410,8 @@ A.1.  Example 2: Handling Structured Claims
    nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
    GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
    G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.XCXLSPC9iQEdLWA5JpHbaVAfxR
-   9Yt12_vzso1SjIAIqW0xf8MkB3bbeSrI-00--KO6AkUwHL-pKFv6ynbtv0Bw~WyJHMDJ
+   3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.xaffxuSC9cAoSx4SQG7mfoD8D6
+   FV2ZANq5EBUw_wA1S1hsWK8cgk9yLCAJjm_CUSjKsUXk4XLGDubxMT-1Om1Q~WyJHMDJ
    OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
    a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 
@@ -2712,9 +2712,9 @@ A.2.  Example 3 - Complex Structured SD-JWT
    jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
    WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
    EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.zXBZxmOSO
-   9Bu3NH7DXaA6zT-QSK_zI2QjDeDq7Teb3Yvt66uHPCcaOgO-AXpDEEHsaaiHzW61oSF-
-   9j1ZELYjw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+   ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.b0v0qy5S8
+   Q3IZo1mU_WEWBUgEcs3Plxe8MJF7QIFw5VVCyQ35oBlBcYJp3SA9Ku8vys5OTvJ4jhYo
+   xcOpkSqrg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
    0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
    3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
    PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -3261,16 +3261,16 @@ A.4.  Example 4b - W3C Verifiable Credentials Data Model v2.0, using
    2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
    nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
    ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-   0U2dDRqVDlGMkhaUSJ9fX0._5_SlycqEZEdSXQ_sb4V42MW5LFgzh4VVK3Gq2JVN7Fs7
-   iCfTyTJ-HMfM-SxS57566i5ziDVWFNCgjl-GW1ScQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+   0U2dDRqVDlGMkhaUSJ9fX0.0_rcCuloKfFq92v_H_GTG0KkFDau_MXV0k_tPDXGVDJgp
+   JXAIXmxu8cq_OjxvKRM-pktsgnOcRstbm_Q12WNag~WyJQYzMzSk0yTGNoY1VfbEhnZ3
    ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
    mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
    DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
    M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
    IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
    9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyMzMzMjJ9.BuaKfjER1Azj3vECoU4uUpxmo
-   G6pia2aVvvT0HmTx908-wyHRFnCN0GC1TRmLjOfIkq_RkobCS9kqjq1qQ8cLA
+   9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyNzE3NDR9.Yfike3w1ZtPAYx89EC1h8YcSB
+   2CWxSy27I_YipRNz7NVTA2X6dYvADywFE2n-HM9gVkUHH-Be9fPoReI0r0B5g
 
    After the validation, the Verifier will have the following data for
    further processing:
