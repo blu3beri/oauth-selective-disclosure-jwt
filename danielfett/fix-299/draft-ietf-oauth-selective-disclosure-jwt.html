@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Han,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Selective Disclosure for JWTs (SD-JWT)</title>
+<title>SD-JWT: Selective Disclosure for JWT and JWS with JSON Payloads</title>
 <meta content="Daniel Fett" name="author">
 <meta content="Kristina Yasuda" name="author">
 <meta content="Brian Campbell" name="author">
@@ -1092,7 +1092,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">Selective Disclosure for JWTs (SD-JWT)</h1>
+<h1 id="title">SD-JWT: Selective Disclosure for JWT and JWS with JSON Payloads</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This specification defines a mechanism for selective disclosure of individual elements of a JSON object
@@ -2076,8 +2076,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
-Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.DkCMHGz29aTVh5j9p2sjR
+Ry7OINgVNvKKRnxBjTS3QxGSafPMczVyN24wDubO1QnfVX1-4x7VQyL8oEQGdxHvg
 </pre><a href="#section-5.5-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2438,7 +2438,7 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1687380961
+  "iat": 1687381126
 }
 </pre><a href="#section-5.10-8" class="pilcrow">¶</a>
 </div>
@@ -2446,8 +2446,8 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <div class="lang-txt sourcecode" id="section-5.10-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODczODA5NjF9.uC2islvPhZH5gR0eG3vQ1ay1thSjSutzsw3Q4JstRzc8jOqk_d
-5TTp9qoiUH_92KUU5Xs95fvMaTJz7gN32o7Q
+6IDE2ODczODExMjZ9.MYSJPiqwCVtBjbKfVlNcBDU2q1hDNexSBYzIVedu8qNoUvEWKV
+iLPogmrxpZY1HBBEjlMGt0vhbbQeth7fyvAg
 </pre><a href="#section-5.10-10" class="pilcrow">¶</a>
 </div>
 <p id="section-5.10-11">Whether to require Key Binding is up to the Verifier's policy,
@@ -2506,8 +2506,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
-Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.DkCMHGz29aTVh5j9p2sjR
+Ry7OINgVNvKKRnxBjTS3QxGSafPMczVyN24wDubO1QnfVX1-4x7VQyL8oEQGdxHvg~Wy
 IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
 HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
 dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -2540,8 +2540,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
-Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.DkCMHGz29aTVh5j9p2sjR
+Ry7OINgVNvKKRnxBjTS3QxGSafPMczVyN24wDubO1QnfVX1-4x7VQyL8oEQGdxHvg~Wy
 JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
 ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
 jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -2549,8 +2549,8 @@ kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
 jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
 IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
 6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-yIiwgImlhdCI6IDE2ODczODA5NjF9.uC2islvPhZH5gR0eG3vQ1ay1thSjSutzsw3Q4J
-stRzc8jOqk_d5TTp9qoiUH_92KUU5Xs95fvMaTJz7gN32o7Q
+yIiwgImlhdCI6IDE2ODczODExMjZ9.MYSJPiqwCVtBjbKfVlNcBDU2q1hDNexSBYzIVe
+du8qNoUvEWKViLPogmrxpZY1HBBEjlMGt0vhbbQeth7fyvAg
 </pre><a href="#section-5.11-14" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2794,8 +2794,8 @@ a JWS JSON serialized SD-JWT from an Issuer with all the respective Disclosures.
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "yv6Q9GNv3y1QLhweJM_KJR0QzxqcXEAS-HWTPNaEKB4q0tpJ0ZXM
-    iwUry1FWRQcaoWv6zMqYPL46b5GtrGOLwg",
+  "signature": "0GVCzBPjMd_RA7LzfX2ubNf7fI4qZdxWVMwxkKRFjaOV0QWv6kI9
+    fTN30XWKiSBF_AZNvBVwacQZZ9QtaovuSw",
   "disclosures": [
     "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
       d",
@@ -2834,8 +2834,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "yv6Q9GNv3y1QLhweJM_KJR0QzxqcXEAS-HWTPNaEKB4q0tpJ0ZXM
-    iwUry1FWRQcaoWv6zMqYPL46b5GtrGOLwg",
+  "signature": "0GVCzBPjMd_RA7LzfX2ubNf7fI4qZdxWVMwxkKRFjaOV0QWv6kI9
+    fTN30XWKiSBF_AZNvBVwacQZZ9QtaovuSw",
   "disclosures": [
     "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
       d",
@@ -2847,8 +2847,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
   ],
   "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
     I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-    lmaWVyIiwgImlhdCI6IDE2ODczODA5NjF9.fzmzEBHo7prdfW25Yhz6vhMfufGGG
-    77TOClT8RQz2wUy1nq_NiwbQx946O3ozRSIdnLnauOfsRIZWb6CubZSRQ"
+    lmaWVyIiwgImlhdCI6IDE2ODczODExMjZ9.66BIRxB2pEzOnQGRDmdc1RomYpAxg
+    -CMEmbdm5hCWmaJHKsyA188I4wo45Q_Lpob1iuDiX-3PhAAZLxDs9dxew"
 }
 </pre><a href="#section-8-7" class="pilcrow">¶</a>
 </div>
@@ -3652,8 +3652,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.CrBBXzrviZqHcpNbU1SEyOxgaD
-F1P9-C0doryiFhmOZ5EicuYgfIAujUbXs1Uc5wnWzS3oQ_I4RN-fiUWeB9HA~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.fsM5e1EL5me4sUfC35eYvLnE8b
+0wLSpVboD-FjshabYclSakW8wU2fX_sz88Wu5C5cD8ImtipuHecp5Ixca_Gw~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -3988,9 +3988,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.dYiq5Fx6U
-rboPHaDd_DMZE-B1C_XKmlzcEuJeH6uIWv-9EeGLji4So21HAcrfgzDojtpA8y_LQaF5
-_4PgvteEg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.IJ4gUzSKk
+al4J3C5AwIG8DAOC194zzZ-UjV7aMASzDgjxWXIUUrgtwsTPhMZr5fyBLKdGyrGiSnEf
+wXL9CaE7Q~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4564,16 +4564,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.rYXb0tAQUyezAWFLnWc-0wko4ht8sHQSlalWzVhhkkH38
-UaDFt4HGkhXQGRIf6KhceMHp7ju_DdxoqvJhz3R-Q~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.09O9hMQ1wD3nvNdq3KlwcmF1dVsGj73CV3ABPuVyX_ppL
+Dn6V__Po8XVBSskm3W4lmLzuhXhOrFfjHuqi55_aQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODczODA5NjF9.3YmhQDnkdUSP-vbkbNgIdg8be
-GpKvJFkspQRSK5BOC7t2bL7ZD6htPTFNkHtMhCMCq6J7YjJ8iVijw8hUo11kQ
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODczODExMjZ9.sWHz0IkX_UnUo4Rm87ktms64D
+14RN69siSmDgdP1waeldmYQM0M3O4hKtu9kUQxwBwbwNBKfyXzSeSE9vxA0yA
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
@@ -4769,7 +4769,7 @@ data. The original JSON data is then used by the application. See
 </li>
         <li class="normal" id="appendix-C-3.10">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.10" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.11">Added some text to the Abstract and Introduction to be more inclusive of JWS with JSON<a href="#appendix-C-3.11" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.11">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.11" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-3.12">Improved example for allowed variations in Disclosures<a href="#appendix-C-3.12" class="pilcrow">¶</a>
 </li>
