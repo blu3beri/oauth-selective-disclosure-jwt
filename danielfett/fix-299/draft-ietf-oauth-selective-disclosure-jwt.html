@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Han,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>SD-JWT: Selective Disclosure for JWT and JWS with JSON Payloads</title>
+<title>Selective Disclosure for JWTs (SD-JWT)</title>
 <meta content="Daniel Fett" name="author">
 <meta content="Kristina Yasuda" name="author">
 <meta content="Brian Campbell" name="author">
@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fett, et al.</td>
-<td class="center">Expires 22 December 2023</td>
+<td class="center">Expires 23 December 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-oauth-selective-disclosure-jwt-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-06-20" class="published">20 June 2023</time>
+<time datetime="2023-06-21" class="published">21 June 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-22">22 December 2023</time></dd>
+<dd class="expires"><time datetime="2023-12-23">23 December 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1092,7 +1092,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">SD-JWT: Selective Disclosure for JWT and JWS with JSON Payloads</h1>
+<h1 id="title">Selective Disclosure for JWTs (SD-JWT)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This specification defines a mechanism for selective disclosure of individual elements of a JSON object
@@ -1129,7 +1129,7 @@ It encompasses various applications, including but not limited to the selective 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2076,8 +2076,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.M-2EtTuJPn9O38nXbPB6c
-I2vpe8AUDuMGYlPQ2r92TZGOv0YP1IvSexUNaPMsTX5RoOAr28eAudHc8PynraPZg
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
+Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ
 </pre><a href="#section-5.5-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2438,7 +2438,7 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1687294837
+  "iat": 1687380961
 }
 </pre><a href="#section-5.10-8" class="pilcrow">¶</a>
 </div>
@@ -2446,8 +2446,8 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <div class="lang-txt sourcecode" id="section-5.10-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODcyOTQ4Mzd9.lNcRUVy2o8Trx3dkVqtfaUOQkiwmYNjNHpHvTlmtD0lbLTCVj8
-MwQDseTroEhQcyIgpZ5d8RMuvotmR1DyEA3g
+6IDE2ODczODA5NjF9.uC2islvPhZH5gR0eG3vQ1ay1thSjSutzsw3Q4JstRzc8jOqk_d
+5TTp9qoiUH_92KUU5Xs95fvMaTJz7gN32o7Q
 </pre><a href="#section-5.10-10" class="pilcrow">¶</a>
 </div>
 <p id="section-5.10-11">Whether to require Key Binding is up to the Verifier's policy,
@@ -2506,8 +2506,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.M-2EtTuJPn9O38nXbPB6c
-I2vpe8AUDuMGYlPQ2r92TZGOv0YP1IvSexUNaPMsTX5RoOAr28eAudHc8PynraPZg~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
+Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ~Wy
 IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
 HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
 dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -2540,8 +2540,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.M-2EtTuJPn9O38nXbPB6c
-I2vpe8AUDuMGYlPQ2r92TZGOv0YP1IvSexUNaPMsTX5RoOAr28eAudHc8PynraPZg~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.jh8yaQ1IKN8jFE9-65gCX
+Ef25FKe2rQ64prrgUyIZsY7r36SF6rbTMLQvb1C1kEq6067xEqUng45agmtoXgRhQ~Wy
 JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
 ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
 jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -2549,8 +2549,8 @@ kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
 jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
 IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
 6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-yIiwgImlhdCI6IDE2ODcyOTQ4Mzd9.lNcRUVy2o8Trx3dkVqtfaUOQkiwmYNjNHpHvTl
-mtD0lbLTCVj8MwQDseTroEhQcyIgpZ5d8RMuvotmR1DyEA3g
+yIiwgImlhdCI6IDE2ODczODA5NjF9.uC2islvPhZH5gR0eG3vQ1ay1thSjSutzsw3Q4J
+stRzc8jOqk_d5TTp9qoiUH_92KUU5Xs95fvMaTJz7gN32o7Q
 </pre><a href="#section-5.11-14" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2794,8 +2794,8 @@ a JWS JSON serialized SD-JWT from an Issuer with all the respective Disclosures.
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "xbZiFB4VEyhfYv1jGlnHtaXd4IudyakKQOgeWDDZI_-C22bQtTYL
-    Ccfgy_LVTzLjgMmmxPHIJUC4S6JVB9_z8g",
+  "signature": "yv6Q9GNv3y1QLhweJM_KJR0QzxqcXEAS-HWTPNaEKB4q0tpJ0ZXM
+    iwUry1FWRQcaoWv6zMqYPL46b5GtrGOLwg",
   "disclosures": [
     "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
       d",
@@ -2834,8 +2834,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "xbZiFB4VEyhfYv1jGlnHtaXd4IudyakKQOgeWDDZI_-C22bQtTYL
-    Ccfgy_LVTzLjgMmmxPHIJUC4S6JVB9_z8g",
+  "signature": "yv6Q9GNv3y1QLhweJM_KJR0QzxqcXEAS-HWTPNaEKB4q0tpJ0ZXM
+    iwUry1FWRQcaoWv6zMqYPL46b5GtrGOLwg",
   "disclosures": [
     "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
       d",
@@ -2847,8 +2847,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
   ],
   "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
     I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-    lmaWVyIiwgImlhdCI6IDE2ODcyOTQ4Mzd9.9c4jeTcz3a_xCbt_zpT9B3MHGJbIs
-    PGUyEkreZF6_Bv3dtJS9ib-uywcrt6HaZR0oKJJPOnmGUTtTkwo-yi_bA"
+    lmaWVyIiwgImlhdCI6IDE2ODczODA5NjF9.fzmzEBHo7prdfW25Yhz6vhMfufGGG
+    77TOClT8RQz2wUy1nq_NiwbQx946O3ozRSIdnLnauOfsRIZWb6CubZSRQ"
 }
 </pre><a href="#section-8-7" class="pilcrow">¶</a>
 </div>
@@ -3652,8 +3652,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.2W5yX37eUE8vmhgPRJW4GHQH4c
-rrRIHXaHm3_izCB9NUawKZXO83dcsoapSJKmmFZRUa3ytMgxXbAVLth5E4Mw~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.CrBBXzrviZqHcpNbU1SEyOxgaD
+F1P9-C0doryiFhmOZ5EicuYgfIAujUbXs1Uc5wnWzS3oQ_I4RN-fiUWeB9HA~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -3988,9 +3988,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.MpDegp1jQ
-rU6_YPLXH-Acta7RzmwXco3RAfH5owg60DYDnDCgKQ35twMuHAmox_AFzYRpfmxbA7LG
-SHwcpa0Zg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.dYiq5Fx6U
+rboPHaDd_DMZE-B1C_XKmlzcEuJeH6uIWv-9EeGLji4So21HAcrfgzDojtpA8y_LQaF5
+_4PgvteEg~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4564,16 +4564,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.hFRCvPwyBerJYocPjpYQnrgMZqU50jMtb-aueEkOn_QLW
-23WEogZvNKotlhKsORQQheDcijUIK-JMSzVhYk_XQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.rYXb0tAQUyezAWFLnWc-0wko4ht8sHQSlalWzVhhkkH38
+UaDFt4HGkhXQGRIf6KhceMHp7ju_DdxoqvJhz3R-Q~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODcyOTQ4Mzd9.KJ_UjoUeJj2Dnmy8z6Tr-uWHT
-cepLIZbd6WMFSZr_UoFDjrgpGOXiTx3xDVG2av4mIaunCbw6LvILea_Y6JZqQ
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODczODA5NjF9.3YmhQDnkdUSP-vbkbNgIdg8be
+GpKvJFkspQRSK5BOC7t2bL7ZD6htPTFNkHtMhCMCq6J7YjJ8iVijw8hUo11kQ
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
@@ -4769,7 +4769,7 @@ data. The original JSON data is then used by the application. See
 </li>
         <li class="normal" id="appendix-C-3.10">Removed Example 2b and merged the demo of decoy digests into Example 2a<a href="#appendix-C-3.10" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="appendix-C-3.11">Updated title to be more inclusive of JWS with JSON and added some corresponding text to the Abstract and Intro<a href="#appendix-C-3.11" class="pilcrow">¶</a>
+        <li class="normal" id="appendix-C-3.11">Added some text to the Abstract and Introduction to be more inclusive of JWS with JSON<a href="#appendix-C-3.11" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-3.12">Improved example for allowed variations in Disclosures<a href="#appendix-C-3.12" class="pilcrow">¶</a>
 </li>
