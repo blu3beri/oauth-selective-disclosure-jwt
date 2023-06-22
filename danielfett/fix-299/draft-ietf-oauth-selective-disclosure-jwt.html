@@ -1710,7 +1710,7 @@ objects.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 </div>
 <p id="section-5.2.1-7">The resulting Disclosure would be: <code>WyJfMjZiYzRMVC1hYzZxMktJNmNCVzVlcyIsICJmYW1pbHlfbmFtZSIsICJNw7ZiaXVzIl0</code><a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-8">Note that variations in whitespace, encoding of Unicode characters, ordering of object properties, etc., are allowed
-in the JSON representation and no canonicalization need be performed before base64url-encoding.
+in the JSON representation and no canonicalization needs be performed before base64url-encoding.
 For example, the following strings are all valid and encode the
 same claim value "Möbius":<a href="#section-5.2.1-8" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2076,8 +2076,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.b7TWwIwlyvPYD9sltv0to
-pWq70lbLQ1mvQYhWDUX2XAJuaSztBPjw5EUUpzK8yHZ7k6GP92n38d2W5VVCLlTnA
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.OswkvIqb8_8bENMtZnUxe
+wT6U3oFwSfYLerGmoI5KBZkcdNnRPvNy438cvnVZB6DNLZqNNoOP_rYhdflBqRVlA
 </pre><a href="#section-5.5-29" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2438,7 +2438,7 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <pre>{
   "nonce": "1234567890",
   "aud": "https://example.com/verifier",
-  "iat": 1687442895
+  "iat": 1687450677
 }
 </pre><a href="#section-5.10-8" class="pilcrow">¶</a>
 </div>
@@ -2446,8 +2446,8 @@ the Holder MAY include in the SD-JWT to prove the Key Binding to the Verifier.<a
 <div class="lang-txt sourcecode" id="section-5.10-10">
 <pre>eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI6ICIxMjM0NTY
 3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWVyIiwgImlhdCI
-6IDE2ODc0NDI4OTV9.z9BVwDNKYdVDXmyNk93F-2DpXl-YSgjuffDaINroTJ07IoEaAK
-PvUf_1gbt7OAe2dM__8JGKN2DPdsVFZZ5Pyg
+6IDE2ODc0NTA2Nzd9.aO_-9gDiiBm1gXZx5TomGy4COPcjvL3U2qSiaZWFbjbt-Njtod
+YoE6zEHGxAg1c8WJuRKj4VIHjhIyI3psX9og
 </pre><a href="#section-5.10-10" class="pilcrow">¶</a>
 </div>
 <p id="section-5.10-11">Whether to require Key Binding is up to the Verifier's policy,
@@ -2506,8 +2506,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.b7TWwIwlyvPYD9sltv0to
-pWq70lbLQ1mvQYhWDUX2XAJuaSztBPjw5EUUpzK8yHZ7k6GP92n38d2W5VVCLlTnA~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.OswkvIqb8_8bENMtZnUxe
+wT6U3oFwSfYLerGmoI5KBZkcdNnRPvNy438cvnVZB6DNLZqNNoOP_rYhdflBqRVlA~Wy
 IyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJlb
 HVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyI2SWo3
 dE0tYTVpVlBHYm9TNXRtdlZBIiwgImVtYWlsIiwgImpvaG5kb2VAZXhhbXBsZS5jb20i
@@ -2540,8 +2540,8 @@ mhhVllvIn0sIHsiLi4uIjogIjdDZjZKa1B1ZHJ5M2xjYndIZ2VaOGtoQXYxVTFPU2xlc
 lAwVmtCSnJXWjAifV0sICJfc2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siO
 iB7Imt0eSI6ICJFQyIsICJjcnYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IR
 jRqNFc0dmZTVm9ISVAxSUxpbERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIV
-ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.b7TWwIwlyvPYD9sltv0to
-pWq70lbLQ1mvQYhWDUX2XAJuaSztBPjw5EUUpzK8yHZ7k6GP92n38d2W5VVCLlTnA~Wy
+ldLVlE0aGJTSWlyc1ZmdWVjQ0U2dDRqVDlGMkhaUSJ9fX0.OswkvIqb8_8bENMtZnUxe
+wT6U3oFwSfYLerGmoI5KBZkcdNnRPvNy438cvnVZB6DNLZqNNoOP_rYhdflBqRVlA~Wy
 JlbHVWNU9nM2dTTklJOEVZbnN4QV9BIiwgImZhbWlseV9uYW1lIiwgIkRvZSJd~WyJBS
 ngtMDk1VlBycFR0TjRRTU9xUk9BIiwgImFkZHJlc3MiLCB7InN0cmVldF9hZGRyZXNzI
 jogIjEyMyBNYWluIFN0IiwgImxvY2FsaXR5IjogIkFueXRvd24iLCAicmVnaW9uIjogI
@@ -2549,8 +2549,8 @@ kFueXN0YXRlIiwgImNvdW50cnkiOiAiVVMifV0~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5ST
 jl3IiwgImdpdmVuX25hbWUiLCAiSm9obiJd~WyJsa2x4RjVqTVlsR1RQVW92TU5JdkNB
 IiwgIlVTIl0~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZSI
 6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3ZlcmlmaWV
-yIiwgImlhdCI6IDE2ODc0NDI4OTV9.z9BVwDNKYdVDXmyNk93F-2DpXl-YSgjuffDaIN
-roTJ07IoEaAKPvUf_1gbt7OAe2dM__8JGKN2DPdsVFZZ5Pyg
+yIiwgImlhdCI6IDE2ODc0NTA2Nzd9.aO_-9gDiiBm1gXZx5TomGy4COPcjvL3U2qSiaZ
+WFbjbt-NjtodYoE6zEHGxAg1c8WJuRKj4VIHjhIyI3psX9og
 </pre><a href="#section-5.11-14" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2794,8 +2794,8 @@ a JWS JSON serialized SD-JWT from an Issuer with all the respective Disclosures.
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "zfpLkgaPpnCzqg7viDSKLfSxGAfahvPaCNZzuVeIWpOe8hmUEjzc
-    YKG6Pf6P8KCWWPu3aFNuCCZWw-PQtde_0g",
+  "signature": "Sztc9-vCuDjdCersDKeAi2W5lkKpk0I24XCpnCRte1074eNgWJRU
+    0EdGmoavgkaulcw4dvNiRUqRDNwiurZIMQ",
   "disclosures": [
     "WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInN1YiIsICJqb2huX2RvZV80MiJ
       d",
@@ -2834,8 +2834,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
     xzN3ZDZUdlbWMiLCAieSI6ICJaeGppV1diWk1RR0hWV0tWUTRoYlNJaXJzVmZ1ZW
     NDRTZ0NGpUOUYySFpRIn19fQ",
   "protected": "eyJhbGciOiAiRVMyNTYifQ",
-  "signature": "zfpLkgaPpnCzqg7viDSKLfSxGAfahvPaCNZzuVeIWpOe8hmUEjzc
-    YKG6Pf6P8KCWWPu3aFNuCCZWw-PQtde_0g",
+  "signature": "Sztc9-vCuDjdCersDKeAi2W5lkKpk0I24XCpnCRte1074eNgWJRU
+    0EdGmoavgkaulcw4dvNiRUqRDNwiurZIMQ",
   "disclosures": [
     "WyI2SWo3dE0tYTVpVlBHYm9TNXRtdlZBIiwgImZhbWlseV9uYW1lIiwgIkRvZSJ
       d",
@@ -2847,8 +2847,8 @@ includes a Key Binding JWT and has selected to disclose <code>given_name</code>,
   ],
   "kb_jwt": "eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ9.eyJub25jZS
     I6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY29tL3Zlcm
-    lmaWVyIiwgImlhdCI6IDE2ODc0NDI4OTV9.8l8ete3mL9UqEqG3YOsywqQ0U9AHP
-    P9SiUl0BzS2YmST3HwFfAzBcJeqW9ysrLoqb00XS-vo_v3hQNwQLUp6iw"
+    lmaWVyIiwgImlhdCI6IDE2ODc0NTA2Nzd9.gBd4HVn2fKw60pUW-BRVaGfpxsl9e
+    RX_217tC-CBdPDvTOXPNn1uSQGAW-Au1CrTXDtPzZld9ca6K6HvDMIt7A"
 }
 </pre><a href="#section-8-7" class="pilcrow">¶</a>
 </div>
@@ -3652,8 +3652,8 @@ mNXN3p3Wmo1cnlCV3ZYZnJwemVrIiwgImNQWUpISVo4VnUtZjlDQ3lWdWIyVWZnRWs4a
 nZ2WGV6d0sxcF9KbmVlWFEiLCAiZ2xUM2hyU1U3ZlNXZ3dGNVVEWm1Xd0JUdzMyZ25Vb
 GRJaGk4aEdWQ2FWNCIsICJydkpkNmlxNlQ1ZWptc0JNb0d3dU5YaDlxQUFGQVRBY2k0M
 G9pZEVlVnNBIiwgInVOSG9XWWhYc1poVkpDTkUyRHF5LXpxdDd0NjlnSkt5NVFhRnY3R
-3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.vP5ucFHYfuDgNIR8y5QyZ_iBq3
-8EVHBkdQgY7aPUWHHJnZfivnpzunRA_68xZa20sbhL8sTMdh519a2QTOnlkA~WyJHMDJ
+3JNWDQiXX0sICJfc2RfYWxnIjogInNoYS0yNTYifQ.13DZOuGVS2ptzioMKUN49TEfoO
+cIc99A5CyJWun9uuUvk56Ntjda5W6DPOKesz7ZU0Z_n7H9nl18jC3tMHjf3w~WyJHMDJ
 OU3JRZmpGWFE3SW8wOXN5YWpBIiwgInJlZ2lvbiIsICJcdTZlMmZcdTUzM2EiXQ~WyJs
 a2x4RjVqTVlsR1RQVW92TU5JdkNBIiwgImNvdW50cnkiLCAiSlAiXQ~
 </pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
@@ -3988,9 +3988,9 @@ jZFYW5mdHNzMHhjN2NPYW9uZVJyM3BLcjdOZFJtc01vIiwgIldOQS1VTks3Rl96aHNBY
 jlzeVdPNklJUTF1SGxUbU9VOHI4Q3ZKMGNJTWsiLCAiV3hoX3NWM2lSSDliZ3JUQkppL
 WFZSE5DTHQtdmpoWDFzZC1pZ09mXzlsayIsICJfTy13SmlIM2VuU0I0Uk9IbnRUb1FUO
 EptTHR6LW1oTzJmMWM4OVhvZXJRIiwgImh2RFhod21HY0pRc0JDQTJPdGp1TEFjd0FNc
-ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.M-MBwtQyL
-_wdHttLFZ7OQMhm7LZLVBLtdMTVHr35xcyu08G1GnVYJlHiS8zSbADTyJKxsrRnsqHVR
-BqMZiHfwA~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
+ERzYVUwbmtvdmNLT3FXTkUiXX19LCAiX3NkX2FsZyI6ICJzaGEtMjU2In0.6t8a1WVqd
+X5t--wYUSW5Ej2XS_7aW0UByvrYiqCuqT8p1rkqMGQd1rUyxf_7vv2UmTBP1UdzuY4jf
+Uj6JwB3Mw~WyIyR0xDNDJzS1F2ZUNmR2ZyeU5STjl3IiwgInRpbWUiLCAiMjAxMi0wNC
 0yM1QxODoyNVoiXQ~WyJQYzMzSk0yTGNoY1VfbEhnZ3ZfdWZRIiwgeyJfc2QiOiBbIjl
 3cGpWUFd1RDdQSzBuc1FETDhCMDZsbWRnVjNMVnliaEh5ZFFwVE55TEkiLCAiRzVFbmh
 PQU9vVTlYXzZRTU52ekZYanBFQV9SYy1BRXRtMWJHX3djYUtJayIsICJJaHdGcldVQjY
@@ -4564,16 +4564,16 @@ mFjY2luZVJlY2lwaWVudCJ9LCAidHlwZSI6ICJWYWNjaW5hdGlvbkV2ZW50In0sICJfc
 2RfYWxnIjogInNoYS0yNTYiLCAiY25mIjogeyJqd2siOiB7Imt0eSI6ICJFQyIsICJjc
 nYiOiAiUC0yNTYiLCAieCI6ICJUQ0FFUjE5WnZ1M09IRjRqNFc0dmZTVm9ISVAxSUxpb
 ERsczd2Q2VHZW1jIiwgInkiOiAiWnhqaVdXYlpNUUdIVldLVlE0aGJTSWlyc1ZmdWVjQ
-0U2dDRqVDlGMkhaUSJ9fX0.f7ly7FekqhZbNqD70d7CHtjPO_Yf8TrJSpN9bjv26aRsR
-idivJixxvAT-RA4HWwM40BMr6lN7qO7rTKDbpgMBA~WyJQYzMzSk0yTGNoY1VfbEhnZ3
+0U2dDRqVDlGMkhaUSJ9fX0.awBfDu_joOYvaId0Z27ZiqCHAfrDU9Ni7jLIeslNpbQcS
+_5bZomg8NdlS04DE0Egkt_bzOKKo_e9Kl_HIIhQEA~WyJQYzMzSk0yTGNoY1VfbEhnZ3
 ZfdWZRIiwgIm9yZGVyIiwgIjMvMyJd~WyJBSngtMDk1VlBycFR0TjRRTU9xUk9BIiwgI
 mRhdGVPZlZhY2NpbmF0aW9uIiwgIjIwMjEtMDYtMjNUMTM6NDA6MTJaIl0~WyIyR0xDN
 DJzS1F2ZUNmR2ZyeU5STjl3IiwgImF0Y0NvZGUiLCAiSjA3QlgwMyJd~WyJlbHVWNU9n
 M2dTTklJOEVZbnN4QV9BIiwgIm1lZGljaW5hbFByb2R1Y3ROYW1lIiwgIkNPVklELTE5
 IFZhY2NpbmUgTW9kZXJuYSJd~eyJhbGciOiAiRVMyNTYiLCAidHlwIjogImtiK2p3dCJ
 9.eyJub25jZSI6ICIxMjM0NTY3ODkwIiwgImF1ZCI6ICJodHRwczovL2V4YW1wbGUuY2
-9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODc0NDI4OTV9.sopZMTLyt7ShKpVV7UrHK1xaq
-ln5keVqjvl63gBaYByzrzVSesDAw_Tyr2iUAWFzvJnClVPf1XVg_-hXDPbpUw
+9tL3ZlcmlmaWVyIiwgImlhdCI6IDE2ODc0NTA2Nzd9.-Leaun7pNX_wfiC2bHadomhte
+eF46_Zsnsz5gZKGYzidKNCEdxtnU1wqiDgq65RXnkQa6MM99BqSSnymTaB9Qw
 </pre><a href="#appendix-A.4-40" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.4-41">After the validation, the Verifier will have the following data for further processing:<a href="#appendix-A.4-41" class="pilcrow">¶</a></p>
