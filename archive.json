@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-22T01:07:06.590162+00:00",
+  "timestamp": "2023-06-25T01:20:17.989497+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -5946,17 +5946,19 @@
       "id": "I_kwDOHTmVzM5e5UNP",
       "title": "Tooling: Dump header, allow header modification",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/215",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [
         "danielfett"
       ],
-      "labels": [],
+      "labels": [
+        "pending-close"
+      ],
       "body": "Got external feedback:\r\n\r\n* The tooling should allow custom values in the header\r\n* We currently have no way to show the headers",
       "createdAt": "2023-02-20T15:40:00Z",
-      "updatedAt": "2023-05-30T22:34:33Z",
-      "closedAt": null,
+      "updatedAt": "2023-06-23T21:31:24Z",
+      "closedAt": "2023-06-23T21:31:23Z",
       "comments": [
         {
           "author": "Sakurann",
@@ -5964,6 +5966,20 @@
           "body": "more relevant to externalized reference implementation repo now. header to HB JWT is introduced in this PR: https://github.com/danielfett/sd-jwt/pull/3 ",
           "createdAt": "2023-05-30T22:34:33Z",
           "updatedAt": "2023-05-30T22:34:33Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "this issue really now (after \"Use external SD-JWT library to generate examples #273\") applies to the python reference implementation that is used to generate the examples https://github.com/danielfett/sd-jwt ",
+          "createdAt": "2023-06-23T21:22:57Z",
+          "updatedAt": "2023-06-23T21:25:40Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "created a new issue in reference implementation to track this https://github.com/danielfett/sd-jwt/issues/12",
+          "createdAt": "2023-06-23T21:31:23Z",
+          "updatedAt": "2023-06-23T21:31:23Z"
         }
       ]
     },
@@ -7298,7 +7314,7 @@
       "id": "I_kwDOHTmVzM5mVb-6",
       "title": "SD-JWT VC example ",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/272",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tlodderstedt",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -7309,9 +7325,17 @@
       ],
       "body": "I suggest to align the example https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#name-example-4a-w3c-verifiable-c with the design specified in https://github.com/vcstuff/draft-terbu-sd-jwt-vc. The obvious difference is the use (or omission) of \u2019credentialSubject\u2018.",
       "createdAt": "2023-05-19T09:00:26Z",
-      "updatedAt": "2023-06-14T17:28:17Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-06-22T16:18:44Z",
+      "closedAt": "2023-06-22T16:11:33Z",
+      "comments": [
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR merged",
+          "createdAt": "2023-06-22T16:11:33Z",
+          "updatedAt": "2023-06-22T16:11:33Z"
+        }
+      ]
     },
     {
       "number": 274,
@@ -7360,19 +7384,20 @@
       "id": "I_kwDOHTmVzM5nBc-O",
       "title": "Presented form of an SD-JWT using holder binding doesn't prove integrity of disclosures back to holder",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/277",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tplooker",
       "authorAssociation": "NONE",
       "assignees": [
-        "danielfett"
+        "danielfett",
+        "bc-pi"
       ],
       "labels": [
-        "needs-PR"
+        "has-PR"
       ],
       "body": "From what I can understand an SD-JWT that is presented by a holder using holder binding doesn't prove integrity of the disclosures to the holder, only instead back to the issuer. This means a party in the middle could remove values that were intended to be presented from a presented form SD-JWT without a verifier being able to detect it, similarly a party that knows the claim values and salts could inject other disclosure values beyond what the holder intended to present (e.g an issuer). \r\n\r\nIn general I believe the presented form of an SD-JWT should provide holder integrity over the disclosures when holder binding is in use.",
       "createdAt": "2023-05-27T03:35:28Z",
-      "updatedAt": "2023-06-14T17:43:49Z",
-      "closedAt": null,
+      "updatedAt": "2023-06-23T19:22:01Z",
+      "closedAt": "2023-06-23T19:22:00Z",
       "comments": [
         {
           "author": "tplooker",
@@ -7429,6 +7454,13 @@
           "body": "Appreciate the context but I'm not sure I agree with the conclusions here\r\n\r\n> When holder binding is not used, this method of proving integrity of the disclosure set is not possible.\r\n\r\nThis is true but I dont think this a reason not to do this, following this logic one would not define a HB-JWT in the first place because SD-JWTs without it dont have replay attack detection capability.\r\n\r\n> For the JSON Serialization, we would need to define a different way to do it. There is no obvious way how to sign over the JSON-serialized SD-JWT in that case.\r\n\r\nUnderstand there is complexity here and a solution would need to exist for consistency reasons one such that I believe would work is [the solution I proposed above](https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/277#issuecomment-1565205222) which is slightly more complex then validating a single hash, but very much the kind of expected behaviour already going on with SD-JWT when it comes to validating disclosures.\r\n\r\n> The specification promises integrity of the data, but does not guarantee to the verifier that a holder wanted to release this exact dataset even in presence of an adversary. We should call this out more expicitly and will create a PR for this.\r\n\r\nIm not sure what the presences of an adversary here has to do with it, this is about having no ambiguity around what was sent and that once that presentation is prepared it cant be modified in anyway without it being cryptographically invalid.\r\n\r\n> In the presence of such a powerful adversary, it seems plausible that the protection can be circumvented or stronger attacks can be mounted; e.g., by manipulating the request to the holder as well.\r\n\r\nI think this is kind of a seperate issue, if the holder was tricked into revealing more information then intended that doesn't negate the need for wanting integrity around what was presented, in fact ironically it perhaps underscores the importance of having such an integrity check in the first place.\r\n\r\n> For these reasons, integrity and non-repudiation of the message, if needed, must be provided by the transport protocol (in the most simple form by TLS to protect integrity, but things like JARM can provide a second layer for integrity and provide non-repudiation).\r\n\r\nThis is certainly possible but part of the point I was trying to make is it splits where the integrity in a presented SD-JWT comes from, e.g most of it is from the signatures, the rest from the transport and that can make it awkward to evaluate from a security perspective. \r\n\r\n> Hashing can be hard to debug and adds another complexity for developers.\r\n\r\nI mean considering how much hashing is used as a primitive in this spec I really do find it a bit hard to believe this check is where implementations will struggle. I agree it adds another check though which is additional implementation work, but I think the cost is worth it. \r\n\r\nAs a compromise perhaps it could be added as an optional check in the sort of same way the at_hash is optional in OpenID Connect (for different reasons entirely of course).",
           "createdAt": "2023-05-31T10:27:25Z",
           "updatedAt": "2023-05-31T10:28:05Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "#305 was merged. It adds some security considerations text about what the Key Binding JWT does and does not cover. And some suggestions about what can be done in situations that need more. ",
+          "createdAt": "2023-06-23T19:22:00Z",
+          "updatedAt": "2023-06-23T19:22:00Z"
         }
       ]
     },
@@ -7625,7 +7657,7 @@
       ],
       "body": "_Originally posted by @Sakurann in https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/283#discussion_r1227387227_\r\n\r\n>               I don't disagree this section probably belongs here in terms of the order, but the level of this section feels off (looked at [the rendered ver of this branch](https://drafts.oauth.net/oauth-selective-disclosure-jwt/danielfett/arrays/draft-ietf-oauth-selective-disclosure-jwt.html#name-format-of-an-sd-jwt)).\r\n> \r\n> I think there is a logical separations between sections from 5.1 to 5.5 (basic operations) and from sections 5.6 to 5.7 (advanced concepts) from 5.8 to 5.9 (content of the SD-JWT) and 5.10 to 5.11 (combined formats). and having them all at the same level makes it hard to read..\r\n\r\nI agree. There will be other changes coming to the presentation/issuance format sections and a new section for the JWS JSON Serialization. After these changes, we should revisit the current structure and modify as needed.\r\n            ",
       "createdAt": "2023-06-13T09:38:35Z",
-      "updatedAt": "2023-06-15T12:12:00Z",
+      "updatedAt": "2023-06-22T16:50:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -7642,15 +7674,17 @@
       "id": "I_kwDOHTmVzM5omXIG",
       "title": "Proposal for alternative Disclosures data model",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/291",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mtaimela",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "invalid"
+      ],
       "body": "https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.3-2\r\n> The data format for sending the SD-JWT and the Disclosures to the Holder MUST be a series of base64url-encoded values, each separated from the next by a single tilde ('~') character as follows\r\n\r\nThe tilde is definitely very innovative, but it still introduces interesting mapping challenge. Is there a reason why the Disclosures cannot be signed? If there is no reason to NOT sign the Disclosures, then I do propose an alternative design.\r\n\r\nThere could be a `Holder Disclosed VC` or so to **aggregate** the `Issuer-Issued Disclosure` AND `SD-JWT`. This will fit into the normal way of treating VCs, stored as is and queried through VP exchange.\r\n\r\nIssuer-Issued Disclosures in could be a list.\r\nSD-JWT would be embedded JWT, aka \"raw\" JWT inside JWT.\r\n\r\nJWT in JWT will incur size penalty. If the size of the SD-JWT is an issue, it could be issued in binary presentation. I still would propose to take the size impact.\r\n\r\n---\r\nEdit: removed parsing parts as it will just be interesting mapping challenge",
       "createdAt": "2023-06-13T13:22:23Z",
-      "updatedAt": "2023-06-19T17:39:47Z",
-      "closedAt": null,
+      "updatedAt": "2023-06-23T21:18:22Z",
+      "closedAt": "2023-06-23T20:55:51Z",
       "comments": [
         {
           "author": "danielfett",
@@ -7770,6 +7804,20 @@
           "body": "Thank you @danielfett for the reply. \r\n\r\n> We're not breaking the JWS parser in any way\r\n\r\nRequiring a new Media-Type for the parsing makes it very explicit that it is not compliant with existing ones. URL components cannot carry Media-Types, thus it is a burden for the implementors to do this kind of check for one specific data structure. This data structure requires new types in OID4 standards, as it is not jwt_vc_json or jwt_vc_ld, but \"jwt_sd_tilde\"?. A pattern where each data structure defines own media-types, external types, etc is not sustainable and ask you again to reconsider this from the implementors point of view.\r\n\r\n> * SD-JWT has gained a lot of momentum in the past months and there is a lot of \"running code\" already. We are not willing to break existing implementations in a substantial way, and any breaking change must provide tangible advantages\r\n\r\nI'm actually not looking to break things, just to make them more aligned with existing patterns and target implementors native tooling. One of the recent amendments, while this conversation has been carried, is extension of \"JWS Serialisation\". It doesn't break anything and also touches the SD-JWT.\r\n\r\n",
           "createdAt": "2023-06-19T17:39:31Z",
           "updatedAt": "2023-06-19T17:39:47Z"
+        },
+        {
+          "author": "alenhorvat",
+          "authorAssociation": "NONE",
+          "body": "Hi. Can we make a PR with the proposal mentioned in this issue?",
+          "createdAt": "2023-06-23T15:39:49Z",
+          "updatedAt": "2023-06-23T15:39:49Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Hi. Can we make a PR with the proposal mentioned in this issue?\r\n\r\nThere is not, as far as I can tell, a tangible cohesive proposal mentioned in this issue for which a PR could be made. And the various piecemeal suggestions have received polite but firm push-back from the draft editors (who are also representing the working group rough consensus on the draft). As such, I don't think a PR here is appropriate. If you really believe there is a coherent proposal that can be expressed more clearly in a PR, then you are free to create one (of course). But please set your expectations accordingly and realize that it likely will not be accepted. ",
+          "createdAt": "2023-06-23T20:55:51Z",
+          "updatedAt": "2023-06-23T20:55:51Z"
         }
       ]
     },
@@ -7782,10 +7830,12 @@
       "author": "alenhorvat",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "needs-PR"
+      ],
       "body": "              > Essentially, the issuer issued disclosures are fully exposed when exchanged via front-channel. Should in those cases encryption be recommended?\r\n\r\nthere is already a section on that https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-confidentiality-during-tran\r\n\r\nand this is a separate topic than the original question raised. signing over Disclosures will not solve this.\r\n\r\n_Originally posted by @Sakurann in https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/291#issuecomment-1591739581_\r\n            ",
       "createdAt": "2023-06-15T04:59:55Z",
-      "updatedAt": "2023-06-16T05:51:12Z",
+      "updatedAt": "2023-06-23T21:17:36Z",
       "closedAt": null,
       "comments": [
         {
@@ -7801,6 +7851,27 @@
           "body": "Good points @alenhorvat,\r\n\r\nI would like to add that on top of the browser history, there's also browser cache, shoulder surfing and web logs issues. Web logs brings other dimension to the adopters of the technology, as the web logs can possibly be populated with GDPR related data and cause issues for the current operational practices.",
           "createdAt": "2023-06-16T05:51:12Z",
           "updatedAt": "2023-06-16T05:51:12Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Transporting SD-JWT is out of scope of this specification - SD-JWT might be transported via the browser, NFC/BLE, or it might not. I don't disagree there are occurrences when TLS might not be enough, for those cases, we have a following sentence:\r\n> Implementers MAY define an envelope format (such as described in [Section 7](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#enveloping) or nesting the SD-JWT as the plaintext payload of a JWE) to encrypt the SD-JWT when transmitted over an insecure channel.\r\n\r\nWould it be helpful if we make it a little more clearer how to encrypt SD-JWT using JWE?",
+          "createdAt": "2023-06-23T06:00:12Z",
+          "updatedAt": "2023-06-23T06:00:12Z"
+        },
+        {
+          "author": "alenhorvat",
+          "authorAssociation": "NONE",
+          "body": "Hi @Sakurann.\r\n\r\nShort answer: yes; See below if you agree.\r\n\r\nTo limit the scope of this issue, here we should only address:\r\n\r\nWhen is the encryption is recommended? (e.g., whenever the payload could be cached, like browser URL) - I believe we can reach an agreement wrt this point.\r\n\r\nThis would require a sentence or two in a sense: When SD-JWT and disclosures contain personal information (this is a tautology) and the information may be cached or otherwise captured (in plain text) during the transmission, the SD-JWT and the disclosures SHOULD be encrypted using JWE. Example: when SD-JWT and disclosures are transmitted via URL, the information may be stored/cached in the browser's history, ...",
+          "createdAt": "2023-06-23T06:25:01Z",
+          "updatedAt": "2023-06-23T06:25:01Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Some additions or clarifications to [the section currently called \"Confidentiality during Transport\"](https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-confidentiality-during-tran) along those lines certainly seem appropriate and useful. A PR with concrete suggested text would be helpful. ",
+          "createdAt": "2023-06-23T21:17:06Z",
+          "updatedAt": "2023-06-23T21:17:06Z"
         }
       ]
     },
@@ -7809,15 +7880,15 @@
       "id": "I_kwDOHTmVzM5pOOg0",
       "title": "two dots as &#168 display issue ",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/299",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bc-pi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "\"it shows as `two dots &#168; placed over the letter` is there any way to change that..? (this is not the change introduced in this PR)\" on the text in the doc at https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.1.1.1-9.1 \"A different way to encode the umlaut (two dots &#168; placed over the letter):\"\r\n\r\n_Originally posted by @Sakurann in https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/293#discussion_r1234687656_\r\n            \r\n",
       "createdAt": "2023-06-20T12:48:41Z",
-      "updatedAt": "2023-06-21T14:03:51Z",
-      "closedAt": null,
+      "updatedAt": "2023-06-22T16:21:54Z",
+      "closedAt": "2023-06-22T16:21:53Z",
       "comments": [
         {
           "author": "danielfett",
@@ -7839,6 +7910,13 @@
           "body": "it's seems to have been an issue at least back to -01 https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-01.html#section-5.1-9 and/or -02 https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-02.html#section-5.2.1.1-9.1 (so basically since inception).\r\n\r\nI'm sure we could fight with the tool chain to fix it. But at what cost? I'm inclined to just reword that \"The two representations... \" part to make the issue go away. Which I did with this 48efde35a81ca3520eb30ceea6c43d62e8cd96f8 update to https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/300\r\n",
           "createdAt": "2023-06-20T20:52:06Z",
           "updatedAt": "2023-06-21T14:03:51Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR merged",
+          "createdAt": "2023-06-22T16:21:53Z",
+          "updatedAt": "2023-06-22T16:21:53Z"
         }
       ]
     }
@@ -24673,7 +24751,7 @@
       "labels": [],
       "body": "Addresses Issue #144 and expresses ISO 18013-5 mDL data model using SD-JWT.\r\n18013-5 itself is in CBOR, so this SD-JWT includes all of the data elements/use claims that are mandatory by 18013-5 in JSON.\r\n\r\nuses same data set as in [OID4VP ISO mDL example](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-iso-mobile-driving-licence-)\r\n\r\nGiven EUDIW ARF, this PR and PR #210 should probably be combined into one.",
       "createdAt": "2023-03-11T01:18:18Z",
-      "updatedAt": "2023-06-21T19:18:03Z",
+      "updatedAt": "2023-06-24T14:34:14Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "a94e2d1a2c4306a45e7d4a42df482d3fa19a9972",
@@ -24900,6 +24978,26 @@
               "body": "```suggestion\r\n<{{examples/18013-5/sd_jwt_presentation.txt}}\r\n```",
               "createdAt": "2023-06-21T19:14:41Z",
               "updatedAt": "2023-06-21T19:18:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZNVKv",
+          "commit": {
+            "abbreviatedOid": "74327d4"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-06-24T14:33:27Z",
+          "updatedAt": "2023-06-24T14:34:13Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "ok, let's try do to some clarification.\r\n\r\nthis representation doesn't contain the elements of a typical mdoc structure like the one below\r\n\r\n````\r\n{\r\n 'version': '1.0',\r\n 'documents': Array of $doc,\r\n 'status': 0\r\n}\r\n````\r\nbut just a doc, and its ok only if we explicitly say it in the text. At the same time we find the claim `version` in the proposed example, so it seems a mix. Just give some clarification about this not conventional data structure.\r\n\r\nGoing to the single doc (considering that an mdoc is able to contain more than a single doc), we have\r\n\r\n````\r\n{\r\n \"docType\": \"org.iso.18013.5.1.mDL\",\r\n \"issuerSigned\": {\r\n     \"nameSpaces\":  {\r\n         \"org.iso.18013.5.1\": [ $array of digests ]}, \r\n     \"issuerAuth\": {CBORTag 18 containing a COSE Sign1 Document without a content-type, that's the MSO}\r\n },\r\n \"deviceSigned\": ... not of interest for SD-JWT\r\n}\r\n````\r\n\r\nI agree about the flattened approach proposed in this PR, that makes sd-jwt one step forward.\r\n\r\nProbably the nameSpaces may have the `nameSpace` as a dictionary, as it is in mdoc cbor",
+              "createdAt": "2023-06-24T14:33:27Z",
+              "updatedAt": "2023-06-24T14:34:13Z"
             }
           ]
         }
@@ -28903,24 +29001,26 @@
       "id": "PR_kwDOHTmVzM5R9H6f",
       "title": "update sd-jwt-vc example yml",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/284",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Sakurann",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "addresses issue #272 .\r\nupdating the spec text and examples in section 4a to align with https://vcstuff.github.io/draft-terbu-sd-jwt-vc/draft-terbu-sd-jwt-vc.html.\r\nalso updating spec text and examples in section 4b to align with vcdm 2.0 changes \r\nnote that some of the yml file chages are duplicated in PR #283. \r\ncc: @awoie",
       "createdAt": "2023-06-02T01:12:15Z",
-      "updatedAt": "2023-06-21T18:50:11Z",
+      "updatedAt": "2023-06-22T16:11:24Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "2054cca94c243b28c6f0c257b915d68ddd24b65b",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "sakurann-vc-ex",
-      "headRefOid": "eadca27c00955fd64663496d5872fc9b92cd740e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "5d8748c948a832d67be3b4696dd3c9ca2acc127f",
+      "closedAt": "2023-06-22T16:11:23Z",
+      "mergedAt": "2023-06-22T16:11:23Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "e7c3f5fa9b898d20791f9e3666bda8f4111c8172"
+      },
       "comments": [
         {
           "author": "danielfett",
@@ -28942,6 +29042,13 @@
           "body": "note to self: be careful with the conflicts with [PR #293](https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/293/files#diff-40bc3800dd9a7d4411799637caf0b01f82a01242d57264a2e4beb408c3835704R1359)",
           "createdAt": "2023-06-20T03:44:33Z",
           "updatedAt": "2023-06-20T03:44:33Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "but sd-jwt vc defines a typ value",
+          "createdAt": "2023-06-22T15:31:47Z",
+          "updatedAt": "2023-06-22T15:31:47Z"
         }
       ],
       "reviews": [
@@ -29188,6 +29295,39 @@
           "body": "Let's just leave typ and cty headers and media type out of discussion of the examples. ",
           "createdAt": "2023-06-21T18:50:11Z",
           "updatedAt": "2023-06-21T18:50:11Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBNzO",
+          "commit": {
+            "abbreviatedOid": "eadca27"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T15:33:04Z",
+          "updatedAt": "2023-06-22T15:33:05Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "i would prefer to keep this because sd-jwt vc mandates using this typ.\r\nI can add a header manually just like for KB JWT - torsten asked about the header too.",
+              "createdAt": "2023-06-22T15:33:05Z",
+              "updatedAt": "2023-06-22T15:33:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBiCU",
+          "commit": {
+            "abbreviatedOid": "5d8748c"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T16:11:12Z",
+          "updatedAt": "2023-06-22T16:11:12Z",
           "comments": []
         }
       ]
@@ -31309,24 +31449,26 @@
       "id": "PR_kwDOHTmVzM5TeBBo",
       "title": "Fix Issue #299 by moving to a better example",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/300",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "danielfett",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "This solves Issue #299 by moving away from an example that wasn't ideal anyway (it encoded a different bytestring for the value M\u00f6bius).\r\n\r\nThe Disclosure JSON should be:\r\n\r\n`[\"_26bc4LT-ac6q2KI6cBW5es\", \"family_name\", \"M\\u00f6bius\"]`",
       "createdAt": "2023-06-20T19:06:17Z",
-      "updatedAt": "2023-06-21T20:58:23Z",
+      "updatedAt": "2023-06-22T16:21:43Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
-      "baseRefOid": "2054cca94c243b28c6f0c257b915d68ddd24b65b",
+      "baseRefOid": "e7c3f5fa9b898d20791f9e3666bda8f4111c8172",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "danielfett/fix-299",
-      "headRefOid": "d04d48eecf4a5b0a3db05ea28b24733432a07193",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "512b69f20e8fd12767555cd2a73fdeef8d6f958b",
+      "closedAt": "2023-06-22T16:21:42Z",
+      "mergedAt": "2023-06-22T16:21:42Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "81f200a83736f4ff2902ca87f13bda5677c3e396"
+      },
       "comments": [],
       "reviews": [
         {
@@ -31381,6 +31523,79 @@
               "updatedAt": "2023-06-21T19:25:47Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBY6F",
+          "commit": {
+            "abbreviatedOid": "1caf641"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T15:53:54Z",
+          "updatedAt": "2023-06-22T15:53:54Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "ah right..",
+              "createdAt": "2023-06-22T15:53:54Z",
+              "updatedAt": "2023-06-22T15:53:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBk8f",
+          "commit": {
+            "abbreviatedOid": "1caf641"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T16:17:22Z",
+          "updatedAt": "2023-06-22T16:17:22Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nin the JSON representation and no canonicalization needs be performed before base64url-encoding.\r\n```",
+              "createdAt": "2023-06-22T16:17:22Z",
+              "updatedAt": "2023-06-22T16:17:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBlTQ",
+          "commit": {
+            "abbreviatedOid": "0e31054"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "might add decoded content later, but ok for now:\r\n\r\n[\"_26bc4LT-ac6q2KI6cBW5es\", \"family_name\", \"M\\u00f6bius\"]\r\n\r\n[\"_26bc4LT-ac6q2KI6cBW5es\",\"family_name\",\"M\u00f6bius\"]\r\n\r\n[\r\n\"_26bc4LT-ac6q2KI6cBW5es\",\r\n\"family_name\",\r\n\"M\u00f6bius\"\r\n]",
+          "createdAt": "2023-06-22T16:18:15Z",
+          "updatedAt": "2023-06-22T16:18:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBmMW",
+          "commit": {
+            "abbreviatedOid": "a905246"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T16:20:29Z",
+          "updatedAt": "2023-06-22T16:20:29Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n\r\n```",
+              "createdAt": "2023-06-22T16:20:29Z",
+              "updatedAt": "2023-06-22T16:20:29Z"
+            }
+          ]
         }
       ]
     },
@@ -31389,52 +31604,599 @@
       "id": "PR_kwDOHTmVzM5Tl7Pw",
       "title": "Title back to \"Selective Disclosure for JWTs (SD-JWT)\"",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/301",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bc-pi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I've seen the \"new\" title from 332ded8faf20d528c5c05e04cebed28aab1a0d33 a few times in context now and it is really awkward. ",
       "createdAt": "2023-06-21T21:04:05Z",
-      "updatedAt": "2023-06-21T21:04:05Z",
+      "updatedAt": "2023-06-22T16:05:57Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "2054cca94c243b28c6f0c257b915d68ddd24b65b",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "deja-vu-all-over-again",
       "headRefOid": "fe10f8b2ac0406555d21a6af380fbd142e700564",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "closedAt": "2023-06-22T16:05:56Z",
+      "mergedAt": "2023-06-22T16:05:56Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "c25076833f9279057b6e528e5ad3a3b09b6f8037"
+      },
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> as long as the intro text itself stays as we updated it, this makes sense to me.\r\n\r\nyup, that updated intro and abstract text stays \r\n",
+          "createdAt": "2023-06-22T16:01:15Z",
+          "updatedAt": "2023-06-22T16:01:15Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZBM6M",
+          "commit": {
+            "abbreviatedOid": "fe10f8b"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "as long as the intro text itself stays as we updated it, this makes sense to me.",
+          "createdAt": "2023-06-22T15:31:10Z",
+          "updatedAt": "2023-06-22T15:31:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBfKV",
+          "commit": {
+            "abbreviatedOid": "fe10f8b"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T16:05:06Z",
+          "updatedAt": "2023-06-22T16:05:06Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 302,
       "id": "PR_kwDOHTmVzM5TmeGs",
       "title": "Fix Enveloping section title and remove recommended claim name",
       "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/302",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bc-pi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I noticed that the consolidation of SD-JWT terminology in c6a27373dee13cc7c3f70a8b7fd374e62306f5a0 introduced a mistake in the \"Enveloping\" section title by including the word \"Presentation\" while the section talks about enveloping either issued or presented SD-JWTs. While fixing that, I decided to remove the SHOULD recommending the use of an unregistered claim name `_sd_jwt`.  I also tried to align the example enveloping payload a bit with a move minimal set of claims similar to those used in key binding.   \r\n\r\nI realize I probably should have just fixed the section title and not expanded the scope of the changes. But there I was and these few little changes were so inviting...  \r\n\r\nSee it here: https://drafts.oauth.net/oauth-selective-disclosure-jwt/enveloping-sec-fixup/draft-ietf-oauth-selective-disclosure-jwt.html#section-7",
       "createdAt": "2023-06-21T23:00:04Z",
-      "updatedAt": "2023-06-21T23:27:27Z",
+      "updatedAt": "2023-06-22T16:29:37Z",
       "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "baseRefName": "master",
       "baseRefOid": "2054cca94c243b28c6f0c257b915d68ddd24b65b",
       "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
       "headRefName": "enveloping-sec-fixup",
-      "headRefOid": "ff35e94030cae90322241a0a8563babf61a2ae5f",
+      "headRefOid": "34f22bccd4199205ac4f98243004b29d71a633ad",
+      "closedAt": "2023-06-22T16:29:36Z",
+      "mergedAt": "2023-06-22T16:29:36Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "3ce7f92eb9f7e7c4fa1fe378a3c3946335536507"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZBfqw",
+          "commit": {
+            "abbreviatedOid": "ff35e94"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T16:06:15Z",
+          "updatedAt": "2023-06-22T16:06:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBm9K",
+          "commit": {
+            "abbreviatedOid": "ff35e94"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T16:22:26Z",
+          "updatedAt": "2023-06-22T16:22:26Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nThe following non-normative example shows an SD-JWT Presentation without a Key Binding JWT enveloped in a JWT payload:\r\n```",
+              "createdAt": "2023-06-22T16:22:26Z",
+              "updatedAt": "2023-06-22T16:22:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBpUr",
+          "commit": {
+            "abbreviatedOid": "ff35e94"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-22T16:28:31Z",
+          "updatedAt": "2023-06-22T16:28:32Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2023-06-22T16:28:31Z",
+              "updatedAt": "2023-06-22T16:28:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBpcR",
+          "commit": {
+            "abbreviatedOid": "34f22bc"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T16:28:49Z",
+          "updatedAt": "2023-06-22T16:28:49Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 303,
+      "id": "PR_kwDOHTmVzM5Touq2",
+      "title": "Move back to main branch of SD-JWT library",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/303",
+      "state": "MERGED",
+      "author": "danielfett",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-06-22T09:33:18Z",
+      "updatedAt": "2023-06-22T16:30:24Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "2054cca94c243b28c6f0c257b915d68ddd24b65b",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "danielfett/back-to-main",
+      "headRefOid": "b3ddced0d9728490c516c16eab1665637dff549a",
+      "closedAt": "2023-06-22T16:30:23Z",
+      "mergedAt": "2023-06-22T16:30:23Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "f77e5ebae48fdecb2973247fe123f28288b1ccf4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZALyG",
+          "commit": {
+            "abbreviatedOid": "b3ddced"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T13:39:20Z",
+          "updatedAt": "2023-06-22T13:39:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZBp6o",
+          "commit": {
+            "abbreviatedOid": "b3ddced"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-22T16:29:59Z",
+          "updatedAt": "2023-06-22T16:29:59Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 304,
+      "id": "PR_kwDOHTmVzM5Tslkm",
+      "title": "add EUDIW ARF PID spec text example with a yml file",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/304",
+      "state": "OPEN",
+      "author": "Sakurann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #210.",
+      "createdAt": "2023-06-22T21:48:50Z",
+      "updatedAt": "2023-06-24T14:15:48Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "f77e5ebae48fdecb2973247fe123f28288b1ccf4",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "sakurann-pid-ex",
+      "headRefOid": "cf99ac0e463a31c3091721cde832f51819ca3260",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The [\"build\" is broken](https://github.com/oauth-wg/oauth-selective-disclosure-jwt/actions/runs/5350603690/jobs/9703424502?pr=304) and the editor's draft didn't get generated - https://drafts.oauth.net/oauth-selective-disclosure-jwt/sakurann-pid-ex/draft-ietf-oauth-selective-disclosure-jwt.html 404s",
+          "createdAt": "2023-06-23T01:58:44Z",
+          "updatedAt": "2023-06-23T22:21:35Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "fixed - thank you, Brian!",
+          "createdAt": "2023-06-23T05:37:22Z",
+          "updatedAt": "2023-06-23T05:37:22Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@tlodderstedt Binding design and the usage of biometrics data is based on your original PR 210. Shall we replace 4a example with this one? But if you don\u2019t see the need for this example anymore, I am not going to die on this hill.",
+          "createdAt": "2023-06-23T17:08:12Z",
+          "updatedAt": "2023-06-23T17:08:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZEQbz",
+          "commit": {
+            "abbreviatedOid": "bd9a662"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "DISMISSED",
+          "body": "needs some fixin'",
+          "createdAt": "2023-06-23T02:00:43Z",
+          "updatedAt": "2023-06-23T22:19:38Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZGbjB",
+          "commit": {
+            "abbreviatedOid": "cf99ac0"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-06-23T10:06:29Z",
+          "updatedAt": "2023-06-23T10:09:08Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nThis example uses the following object as the SD-JWT input claim set:\r\n```",
+              "createdAt": "2023-06-23T10:06:29Z",
+              "updatedAt": "2023-06-23T10:09:08Z"
+            },
+            {
+              "originalPosition": 43,
+              "body": "```suggestion\r\nA presentation of the SD-JWT without a Key Binding JWT that discloses only biometrics based holder binding (`binding` of type `BiometricBinding`), \r\nnationality, place of birth, and the fact that the person is over 18 years old could look as follows:\r\n```",
+              "createdAt": "2023-06-23T10:08:39Z",
+              "updatedAt": "2023-06-23T10:09:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZHq_A",
+          "commit": {
+            "abbreviatedOid": "cf99ac0"
+          },
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "Couple of remarks:\r\n\r\n- the binding design deviates from the standard design (\"binding\" array with typed entries). What is the rationale for that? I personally would prefer to add biometric binding in parallel to the usual \"cnf\".\r\n- The PID rule book does not defined biometric data yet. I suggest to include this in the example once there is more clarity around that.\r\n- Section A.3. already has a SD-JWT VC example.  I think this example should go into the SD-JWT VC spec as it is another instance of an SD-JWT VC. ",
+          "createdAt": "2023-06-23T13:47:09Z",
+          "updatedAt": "2023-06-23T13:47:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZLWVW",
+          "commit": {
+            "abbreviatedOid": "cf99ac0"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-23T22:41:14Z",
+          "updatedAt": "2023-06-23T22:41:14Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "```suggestion\r\nadd_decoy_claims: false\r\n```\r\n\r\nThe nested decoy digests (e.g., https://drafts.oauth.net/oauth-selective-disclosure-jwt/sakurann-pid-ex/draft-ietf-oauth-selective-disclosure-jwt.html#appendix-A.5-9) make the disclosure content hard to follow. We might want to look at what the tooling does for nested decoys but in the meantime just not do decoys in this example. I think they only detract. ",
+              "createdAt": "2023-06-23T22:41:14Z",
+              "updatedAt": "2023-06-23T22:41:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZNM11",
+          "commit": {
+            "abbreviatedOid": "cf99ac0"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-06-24T13:52:58Z",
+          "updatedAt": "2023-06-24T14:15:46Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "why without a Key Binding?\r\n\r\nI'm asking since Type1 mandates bindings and biometrics in disclosure have privacy impacts, I suggest to have at least an example with an holder key binding.\r\n\r\nI'm not saying to remove an example with biometrics but to give priority to crypto key binding",
+              "createdAt": "2023-06-24T13:52:58Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            },
+            {
+              "originalPosition": 48,
+              "body": "```suggestion\r\nAfter the verification of the data, the Verifier passes\r\nthe following result to the application for further processing:\r\n```",
+              "createdAt": "2023-06-24T13:54:21Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            },
+            {
+              "originalPosition": 48,
+              "body": "even if it is not clear to me the meaning of `passes the following result to the application`",
+              "createdAt": "2023-06-24T13:55:31Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            },
+            {
+              "originalPosition": 54,
+              "body": "`can be used`\r\n\r\nif it is the way to verify that signature, just say `is used`",
+              "createdAt": "2023-06-24T13:56:41Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            },
+            {
+              "originalPosition": 2,
+              "body": "```suggestion\r\n  iss: https://pid-provider.memberstate.example.eu\r\n```",
+              "createdAt": "2023-06-24T13:57:09Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "[ARF PID Rulebook v.1.0.0] specifies \u2018Place of Birth\u2019 as an optional data element in a PID attribute, definfing  the following data elements related to this PID attribute:\r\n\r\n\u2219 birth_place (optional)\r\n\u2219 birth_country (optional)\r\n\u2219 birth_state (optional)\r\n\u2219 birth_city (optional)\r\n\r\nor a JSON object like this\r\n\r\n````\r\n\"place_of_birth\":{\r\n    \"region\":\"MI\",\r\n    \"locality\":\"F205\",\r\n    \"country\": ...,\r\n    \"state\": ...,\r\n    \"city\": ...,\r\n}\r\n````",
+              "createdAt": "2023-06-24T14:12:13Z",
+              "updatedAt": "2023-06-24T14:15:46Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 305,
+      "id": "PR_kwDOHTmVzM5TsrjF",
+      "title": "add some security considerations text about the scope of the Key Binding JWT",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/305",
+      "state": "MERGED",
+      "author": "bc-pi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "as additional explanation in the draft for #277 \r\n\r\nsee it here https://drafts.oauth.net/oauth-selective-disclosure-jwt/scope-of-kb-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-key-binding-jwt-2 ",
+      "createdAt": "2023-06-22T22:18:27Z",
+      "updatedAt": "2023-06-23T14:41:14Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "f77e5ebae48fdecb2973247fe123f28288b1ccf4",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "scope-of-kb-jwt",
+      "headRefOid": "2fdb4bf05dada2a083840510971f6a1657689920",
+      "closedAt": "2023-06-23T14:41:13Z",
+      "mergedAt": "2023-06-23T14:41:13Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "0ed84dad214976505ae55f750a1f179b32c1c50e"
+      },
+      "comments": [
+        {
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "body": "`SD-JWT payload` in this PR might be replaced with `SD-JWT input claim set` depending on how PR #306 goes.",
+          "createdAt": "2023-06-23T05:44:09Z",
+          "updatedAt": "2023-06-23T05:44:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZEz_z",
+          "commit": {
+            "abbreviatedOid": "68cb494"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-23T05:52:02Z",
+          "updatedAt": "2023-06-23T05:52:02Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\nIssuer provided integrity protection of the SD-JWT input claim set and Disclosures is achieved by the signature on the Issuer-signed JWT that contains SD-JWT input claim set and the digest values of the Disclosures as described in (#sec-is-jwt) and (#sec-disclosures) respectively. The Key Binding JWT, defined in (#kb-jwt), serves exclusively as a mechanism for the Holder to demonstrate possession of the private key corresponding to the public key in the SD-JWT payload. As such, the signature on the Key Binding JWT does not cover other parts of the SD-JWT. In cases where it's desirable for the Holder's signature to convey more than a proof-of-possession, such as signing over the selected Disclosures to prove those were the Disclosures selected, the SD-JWT to be presented can be embedded in another JWT (as described in [Enveloping SD-JWTs](#enveloping)) or otherwise signed by the Holder via the application protocol delivering it.\r\n```\r\n\r\nI would play around with the first sentence a little bit, but otherwise looks good.",
+              "createdAt": "2023-06-23T05:52:02Z",
+              "updatedAt": "2023-06-23T05:52:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZGbFu",
+          "commit": {
+            "abbreviatedOid": "68cb494"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-23T10:05:04Z",
+          "updatedAt": "2023-06-23T10:05:05Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Proposed change on Kristina's proposed change (minus the terminology change):\r\n```suggestion\r\nIssuer provided integrity protection of the SD-JWT payload and Disclosures is achieved by the signature on the Issuer-signed JWT that covers the SD-JWT payload including the digest values of the Disclosures as described in (#sec-is-jwt) and (#sec-disclosures), respectively. The Key Binding JWT, defined in (#kb-jwt), serves exclusively as a mechanism for the Holder to demonstrate possession of the private key corresponding to the public key in the SD-JWT payload. As such, the signature on the Key Binding JWT does not cover other parts of the SD-JWT. In cases where it's desirable for the Holder's signature to convey more than a proof-of-possession, such as signing over the selected Disclosures to prove those were the Disclosures selected, the SD-JWT to be presented can be embedded in another JWT (as described in [Enveloping SD-JWTs](#enveloping)) or otherwise signed by the Holder via the application protocol delivering it.\r\n```",
+              "createdAt": "2023-06-23T10:05:04Z",
+              "updatedAt": "2023-06-23T14:38:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZGbQ2",
+          "commit": {
+            "abbreviatedOid": "68cb494"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Thanks, LGTM, just one editorial comment.",
+          "createdAt": "2023-06-23T10:05:37Z",
+          "updatedAt": "2023-06-23T10:05:37Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZHrWN",
+          "commit": {
+            "abbreviatedOid": "68cb494"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-06-23T13:47:58Z",
+          "updatedAt": "2023-06-23T13:47:59Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "I'm not onboard with \"SD-JWT payload\" being wholesale replaced \"SD-JWT input claim set\".\r\n\r\nSo please make a suggested change with the editorial improvements you'd like to see that doesn't also change terminology. ",
+              "createdAt": "2023-06-23T13:47:58Z",
+              "updatedAt": "2023-06-23T13:47:59Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 306,
+      "id": "PR_kwDOHTmVzM5Ttv0W",
+      "title": "replace `payload` with `input claim set`",
+      "url": "https://github.com/oauth-wg/oauth-selective-disclosure-jwt/pull/306",
+      "state": "OPEN",
+      "author": "Sakurann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "addressing issue #274.\r\n\r\n- I replaced SD-JWT payload SD-JWT input claim set\r\n- when using the word for the first time, expanded to say `The input claim set to be used as the payload of an Issuer-signed JWT component of an SD-JWT`\r\n- kept `JSON payload` and `JWT payload` terms.",
+      "createdAt": "2023-06-23T05:30:12Z",
+      "updatedAt": "2023-06-23T21:05:08Z",
+      "baseRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "baseRefName": "master",
+      "baseRefOid": "f77e5ebae48fdecb2973247fe123f28288b1ccf4",
+      "headRepository": "oauth-wg/oauth-selective-disclosure-jwt",
+      "headRefName": "replace-payload",
+      "headRefOid": "a88d25970ff612cf2505e12159641dc6814ba8f5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I thought the intent of #274 was to introduce a proper term for what would be the raw unredacted input into the whole process before SD processing to add `_sd` and `...` with the digest values.  I think payload is fine as we use it and consistent with how JWT/JWS us the term. And don't think \"input claim set\" is a good or accurate replacement for payload. \r\n\r\ni.e. we were looking to have a nice term to distinguish the [\"set of claims that the Issuer is issuing\" ](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.2-1)\r\n\r\n```\r\n{\r\n  \"sub\": \"john_doe_42\",\r\n  \"given_name\": \"John\",\r\n  \"family_name\": \"Doe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"phone_number\": \"+1-202-555-0101\",\r\n  \"address\": {\r\n    \"street_address\": \"123 Main St\",\r\n    \"locality\": \"Anytown\",\r\n    \"region\": \"Anystate\",\r\n    \"country\": \"US\"\r\n  },\r\n  \"birthdate\": \"1940-01-01\"\r\n}\r\n```\r\n\r\nfrom the actual [\"payload of an SD-JWT\"](https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.2-3)\r\n\r\n```\r\n{\r\n  \"_sd\": [\r\n    \"5nXy0Z3QiEba1V1lJzeKhAOGQXFlKLIWCLlhf_O-cmo\",\r\n    \"9gZhHAhV7LZnOFZq_q7Fh8rzdqrrNM-hRWsVOlW3nuw\",\r\n    \"S-JPBSkvqliFv1__thuXt3IzX5B_ZXm4W2qs4BoNFrA\",\r\n    \"bviw7pWAkbzI078ZNVa_eMZvk0tdPa5w2o9R3Zycjo4\",\r\n    \"o-LBCDrFF6tC9ew1vAlUmw6Y30CHZF5jOUFhpx5mogI\",\r\n    \"pzkHIM9sv7oZH6YKDsRqNgFGLpEKIj3c5G6UKaTsAjQ\",\r\n    \"rnAzCT6DTy4TsX9QCDv2wwAE4Ze20uRigtVNQkA52X0\"\r\n  ],\r\n  \"iss\": \"https://example.com/issuer\",\r\n  \"iat\": 1516239022,\r\n  \"exp\": 1735689661,\r\n  \"_sd_alg\": \"sha-256\",\r\n  \"cnf\": {\r\n    \"jwk\": {\r\n      \"kty\": \"EC\",\r\n      \"crv\": \"P-256\",\r\n      \"x\": \"TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc\",\r\n      \"y\": \"ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ\"\r\n    }\r\n  }\r\n}\r\n```",
+          "createdAt": "2023-06-23T13:17:41Z",
+          "updatedAt": "2023-06-23T21:05:08Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHTmVzM5ZGXY4",
+          "commit": {
+            "abbreviatedOid": "a88d259"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Thanks for preparing this. LGTM, just a few editorial nits.",
+          "createdAt": "2023-06-23T09:55:06Z",
+          "updatedAt": "2023-06-23T10:00:02Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nThe input claim set to be used as the payload of the Issuer-signed JWT component of an SD-JWT is a JSON object that\r\n```",
+              "createdAt": "2023-06-23T09:55:06Z",
+              "updatedAt": "2023-06-23T10:00:02Z"
+            },
+            {
+              "originalPosition": 12,
+              "body": "When ending this sentence with the conjunction \"that\", we need to change the enumeration below into one long sentence - I'll propose changes accordingly.",
+              "createdAt": "2023-06-23T09:57:00Z",
+              "updatedAt": "2023-06-23T10:00:02Z"
+            },
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\r\n 1. MAY contain the `_sd_alg` key described in (#hash_function_claim),\r\n 2. MAY contain one or more digests of Disclosures to enable selective disclosure of the respective claims, created and formatted as described below,\r\n 3. MAY contain one or more decoy digests to obscure the actual number of claims in the SD-JWT, created and formatted as described in (#decoy_digests),\r\n 4. MAY contain one or more non-selectively disclosable claims,\r\n 5. MAY also contain a Holder's public key or a reference thereto, as well as further claims such as `iss`, `iat`, etc. as defined or required by the application using SD-JWTs,\r\n 6. MUST NOT contain the reserved claims `_sd` or `...` except for the purpose of transporting digests as described below, and\r\n 7. MUST NOT contain more than one appearance of the same digest value.\r\n```",
+              "createdAt": "2023-06-23T09:57:46Z",
+              "updatedAt": "2023-06-23T10:00:02Z"
+            },
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\r\nThe following non-normative example shows the input claim set of an SD-JWT for this End-User data:\r\n```",
+              "createdAt": "2023-06-23T09:58:25Z",
+              "updatedAt": "2023-06-23T10:00:02Z"
+            },
+            {
+              "originalPosition": 232,
+              "body": "```suggestion\r\n   * Replaced SD-JWT 'payload' with 'input claim set'\r\n\r\n```",
+              "createdAt": "2023-06-23T09:59:35Z",
+              "updatedAt": "2023-06-23T10:00:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZH2qT",
+          "commit": {
+            "abbreviatedOid": "a88d259"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I may have misunderstood the intent of https://github.com/oauth-wg/oauth-selective-disclosure-jwt/issues/274 but really don't think replacing \"payload\" with \"input claim set\" is a good direction. ",
+          "createdAt": "2023-06-23T14:12:25Z",
+          "updatedAt": "2023-06-23T14:12:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHTmVzM5ZIBhG",
+          "commit": {
+            "abbreviatedOid": "a88d259"
+          },
+          "author": "danielfett",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Brian is right, and I completely overlooked that when first reading this. We need a term for the data that is then turned into the SD-JWT, not the content of the Issuer-signed JWT.",
+          "createdAt": "2023-06-23T14:35:50Z",
+          "updatedAt": "2023-06-23T14:35:50Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
