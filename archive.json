@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-06-25T01:20:17.989497+00:00",
+  "timestamp": "2023-06-27T01:14:45.136769+00:00",
   "repo": "oauth-wg/oauth-selective-disclosure-jwt",
   "labels": [
     {
@@ -7678,12 +7678,10 @@
       "author": "mtaimela",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [
-        "invalid"
-      ],
+      "labels": [],
       "body": "https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-04.html#section-5.3-2\r\n> The data format for sending the SD-JWT and the Disclosures to the Holder MUST be a series of base64url-encoded values, each separated from the next by a single tilde ('~') character as follows\r\n\r\nThe tilde is definitely very innovative, but it still introduces interesting mapping challenge. Is there a reason why the Disclosures cannot be signed? If there is no reason to NOT sign the Disclosures, then I do propose an alternative design.\r\n\r\nThere could be a `Holder Disclosed VC` or so to **aggregate** the `Issuer-Issued Disclosure` AND `SD-JWT`. This will fit into the normal way of treating VCs, stored as is and queried through VP exchange.\r\n\r\nIssuer-Issued Disclosures in could be a list.\r\nSD-JWT would be embedded JWT, aka \"raw\" JWT inside JWT.\r\n\r\nJWT in JWT will incur size penalty. If the size of the SD-JWT is an issue, it could be issued in binary presentation. I still would propose to take the size impact.\r\n\r\n---\r\nEdit: removed parsing parts as it will just be interesting mapping challenge",
       "createdAt": "2023-06-13T13:22:23Z",
-      "updatedAt": "2023-06-23T21:18:22Z",
+      "updatedAt": "2023-06-26T14:49:43Z",
       "closedAt": "2023-06-23T20:55:51Z",
       "comments": [
         {
